@@ -35,13 +35,13 @@ namespace ScrollingGame {
 
         public static Game game;
 
-        public static Player player = new Player(new Vector2(0, 0), new Vector2(15, 15), Color.Blue, true);
+        public static Player player = new Player(new Vector2(0, 450), new Vector2(15, 15), Color.Blue, true);
 
         public static Level currentLevel;
 
         public static bool gamePause = false;
 
-        public static float gameGravity = 1;
+        public static float gameGravity = 2;
 
         #region functions
         public static void Load() {
@@ -65,6 +65,7 @@ namespace ScrollingGame {
                 return;
 
             game.gamePictureBox.Invalidate();
+            Gravity.Gravity.EnactGravity();
 
             foreach (IBehaviour b in tickables)
                 b.onUpdate(Time.deltaTimeMillis);

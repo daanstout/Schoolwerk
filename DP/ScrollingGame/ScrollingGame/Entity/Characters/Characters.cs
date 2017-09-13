@@ -10,17 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrollingGame.Entity.Characters {
-    public class Character : Entity{
+    public class Character : EntityBase{
         public IJumpStrategy jumpStrategy;
         public IMoveStrategy moveStrategy;
-
-        public float characterMass;
-
-        public bool isGrounded {
-            get {
-
-            }
-        }
 
         public Character(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) {
 

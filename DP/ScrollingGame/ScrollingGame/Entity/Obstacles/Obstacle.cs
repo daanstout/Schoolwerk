@@ -8,9 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrollingGame.Entity.Obstacles {
-    public class Obstacle : Entity{
-
-
+    public class Obstacle : EntityBase{
         public Obstacle(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) {
 
         }

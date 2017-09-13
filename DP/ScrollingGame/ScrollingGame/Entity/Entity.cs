@@ -11,9 +11,12 @@ using System.Threading.Tasks;
 
 
 namespace ScrollingGame.Entity {
-    public class Entity : ABehaviour{
+    public class EntityBase : ABehaviour{
         public Vector2 location;
         public Vector2 size;
+
+        public float entityMass;
+        public float fallSpeed = 0;
 
         protected Rectangle rectangle {
             get {
@@ -23,7 +26,7 @@ namespace ScrollingGame.Entity {
 
         public Color color;
 
-        public Entity(Vector2 location, Vector2 size, Color color, bool tickable) {
+        public EntityBase(Vector2 location, Vector2 size, Color color, bool tickable) {
             this.location = location;
             this.size = size;
             this.color = color;

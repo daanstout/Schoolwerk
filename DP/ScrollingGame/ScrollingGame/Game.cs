@@ -68,7 +68,9 @@ namespace ScrollingGame {
                 case Keys.D:
                     Player.buttons[3] = true;
                     break;
-
+                case Keys.Space:
+                    Singleton.player.jumpStrategy.Jump(Singleton.player);
+                    break;
             }
         }
 

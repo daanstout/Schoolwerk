@@ -8,13 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrollingGame.Entity {
-    public class ABehaviour : IBehaviour {
+    public abstract class ABehaviour : IBehaviour {
         public bool tickable = true;
 
         public virtual void onDraw(Graphics g) {}
 
         public virtual void onLoad() {
-            Console.WriteLine("adding");
             if (tickable)
                 Singleton.subscribeToTick = this;
         }

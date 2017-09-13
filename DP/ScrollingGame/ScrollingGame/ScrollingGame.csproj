@@ -60,9 +60,10 @@
     <Compile Include="Global.cs" />
     <Compile Include="Jump\AJump.cs" />
     <Compile Include="Jump\IJumpStrategy.cs" />
+    <Compile Include="Jump\PlayerJump.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Move\AMove.cs" />
-    <Compile Include="Move\Gravity.cs" />
+    <Compile Include="Gravity\Gravity.cs" />
     <Compile Include="Move\IMoveStrategy.cs" />
     <Compile Include="Move\PlayerMove.cs" />
     <Compile Include="Program.cs" />
