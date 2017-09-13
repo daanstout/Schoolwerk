@@ -10,5 +10,7 @@ namespace ScrollingGame {
         public static int bottom = 600;
         public static int left = 0;
         public static int right = 800;
+        public static int width = right;
+        public static int heigth = bottom;
     }
 }

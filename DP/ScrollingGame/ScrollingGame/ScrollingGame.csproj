@@ -62,6 +62,7 @@
     <Compile Include="Jump\IJumpStrategy.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Move\AMove.cs" />
+    <Compile Include="Move\Gravity.cs" />
     <Compile Include="Move\IMoveStrategy.cs" />
     <Compile Include="Move\PlayerMove.cs" />
     <Compile Include="Program.cs" />

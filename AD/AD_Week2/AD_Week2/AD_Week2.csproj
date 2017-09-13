@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CD3A58D8-C15B-44BB-B53A-8E59FF893AE8}</ProjectGuid>
+    <ProjectGuid>{2334107E-12E1-4515-A060-D27AA0C74CBB}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SInglyLinkedList</RootNamespace>
-    <AssemblyName>SInglyLinkedList</AssemblyName>
+    <RootNamespace>AD_Week2</RootNamespace>
+    <AssemblyName>AD_Week2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Node.cs" />
+    <Compile Include="Opdracht1\ISimpleArrayList.cs" />
+    <Compile Include="Opdracht1\MyArrayList.cs" />
+    <Compile Include="Opdracht2\ISimpleLinkedList.cs" />
+    <Compile Include="Opdracht2\MyLinkedList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SinglyLinkedList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

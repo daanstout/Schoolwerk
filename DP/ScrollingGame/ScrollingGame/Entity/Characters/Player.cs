@@ -38,6 +38,7 @@ namespace ScrollingGame.Entity.Characters {
         public override void onLoad() {
             base.onLoad();
             moveStrategy = new PlayerMove();
+            characterMass = 2;
         }
     }
 }

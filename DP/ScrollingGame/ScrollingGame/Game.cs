@@ -49,7 +49,7 @@ namespace ScrollingGame {
             temp.addObstale = new Obstacle(new Vector2(100, 100), new Vector2(20, 20), Color.Green, false);
             temp.addObstale = new Obstacle(new Vector2(300, 100), new Vector2(20, 20), Color.Black, false);
             temp.addObstale = new Obstacle(new Vector2(200, 100), new Vector2(20, 20), Color.Black, false);
-            temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(50, 20), Color.Red, false);
+            temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Red, false);
             Singleton.currentLevel = temp;
             gameStart();
         }
