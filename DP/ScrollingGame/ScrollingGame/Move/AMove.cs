@@ -12,31 +12,29 @@ namespace ScrollingGame.Move {
     public abstract class AMove : IMoveStrategy {
 
         public virtual void Move(Character c) {
-            foreach (Obstacle o in Singleton.currentLevel.obstacleList) {
-                //if (c.location.X + c.size.X > o.location.X && c.location.X < o.location.X + o.size.X && c.location.Y + c.size.Y > o.location.Y && c.location.Y < o.location.Y + o.size.Y) {
-                //    float movementVector = (Vector2.Right * Player.PlayerMovementSpeed * Time.deltaTimeSeconds).X;
-                //    if (c.location.X + c.size.X - movementVector < o.location.X) {
-                //        c.location.X = o.location.X - c.size.X;
-                //    }else if(c.location.X + movementVector > o.location.X + o.size.X) {
-                //        c.location.X = o.location.X + o.size.X;
-                //    }
-
-
-                //    //Console.WriteLine(c.location.X + " + " + c.size.X + " > " + o.location.X + " && " + c.location.X + " < " + o.location.X + " + " + o.size.X + " && " + c.location.Y + " + " + c.size.Y + " > " + o.location.Y + " && " + c.location.Y + " < " + o.location.Y + " + " + o.size.Y);
-                //    //c.location.X = o.location.X - c.size.X;
-                //    Console.WriteLine("1");
-                //}// else if (c.location.X < o.location.X + o.size.X && c.location.X + c.size.X > o.location.X && c.location.Y + c.size.Y > o.location.Y && c.location.Y < o.location.Y + o.size.Y) {
-                 //    c.location.X = o.location.X + o.size.X;
-                 //    Console.WriteLine("2");
-                 //}
-                 //c.location += Player.Movement * Player.PlayerMovementSpeed * Time.deltaTimeSeconds + new Vector2(0, c.fallSpeed);
-
-
-                if (c.location.X > o.location.X + o.size.X && c.location.X + c.size.X > o.location.X && c.location.Y + c.size.Y > o.location.Y && c.location.Y < o.location.Y + o.size.Y)
-                    Gravity.Gravity.subscribeToGravity = c;
-                else if (c.location.X < o.location.X + o.size.X && c.location.X + c.size.X < o.location.X && c.location.Y + c.size.Y > o.location.Y && c.location.Y < o.location.Y + o.size.Y)
-                    Gravity.Gravity.subscribeToGravity = c;
+            if (c.location.X <= Global.left) {
+                c.location.X = Global.left;
+            } else if (c.location.X + c.size.X >= Global.right) {
+                c.location.X = Global.right - c.size.X;
             }
+
+            if (c.location.Y <= Global.top) {
+                c.location.Y = Global.top;
+            } else if (c.location.Y + c.size.Y >= Global.bottom) {
+                c.location.Y = Global.bottom - c.size.Y;
+            }
+
+            if (c.entityFloor != null) {
+                if (c.location.X > c.entityFloor.location.X + c.entityFloor.size.X && c.location.X + c.size.X > c.entityFloor.location.X && c.location.Y + c.size.Y >= c.entityFloor.location.Y) {
+                    Gravity.GravitationalForce.subscribeToGravity = c;
+                } else if (c.location.X < c.entityFloor.location.X + c.entityFloor.size.X && c.location.X + c.size.X < c.entityFloor.location.X && c.location.Y + c.size.Y >= c.entityFloor.location.Y) {
+                    Gravity.GravitationalForce.subscribeToGravity = c;
+                }
+            }
+
+            //foreach (Obstacle o in Singleton.currentLevel.obstacleList) {
+
+            //}
         }
     }
 }

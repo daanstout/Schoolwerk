@@ -1,4 +1,5 @@
 ﻿using ScrollingGame.Entity.Characters;
+using ScrollingGame.Gravity;
 
 using System;
 using System.Collections.Generic;
@@ -7,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrollingGame.Jump {
-    public class PlayerJump : AJump{
+    public class SimpleJump : AJump{
         private static float jumpStrength = 2;
 
         public override void Jump(Character c) {
             if (c.fallSpeed != 0)
                 return;
             c.fallSpeed -= jumpStrength;
-            Gravity.Gravity.subscribeToGravity = c;
+            GravitationalForce.subscribeToGravity = c;
         }
     }
 }

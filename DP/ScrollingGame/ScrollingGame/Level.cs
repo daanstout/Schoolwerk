@@ -46,11 +46,15 @@ namespace ScrollingGame {
         }
 
 
-        public Level() {}
+        public Level() { }
 
         public void load() {
             foreach (Obstacle o in obstacleList)
-                Singleton.subscribeToTick = o;
+                if (o.tickable)
+                    Singleton.loadNewBehaviour = o;
+            foreach (Character c in characterList)
+                if (c.tickable)
+                    Singleton.loadNewBehaviour = c;
         }
     }
 }

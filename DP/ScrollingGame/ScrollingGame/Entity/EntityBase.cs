@@ -1,4 +1,5 @@
-﻿using ScrollingGame.Jump;
+﻿using ScrollingGame.Entity.Obstacles;
+using ScrollingGame.Jump;
 using ScrollingGame.Move;
 using ScrollingGame.Utils;
 
@@ -17,6 +18,8 @@ namespace ScrollingGame.Entity {
 
         public float entityMass;
         public float fallSpeed = 0;
+
+        public Obstacle entityFloor;
 
         protected Rectangle rectangle {
             get {

@@ -1,5 +1,6 @@
 ﻿using ScrollingGame.Entity;
 using ScrollingGame.Entity.Characters;
+using ScrollingGame.Gravity;
 using ScrollingGame.Utils;
 
 using System;
@@ -31,6 +32,13 @@ namespace ScrollingGame {
                     tickables.Add(value);
             }
         }
+
+        public static IBehaviour loadNewBehaviour {
+            set {
+                value.onLoad();
+                subscribeToTick = value;
+            }
+        }
         #endregion
 
         public static Game game;
@@ -46,8 +54,8 @@ namespace ScrollingGame {
         #region functions
         public static void Load() {
             _tickables = null;
-            subscribeToTick = new Time();
-            subscribeToTick = player;
+            loadNewBehaviour = new Time();
+            loadNewBehaviour = player;
 
             currentLevel.load();
 
@@ -65,7 +73,7 @@ namespace ScrollingGame {
                 return;
 
             game.gamePictureBox.Invalidate();
-            Gravity.Gravity.EnactGravity();
+            GravitationalForce.EnactGravity();
 
             foreach (IBehaviour b in tickables)
                 b.onUpdate(Time.deltaTimeMillis);

@@ -28,7 +28,7 @@ namespace ScrollingGame.Entity.Characters {
             }
         }
 
-        public static float PlayerMovementSpeed = 100;
+        //public static float PlayerMovementSpeed = 100;
         public Player(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) { }
 
         public override void onUpdate(long delta) {
@@ -39,9 +39,10 @@ namespace ScrollingGame.Entity.Characters {
         public override void onLoad() {
             base.onLoad();
             moveStrategy = new PlayerMove();
-            jumpStrategy = new PlayerJump();
+            jumpStrategy = new SimpleJump();
             entityMass = 2;
-            Gravity.Gravity.subscribeToGravity = this;
+            characterMovement = 100;
+            GravitationalForce.subscribeToGravity = this;
         }
     }
 }

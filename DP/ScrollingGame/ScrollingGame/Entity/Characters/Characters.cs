@@ -1,4 +1,5 @@
-﻿using ScrollingGame.Jump;
+﻿using ScrollingGame.Entity.Obstacles;
+using ScrollingGame.Jump;
 using ScrollingGame.Move;
 using ScrollingGame.Utils;
 
@@ -13,6 +14,8 @@ namespace ScrollingGame.Entity.Characters {
     public class Character : EntityBase{
         public IJumpStrategy jumpStrategy;
         public IMoveStrategy moveStrategy;
+
+        public float characterMovement;
 
         public Character(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) {
 
