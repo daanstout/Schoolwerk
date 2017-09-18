@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace ScrollingGame.Move {
     public class PlayerMove : AMove {
         public override void Move(Character c) {
+            base.Move(c);
+
             //Singleton.player.location += Player.Movement * Player.PlayerMovementSpeed * Time.deltaTimeSeconds + new Vector2(0, Singleton.player.fallSpeed);
             c.location += Player.Movement * c.characterMovement * Time.deltaTimeSeconds + new Vector2(0, c.fallSpeed);
-
-            base.Move(c);
 
             foreach (Obstacle o in Singleton.currentLevel.obstacleList) {
                 if(c.location.Y < o.location.Y + o.size.Y && c.location.Y + c.size.Y > o.location.Y) {

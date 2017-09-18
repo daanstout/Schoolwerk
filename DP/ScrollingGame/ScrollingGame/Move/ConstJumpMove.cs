@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrollingGame.Move {
-    public class ConstJumpMove : AMove{
+    public class ConstJumpMove : ANonPlayerMove{
         public override void Move(Character c) {
             base.Move(c);
             c.location.Y += c.characterMovement * Time.deltaTimeSeconds + c.fallSpeed;

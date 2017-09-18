@@ -12,8 +12,9 @@ namespace ScrollingGame.Jump {
         private static float jumpStrength = 2;
 
         public override void Jump(Character c) {
-            if (c.fallSpeed != 0)
+            if (c.entityFloor == null)
                 return;
+            c.entityFloor = null;
             c.fallSpeed -= jumpStrength;
             GravitationalForce.subscribeToGravity = c;
         }
