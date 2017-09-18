@@ -9,9 +9,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ScrollingGame.Jump;
+using ScrollingGame.Items;
 
 namespace ScrollingGame.Entity.Characters {
     public class Player : Character {
+        private List<AItem> _itemList;
+
+        private List<AItem> itemList {
+            get {
+                if (_itemList == null)
+                    _itemList = new List<AItem>();
+                return _itemList;
+            }
+        }
+
+        public AItem addItem {
+            set {
+                if (!itemList.Contains(value))
+                    itemList.Add(value);
+            }
+        }
+
         public static bool[] buttons = new bool[4];
         public static Vector2 Movement {
             get {
@@ -31,9 +49,20 @@ namespace ScrollingGame.Entity.Characters {
         //public static float PlayerMovementSpeed = 100;
         public Player(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) { }
 
-        public override void onUpdate(long delta) {
-            base.onUpdate(delta);
+        public override void onUpdate() {
+            base.onUpdate();
             moveStrategy.Move(this);
+
+            List<AItem> remove = new List<AItem>();
+            foreach (AItem i in itemList) {
+                i.remainingDuration -= Time.deltaTimeSeconds;
+                if(i.remainingDuration <= 0) {
+                    i.onExpire(this);
+                    remove.Add(i);
+                }
+            }
+            foreach (AItem i in remove)
+                itemList.Remove(i);
         }
 
         public override void onLoad() {

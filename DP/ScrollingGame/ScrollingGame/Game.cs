@@ -1,5 +1,6 @@
 ﻿using ScrollingGame.Entity.Characters;
 using ScrollingGame.Entity.Obstacles;
+using ScrollingGame.Items;
 using ScrollingGame.Utils;
 
 using System;
@@ -50,7 +51,10 @@ namespace ScrollingGame {
             temp.addObstale = new Obstacle(new Vector2(300, 100), new Vector2(20, 20), Color.Black, true);
             temp.addObstale = new Obstacle(new Vector2(200, 100), new Vector2(20, 20), Color.Black, true);
             temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Red, true);
-            temp.addObstale = new Obstacle(new Vector2(100, 475), new Vector2(100, 25), Color.Orange, true);
+            //temp.addObstale = new Obstacle(new Vector2(100, 475), new Vector2(100, 25), Color.Orange, true);
+
+            temp.addItem = new DoubleJumpItem(new Vector2(100, 480), 10, Color.Blue);
+            temp.addItem = new TripleJumpItem(new Vector2(300, 480), 10, Color.Orange);
 
             temp.addCharacter = new Jumper(new Vector2(500, 480), new Vector2(20, 20), Color.Black, true);
             Singleton.currentLevel = temp;
@@ -72,7 +76,7 @@ namespace ScrollingGame {
                     Player.buttons[3] = true;
                     break;
                 case Keys.Space:
-                    Console.WriteLine("jump; {0}", Singleton.player.fallSpeed);
+                    //Console.WriteLine("jump; {0}", Singleton.player.fallSpeed);
                     Singleton.player.jumpStrategy.Jump(Singleton.player);
                     break;
             }

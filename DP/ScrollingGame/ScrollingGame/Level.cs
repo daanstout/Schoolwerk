@@ -1,5 +1,6 @@
 ﻿using ScrollingGame.Entity.Characters;
 using ScrollingGame.Entity.Obstacles;
+using ScrollingGame.Items;
 
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ScrollingGame {
     public class Level {
         private List<Obstacle> _obstacleList;
         private List<Character> _characterList;
+        private List<AItem> _itemList;
 
         public List<Obstacle> obstacleList {
             get {
@@ -46,6 +48,22 @@ namespace ScrollingGame {
         }
 
 
+        public List<AItem> itemList {
+            get {
+                if (_itemList == null)
+                    _itemList = new List<AItem>();
+                return _itemList;
+            }
+        }
+
+        public AItem addItem {
+            set {
+                if (!itemList.Contains(value))
+                    itemList.Add(value);
+            }
+        }
+
+
         public Level() { }
 
         public void load() {
@@ -55,6 +73,8 @@ namespace ScrollingGame {
             foreach (Character c in characterList)
                 if (c.tickable)
                     Singleton.loadNewBehaviour = c;
+            foreach (AItem i in itemList)
+                Singleton.loadNewBehaviour = i;
         }
     }
 }

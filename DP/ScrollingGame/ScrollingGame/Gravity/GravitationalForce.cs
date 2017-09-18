@@ -1,7 +1,9 @@
 ﻿using ScrollingGame.Entity;
 using ScrollingGame.Entity.Characters;
 using ScrollingGame.Entity.Obstacles;
+using ScrollingGame.Jump;
 using ScrollingGame.Utils;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +38,10 @@ namespace ScrollingGame.Gravity {
 
         public static void EnactGravity() {
             List<EntityBase> toUnsubscribe = new List<EntityBase>();
-            foreach(EntityBase e in gravityList) {
+            foreach (EntityBase e in gravityList) {
                 e.fallSpeed += e.entityMass * Singleton.gameGravity * Time.deltaTimeSeconds;
-                foreach(Obstacle o in Singleton.currentLevel.obstacleList) {
-                    if(e.location.Y + e.size.Y > o.location.Y && e.location.X + e.size.X > o.location.X && e.location.X < o.location.X + o.size.X && e.location.Y < o.location.Y + o.size.Y) {
+                foreach (Obstacle o in Singleton.currentLevel.obstacleList) {
+                    if (e.location.Y + e.size.Y > o.location.Y && e.location.X + e.size.X > o.location.X && e.location.X < o.location.X + o.size.X && e.location.Y < o.location.Y + o.size.Y) {
                         e.entityFloor = o;
                         e.fallSpeed = 0;
                         e.location.Y = o.location.Y - e.size.Y;
@@ -47,8 +49,13 @@ namespace ScrollingGame.Gravity {
                     }
                 }
             }
-            foreach(EntityBase e in toUnsubscribe) {
+            foreach (EntityBase e in toUnsubscribe) {
                 unsubscribeFromGravity = e;
+                if (e is Player p)
+                    if (p.jumpStrategy is DoubleJump d)
+                        d.doubleJump = 0;
+                    else if (p.jumpStrategy is TripleJump t)
+                        t.tripleJump = 0;
             }
         }
     }

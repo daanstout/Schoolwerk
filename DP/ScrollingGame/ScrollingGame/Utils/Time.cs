@@ -24,7 +24,7 @@ namespace ScrollingGame.Utils {
             tickWatch.Start();
         }
 
-        public override void onUpdate(long delta) {
+        public override void onUpdate() {
             deltaTimeMillis = tickWatch.ElapsedMilliseconds - previousTick;
             previousTick = tickWatch.ElapsedMilliseconds;
         }

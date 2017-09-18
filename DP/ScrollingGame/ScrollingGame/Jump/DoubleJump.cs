@@ -8,12 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrollingGame.Jump {
-    public class SimpleJump : AJump{
+    public class DoubleJump : AJump{
         private static float jumpStrength = 2;
+        public UInt16 doubleJump = 0;
 
         public override void Jump(Character c) {
-            if (c.entityFloor == null)
-                return;
+            if (c.entityFloor == null) {
+                if (doubleJump >= 2) {
+                    return;
+                }
+            }
+            doubleJump++;
             c.entityFloor = null;
             c.fallSpeed = -jumpStrength;
             base.Jump(c);

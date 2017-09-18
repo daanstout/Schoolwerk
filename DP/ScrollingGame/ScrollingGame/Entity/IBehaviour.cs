@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 namespace ScrollingGame.Entity {
     public interface IBehaviour {
         void onLoad();
-        void onUpdate(long delta);
+        void onUpdate();
         void onPause();
         void onResume();
         void onDraw(Graphics g);
+        void onDestroy();
     }
 }

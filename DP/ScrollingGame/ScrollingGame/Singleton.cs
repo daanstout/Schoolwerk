@@ -15,6 +15,7 @@ namespace ScrollingGame {
     public static class Singleton {
         #region lazy variables
         private static List<IBehaviour> _tickables;
+        private static List<IBehaviour> _removables;
         #endregion
 
         #region public lazy variables
@@ -26,10 +27,25 @@ namespace ScrollingGame {
             }
         }
 
+        private static List<IBehaviour> removables {
+            get {
+                if (_removables == null)
+                    _removables = new List<IBehaviour>();
+                return _removables;
+            }
+        }
+
         public static IBehaviour subscribeToTick {
             set {
                 if (!tickables.Contains(value))
                     tickables.Add(value);
+            }
+        }
+
+        public static IBehaviour unsubscribeFromTick {
+            set {
+                if (tickables.Contains(value))
+                    removables.Add(value);
             }
         }
 
@@ -76,7 +92,12 @@ namespace ScrollingGame {
             GravitationalForce.EnactGravity();
 
             foreach (IBehaviour b in tickables)
-                b.onUpdate(Time.deltaTimeMillis);
+                b.onUpdate();
+
+            foreach (IBehaviour b in removables)
+                tickables.Remove(b);
+
+            _removables = new List<IBehaviour>();
         }
 
         public static void pauseGame(bool pause) {

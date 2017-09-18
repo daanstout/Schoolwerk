@@ -59,9 +59,15 @@
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="Global.cs" />
+    <Compile Include="Items\AItem.cs" />
+    <Compile Include="Items\DoubleJumpItem.cs" />
+    <Compile Include="Items\IItem.cs" />
+    <Compile Include="Items\TripleJumpItem.cs" />
     <Compile Include="Jump\AJump.cs" />
+    <Compile Include="Jump\DoubleJump.cs" />
     <Compile Include="Jump\IJumpStrategy.cs" />
     <Compile Include="Jump\SimpleJump.cs" />
+    <Compile Include="Jump\TripleJump.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Move\AMove.cs" />
     <Compile Include="Gravity\GravitationalForce.cs" />
@@ -100,8 +106,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Items\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

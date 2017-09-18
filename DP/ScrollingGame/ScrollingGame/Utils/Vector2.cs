@@ -26,6 +26,8 @@ namespace ScrollingGame.Utils {
             this.X = X;
         }
 
+        public Vector2() { }
+
         public Vector2 normalized {
             get {
                 float x, y;

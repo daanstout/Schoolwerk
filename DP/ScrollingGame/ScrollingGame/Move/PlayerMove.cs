@@ -28,11 +28,6 @@ namespace ScrollingGame.Move {
                     }
                 }
             }
-
-            
-
-
-            
         }
     }
 }

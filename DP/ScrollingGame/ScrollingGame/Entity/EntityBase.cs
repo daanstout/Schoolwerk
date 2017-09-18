@@ -44,8 +44,8 @@ namespace ScrollingGame.Entity {
             g.FillRectangle(Fonts.getSolidBrush(color), rectangle);
         }
 
-        public override void onUpdate(long delta) {
-            base.onUpdate(delta);
+        public override void onUpdate() {
+            base.onUpdate();
             //moveStrategy.Move();
         }
     }

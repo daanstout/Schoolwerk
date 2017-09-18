@@ -25,8 +25,8 @@ namespace ScrollingGame.Entity.Characters {
             GravitationalForce.subscribeToGravity = this;
         }
 
-        public override void onUpdate(long delta) {
-            base.onUpdate(delta);
+        public override void onUpdate() {
+            base.onUpdate();
             moveStrategy.Move(this);
         }
     }

@@ -11,17 +11,19 @@ namespace ScrollingGame.Entity {
     public abstract class ABehaviour : IBehaviour {
         public bool tickable = true;
 
-        public virtual void onDraw(Graphics g) {}
+        public virtual void onDraw(Graphics g) { }
 
         public virtual void onLoad() {
             if (tickable)
                 Singleton.subscribeToTick = this;
         }
 
-        public virtual void onPause() {}
+        public virtual void onPause() { }
 
-        public virtual void onResume() {}
+        public virtual void onResume() { }
 
-        public virtual void onUpdate(long delta) { }
+        public virtual void onUpdate() { }
+
+        public virtual void onDestroy() { }
     }
 }
