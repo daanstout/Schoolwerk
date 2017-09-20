@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace ScrollingGame.Items {
     public class TripleJumpItem : AItem {
-        private IJumpStrategy strategy;
+        private IJumpStrategy defaultStrategy;
 
         public override void onPickUp(Character c, float duration) {
             base.onPickUp(c, duration);
-            if (strategy == null)
-                strategy = c.jumpStrategy;
+            if (defaultStrategy == null)
+                defaultStrategy = c.jumpStrategy;
             c.jumpStrategy = new TripleJump();
             if (c is Player p) {
                 p.addItem = this;
@@ -24,7 +24,7 @@ namespace ScrollingGame.Items {
 
         public override void onExpire(Character c) {
             Console.WriteLine("test");
-            c.jumpStrategy = strategy;
+            c.jumpStrategy = defaultStrategy;
         }
 
         public TripleJumpItem(Vector2 location, int radius, Color color) {
@@ -40,6 +40,10 @@ namespace ScrollingGame.Items {
                 location.Y + radius > Singleton.player.location.Y) {
                 onPickUp(Singleton.player, 5);
             }
+        }
+
+        public override void onLoad() {
+            itemName = "Triple Jump";
         }
     }
 }

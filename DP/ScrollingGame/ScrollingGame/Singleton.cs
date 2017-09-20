@@ -1,6 +1,7 @@
 ﻿using ScrollingGame.Entity;
 using ScrollingGame.Entity.Characters;
 using ScrollingGame.Gravity;
+using ScrollingGame.UI;
 using ScrollingGame.Utils;
 
 using System;
@@ -72,6 +73,8 @@ namespace ScrollingGame {
             _tickables = null;
             loadNewBehaviour = new Time();
             loadNewBehaviour = player;
+            loadNewBehaviour = new PlayerUI();
+            loadNewBehaviour = new PowerupUI();
 
             currentLevel.load();
 

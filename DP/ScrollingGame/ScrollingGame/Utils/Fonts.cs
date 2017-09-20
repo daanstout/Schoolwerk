@@ -8,5 +8,8 @@ using System.Threading.Tasks;
 namespace ScrollingGame.Utils {
     public static class Fonts {
         public static SolidBrush getSolidBrush(Color color) => new SolidBrush(color);
+        public static Pen getPen(Color color) => new Pen(color);
+
+        public static Font getFont(string fontName, int fontSize) => new Font(fontName, fontSize);
     }
 }

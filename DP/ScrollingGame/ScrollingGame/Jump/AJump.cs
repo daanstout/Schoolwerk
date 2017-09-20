@@ -1,6 +1,7 @@
 ﻿using ScrollingGame.Entity;
 using ScrollingGame.Entity.Characters;
 using ScrollingGame.Gravity;
+using ScrollingGame.Utils;
 
 using System;
 using System.Collections.Generic;

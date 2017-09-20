@@ -1,33 +1,31 @@
-﻿using ScrollingGame.Entity.Characters;
-using ScrollingGame.Jump;
-using ScrollingGame.Utils;
-
+﻿using ScrollingGame.Move;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ScrollingGame.Entity.Characters;
+using ScrollingGame.Utils;
+using System.Drawing;
 
 namespace ScrollingGame.Items {
-    public class DoubleJumpItem : AItem {
-        private IJumpStrategy defaultStrategy;
+    public class SlowMove : AItem{
+        private IMoveStrategy defaultStrategy;
 
         public override void onPickUp(Character c, float duration) {
             base.onPickUp(c, duration);
             if (defaultStrategy == null)
-                defaultStrategy = c.jumpStrategy;
-            c.jumpStrategy = new DoubleJump();
-            if (c is Player p) {
+                defaultStrategy = c.moveStrategy;
+            c.moveStrategy = new SlowMoveHalf();
+            if (c is Player p)
                 p.addItem = this;
-            }
         }
 
         public override void onExpire(Character c) {
-            c.jumpStrategy = defaultStrategy;
+            c.moveStrategy = defaultStrategy;
         }
 
-        public DoubleJumpItem(Vector2 location, int radius, Color color) {
+        public SlowMove(Vector2 location, int radius, Color color) {
             this.location = location;
             this.radius = radius;
             this.color = color;
@@ -43,7 +41,7 @@ namespace ScrollingGame.Items {
         }
 
         public override void onLoad() {
-            itemName = "Double Jump";
+            itemName = "Wither";
         }
     }
 }

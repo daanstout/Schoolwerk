@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScrollingGame.Entity {
+namespace ScrollingGame.Utils{
     public interface IBehaviour {
         void onLoad();
         void onUpdate();

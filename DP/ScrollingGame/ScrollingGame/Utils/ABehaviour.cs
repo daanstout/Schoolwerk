@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScrollingGame.Entity {
+namespace ScrollingGame.Utils {
     public abstract class ABehaviour : IBehaviour {
         public bool tickable = true;
 

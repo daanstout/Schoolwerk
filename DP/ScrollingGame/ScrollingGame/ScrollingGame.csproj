@@ -45,12 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\ABehaviour.cs" />
+    <Compile Include="Items\SlowMove.cs" />
+    <Compile Include="Move\SlowMoveHalf.cs" />
+    <Compile Include="UI\PowerupUI.cs" />
+    <Compile Include="Utils\ABehaviour.cs" />
     <Compile Include="Entity\Characters\Characters.cs" />
     <Compile Include="Entity\Characters\Jumper.cs" />
     <Compile Include="Entity\Characters\Player.cs" />
     <Compile Include="Entity\EntityBase.cs" />
-    <Compile Include="Entity\IBehaviour.cs" />
+    <Compile Include="Utils\IBehaviour.cs" />
     <Compile Include="Entity\Obstacles\Obstacle.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
@@ -78,7 +81,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Singleton.cs" />
+    <Compile Include="UI\PlayerUI.cs" />
     <Compile Include="Utils\Fonts.cs" />
+    <Compile Include="Utils\IObserver.cs" />
+    <Compile Include="Utils\PlayerSubject.cs" />
+    <Compile Include="Utils\Subject.cs" />
     <Compile Include="Utils\Time.cs" />
     <Compile Include="Utils\Vector2.cs" />
     <EmbeddedResource Include="Game.resx">

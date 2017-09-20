@@ -14,6 +14,7 @@ namespace ScrollingGame.Items {
         public Vector2 location;
         public int radius;
         public Color color;
+        public string itemName;
 
         public float remainingDuration;
 

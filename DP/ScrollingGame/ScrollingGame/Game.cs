@@ -47,13 +47,14 @@ namespace ScrollingGame {
 
         private void CreateTestLevel() {
             Level temp = new Level();
-            temp.addObstale = new Obstacle(new Vector2(100, 100), new Vector2(20, 20), Color.Green, true);
-            temp.addObstale = new Obstacle(new Vector2(300, 100), new Vector2(20, 20), Color.Black, true);
-            temp.addObstale = new Obstacle(new Vector2(200, 100), new Vector2(20, 20), Color.Black, true);
+            //temp.addObstale = new Obstacle(new Vector2(100, 100), new Vector2(20, 20), Color.Green, true);
+            //temp.addObstale = new Obstacle(new Vector2(300, 100), new Vector2(20, 20), Color.Black, true);
+            //temp.addObstale = new Obstacle(new Vector2(200, 100), new Vector2(20, 20), Color.Black, true);
             temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Red, true);
             //temp.addObstale = new Obstacle(new Vector2(100, 475), new Vector2(100, 25), Color.Orange, true);
 
             temp.addItem = new DoubleJumpItem(new Vector2(100, 480), 10, Color.Blue);
+            temp.addItem = new SlowMove(new Vector2(150, 480), 10, Color.Black);
             temp.addItem = new TripleJumpItem(new Vector2(300, 480), 10, Color.Orange);
 
             temp.addCharacter = new Jumper(new Vector2(500, 480), new Vector2(20, 20), Color.Black, true);
@@ -76,7 +77,6 @@ namespace ScrollingGame {
                     Player.buttons[3] = true;
                     break;
                 case Keys.Space:
-                    //Console.WriteLine("jump; {0}", Singleton.player.fallSpeed);
                     Singleton.player.jumpStrategy.Jump(Singleton.player);
                     break;
             }
@@ -96,7 +96,6 @@ namespace ScrollingGame {
                 case Keys.D:
                     Player.buttons[3] = false;
                     break;
-
             }
         }
     }

@@ -1,6 +1,8 @@
-﻿using ScrollingGame.Move;
+﻿using ScrollingGame.Gravity;
+using ScrollingGame.Items;
+using ScrollingGame.Jump;
+using ScrollingGame.Move;
 using ScrollingGame.Utils;
-using ScrollingGame.Gravity;
 
 using System;
 using System.Collections.Generic;
@@ -8,14 +10,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ScrollingGame.Jump;
-using ScrollingGame.Items;
 
 namespace ScrollingGame.Entity.Characters {
     public class Player : Character {
+        public PlayerSubject pSubject;
+
         private List<AItem> _itemList;
 
-        private List<AItem> itemList {
+        public List<AItem> itemList {
             get {
                 if (_itemList == null)
                     _itemList = new List<AItem>();
@@ -25,8 +27,10 @@ namespace ScrollingGame.Entity.Characters {
 
         public AItem addItem {
             set {
-                if (!itemList.Contains(value))
+                if (!itemList.Contains(value)) {
                     itemList.Add(value);
+                    pSubject.Notify();
+                }
             }
         }
 
@@ -47,7 +51,9 @@ namespace ScrollingGame.Entity.Characters {
         }
 
         //public static float PlayerMovementSpeed = 100;
-        public Player(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) { }
+        public Player(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) {
+            pSubject = new PlayerSubject();
+        }
 
         public override void onUpdate() {
             base.onUpdate();

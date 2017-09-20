@@ -50,6 +50,12 @@ namespace ScrollingGame.Utils {
             }
         }
 
+        public float getDistanceTo(Vector2 other) {
+            float X = Math.Abs(this.X - other.X);
+            float Y = Math.Abs(this.Y - other.Y);
+            return (float)Math.Sqrt(X * X + Y * Y);
+        }
+
         public override string ToString() {
             return String.Format("[X = {0}; Y = {1}]", X, Y);
         }
@@ -79,6 +85,14 @@ namespace ScrollingGame.Utils {
         }
 
         public static implicit operator Vector2(Point p) {
+            return new Vector2(p.X, p.Y);
+        }
+
+        public static implicit operator PointF(Vector2 v) {
+            return new PointF(v.X, v.Y);
+        }
+
+        public static implicit operator Vector2(PointF p) {
             return new Vector2(p.X, p.Y);
         }
 
