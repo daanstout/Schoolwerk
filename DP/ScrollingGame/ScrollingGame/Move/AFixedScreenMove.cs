@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrollingGame.Move {
-    public abstract class AMove : IMoveStrategy {
+    public abstract class AFixedScreenMove : IMoveStrategy {
 
         public virtual void Move(Character c) {
             if (c.location.X <= Global.Game_Left) {

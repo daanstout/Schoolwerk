@@ -23,7 +23,6 @@ namespace ScrollingGame.Items {
         }
 
         public override void onExpire(Character c) {
-            Console.WriteLine("test");
             c.jumpStrategy = defaultStrategy;
         }
 

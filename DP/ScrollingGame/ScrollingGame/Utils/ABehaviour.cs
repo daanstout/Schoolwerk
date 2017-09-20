@@ -13,10 +13,7 @@ namespace ScrollingGame.Utils {
 
         public virtual void onDraw(Graphics g) { }
 
-        public virtual void onLoad() {
-            if (tickable)
-                Singleton.subscribeToTick = this;
-        }
+        public virtual void onLoad() { }
 
         public virtual void onPause() { }
 

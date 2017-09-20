@@ -35,7 +35,8 @@ namespace ScrollingGame.Entity.Characters {
         }
 
         public static bool[] buttons = new bool[4];
-        public static Vector2 Movement {
+        public override Vector2 characterDirection { get => movement; protected set { return; } }
+        private Vector2 movement {
             get {
                 Vector2 temp = Vector2.Zero;
                 //if (buttons[0])
@@ -62,7 +63,7 @@ namespace ScrollingGame.Entity.Characters {
             List<AItem> remove = new List<AItem>();
             foreach (AItem i in itemList) {
                 i.remainingDuration -= Time.deltaTimeSeconds;
-                if(i.remainingDuration <= 0) {
+                if (i.remainingDuration <= 0) {
                     i.onExpire(this);
                     remove.Add(i);
                 }
@@ -73,7 +74,7 @@ namespace ScrollingGame.Entity.Characters {
 
         public override void onLoad() {
             base.onLoad();
-            moveStrategy = new PlayerMove();
+            moveStrategy = new SimpleMove();
             jumpStrategy = new SimpleJump();
             entityMass = 2;
             characterMovement = 100;

@@ -72,9 +72,9 @@
     <Compile Include="Jump\SimpleJump.cs" />
     <Compile Include="Jump\TripleJump.cs" />
     <Compile Include="Level.cs" />
-    <Compile Include="Move\AMove.cs" />
+    <Compile Include="Move\AFixedScreenMove.cs" />
     <Compile Include="Gravity\GravitationalForce.cs" />
-    <Compile Include="Move\ANonPlayerMove.cs" />
+    <Compile Include="Move\ANonFixedScreenMove.cs" />
     <Compile Include="Move\ConstJumpMove.cs" />
     <Compile Include="Move\IMoveStrategy.cs" />
     <Compile Include="Move\PlayerMove.cs" />
