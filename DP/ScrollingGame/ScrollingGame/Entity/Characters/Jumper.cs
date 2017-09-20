@@ -20,7 +20,6 @@ namespace ScrollingGame.Entity.Characters {
             moveStrategy = new ConstJumpMove();
             jumpStrategy = new SimpleJump();
             entityMass = 1.5f;
-            GravitationalForce.subscribeToGravity = this;
         }
 
         public override void onUpdate() {

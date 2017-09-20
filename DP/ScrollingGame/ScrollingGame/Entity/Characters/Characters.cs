@@ -1,4 +1,5 @@
 ﻿using ScrollingGame.Entity.Obstacles;
+using ScrollingGame.Gravity;
 using ScrollingGame.Jump;
 using ScrollingGame.Move;
 using ScrollingGame.Utils;
@@ -25,6 +26,11 @@ namespace ScrollingGame.Entity.Characters {
         public override void onUpdate() {
             base.onUpdate();
             //moveStrategy.Move(this);
+        }
+
+        public override void onLoad() {
+            base.onLoad();
+            GravitationalForce.subscribeToGravity = this;
         }
     }
 }

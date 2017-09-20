@@ -78,7 +78,6 @@ namespace ScrollingGame.Entity.Characters {
             jumpStrategy = new SimpleJump();
             entityMass = 2;
             characterMovement = 100;
-            GravitationalForce.subscribeToGravity = this;
         }
     }
 }

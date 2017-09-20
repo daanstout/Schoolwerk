@@ -64,19 +64,25 @@ namespace ScrollingGame {
 
         private void Game_KeyDown(object sender, KeyEventArgs e) {
             switch (e.KeyCode) {
-                case Keys.W:
-                    Player.buttons[0] = true;
-                    break;
+                //case Keys.W:
+                //case Keys.Up:
+                //    Player.buttons[0] = true;
+                //    break;
                 case Keys.S:
+                case Keys.Down:
                     Player.buttons[1] = true;
                     break;
                 case Keys.A:
+                case Keys.Left:
                     Player.buttons[2] = true;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     Player.buttons[3] = true;
                     break;
                 case Keys.Space:
+                case Keys.W:
+                case Keys.Up:
                     Singleton.player.jumpStrategy.Jump(Singleton.player);
                     break;
             }
@@ -84,16 +90,20 @@ namespace ScrollingGame {
 
         private void Game_KeyUp(object sender, KeyEventArgs e) {
             switch (e.KeyCode) {
-                case Keys.W:
-                    Player.buttons[0] = false;
-                    break;
+                //case Keys.W:
+                //case Keys.Up:
+                //    Player.buttons[0] = false;
+                //    break;
                 case Keys.S:
+                case Keys.Down:
                     Player.buttons[1] = false;
                     break;
                 case Keys.A:
+                case Keys.Left:
                     Player.buttons[2] = false;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     Player.buttons[3] = false;
                     break;
             }
