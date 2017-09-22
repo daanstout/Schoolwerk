@@ -14,6 +14,9 @@ namespace BinarySearchTree {
             tree.addNode(new Node(4));
             tree.addNode(new Node(7));
             tree.addNode(new Node(10));
+            tree.inPrintTree();
+            Console.WriteLine();
+            tree.RemoveAllNode(7);
 
 
             tree.inPrintTree();

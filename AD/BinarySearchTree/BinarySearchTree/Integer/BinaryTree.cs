@@ -27,5 +27,18 @@ namespace BinarySearchTree.Integer {
         public void PostPrintTree() {
             root.PostPrintNode();
         }
+
+        public void RemoveAllNode(int data) {
+            if(root != null) {
+                if (root.data == data)
+                    root = null;
+                else
+                    root.RemoveAllNode(data);
+            }
+        }
+
+        public void RemoveSingleNode(int data) {
+
+        }
     }
 }

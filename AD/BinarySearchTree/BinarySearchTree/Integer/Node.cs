@@ -23,7 +23,7 @@ namespace BinarySearchTree.Integer {
         public Node() { }
 
         public void addNode(Node n) {
-            if(n.data < data) {
+            if (n.data < data) {
                 if (left == null)
                     left = n;
                 else
@@ -58,6 +58,25 @@ namespace BinarySearchTree.Integer {
                 left.PrePrintNode();
             if (right != null)
                 right.PrePrintNode();
+        }
+
+        public void RemoveAllNode(int data) {
+            if (this.data < data) {
+                if (left != null)
+                    if (left.data == data)
+                        left = null;
+                    else
+                        left.RemoveAllNode(data);
+            } else if (this.data > data)
+                if (right != null)
+                    if (right.data == data)
+                        right = null;
+                    else
+                        left.RemoveAllNode(data);
+        }
+
+        public void RemoveSingleNode(int data) {
+
         }
     }
 }
