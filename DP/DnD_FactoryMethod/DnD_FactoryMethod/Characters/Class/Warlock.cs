@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace DnD_FactoryMethod.Characters.Class {
     public class Warlock : Specialization {
-        public Warlock(Stats.hitDie hitdie, Color color) : base("Warlock", Resources.EvilStaff, hitdie, color) { }
+        public Warlock(Stats.hitDie hitdie) : base("Warlock", Resources.EvilStaff, hitdie) { }
     }
 }

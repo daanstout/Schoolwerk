@@ -9,10 +9,9 @@ namespace DnD_FactoryMethod.Characters.Class {
     public class Specialization {
         public string className;
         public Stats.hitDie hitdie;
-        public Color color;
         public Image image;
 
-        protected Specialization(string className, Image image, Stats.hitDie hitdie, Color color) {
+        protected Specialization(string className, Image image, Stats.hitDie hitdie) {
             this.className = className;
             this.image = image;
             this.hitdie = hitdie;

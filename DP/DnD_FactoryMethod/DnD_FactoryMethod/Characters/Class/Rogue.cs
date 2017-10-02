@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace DnD_FactoryMethod.Characters.Class {
     public class Rogue : Specialization {
-        public Rogue(Stats.hitDie hitdie, Color color) : base("Rogue", Resources.Dagger, hitdie, color) { }
+        public Rogue(Stats.hitDie hitdie) : base("Rogue", Resources.Dagger, hitdie) { }
     }
 }

@@ -58,8 +58,8 @@ namespace DnD_FactoryMethod {
                 //e.Graphics.DrawImage(ResizeImage(currentCharacter.charClass.image, 60, 400), new Point(0, 0));
                 Console.WriteLine(characterPictureBox.Size);
                 Console.WriteLine(currentCharacter.charRace.image.Size);
-                e.Graphics.DrawImage(currentCharacter.charRace.image, new PointF(0, 0));
-                e.Graphics.DrawImage(currentCharacter.charClass.image, new Point(0, 0));
+                e.Graphics.DrawImage(currentCharacter.charRace.image, 0, 0, 200, 400);
+                e.Graphics.DrawImage(currentCharacter.charClass.image, 0, 0, 60, 400);
             }
         }
 
@@ -81,28 +81,6 @@ namespace DnD_FactoryMethod {
 
                 e.Graphics.DrawString(text, new Font("Bookman Old Style", 8), new SolidBrush(Color.Black), new PointF(0, 0));
             }
-        }
-
-        public static Bitmap ResizeImage(Image image, int width, int height) {
-            var destRect = new Rectangle(0, 0, width, height);
-            var destImage = new Bitmap(width, height);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage)) {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (var wrapMode = new ImageAttributes()) {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
-            }
-
-            return destImage;
         }
     }
 }

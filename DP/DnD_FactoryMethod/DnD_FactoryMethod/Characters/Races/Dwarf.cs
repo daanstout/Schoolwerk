@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DnD_FactoryMethod.Characters.Races {
     public class Dwarf : Race{
-        public Dwarf() : base("Dwarf", Resources.Dwarf_2){
+        public Dwarf() : base("Dwarf", Resources.Dwarf){
 
         }
 

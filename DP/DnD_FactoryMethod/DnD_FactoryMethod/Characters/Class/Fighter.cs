@@ -9,6 +9,6 @@ using System.Threading.Tasks;
 namespace DnD_FactoryMethod.Characters.Class {
     public class Fighter : Specialization {
 
-        public Fighter(Stats.hitDie hitdie, Color color) : base("Fighter", Resources.Sword, hitdie, color) { }
+        public Fighter(Stats.hitDie hitdie) : base("Fighter", Resources.Sword, hitdie) { }
     }
 }

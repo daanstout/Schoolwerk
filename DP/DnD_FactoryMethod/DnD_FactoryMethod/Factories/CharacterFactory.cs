@@ -34,16 +34,16 @@ namespace DnD_FactoryMethod.Factories {
 
             switch (spec) {
                 case "Fighter":
-                    temp.charClass = new Fighter(Stats.hitDie.D10, Color.Brown);
+                    temp.charClass = new Fighter(Stats.hitDie.D10);
                     break;
                 case "Rogue":
-                    temp.charClass = new Rogue(Stats.hitDie.D8, Color.Black);
+                    temp.charClass = new Rogue(Stats.hitDie.D8);
                     break;
                 case "Warlock":
-                    temp.charClass = new Warlock(Stats.hitDie.D8, Color.Purple);
+                    temp.charClass = new Warlock(Stats.hitDie.D8);
                     break;
                 case "Wizard":
-                    temp.charClass = new Wizard(Stats.hitDie.D6, Color.DarkBlue);
+                    temp.charClass = new Wizard(Stats.hitDie.D6);
                     break;
             }
 

@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace DnD_FactoryMethod.Characters.Class {
     public class Wizard : Specialization {
-        public Wizard(Stats.hitDie hitdie, Color color) : base("Wizard", Resources.Staff, hitdie, color) { }
+        public Wizard(Stats.hitDie hitdie) : base("Wizard", Resources.Staff, hitdie) { }
     }
 }
