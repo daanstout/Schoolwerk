@@ -40,12 +40,16 @@ namespace ScrollingGame.Gravity {
             List<EntityBase> toUnsubscribe = new List<EntityBase>();
             foreach (EntityBase e in gravityList) {
                 e.fallSpeed += e.entityMass * Singleton.gameGravity * Time.deltaTimeSeconds;
+                if (e.fallSpeed < 0)
+                    continue;
                 foreach (Obstacle o in Singleton.currentLevel.obstacleList) {
                     if (e.location.Y + e.size.Y > o.location.Y && e.location.X + e.size.X > o.location.X && e.location.X < o.location.X + o.size.X && e.location.Y < o.location.Y + o.size.Y) {
-                        e.entityFloor = o;
-                        e.fallSpeed = 0;
-                        e.location.Y = o.location.Y - e.size.Y;
-                        toUnsubscribe.Add(e);
+                        if (e.location.Y - e.fallSpeed * 2 + e.size.Y < o.location.Y) {
+                            e.entityFloor = o;
+                            e.fallSpeed = 0;
+                            e.location.Y = o.location.Y - e.size.Y;
+                            toUnsubscribe.Add(e);
+                        }
                     }
                 }
             }

@@ -15,7 +15,6 @@ namespace DnD_FactoryMethod.Characters.Class {
             this.className = className;
             this.image = image;
             this.hitdie = hitdie;
-            this.color = color;
         }
 
         public override string ToString() {
