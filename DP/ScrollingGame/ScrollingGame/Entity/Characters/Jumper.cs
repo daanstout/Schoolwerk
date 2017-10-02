@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ScrollingGame.Entity.Characters {
     public class Jumper : Character{
 
-        public Jumper(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) { }
+        public Jumper(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw) : base(location, size, color, doTick, doDraw) { }
 
         public override void onLoad() {
             base.onLoad();

@@ -19,7 +19,7 @@ namespace ScrollingGame.Entity.Characters {
         public float characterMovement;
         public virtual Vector2 characterDirection { get; protected set; }
 
-        public Character(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) {
+        public Character(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw) : base(location, size, color, doTick, doDraw) {
 
         }
 

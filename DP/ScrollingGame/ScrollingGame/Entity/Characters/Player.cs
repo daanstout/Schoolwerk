@@ -52,7 +52,7 @@ namespace ScrollingGame.Entity.Characters {
         }
 
         //public static float PlayerMovementSpeed = 100;
-        public Player(Vector2 location, Vector2 size, Color color, bool tickable) : base(location, size, color, tickable) {
+        public Player(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw) : base(location, size, color, doTick, doDraw) {
             pSubject = new PlayerSubject();
         }
 

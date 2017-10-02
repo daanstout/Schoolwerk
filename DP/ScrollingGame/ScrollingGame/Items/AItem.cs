@@ -18,6 +18,11 @@ namespace ScrollingGame.Items {
 
         public float remainingDuration;
 
+        public AItem(bool doTick, bool doDraw) {
+            this.doTick = doTick;
+            this.doDraw = doDraw;
+        }
+
         private Rectangle rectangle {
             get {
                 return new Rectangle(location, new Size(radius, radius));

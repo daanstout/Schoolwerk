@@ -68,10 +68,10 @@ namespace ScrollingGame {
 
         public void load() {
             foreach (Obstacle o in obstacleList)
-                if (o.tickable)
+                if (o.doTick || o.doDraw)
                     Singleton.loadNewBehaviour = o;
             foreach (Character c in characterList)
-                if (c.tickable)
+                if (c.doTick || c.doDraw)
                     Singleton.loadNewBehaviour = c;
             foreach (AItem i in itemList)
                 Singleton.loadNewBehaviour = i;

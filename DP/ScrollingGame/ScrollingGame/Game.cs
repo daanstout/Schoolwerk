@@ -50,14 +50,14 @@ namespace ScrollingGame {
             //temp.addObstale = new Obstacle(new Vector2(100, 100), new Vector2(20, 20), Color.Green, true);
             //temp.addObstale = new Obstacle(new Vector2(300, 100), new Vector2(20, 20), Color.Black, true);
             //temp.addObstale = new Obstacle(new Vector2(200, 100), new Vector2(20, 20), Color.Black, true);
-            temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Red, true);
+            temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Red, false, true);
             //temp.addObstale = new Obstacle(new Vector2(100, 475), new Vector2(100, 25), Color.Orange, true);
 
-            temp.addItem = new DoubleJumpItem(new Vector2(100, 480), 10, Color.Blue);
-            temp.addItem = new SlowMove(new Vector2(150, 480), 10, Color.Black);
-            temp.addItem = new TripleJumpItem(new Vector2(300, 480), 10, Color.Orange);
+            temp.addItem = new DoubleJumpItem(new Vector2(100, 480), 10, Color.Blue, true, true);
+            temp.addItem = new SlowMove(new Vector2(150, 480), 10, Color.Black, true, true);
+            temp.addItem = new TripleJumpItem(new Vector2(300, 480), 10, Color.Orange, true, true);
 
-            temp.addCharacter = new Jumper(new Vector2(500, 480), new Vector2(20, 20), Color.Black, true);
+            temp.addCharacter = new Jumper(new Vector2(500, 480), new Vector2(20, 20), Color.Black, true, true);
             Singleton.currentLevel = temp;
             gameStart();
         }

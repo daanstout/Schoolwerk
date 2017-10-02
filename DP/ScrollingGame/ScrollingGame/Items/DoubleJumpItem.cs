@@ -27,7 +27,7 @@ namespace ScrollingGame.Items {
             c.jumpStrategy = defaultStrategy;
         }
 
-        public DoubleJumpItem(Vector2 location, int radius, Color color) {
+        public DoubleJumpItem(Vector2 location, int radius, Color color, bool doTick, bool doDraw) : base(doTick, doDraw) {
             this.location = location;
             this.radius = radius;
             this.color = color;

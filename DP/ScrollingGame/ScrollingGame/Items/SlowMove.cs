@@ -25,7 +25,7 @@ namespace ScrollingGame.Items {
             c.moveStrategy = defaultStrategy;
         }
 
-        public SlowMove(Vector2 location, int radius, Color color) {
+        public SlowMove(Vector2 location, int radius, Color color, bool doTick, bool doDraw) : base(doTick, doDraw) {
             this.location = location;
             this.radius = radius;
             this.color = color;

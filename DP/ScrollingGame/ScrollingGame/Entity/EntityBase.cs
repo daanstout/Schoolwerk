@@ -29,11 +29,12 @@ namespace ScrollingGame.Entity {
 
         public Color color;
 
-        public EntityBase(Vector2 location, Vector2 size, Color color, bool tickable) {
+        public EntityBase(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw) {
             this.location = location;
             this.size = size;
             this.color = color;
-            this.tickable = tickable;
+            this.doTick = doTick;
+            this.doDraw = doDraw;
         }
 
         public override void onLoad() {
