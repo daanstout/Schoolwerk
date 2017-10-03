@@ -23,13 +23,14 @@ namespace BinarySearchTree.BinaryTree{
         public Node() { }
 
         public void insert(Node<T> node) {
-            if (data.CompareTo(node.data) > 1) {
+            Console.WriteLine(data.CompareTo(node.data));
+            if (data.CompareTo(node.data) == 1) {
                 Console.WriteLine("Bigger");
                 if (right == null)
                     right = node;
                 else
                     right.insert(node);
-            } else if (data.CompareTo(node.data) < 1) {
+            } else if (data.CompareTo(node.data) == 1) {
                 Console.WriteLine("Smaller");
                 if (left == null)
                     left = node;
