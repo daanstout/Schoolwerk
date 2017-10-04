@@ -66,7 +66,7 @@
             // 
             this.characterPictureBox.Location = new System.Drawing.Point(272, 6);
             this.characterPictureBox.Name = "characterPictureBox";
-            this.characterPictureBox.Size = new System.Drawing.Size(259, 578);
+            this.characterPictureBox.Size = new System.Drawing.Size(200, 400);
             this.characterPictureBox.TabIndex = 3;
             this.characterPictureBox.TabStop = false;
             this.characterPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.characterPictureBox_Paint);
@@ -114,7 +114,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 596);
+            this.ClientSize = new System.Drawing.Size(481, 416);
             this.Controls.Add(this.CharacterNameTextBox);
             this.Controls.Add(this.characterStatsPictureBox);
             this.Controls.Add(this.CharacterLevelNumeric);

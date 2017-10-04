@@ -13,9 +13,9 @@ namespace DnD_FactoryMethod.Factories {
     public class CharacterFactory : EntityFactory {
 
         public override Character createCharacter(string name, string race, string spec) {
-            Character temp = new Character();
-
-            temp.charName = name;
+            Character temp = new Character() {
+                charName = name
+            };
 
             switch (race) {
                 case "Human":
