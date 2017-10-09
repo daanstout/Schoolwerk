@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace ScrollingGame.Utils {
     public abstract class ABehaviour : IBehaviour {
-        public bool doTick = true;
-        public bool doDraw = true;
+        private bool _doDraw;
+        private bool _doTick;
+
+        public bool doDraw { get => _doDraw; set => _doDraw = value; }
+        public bool doTick { get => _doTick; set => _doTick = value; }
 
         public virtual void onDraw(Graphics g) { }
 

@@ -16,15 +16,19 @@ namespace ScrollingGame.UI {
         public PowerupUI() {
             subj = Singleton.player.pSubject;
             subj.attach = this;
+            doDraw = true;
         }
 
         public override void onLoad() {
             subj = Singleton.player.pSubject;
             subj.attach = this;
+            doDraw = true;
         }
 
         public void Update() {
+            Console.WriteLine("HALLO!");
             if(Singleton.player.itemList.Count > 0) {
+                Console.WriteLine("HALLO!");
                 Singleton.subscribeToTick = this;
             }else if(Singleton.player.itemList.Count == 0) {
                 Singleton.unsubscribeFromTick = this;

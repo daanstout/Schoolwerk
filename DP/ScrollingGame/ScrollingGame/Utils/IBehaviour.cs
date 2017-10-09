@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ScrollingGame.Utils{
     public interface IBehaviour {
+        bool doDraw { get; set; }
+        bool doTick { get; set; }
+
         void onLoad();
         void onUpdate();
         void onPause();

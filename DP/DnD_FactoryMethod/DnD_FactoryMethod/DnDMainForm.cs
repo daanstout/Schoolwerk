@@ -45,8 +45,6 @@ namespace DnD_FactoryMethod {
 
             characterStatsPictureBox.Invalidate();
             characterPictureBox.Invalidate();
-
-            Console.WriteLine(currentCharacter);
         }
 
         private void characterPictureBox_Paint(object sender, PaintEventArgs e) {
@@ -54,10 +52,7 @@ namespace DnD_FactoryMethod {
             {
                 if (currentCharacter == null)
                     return;
-                //e.Graphics.DrawImage(ResizeImage(currentCharacter.charRace.image, 200, 400), new PointF(-10, 0));
-                //e.Graphics.DrawImage(ResizeImage(currentCharacter.charClass.image, 60, 400), new Point(0, 0));
-                Console.WriteLine(characterPictureBox.Size);
-                Console.WriteLine(currentCharacter.charRace.image.Size);
+
                 e.Graphics.DrawImage(currentCharacter.charRace.image, 0, 0, 200, 400);
                 e.Graphics.DrawImage(currentCharacter.charClass.image, 0, 0, 60, 400);
             }
@@ -72,6 +67,7 @@ namespace DnD_FactoryMethod {
             {
                 if (currentCharacter == null)
                     return;
+
                 string text = "";
                 text += "Name: " + currentCharacter.charName + "\n";
                 text += "Race: " + currentCharacter.charRace + "\n";

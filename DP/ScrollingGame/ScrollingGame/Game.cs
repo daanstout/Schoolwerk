@@ -27,7 +27,7 @@ namespace ScrollingGame {
 
             Singleton.game = this;
 
-            CreateTestLevel();
+            CreateTestLevel1();
         }
 
         public void gamePictureBox_Paint(object sender, PaintEventArgs e) {
@@ -45,19 +45,28 @@ namespace ScrollingGame {
             Singleton.Tick();
         }
 
-        private void CreateTestLevel() {
+        private void CreateTestLevel1() {
             Level temp = new Level();
             //temp.addObstale = new Obstacle(new Vector2(100, 100), new Vector2(20, 20), Color.Green, true);
             //temp.addObstale = new Obstacle(new Vector2(300, 100), new Vector2(20, 20), Color.Black, true);
             //temp.addObstale = new Obstacle(new Vector2(200, 100), new Vector2(20, 20), Color.Black, true);
             temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Red, false, true);
-            temp.addObstale = new Obstacle(new Vector2(100, 475), new Vector2(100, 25), Color.Orange, false, true);
+            //temp.addObstale = new Obstacle(new Vector2(100, 475), new Vector2(100, 25), Color.Orange, false, true);
 
-            //temp.addItem = new DoubleJumpItem(new Vector2(100, 480), 10, Color.Blue, true, true);
+            temp.addItem = new DoubleJumpItem(new Vector2(100, 480), 10, Color.Blue, true, true);
             //temp.addItem = new SlowMove(new Vector2(150, 480), 10, Color.Black, true, true);
             //temp.addItem = new TripleJumpItem(new Vector2(300, 480), 10, Color.Orange, true, true);
 
             temp.addCharacter = new Jumper(new Vector2(500, 480), new Vector2(20, 20), Color.Black, true, true);
+            Singleton.currentLevel = temp;
+            gameStart();
+        }
+
+        private void CreateTestLevel2() {
+            Level temp = new Level();
+
+            temp.addObstale = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Black, false, true);
+
             Singleton.currentLevel = temp;
             gameStart();
         }
@@ -80,10 +89,16 @@ namespace ScrollingGame {
                 case Keys.Right:
                     Player.buttons[3] = true;
                     break;
-                case Keys.Space:
+                //case Keys.Space:
                 case Keys.W:
                 case Keys.Up:
                     Singleton.player.jumpStrategy.Jump(Singleton.player);
+                    break;
+                case Keys.D1:
+                    CreateTestLevel1();
+                    break;
+                case Keys.D2:
+                    CreateTestLevel2();
                     break;
             }
         }

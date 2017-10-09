@@ -10,6 +10,14 @@ using System.Drawing;
 
 namespace ScrollingGame.UI {
     public class PlayerUI : ABehaviour{
+        public PlayerUI() {
+            doDraw = true;
+        }
+
+        public override void onLoad() {
+            doDraw = true;
+        }
+
         public override void onDraw(Graphics g) {
             g.DrawRectangle(Fonts.getPen(Color.Black), new Rectangle(Global.UI_Top, Global.UI_Left, Global.UI_Right - 1, Global.UI_Bottom - 1));
 

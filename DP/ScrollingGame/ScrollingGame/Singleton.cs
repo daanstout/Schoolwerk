@@ -60,7 +60,11 @@ namespace ScrollingGame {
 
         public static Game game;
 
-        public static Player player = new Player(new Vector2(0, 450), new Vector2(15, 15), Color.Blue, true, true);
+        public static Player player {
+            get {
+                return new Player(new Vector2(0, 450), new Vector2(15, 15), Color.Blue, true, true);
+            }
+        }
 
         public static Level currentLevel;
 
@@ -83,9 +87,6 @@ namespace ScrollingGame {
             Console.WriteLine("load");
 
             foreach (IBehaviour b in tickables) {
-                if (b is ABehaviour a)
-                    if (!a.doTick)
-                        continue;
                 b.onLoad();
             }
         }
@@ -117,9 +118,8 @@ namespace ScrollingGame {
 
         public static void Draw(Graphics g) {
             foreach (IBehaviour b in tickables) {
-                if (b is ABehaviour a)
-                    if (!a.doDraw)
-                        continue;
+                if (!b.doDraw)
+                    continue;
                 b.onDraw(g);
             }
         }
