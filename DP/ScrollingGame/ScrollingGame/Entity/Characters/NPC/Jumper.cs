@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScrollingGame.Entity.Characters {
+namespace ScrollingGame.Entity.Characters.NPC{
     public class Jumper : Character{
 
         public Jumper(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw) : base(location, size, color, doTick, doDraw) { }

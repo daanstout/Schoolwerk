@@ -17,6 +17,7 @@ namespace ScrollingGame {
         #region lazy variables
         private static List<IBehaviour> _tickables;
         private static List<IBehaviour> _removables;
+        private static List<IBehaviour> _addables;
         #endregion
 
         #region public lazy variables
@@ -36,16 +37,25 @@ namespace ScrollingGame {
             }
         }
 
+        private static List<IBehaviour> addables {
+            get {
+                if (_addables == null)
+                    _addables = new List<IBehaviour>();
+                return _addables;
+            }
+        }
+
+
         public static IBehaviour subscribeToTick {
             set {
                 if (!tickables.Contains(value))
-                    tickables.Add(value);
+                    addables.Add(value);
             }
         }
 
         public static IBehaviour unsubscribeFromTick {
             set {
-                if (tickables.Contains(value))
+                if (tickables.Contains(value) || addables.Contains(value))
                     removables.Add(value);
             }
         }
@@ -60,11 +70,13 @@ namespace ScrollingGame {
 
         public static Game game;
 
-        public static Player player {
+        public static Player newPlayer {
             get {
                 return new Player(new Vector2(0, 450), new Vector2(15, 15), Color.Blue, true, true);
             }
         }
+
+        public static Player player;
 
         public static Level currentLevel;
 
@@ -76,7 +88,7 @@ namespace ScrollingGame {
         public static void Load() {
             _tickables = null;
             loadNewBehaviour = new Time();
-            loadNewBehaviour = player;
+            loadNewBehaviour = player = newPlayer;
             loadNewBehaviour = new PlayerUI();
             loadNewBehaviour = new PowerupUI();
 
@@ -101,9 +113,13 @@ namespace ScrollingGame {
             foreach (IBehaviour b in tickables)
                 b.onUpdate();
 
+            foreach (IBehaviour b in addables)
+                _tickables.Add(b);
+
             foreach (IBehaviour b in removables)
                 tickables.Remove(b);
 
+            _addables = new List<IBehaviour>();
             _removables = new List<IBehaviour>();
         }
 

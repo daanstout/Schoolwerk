@@ -22,7 +22,7 @@ namespace ScrollingGame {
             }
         }
 
-        public Obstacle addObstale {
+        public Obstacle addObstacle {
             set {
                 if (!obstacleList.Contains(value))
                     obstacleList.Add(value);

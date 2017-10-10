@@ -45,12 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Characters\NPC\Shooter.cs" />
+    <Compile Include="Entity\Projectiles\AProjectile.cs" />
+    <Compile Include="Entity\Projectiles\Bullet.cs" />
+    <Compile Include="Entity\Projectiles\IProjectile.cs" />
     <Compile Include="Items\SlowMove.cs" />
     <Compile Include="Move\SlowMoveHalf.cs" />
     <Compile Include="UI\PowerupUI.cs" />
     <Compile Include="Utils\ABehaviour.cs" />
     <Compile Include="Entity\Characters\Characters.cs" />
-    <Compile Include="Entity\Characters\Jumper.cs" />
+    <Compile Include="Entity\Characters\NPC\Jumper.cs" />
     <Compile Include="Entity\Characters\Player.cs" />
     <Compile Include="Entity\EntityBase.cs" />
     <Compile Include="Utils\IBehaviour.cs" />
