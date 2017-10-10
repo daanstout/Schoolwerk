@@ -14,6 +14,7 @@ namespace ScrollingGame.Entity.Projectiles {
 
         public override void onUpdate() {
             location += direction * movementSpeed * Time.deltaTimeSeconds;
+
             if(location.X < Singleton.player.location.X + Singleton.player.size.X && location.X + size.X > Singleton.player.location.X && location.Y < Singleton.player.location.Y + Singleton.player.size.Y && location.Y + size.Y > Singleton.player.location.Y) {
                 Singleton.player.damagePlayer = 10;
                 Singleton.unsubscribeFromTick = this;

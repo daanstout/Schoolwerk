@@ -48,14 +48,14 @@ namespace ScrollingGame {
 
         public static IBehaviour subscribeToTick {
             set {
-                if (!tickables.Contains(value))
+                if (!tickables.Contains(value) && !addables.Contains(value) && !removables.Contains(value))
                     addables.Add(value);
             }
         }
 
         public static IBehaviour unsubscribeFromTick {
             set {
-                if (tickables.Contains(value) || addables.Contains(value))
+                if ((tickables.Contains(value) || addables.Contains(value)) && !removables.Contains(value))
                     removables.Add(value);
             }
         }
@@ -87,6 +87,8 @@ namespace ScrollingGame {
         #region functions
         public static void Load() {
             _tickables = null;
+            _removables = null;
+            _addables = null;
             loadNewBehaviour = new Time();
             loadNewBehaviour = player = newPlayer;
             loadNewBehaviour = new PlayerUI();
@@ -111,10 +113,11 @@ namespace ScrollingGame {
             GravitationalForce.EnactGravity();
 
             foreach (IBehaviour b in tickables)
-                b.onUpdate();
+                if (b.doTick)
+                    b.onUpdate();
 
             foreach (IBehaviour b in addables)
-                _tickables.Add(b);
+                tickables.Add(b);
 
             foreach (IBehaviour b in removables)
                 tickables.Remove(b);
@@ -134,9 +137,8 @@ namespace ScrollingGame {
 
         public static void Draw(Graphics g) {
             foreach (IBehaviour b in tickables) {
-                if (!b.doDraw)
-                    continue;
-                b.onDraw(g);
+                if (b.doDraw)
+                    b.onDraw(g);
             }
         }
         #endregion
