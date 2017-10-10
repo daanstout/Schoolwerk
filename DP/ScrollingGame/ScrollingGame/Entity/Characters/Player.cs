@@ -90,5 +90,9 @@ namespace ScrollingGame.Entity.Characters {
             characterMovement = 100;
             currentHealth = maxHealth;
         }
+
+        public void ShootBullet() {
+
+        }
     }
 }

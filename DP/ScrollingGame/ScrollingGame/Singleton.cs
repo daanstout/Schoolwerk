@@ -113,7 +113,7 @@ namespace ScrollingGame {
             GravitationalForce.EnactGravity();
 
             foreach (IBehaviour b in tickables)
-                if (b.doTick)
+                //if (b.doTick)
                     b.onUpdate();
 
             foreach (IBehaviour b in addables)
