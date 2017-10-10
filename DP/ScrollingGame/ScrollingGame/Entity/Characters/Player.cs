@@ -51,9 +51,19 @@ namespace ScrollingGame.Entity.Characters {
             }
         }
 
+        public readonly float maxHealth;
+        public float currentHealth;
+
+        public float damagePlayer {
+            set {
+                currentHealth -= value;
+            }
+        }
+
         //public static float PlayerMovementSpeed = 100;
-        public Player(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw) : base(location, size, color, doTick, doDraw) {
+        public Player(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw, float maxHealth) : base(location, size, color, doTick, doDraw) {
             pSubject = new PlayerSubject();
+            currentHealth = this.maxHealth = maxHealth;
         }
 
         public override void onUpdate() {
@@ -78,6 +88,7 @@ namespace ScrollingGame.Entity.Characters {
             jumpStrategy = new SimpleJump();
             entityMass = 2;
             characterMovement = 100;
+            currentHealth = maxHealth;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ScrollingGame.Entity.Characters.NPC {
             base.onUpdate();
             currentInterval -= Time.deltaTimeSeconds;
             if(currentInterval <= 0) {
-                Singleton.loadNewBehaviour = new Bullet(Vector2.Left, 10, new Vector2(location.X, location.Y + (size.Y / 2)), new Vector2(5, 5), Color.Black, true, true);
+                Singleton.loadNewBehaviour = new Bullet(Vector2.Left, 50, new Vector2(location.X, location.Y + (size.Y / 2)), new Vector2(5, 5), Color.Black, true, true);
                 currentInterval = interval;
             }
         }

@@ -10,6 +10,7 @@ using System.Drawing;
 
 namespace ScrollingGame.UI {
     public class PlayerUI : ABehaviour{
+
         public PlayerUI() {
             doDraw = true;
         }
@@ -24,6 +25,8 @@ namespace ScrollingGame.UI {
             g.DrawRectangle(Fonts.getPen(Color.Black), new Rectangle(5, 5, 30, 30));
             g.FillRectangle(Fonts.getSolidBrush(Singleton.player.color), new Rectangle(10, 10, 20, 20));
             g.DrawString("Player 1", Fonts.getFont("arial", 20), Fonts.getSolidBrush(Color.Black), new Vector2(40, 4));
+
+            g.DrawString("Health: " + Singleton.player.currentHealth + "/" + Singleton.player.maxHealth, Fonts.getFont("arial", 12), Fonts.getSolidBrush(Color.Black), new Vector2(4, 40));
         }
     }
 }

@@ -72,7 +72,7 @@ namespace ScrollingGame {
 
         public static Player newPlayer {
             get {
-                return new Player(new Vector2(0, 450), new Vector2(15, 15), Color.Blue, true, true);
+                return new Player(new Vector2(0, 450), new Vector2(15, 15), Color.Blue, true, true, 100);
             }
         }
 
