@@ -57,6 +57,7 @@
     <Compile Include="Entity\Characters\NPC\Jumper.cs" />
     <Compile Include="Entity\Characters\Player.cs" />
     <Compile Include="Entity\EntityBase.cs" />
+    <Compile Include="Utils\GameScroller.cs" />
     <Compile Include="Utils\IBehaviour.cs" />
     <Compile Include="Entity\Obstacles\Obstacle.cs" />
     <Compile Include="Game.cs">

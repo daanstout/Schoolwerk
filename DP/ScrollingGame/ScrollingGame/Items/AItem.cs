@@ -25,7 +25,7 @@ namespace ScrollingGame.Items {
 
         private Rectangle rectangle {
             get {
-                return new Rectangle(location, new Size(radius, radius));
+                return new Rectangle(location - new Vector2(Singleton.gameXLocation, 0), new Size(radius * 2, radius * 2));
             }
         }
 

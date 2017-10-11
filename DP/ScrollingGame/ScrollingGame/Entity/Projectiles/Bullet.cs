@@ -27,7 +27,7 @@ namespace ScrollingGame.Entity.Projectiles {
         }
 
         public override void onDraw(Graphics g) {
-            g.FillEllipse(new SolidBrush(color), new Rectangle(location, size));
+            g.FillEllipse(new SolidBrush(color), new Rectangle(location - new Vector2(Singleton.gameXLocation, 0), size));
         }
     }
 }

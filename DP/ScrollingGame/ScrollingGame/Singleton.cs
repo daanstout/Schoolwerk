@@ -72,7 +72,7 @@ namespace ScrollingGame {
 
         public static Player newPlayer {
             get {
-                return new Player(new Vector2(0, 450), new Vector2(15, 15), Color.Blue, true, true, 100);
+                return new Player(new Vector2(600, 450), new Vector2(15, 15), Color.Blue, true, true, 100);
             }
         }
 
@@ -84,6 +84,10 @@ namespace ScrollingGame {
 
         public static float gameGravity = 2;
 
+        public static float gameXLocation = 0;
+
+        private static GameScroller gameScroller;
+
         #region functions
         public static void Load() {
             _tickables = null;
@@ -93,6 +97,10 @@ namespace ScrollingGame {
             loadNewBehaviour = player = newPlayer;
             loadNewBehaviour = new PlayerUI();
             loadNewBehaviour = new PowerupUI();
+
+            gameScroller = new GameScroller();
+
+            gameXLocation = 0;
 
             currentLevel.load();
 

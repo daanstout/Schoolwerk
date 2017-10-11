@@ -23,7 +23,7 @@ namespace ScrollingGame.Entity {
 
         protected Rectangle rectangle {
             get {
-                return new Rectangle(location, size);
+                return new Rectangle(location - new Vector2(Singleton.gameXLocation, 0), size);
             }
         }
 

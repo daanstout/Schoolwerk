@@ -47,12 +47,13 @@ namespace ScrollingGame {
         }
 
         private void CreateTestLevel1() {
-            Level temp = new Level();
+            Level temp = new Level(2);
             //temp.addObstale = new Obstacle(new Vector2(100, 100), new Vector2(20, 20), Color.Green, true);
             //temp.addObstale = new Obstacle(new Vector2(300, 100), new Vector2(20, 20), Color.Black, true);
             //temp.addObstale = new Obstacle(new Vector2(200, 100), new Vector2(20, 20), Color.Black, true);
             temp.addObstacle = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Red, false, true);
             //temp.addObstale = new Obstacle(new Vector2(100, 475), new Vector2(100, 25), Color.Orange, false, true);
+            temp.addObstacle = new Obstacle(new Vector2(900, 500), new Vector2(20, 20), Color.Blue, false, true);
 
             temp.addItem = new DoubleJumpItem(new Vector2(100, 480), 10, Color.Blue, true, true);
             //temp.addItem = new SlowMove(new Vector2(150, 480), 10, Color.Black, true, true);
@@ -66,7 +67,7 @@ namespace ScrollingGame {
         }
 
         private void CreateTestLevel2() {
-            Level temp = new Level();
+            Level temp = new Level(1);
 
             temp.addObstacle = new Obstacle(new Vector2(0, 500), new Vector2(Global.width - 1, 20), Color.Black, false, true);
 

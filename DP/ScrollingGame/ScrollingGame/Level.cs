@@ -64,7 +64,9 @@ namespace ScrollingGame {
         }
 
 
-        public Level() { }
+        public Level(int gravity) {
+            Singleton.gameGravity = gravity;
+        }
 
         public void load() {
             foreach (Obstacle o in obstacleList)

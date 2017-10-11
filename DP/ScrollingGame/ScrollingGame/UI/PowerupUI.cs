@@ -14,30 +14,28 @@ namespace ScrollingGame.UI {
         Subject subj;
 
         public PowerupUI() {
-            subj = Singleton.player.pSubject;
+            subj = Singleton.player.playerItemSubject;
             subj.attach = this;
             doDraw = true;
         }
 
         public override void onLoad() {
-            subj = Singleton.player.pSubject;
+            subj = Singleton.player.playerItemSubject;
             subj.attach = this;
             doDraw = true;
         }
 
         public void Update() {
-            Console.WriteLine("HALLO!");
-            if(Singleton.player.itemList.Count > 0) {
-                Console.WriteLine("HALLO!");
+            if (Singleton.player.itemList.Count > 0) {
                 Singleton.subscribeToTick = this;
-            }else if(Singleton.player.itemList.Count == 0) {
+            } else if (Singleton.player.itemList.Count == 0) {
                 Singleton.unsubscribeFromTick = this;
             }
         }
 
         public override void onDraw(Graphics g) {
             int baseY = 5;
-            foreach(AItem i in Singleton.player.itemList) {
+            foreach (AItem i in Singleton.player.itemList) {
                 g.DrawString(i.itemName + ": " + Math.Round(i.remainingDuration, 2), Fonts.getFont("Arial", 8), Fonts.getSolidBrush(Color.Black), new Vector2(200, baseY));
                 baseY += 12;
             }

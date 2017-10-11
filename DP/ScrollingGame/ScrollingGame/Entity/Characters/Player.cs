@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace ScrollingGame.Entity.Characters {
     public class Player : Character {
-        public PlayerSubject pSubject;
+        public PlayerSubject playerItemSubject;
+        public PlayerSubject playerMoveSubject;
 
         private List<AItem> _itemList;
 
@@ -29,7 +30,7 @@ namespace ScrollingGame.Entity.Characters {
             set {
                 if (!itemList.Contains(value)) {
                     itemList.Add(value);
-                    pSubject.Notify();
+                    playerItemSubject.Notify();
                 }
             }
         }
@@ -62,13 +63,18 @@ namespace ScrollingGame.Entity.Characters {
 
         //public static float PlayerMovementSpeed = 100;
         public Player(Vector2 location, Vector2 size, Color color, bool doTick, bool doDraw, float maxHealth) : base(location, size, color, doTick, doDraw) {
-            pSubject = new PlayerSubject();
+            playerItemSubject = new PlayerSubject();
+            playerMoveSubject = new PlayerSubject();
             currentHealth = this.maxHealth = maxHealth;
         }
 
         public override void onUpdate() {
             base.onUpdate();
+            Vector2 oldLocation = location;
             moveStrategy.Move(this);
+            if(location != oldLocation) {
+                playerMoveSubject.Notify();
+            }
 
             List<AItem> remove = new List<AItem>();
             foreach (AItem i in itemList) {
@@ -89,6 +95,7 @@ namespace ScrollingGame.Entity.Characters {
             entityMass = 2;
             characterMovement = 100;
             currentHealth = maxHealth;
+
         }
 
         public void ShootBullet() {
