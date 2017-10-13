@@ -40,10 +40,6 @@ namespace ScrollingGame.Entity.Characters {
         private Vector2 movement {
             get {
                 Vector2 temp = Vector2.Zero;
-                //if (buttons[0])
-                //    temp += Vector2.Up;
-                //if (buttons[1])
-                //    temp += Vector2.Down;
                 if (buttons[2])
                     temp += Vector2.Left;
                 if (buttons[3])
@@ -70,8 +66,11 @@ namespace ScrollingGame.Entity.Characters {
 
         public override void onUpdate() {
             base.onUpdate();
+
             Vector2 oldLocation = location;
+
             moveStrategy.Move(this);
+
             if(location != oldLocation) {
                 playerMoveSubject.Notify();
             }
@@ -95,7 +94,6 @@ namespace ScrollingGame.Entity.Characters {
             entityMass = 2;
             characterMovement = 100;
             currentHealth = maxHealth;
-
         }
 
         public void ShootBullet() {

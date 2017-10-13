@@ -12,9 +12,9 @@ namespace ScrollingGame.Move {
     public abstract class AFixedScreenMove : IMoveStrategy {
 
         public virtual void Move(Character c) {
-            if (c.location.X <= Global.Game_Left) {
+            if (c.location.X <= Global.Game_Left + Singleton.gameXLocation) {
                 c.location.X = Global.Game_Left;
-            } else if (c.location.X + c.size.X >= Global.Game_Right) {
+            } else if (c.location.X + c.size.X >= Global.Game_Right + Singleton.gameXLocation) {
                 c.location.X = Global.Game_Right - c.size.X;
             }
 

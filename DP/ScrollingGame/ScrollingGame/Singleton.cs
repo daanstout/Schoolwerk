@@ -1,6 +1,7 @@
 ﻿using ScrollingGame.Entity;
 using ScrollingGame.Entity.Characters;
 using ScrollingGame.Gravity;
+using ScrollingGame.Scrolling;
 using ScrollingGame.UI;
 using ScrollingGame.Utils;
 
@@ -103,6 +104,8 @@ namespace ScrollingGame {
             gameXLocation = 0;
 
             currentLevel.load();
+
+            FieldPartContainer.generateFieldParts();
 
             game.gameTimer.Start();
 

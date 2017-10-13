@@ -51,13 +51,15 @@
     <Compile Include="Entity\Projectiles\IProjectile.cs" />
     <Compile Include="Items\SlowMove.cs" />
     <Compile Include="Move\SlowMoveHalf.cs" />
+    <Compile Include="Scrolling\FieldPart.cs" />
+    <Compile Include="Scrolling\FieldPartContainer.cs" />
     <Compile Include="UI\PowerupUI.cs" />
     <Compile Include="Utils\ABehaviour.cs" />
     <Compile Include="Entity\Characters\Characters.cs" />
     <Compile Include="Entity\Characters\NPC\Jumper.cs" />
     <Compile Include="Entity\Characters\Player.cs" />
     <Compile Include="Entity\EntityBase.cs" />
-    <Compile Include="Utils\GameScroller.cs" />
+    <Compile Include="Scrolling\GameScroller.cs" />
     <Compile Include="Utils\IBehaviour.cs" />
     <Compile Include="Entity\Obstacles\Obstacle.cs" />
     <Compile Include="Game.cs">
