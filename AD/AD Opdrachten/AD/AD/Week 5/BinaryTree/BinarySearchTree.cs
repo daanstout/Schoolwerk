@@ -16,13 +16,13 @@ namespace AD.Week_5.BinaryTree {
             return FindMin(root);
         }
 
-        private int FindMin(Node node) {
+        private int FindMin(Node node) { // Find Minimum: De node met de laagste waarde is altijd helemaal links in een Binary Search Tree.
             if (node == null)
                 return 0;
             else {
-                if (node.left == null)
+                if (node.left == null) // Als de huidige node geen linker child heeft, is hij dus de kleinste waarde.
                     return node.element;
-                else
+                else // Heeft hij wél een linker child, bekijk deze dan (recursief)
                     return FindMin(node.left);
             }
         }
@@ -31,28 +31,28 @@ namespace AD.Week_5.BinaryTree {
             return InOrder(root);
         }
 
-        private string InOrder(Node node) {
+        private string InOrder(Node node) { // In Order: eerst linker child, dan zelf, dan rechter child.
             if (node == null) {
-                return "";
+                return ""; // Base case, lege string als (child)node niet bestaat.
             } else {
-                return InOrder(node.left) + " " + node.element + " " + InOrder(node.right);
+                return InOrder(node.left) + " " + node.element + " " + InOrder(node.right); // Alle linker children eerst, dan de eigen waarde, dan alle rechter
             }
         }
 
         public void Insert(int x) {
-            if (root == null)
+            if (root == null) // De in-te-voegen node wordt de root als er geen root is.
                 root = new Node(x);
             else
                 Insert(x, root);
         }
 
         private void Insert(int x, Node node) {
-            if (node.element > x) {
-                if (node.left == null)
+            if (node.element > x) { // Als de bekeken node een grotere waarde heeft dan de in-te-voegen node, gaan we naar LINKS.
+                if (node.left == null) // Als de bekeken node geen linker child heeft, wordt de in-te-voegen node de linker child
                     node.left = new Node(x);
-                else
+                else // Anders gaan we (recursief) een stap verder.
                     Insert(x, node.left);
-            } else if (node.element < x) {
+            } else if (node.element < x) { // Zelfde als hierboven, maar nu gaan we naar RECHTS.
                 if (node.right == null)
                     node.right = new Node(x);
                 else
@@ -76,10 +76,10 @@ namespace AD.Week_5.BinaryTree {
         }
 
         public void Remove(int x) {
-            Remove(x, root, null);
+            //Remove(x, root, null);
         }
 
-        private void Remove(int x, Node node, Node previous) {
+        /*private void Remove(int x, Node node, Node previous) {
             if (node == null)
                 return;
             else if (node.element == x) {
@@ -104,16 +104,16 @@ namespace AD.Week_5.BinaryTree {
             } else if (node.element < x) {
                 Remove(x, node.right, node);
             }
-        }
+        }*/
 
         public void RemoveMin() {
             RemoveMin(root, null);
         }
 
-        private void RemoveMin(Node node, Node previous) {
-            if (node.left == null) {
-                if (node.right != null)
-                    previous.left = node.right;
+        private void RemoveMin(Node node, Node previous) { // De laagste node is altijd ver links.
+            if (node.left == null) { // Als er geen linker child is..
+                if (node.right != null) // ..maar WÉL een rechter child..
+                    previous.left = node.right; // ....
                 else
                     previous.left = null;
             } else {

@@ -20,7 +20,7 @@ namespace AD {
             Console.ReadKey();
         }
 
-        public static void FCNS() {
+        public static void FCNS() { // First Child Next Sibling. Children weten niet wie hun parent is, siblings weten niet wie hun vorige sibling is
             FCNSTree<char> tree = new FCNSTree<char>(null);
 
             FCNSNode<char> A = new FCNSNode<char>('A', null, null);
@@ -51,7 +51,7 @@ namespace AD {
             tree.PrintPreOrder();
         }
 
-        public static void Binary() {
+        public static void Binary() { // Binary tree, elke node heeft maximaal 2 children. Volgorde maakt niet uit.
             BinaryTree<int> tree = new BinaryTree<int>(null);
 
             BinaryNode<int> a = new BinaryNode<int>(1, null, null);
@@ -96,7 +96,7 @@ namespace AD {
             Console.WriteLine(tree2);
         }
 
-        public static void BinarySearch() {
+        public static void BinarySearch() { // Binary Search Tree, zoals de Binary Tree, maar waardes kleiner dan de parent komen links, en groter komen rechts
             BinarySearchTree tree = new BinarySearchTree(null);
 
             Console.WriteLine(tree);
@@ -114,15 +114,8 @@ namespace AD {
             Console.WriteLine(tree);
         }
 
-        public static void BinaryHeap() {
+        public static void BinaryHeap() { // Binary Heap (ints), de root is altijd de laagste waarde.
             BinaryHeap heap = new BinaryHeap();
-            //heap.add(10);
-            //heap.add(15);
-            //heap.add(1);
-            //heap.add(14);
-            //heap.add(13);
-            //heap.add(3);
-            //heap.add(10);
             heap.add(1);
             heap.add(2);
             heap.add(3);
