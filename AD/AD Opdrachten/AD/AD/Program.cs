@@ -1,17 +1,20 @@
 ﻿using AD.Week4.Binary;
 using AD.Week4.FCNS;
+using AD.Week_5.BinaryTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AD.Week_5.BinaryHeap;
 
 namespace AD {
     class Program {
         static void Main(string[] args) {
-            Binary();
-
-
+            //FCNS();
+            //Binary();
+            //BinarySearch();
+            BinaryHeap();
 
 
             Console.ReadKey();
@@ -78,10 +81,57 @@ namespace AD {
             tree.PrintPreOrder();
             tree.PrintInOrder();
             tree.PrintPostOrder();
+            Console.WriteLine(tree.getLeaves());
+            Console.WriteLine(tree.getSingleChilds());
+            Console.WriteLine(tree.getDualChilds());
 
-            tree.addNode(new BinaryNode<int>(3, null, null));
-            tree.addNode(new BinaryNode<int>(6, null, null));
-            tree.addNode(new BinaryNode<int>(9, null, null));
+            BinaryTree<int> tree2 = new BinaryTree<int>(null);
+
+            tree2.addNode(new BinaryNode<int>(4, null, null));
+            tree2.addNode(new BinaryNode<int>(2, null, null));
+            tree2.addNode(new BinaryNode<int>(1, null, null));
+            tree2.addNode(new BinaryNode<int>(3, null, null));
+            tree2.addNode(new BinaryNode<int>(6, null, null));
+
+            Console.WriteLine(tree2);
+        }
+
+        public static void BinarySearch() {
+            BinarySearchTree tree = new BinarySearchTree(null);
+
+            Console.WriteLine(tree);
+            tree.Insert(6);
+            Console.WriteLine(tree);
+            tree.Insert(4);
+            tree.Insert(2);
+            tree.Insert(5);
+            tree.Insert(7);
+            
+            Console.WriteLine(tree.FindMin());
+            Console.WriteLine(tree);
+            Console.WriteLine(tree.InOrder());
+            tree.RemoveMin();
+            Console.WriteLine(tree);
+        }
+
+        public static void BinaryHeap() {
+            BinaryHeap heap = new BinaryHeap();
+            //heap.add(10);
+            //heap.add(15);
+            //heap.add(1);
+            //heap.add(14);
+            //heap.add(13);
+            //heap.add(3);
+            //heap.add(10);
+            heap.add(1);
+            heap.add(2);
+            heap.add(3);
+            heap.add(4);
+            heap.add(5);
+            heap.add(6);
+            heap.add(2);
+            Console.WriteLine(heap.FindMin());
+            heap.printPreOrder();
         }
     }
 }

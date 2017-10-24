@@ -44,6 +44,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Week 5\BinaryHeap\BinaryHeap.cs" />
+    <Compile Include="Week 5\BinaryTree\BinarySearchTree.cs" />
+    <Compile Include="Week 5\BinaryTree\IBinarySearchTree.cs" />
+    <Compile Include="Week 5\BinaryTree\Node.cs" />
     <Compile Include="Week4\Binary\BinaryNode.cs" />
     <Compile Include="Week4\Binary\BinaryTree.cs" />
     <Compile Include="Week4\Binary\IBinaryTree.cs" />

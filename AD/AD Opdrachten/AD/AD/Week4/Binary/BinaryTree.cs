@@ -40,6 +40,67 @@ namespace AD.Week4.Binary {
             }
         }
 
+        public override string ToString() {
+            if (root == null)
+                return "NULL";
+            else {
+                return ToString(root.left) + " " + root.value + " " + ToString(root.right);
+            }
+        }
+
+        private string ToString(BinaryNode<T> node) {
+            if (node == null)
+                return "NULL";
+            else {
+                return "[ " + ToString(node.left) + " " + node.value + " " + ToString(node.right) + " ]";
+            }
+        }
+
+        public int getLeaves() {
+            return getLeaves(root);
+        }
+
+        private int getLeaves(BinaryNode<T> node) {
+            if (node == null)
+                return 0;
+            else {
+                if (node.left == null && node.right == null)
+                    return 1;
+                else
+                    return 0 + getLeaves(node.left) + getLeaves(node.right);
+            }
+        }
+
+        public int getSingleChilds() {
+            return getSingleChilds(root);
+        }
+
+        private int getSingleChilds(BinaryNode<T> node) {
+            if (node == null)
+                return 0;
+            else {
+                if ((node.left == null && node.right != null) || (node.left != null && node.right == null))
+                    return 1 + getSingleChilds(node.left) + getSingleChilds(node.right);
+                else
+                    return 0 + getSingleChilds(node.left) + getSingleChilds(node.right);
+            }
+        }
+
+        public int getDualChilds() {
+            return getDualChilds(root);
+        }
+
+        private int getDualChilds(BinaryNode<T> node) {
+            if (node == null)
+                return 0;
+            else {
+                if (node.left != null && node.right != null)
+                    return 1 + getDualChilds(node.left) + getDualChilds(node.right);
+                else
+                    return 0 + getDualChilds(node.left) + getDualChilds(node.right);
+            }
+        }
+
         #region Interface
         public BinaryNode<T> GetRoot() {
             return root;
