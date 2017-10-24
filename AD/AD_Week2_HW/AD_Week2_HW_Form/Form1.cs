@@ -18,7 +18,8 @@ namespace AD_Week2_HW_Form {
         private void pictureBox1_Paint(object sender, PaintEventArgs e) {
             base.OnPaint(e);
             {
-                HTree(e.Graphics, new Point(350, 350), new Size(200, 200), 7);
+                //HTree(e.Graphics, new Point(350, 350), new Size(200, 200), 7);
+                //e.Graphics.DrawRectangle(new Pen(Color.Black, 5), 10, 10, 10, 10);
                 SierpinskiTree(e.Graphics, new Point(350, 350), new Size(400, 400), 7);
                 //BoomVanPythagoras(e.Graphics);
             }
@@ -29,6 +30,7 @@ namespace AD_Week2_HW_Form {
                 g.DrawLine(new Pen(Color.Black), new Point(location.X - (size.Width / 2), location.Y), new Point(location.X + (size.Width / 2), location.Y));
                 g.DrawLine(new Pen(Color.Black), new Point(location.X - (size.Width / 2), location.Y - (size.Height / 2)), new Point(location.X - (size.Width / 2), location.Y + (size.Height / 2)));
                 g.DrawLine(new Pen(Color.Black), new Point(location.X + (size.Width / 2), location.Y - (size.Height / 2)), new Point(location.X + (size.Width / 2), location.Y + (size.Height / 2)));
+
                 HTree(g, new Point(location.X - size.Width / 2, location.Y - size.Height / 2), new Size(size.Width / 2, size.Height / 2), amount - 1);
                 HTree(g, new Point(location.X + size.Width / 2, location.Y - size.Height / 2), new Size(size.Width / 2, size.Height / 2), amount - 1);
                 HTree(g, new Point(location.X - size.Width / 2, location.Y + size.Height / 2), new Size(size.Width / 2, size.Height / 2), amount - 1);
@@ -37,7 +39,7 @@ namespace AD_Week2_HW_Form {
         }
 
         private void SierpinskiTree(Graphics g, Point location, Size size, int amount) {
-            if(amount > 0) {
+            if (amount > 0) {
                 PointF[] points = new PointF[3];
                 points[0] = new PointF(location.X - size.Width / 2, location.Y + size.Height / 2);
                 points[1] = new PointF(location.X + size.Width / 2, location.Y + size.Height / 2);
