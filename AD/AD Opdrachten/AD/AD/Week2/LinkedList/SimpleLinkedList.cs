@@ -33,8 +33,30 @@ namespace AD.Week2.LinkedList {
             return header.next.data;
         }
 
+        public void insertWhile(int index, T data) {
+            if (index < 0)
+                return;
+            else {
+                Node<T> current = header;
+                while (current.next != null && index > 0) {
+                    current = current.next;
+                    index--;
+                }
+                if (index > 0) { // Hier komen we als we niet meer kunnen hoppen want current.next == null, maar index is groter dan 0 dus we willen nog verder.
+                    return;
+                } else if (current.next == null) {  // Hier komen we als we niet meer kunnen hoppen want current.next == null EN index is 0 dus we zijn ook waar we willen komen.
+                    current.next = new Node<T>(data);
+                } else {    // Hier komen we als we nog wel kunnen hoppen want current.next != null, maar index is 0 dus we zijn waar we willen zijn.
+                    Node<T> temp = current.next;
+                    current.next = new Node<T>(data);
+                    current.next.next = temp;
+                }
+            }
+        }
+
+        #region insert
         public void insert(int index, T data) {
-            if (index <= 0)
+            if (index < 0)
                 return;
             else
                 insert(index, data, header);
@@ -47,19 +69,20 @@ namespace AD.Week2.LinkedList {
                 current.next = new Node<T>(data);
             else if (index > 0)
                 insert(index - 1, data, current.next);
-            else if(index == 0) {
+            else if (index == 0) {
                 Node<T> temp = current.next;
                 current.next = new Node<T>(data);
                 current.next.next = temp;
             }
         }
+        #endregion
 
         public void print() {
             print(header.next);
         }
 
         private void print(Node<T> current) {
-            if(current == null) {
+            if (current == null) {
                 return;
             } else {
                 Console.WriteLine("data: " + current.data);
