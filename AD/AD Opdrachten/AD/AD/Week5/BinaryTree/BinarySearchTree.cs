@@ -113,10 +113,10 @@ namespace AD.Week5.BinaryTree {
         private void RemoveMin(Node node, Node previous) { // De laagste node is altijd ver links.
             if (node.left == null) { // Als er geen linker child is..
                 if (node.right != null) // ..maar WÉL een rechter child..
-                    previous.left = node.right; // ....
+                    previous.left = node.right; // ..zet dan het rechter child als de "nieuwe" laagste node
                 else
-                    previous.left = null;
-            } else {
+                    previous.left = null; // Als er óók geen rechter child is, verwijder deze leaf dan
+            } else { // Zolang er nog een linker child is gaan we (recursief) dieper
                 RemoveMin(node.left, node);
             }
         }
