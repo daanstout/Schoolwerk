@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AD.Week_5.BinaryTree {
+namespace AD.Week5.BinaryTree {
     public class BinarySearchTree : IBinarySearchTree {
         public Node root;
 

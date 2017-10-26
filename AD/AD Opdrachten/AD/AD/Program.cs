@@ -1,12 +1,14 @@
 ﻿using AD.Week4.Binary;
 using AD.Week4.FCNS;
-using AD.Week_5.BinaryTree;
+using AD.Week5.BinaryTree;
+using AD.Week5.BinaryHeap;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AD.Week_5.BinaryHeap;
+using AD.Week6.Graven;
 
 namespace AD {
     class Program {
@@ -14,7 +16,11 @@ namespace AD {
             //FCNS();
             //Binary();
             //BinarySearch();
-            BinaryHeap();
+            //BinaryHeap();
+            Graph();
+
+
+
 
 
             Console.ReadKey();
@@ -125,6 +131,25 @@ namespace AD {
             heap.add(2);
             Console.WriteLine(heap.FindMin());
             heap.printPreOrder();
+        }
+
+        public static void Graph() {
+            Graph graph = new Graph();
+
+            graph.AddEdge("V0", "V1", 2);
+            graph.AddEdge("V0", "V3", 1);
+            graph.AddEdge("V1", "V3", 3);
+            graph.AddEdge("V1", "V4", 10);
+            graph.AddEdge("V2", "V0", 4);
+            graph.AddEdge("V2", "V5", 5);
+            graph.AddEdge("V3", "V4", 2);
+            graph.AddEdge("V3", "V6", 4);
+            graph.AddEdge("V3", "V5", 8);
+            graph.AddEdge("V3", "V2", 2);
+            graph.AddEdge("V4", "V6", 6);
+            graph.AddEdge("V6", "V5", 1);
+
+            Console.WriteLine(graph);
         }
     }
 }

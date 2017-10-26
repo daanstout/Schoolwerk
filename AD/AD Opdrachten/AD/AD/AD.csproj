@@ -44,19 +44,31 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Week 5\BinaryHeap\BinaryHeap.cs" />
-    <Compile Include="Week 5\BinaryTree\BinarySearchTree.cs" />
-    <Compile Include="Week 5\BinaryTree\IBinarySearchTree.cs" />
-    <Compile Include="Week 5\BinaryTree\Node.cs" />
+    <Compile Include="Week2\LinkedList\ISimpleLinkedList.cs" />
+    <Compile Include="Week2\LinkedList\Node.cs" />
+    <Compile Include="Week2\LinkedList\SimpleLinkedList.cs" />
+    <Compile Include="Week2\Queue\Queue.cs" />
+    <Compile Include="Week2\Stack\IStack.cs" />
+    <Compile Include="Week2\Stack\Stack.cs" />
+    <Compile Include="Week5\BinaryHeap\BinaryHeap.cs" />
+    <Compile Include="Week5\BinaryTree\BinarySearchTree.cs" />
+    <Compile Include="Week5\BinaryTree\IBinarySearchTree.cs" />
+    <Compile Include="Week5\BinaryTree\Node.cs" />
     <Compile Include="Week4\Binary\BinaryNode.cs" />
     <Compile Include="Week4\Binary\BinaryTree.cs" />
     <Compile Include="Week4\Binary\IBinaryTree.cs" />
     <Compile Include="Week4\FCNS\FCNSNode.cs" />
     <Compile Include="Week4\FCNS\FCNSTree.cs" />
     <Compile Include="Week4\FCNS\IFCNSTree.cs" />
+    <Compile Include="Week6\Graven\Edge.cs" />
+    <Compile Include="Week6\Graven\Graph.cs" />
+    <Compile Include="Week6\Graven\IGraph.cs" />
+    <Compile Include="Week6\Graven\IVertex.cs" />
+    <Compile Include="Week6\Graven\Vertex.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
