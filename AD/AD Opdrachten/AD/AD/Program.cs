@@ -1,14 +1,17 @@
-﻿using AD.Week4.Binary;
+﻿using AD.Week2.LinkedList;
+using AD.Week2.Queue;
+using AD.Week4.Binary;
 using AD.Week4.FCNS;
 using AD.Week5.BinaryTree;
 using AD.Week5.BinaryHeap;
+using AD.Week6.Graven;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AD.Week6.Graven;
+
 
 namespace AD {
     class Program {
@@ -17,7 +20,10 @@ namespace AD {
             //Binary();
             //BinarySearch();
             //BinaryHeap();
-            Graph();
+            //Graph();
+            //LinkedList();
+            //Q();
+            //Stack();
 
 
 
@@ -150,6 +156,48 @@ namespace AD {
             graph.AddEdge("V6", "V5", 1);
 
             Console.WriteLine(graph);
+        }
+
+        public static void LinkedList() {
+            SimpleLinkedList<int> list = new SimpleLinkedList<int>();
+            list.addFirst(5);
+            list.addFirst(4);
+            list.addFirst(3);
+            list.print();
+            list.insert(2, 7);
+            Console.WriteLine();
+            list.print();
+            list.insert(0, 10);
+            Console.WriteLine();
+            list.print();
+            Console.WriteLine();
+            Console.WriteLine(list.getFirst());
+            list.removeFirst();
+            Console.WriteLine();
+            list.print();
+        }
+
+        public static void Q() {
+            Week2.Queue.Queue<int> Q = new Week2.Queue.Queue<int>();
+            Q.Enqueue(4);
+            Q.Enqueue(5);
+            Q.Enqueue(10);
+            Q.Enqueue(2);
+            Console.WriteLine(Q.Dequeue());
+            Console.WriteLine(Q.Dequeue());
+            Q.makeEmpty();
+            Q.Enqueue(1);
+            Console.WriteLine(Q.Dequeue());
+        }
+
+        public static void Stack() {
+            Week2.Stack.Stack<int> stack = new Week2.Stack.Stack<int>();
+            stack.Push(3);
+            stack.Push(10);
+            stack.Push(11);
+            Console.WriteLine(stack.Top());
+            Console.WriteLine(stack.Pop());
+            Console.WriteLine(stack.Top());
         }
     }
 }
