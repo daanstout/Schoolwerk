@@ -40,8 +40,6 @@ namespace ScrollingGame.Gravity {
             List<EntityBase> toUnsubscribe = new List<EntityBase>();
             foreach (EntityBase e in gravityList) {
                 e.fallSpeed += e.entityMass * Singleton.gameGravity * Time.deltaTimeSeconds;
-                if (e is Player P)
-                    Console.WriteLine(P.fallSpeed);
                 if (e.fallSpeed < 0)
                     continue;
                 foreach (Obstacle o in Singleton.currentLevel.obstacleList) {

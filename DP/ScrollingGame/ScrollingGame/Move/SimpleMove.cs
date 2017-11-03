@@ -15,16 +15,13 @@ namespace ScrollingGame.Move {
 
             //Singleton.player.location += Player.Movement * Player.PlayerMovementSpeed * Time.deltaTimeSeconds + new Vector2(0, Singleton.player.fallSpeed);
             Vector2 movement = c.characterDirection * c.characterMovement * Time.deltaTimeSeconds;
-            Console.WriteLine(c.characterDirection + " - - " + c.characterMovement + " - - " + Time.deltaTimeSeconds);
 
             if (movement.X > 0)
                 c.lookDirection = Vector2.Right;
             else if (movement.X < 0)
                 c.lookDirection = Vector2.Left;
 
-            Console.WriteLine(movement);
-
-            //c.location += movement;
+            c.location += movement;
 
             
 

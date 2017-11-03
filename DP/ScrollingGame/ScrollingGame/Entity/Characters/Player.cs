@@ -40,13 +40,10 @@ namespace ScrollingGame.Entity.Characters {
         private Vector2 movement {
             get {
                 Vector2 temp = Vector2.Zero;
-                Console.WriteLine("Zero " + temp + " ... " + Vector2.Zero);
                 if (buttons[2])
                     temp += Vector2.Left;
-                Console.WriteLine("Left " + temp);
                 if (buttons[3])
                     temp += Vector2.Right;
-                Console.WriteLine("right " + temp);
                 return temp;
             }
         }
@@ -71,10 +68,6 @@ namespace ScrollingGame.Entity.Characters {
 
         public override void onUpdate() {
             base.onUpdate();
-
-            //Console.WriteLine(entityFloor);
-
-            //Console.WriteLine("test" + location);
 
             Vector2 oldLocation = location;
 

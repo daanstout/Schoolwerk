@@ -121,7 +121,7 @@ namespace ScrollingGame {
                 return;
 
             game.gamePictureBox.Invalidate();
-            //GravitationalForce.EnactGravity();
+            GravitationalForce.EnactGravity();
 
             foreach (IBehaviour b in tickables)
                 b.onUpdate();
