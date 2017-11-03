@@ -73,7 +73,7 @@ namespace ScrollingGame {
 
         public static Player newPlayer {
             get {
-                return new Player(new Vector2(600, 450), new Vector2(15, 15), Color.Blue, true, true, 100);
+                return new Player(new Vector2(100, 450), new Vector2(15, 15), Color.Red, true, true, 100);
             }
         }
 
@@ -105,7 +105,7 @@ namespace ScrollingGame {
 
             currentLevel.load();
 
-            FieldPartContainer.generateFieldParts();
+            //FieldPartContainer.generateFieldParts();
 
             game.gameTimer.Start();
 
@@ -121,11 +121,10 @@ namespace ScrollingGame {
                 return;
 
             game.gamePictureBox.Invalidate();
-            GravitationalForce.EnactGravity();
+            //GravitationalForce.EnactGravity();
 
             foreach (IBehaviour b in tickables)
-                //if (b.doTick)
-                    b.onUpdate();
+                b.onUpdate();
 
             foreach (IBehaviour b in addables)
                 tickables.Add(b);

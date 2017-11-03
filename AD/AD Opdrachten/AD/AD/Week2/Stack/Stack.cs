@@ -16,6 +16,8 @@ namespace AD.Week2.Stack {
         }
 
         public T Pop() {
+            if (stackSize == 0)
+                return default(T);
             top = stackSize -= 1;
             return stack[top + 1];
         }

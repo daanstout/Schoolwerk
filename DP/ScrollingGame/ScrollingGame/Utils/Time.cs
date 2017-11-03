@@ -27,6 +27,7 @@ namespace ScrollingGame.Utils {
         public override void onUpdate() {
             deltaTimeMillis = tickWatch.ElapsedMilliseconds - previousTick;
             previousTick = tickWatch.ElapsedMilliseconds;
+            Console.WriteLine(deltaTimeMillis);
         }
 
         public override void onPause() {

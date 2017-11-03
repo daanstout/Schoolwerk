@@ -25,6 +25,8 @@ namespace AD.Week2.Queue {
         }
 
         public T Dequeue() {
+            if (queueSize == 0)
+                return default(T);
             T item = queue[front];
             queue[front] = default(T);
             queueSize--;

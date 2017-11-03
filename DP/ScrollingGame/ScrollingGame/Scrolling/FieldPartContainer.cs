@@ -30,7 +30,8 @@ namespace ScrollingGame.Scrolling {
 
         private static void fillFieldParts() {
             foreach(Obstacle o in Singleton.currentLevel.obstacleList) {
-                for(float i = o.location.X; i <= o.location.X + o.size.X; i+= fieldPartSize) {
+                for(float i = o.location.X; i < o.location.X + o.size.X; i+= fieldPartSize) {
+                    Console.WriteLine(fieldPartList.Count + " -> " + i);
                     fieldPartList[(int)(i / 100)].addEntity = o;
                     o.addFieldPart = getFieldPart((int)i);
                 }

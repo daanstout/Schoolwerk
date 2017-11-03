@@ -1,5 +1,4 @@
 ﻿using AD.Week2.LinkedList;
-using AD.Week2.Queue;
 using AD.Week4.Binary;
 using AD.Week4.FCNS;
 using AD.Week5.BinaryTree;

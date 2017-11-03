@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace ScrollingGame.Utils {
     public class Vector2 {
-
         public float X;
         public float Y;
 
