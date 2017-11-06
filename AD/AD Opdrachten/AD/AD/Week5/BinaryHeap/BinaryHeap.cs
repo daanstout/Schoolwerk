@@ -11,41 +11,42 @@ namespace AD.Week5.BinaryHeap {
         int size;
 
         public BinaryHeap() {
-            heap = new int[5];
-            size = 0;
+            heap = new int[5]; // Nieuwe array met een vaste grootte van 5.
+            size = 0; // Indexteller.
         }
 
         public int FindMin() {
-            return heap[1];
+            return heap[1]; // Het tweede element van een BinaryHeap is altijd het laagste ((Het éérste element is leeg, en wordt gebruikt voor percolaten)
         }
 
         public void add(int x) {
             if (size + 1 == heap.Length) {
-                doubleArray();
+                doubleArray(); // Verdubbel de grootte van de array als de maximale grootte overschreden wordt.
             }
 
-            int hole = ++size;
-            heap[0] = x;
+            int hole = ++size; // Bepaal een plek voor de nieuwe waarde
+            heap[0] = x; // Zet de toe te voegen waarde (tijdelijk!) op de eerste index.
 
-            for (; x < heap[hole / 2]; hole /= 2)
-                heap[hole] = heap[hole / 2];
+            // Door hoe de Heap werkt, een index gedeeld door twee is altijd de parent van de Node. 
+            for (; x < heap[hole / 2]; hole /= 2) // Deze loop gaat door totdat de toe-te-voegen waarde NÍET lager is dan de waarde van de bovenliggende node
+                heap[hole] = heap[hole / 2]; // Als de waarde van x wel lager is, zet dan de waarde van de bovenliggende node in de onderliggende. Hierdoor ontstaat een gaatje.
 
-            heap[hole] = x;
+            heap[hole] = x; // Zet de waarde van x in het gat
         }
 
-        public void printPreOrder() {
+        public void printPreOrder() { // Starter
             Console.Write("Pre order: [ ");
             printPreOrder(1);
             Console.WriteLine("]");
         }
 
-        private void printPreOrder(int i) {
+        private void printPreOrder(int i) { // Vervolg -- PreOrder: Self, Links, Rechts
             if (i > size)
                 return;
             else {
-                Console.Write(heap[i] + " ");
-                printPreOrder(i * 2);
-                printPreOrder(i * 2 + 1);
+                Console.Write(heap[i] + " "); // Self is easy
+                printPreOrder(i * 2); // Linker child is altijd de index van het huidige element keer twee. (recursief)
+                printPreOrder(i * 2 + 1); // Rechter child is altijd de index van het huidige element keer twee plus 1 (recursief)
             }
         }
 

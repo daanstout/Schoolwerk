@@ -18,8 +18,7 @@ namespace AD.Week4.Binary {
             else if (root == null) // Als er geen root is wordt node de nieuwe root
                 root = node;
             else 
-                addNode(node, root);
-            
+                addNode(node, root);            
         }
 
         // root > node = 1  -> links

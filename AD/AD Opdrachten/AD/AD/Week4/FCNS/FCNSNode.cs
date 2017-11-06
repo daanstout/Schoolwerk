@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AD.Week4.FCNS {
-    public class FCNSNode<T> {
-        public T value;             // This is the value
+    public class FCNSNode<T> {      // Een FCNSNode heeft een waarde, maximaal één child en maximaal één sibling.
+        public T value;             
         public FCNSNode<T> child;   // This is the child
         public FCNSNode<T> sibling; // This is the sibling
 
