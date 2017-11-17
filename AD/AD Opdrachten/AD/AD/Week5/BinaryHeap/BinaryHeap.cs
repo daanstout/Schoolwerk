@@ -51,7 +51,7 @@ namespace AD.Week5.BinaryHeap {
         }
 
         public void PercolateUp(int i) {
-            if (i == 1)
+            if (i == 1) // Stop met percolaten wanneer i gelijk is aan 1
                 return;
 
             if (heap[i / 2] < heap[i]) {
@@ -105,12 +105,12 @@ namespace AD.Week5.BinaryHeap {
             }
         }
 
-        private void doubleArray() {
-            int[] temp = new int[heap.Length * 2];
-            for (int i = 1; i < heap.Length; i++)
+        private void doubleArray() { // Verdubbel de grootte van de array
+            int[] temp = new int[heap.Length * 2]; // nieuwe array
+            for (int i = 1; i < heap.Length; i++) // zet alles 1 voor 1 over
                 temp[i] = heap[i];
 
-            heap = temp;
+            heap = temp; // maak de grootte gelijk
         }
     }
 }
