@@ -12,7 +12,7 @@ namespace MazeAlgorithms.Datastructures {
         #endregion
 
         #region Constructors
-        public UpTree(int size) {
+        private UpTree(int size) {
             tree = new int[size];
 
             this.size = size;
@@ -47,8 +47,9 @@ namespace MazeAlgorithms.Datastructures {
             int root2 = Find(element2);
 
             int newSize = tree[root1] + tree[root2];
-
-            if(tree[root1] < tree[root2]) {
+            if (root1 == root2)
+                return;
+            else if (tree[root1] < tree[root2]) {
                 tree[root2] = root1;
 
                 tree[root1] = newSize;

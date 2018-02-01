@@ -8,12 +8,20 @@ using System.Threading.Tasks;
 namespace MazeAlgorithms.MazeMain {
     public class Maze {
         #region Variables
+        #region Private Variables
         private UpTree maze;
+        #endregion
+
+        #region Public Variables
+        public int width, height;
+        #endregion
         #endregion
 
         #region Constructors
         public Maze() {
-            maze = new UpTree(9);
+            maze = new UpTree(3, 3);
+            width = 3;
+            height = 3;
         }
         #endregion
     }
