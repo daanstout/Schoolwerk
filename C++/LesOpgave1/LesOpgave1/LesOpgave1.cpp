@@ -7,8 +7,7 @@ using namespace std;
 
 int Sum (int a, int b);
 void IsEven (int a);
-void Exponant (int base, int exponant);
-void Exponant (int base, int current, int exponant);
+int Exponant (int base, int exponant);
 bool IsPrime (int a);
 int ValueAtIndex (int a[], int b, int size);
 void swap (int *xp, int *yp);
@@ -83,15 +82,11 @@ void IsEven (int a) {
 		cout << "Even" << '\n';
 }
 
-void Exponant (int base, int exponant) {
-	Exponant (base, base, exponant);
-}
-
-void Exponant (int base, int current, int exponant) {
-	if (exponant == 1)
-		cout << current << '\n';
+int Exponant (int base, int exponant) {
+	if (exponant == 0)
+		return 1;
 	else
-		Exponant (base, current * base, exponant - 1);
+		return base * Exponant (base, exponant - 1);
 }
 
 bool IsPrime (int a) {
@@ -135,5 +130,5 @@ int gcd (int a, int b) {
 }
 
 int lcm (int a, int b) {
-	return (a / gcd(a, b)) * b;
+	return (a * b) / gcd (a, b);
 }
