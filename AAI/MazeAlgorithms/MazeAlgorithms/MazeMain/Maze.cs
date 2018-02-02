@@ -35,7 +35,7 @@ namespace MazeAlgorithms.MazeMain {
         #endregion
 
         #region Constructors
-        public Maze(int width, int height) : this(width, height, new AStarSolvingAlgorithm(), new SimpleGeneratingAlgorithm()) { }
+        public Maze(int width, int height) : this(width, height, new AStarSolvingAlgorithm(), new RandomGeneratingAlgorithm()) { }
 
         public Maze(int width, int height, ISolvingAlgorithm solving, IGeneratingAlgorithm generating) {
             maze = new UpTree(width, height);
@@ -64,6 +64,9 @@ namespace MazeAlgorithms.MazeMain {
         }
 
         public void GenerateMaze() {
+            _mazeEdges = null;
+            maze = new UpTree(width, height);
+
             generatingAlgorithm.GenerateMaze(this);
         }
 

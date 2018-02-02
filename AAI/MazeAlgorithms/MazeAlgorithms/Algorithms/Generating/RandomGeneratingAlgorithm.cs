@@ -8,7 +8,7 @@ using MazeAlgorithms.Datastructures;
 using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Generating {
-    public class SimpleGeneratingAlgorithm : IGeneratingAlgorithm {
+    public class RandomGeneratingAlgorithm : IGeneratingAlgorithm {
         List<Edge> edgeList;
         Random rand = new Random();
 
@@ -27,8 +27,11 @@ namespace MazeAlgorithms.Algorithms.Generating {
             edgeList = maze.maze.GetAllEdges();
 
             while (!maze.maze.IsMaze() && edgeList.Count > 0) {
-                while (!Global.doStep) { }
+                if (!Global.noDelay)
+                    while (!Global.doStep) { }
                 Global.doStep = false;
+
+                while (Global.isDrawing) { }
 
                 int randIndex = rand.Next(0, edgeList.Count);
                 Edge edge = edgeList[randIndex];

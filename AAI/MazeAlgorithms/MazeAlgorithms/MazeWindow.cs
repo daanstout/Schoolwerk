@@ -19,11 +19,11 @@ namespace MazeAlgorithms {
         public MazeWindow() {
             InitializeComponent();
 
+            generationAlgorithmComboBox.Items.Add("Random Generation");
+
             maze = new Maze(30, 20);
 
             mazePictureBox.Invalidate();
-
-            generatinBackgroundWorker.RunWorkerAsync();
         }
         #endregion
 
@@ -31,7 +31,9 @@ namespace MazeAlgorithms {
         private void mazePictureBox_Paint(object sender, PaintEventArgs e) {
             base.OnPaint(e);
             {
+                Global.isDrawing = true;
                 maze.Draw(e.Graphics);
+                Global.isDrawing = false;
             }
         }
         #endregion
@@ -44,6 +46,14 @@ namespace MazeAlgorithms {
 
         private void generatinBackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
             maze.GenerateMaze();
+        }
+
+        private void generateMazeButton_Click(object sender, EventArgs e) {
+            generatinBackgroundWorker.RunWorkerAsync();
+        }
+
+        private void noDelayCheckBox_CheckedChanged(object sender, EventArgs e) {
+            Global.noDelay = noDelayCheckBox.Checked;
         }
     }
 }
