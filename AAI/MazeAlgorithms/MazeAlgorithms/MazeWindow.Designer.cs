@@ -1,5 +1,5 @@
 ﻿namespace MazeAlgorithms {
-    partial class maze {
+    partial class MazeWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,8 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.mazePanel = new System.Windows.Forms.Panel();
             this.mazePictureBox = new System.Windows.Forms.PictureBox();
+            this.algorithmTimer = new System.Windows.Forms.Timer(this.components);
+            this.generatinBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.mazePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mazePictureBox)).BeginInit();
             this.SuspendLayout();
@@ -39,6 +42,7 @@
             // 
             // mazePictureBox
             // 
+            this.mazePictureBox.BackColor = System.Drawing.Color.White;
             this.mazePictureBox.Location = new System.Drawing.Point(0, 0);
             this.mazePictureBox.Name = "mazePictureBox";
             this.mazePictureBox.Size = new System.Drawing.Size(1033, 536);
@@ -46,13 +50,24 @@
             this.mazePictureBox.TabStop = false;
             this.mazePictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.mazePictureBox_Paint);
             // 
-            // maze
+            // algorithmTimer
+            // 
+            this.algorithmTimer.Enabled = true;
+            this.algorithmTimer.Interval = 25;
+            this.algorithmTimer.Tick += new System.EventHandler(this.algorithmTimer_Tick);
+            // 
+            // generatinBackgroundWorker
+            // 
+            this.generatinBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.generatinBackgroundWorker_DoWork);
+            // 
+            // MazeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1184, 561);
             this.Controls.Add(this.mazePanel);
-            this.Name = "maze";
+            this.Name = "MazeWindow";
             this.Text = "Maze";
             this.mazePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mazePictureBox)).EndInit();
@@ -64,6 +79,8 @@
 
         private System.Windows.Forms.Panel mazePanel;
         private System.Windows.Forms.PictureBox mazePictureBox;
+        private System.Windows.Forms.Timer algorithmTimer;
+        private System.ComponentModel.BackgroundWorker generatinBackgroundWorker;
     }
 }
 

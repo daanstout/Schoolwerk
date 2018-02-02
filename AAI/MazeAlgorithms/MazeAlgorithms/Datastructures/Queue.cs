@@ -19,7 +19,7 @@ namespace MazeAlgorithms.Datastructures {
         }
         #endregion
 
-        #region Private functions
+        #region Private Functions
         private void DoubleQueue() {
             T[] temp = new T[queueMaxSize * 2]; // Verdubbel de grootte
             for (int i = 0; i < queueMaxSize; i++) {
@@ -32,7 +32,7 @@ namespace MazeAlgorithms.Datastructures {
         }
         #endregion
 
-        #region Public functions
+        #region Public Functions
         public bool isEmpty {
             get {
                 return queueSize == 0;

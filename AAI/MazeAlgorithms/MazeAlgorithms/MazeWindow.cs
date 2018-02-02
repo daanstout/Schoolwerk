@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MazeAlgorithms.MazeMain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,10 +10,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MazeAlgorithms {
-    public partial class maze : Form {
+    public partial class MazeWindow : Form {
+        #region Variables
+        public Maze maze;
+        #endregion
+
         #region Constructors
-        public maze() {
+        public MazeWindow() {
             InitializeComponent();
+
+            maze = new Maze(30, 20);
+
+            mazePictureBox.Invalidate();
+
+            generatinBackgroundWorker.RunWorkerAsync();
         }
         #endregion
 
@@ -20,9 +31,19 @@ namespace MazeAlgorithms {
         private void mazePictureBox_Paint(object sender, PaintEventArgs e) {
             base.OnPaint(e);
             {
-
+                maze.Draw(e.Graphics);
             }
         }
         #endregion
+
+        private void algorithmTimer_Tick(object sender, EventArgs e) {
+            mazePictureBox.Invalidate();
+
+            Global.doStep = true;
+        }
+
+        private void generatinBackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
+            maze.GenerateMaze();
+        }
     }
 }

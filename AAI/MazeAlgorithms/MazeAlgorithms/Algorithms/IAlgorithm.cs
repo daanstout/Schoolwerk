@@ -1,12 +1,13 @@
 ﻿using MazeAlgorithms.Datastructures;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MazeAlgorithms.Algorithms.Solving {
-    public interface IGeneratingAlgorithm {
-        void GenerateMaze(UpTree tree);
+namespace MazeAlgorithms.Algorithms {
+    public interface IAlgorithm {
+        void Draw(Graphics g, UpTree tree);
     }
 }
