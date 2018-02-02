@@ -31,6 +31,8 @@ namespace MazeAlgorithms.MazeMain {
         #region Public Variables
         public UpTree maze;
         public int width, height;
+        public int start, end;
+        public bool solved;
         #endregion
         #endregion
 
@@ -43,13 +45,16 @@ namespace MazeAlgorithms.MazeMain {
             this.height = height;
             this.solvingAlgorithm = solving;
             this.generatingAlgorithm = generating;
+            this.start = 0;
+            this.end = (width * height) - 1;
         }
         #endregion
 
         #region Functions
         #region Public Functions
         public void Draw(Graphics g) {
-            generatingAlgorithm.Draw(g, maze);
+            generatingAlgorithm.Draw(g, this);
+            solvingAlgorithm.Draw(g, this);
 
             DrawOutline(g);
 
@@ -72,7 +77,7 @@ namespace MazeAlgorithms.MazeMain {
         }
 
         public void SolveMaze() {
-            solvingAlgorithm.SolveMaze(maze);
+            solvingAlgorithm.SolveMaze(this);
         }
         #endregion
 

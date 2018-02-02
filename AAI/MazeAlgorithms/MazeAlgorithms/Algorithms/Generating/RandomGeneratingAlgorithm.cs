@@ -15,14 +15,14 @@ namespace MazeAlgorithms.Algorithms.Generating {
         #endregion
 
         #region Public Functions
-        public void Draw(Graphics g, UpTree tree) {
-            if (edgeList == null && tree == null)
+        public void Draw(Graphics g, Maze maze) {
+            if (edgeList == null && maze.maze == null)
                 return;
             if (edgeList == null)
-                edgeList = tree.GetAllEdges();
+                edgeList = maze.maze.GetAllEdges();
 
             foreach (Edge edge in edgeList) {
-                edge.DrawEdgeLine(g, tree.width, Color.Gray);
+                edge.DrawEdgeLine(g, maze.width, Color.Gray);
             }
         }
 

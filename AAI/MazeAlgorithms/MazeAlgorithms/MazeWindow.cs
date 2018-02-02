@@ -1,4 +1,5 @@
 ﻿using MazeAlgorithms.Algorithms.Generating;
+using MazeAlgorithms.Algorithms.Solving;
 using MazeAlgorithms.MazeMain;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace MazeAlgorithms {
             InitializeComponent();
 
             generationAlgorithmComboBox.Items.Add("Random Generation");
+            solvingAlgorithmComboBox.Items.Add("A*");
 
             maze = new Maze(30, 20);
 
@@ -64,5 +66,21 @@ namespace MazeAlgorithms {
             }
         }
         #endregion
+
+        private void solvingAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            switch (solvingAlgorithmComboBox.SelectedIndex) {
+                case 0:
+                    maze.SetSolvingAlgorithm(new AStarSolvingAlgorithm());
+                    break;
+            }
+        }
+
+        private void solvingBackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
+            maze.SolveMaze();
+        }
+
+        private void solveMazeButton_Click(object sender, EventArgs e) {
+            solvingBackgroundWorker.RunWorkerAsync();
+        }
     }
 }

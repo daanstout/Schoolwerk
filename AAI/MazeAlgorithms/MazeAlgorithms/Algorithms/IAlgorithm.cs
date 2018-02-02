@@ -1,4 +1,5 @@
 ﻿using MazeAlgorithms.Datastructures;
+using MazeAlgorithms.MazeMain;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,6 +9,6 @@ using System.Threading.Tasks;
 
 namespace MazeAlgorithms.Algorithms {
     public interface IAlgorithm {
-        void Draw(Graphics g, UpTree tree);
+        void Draw(Graphics g, Maze maze);
     }
 }

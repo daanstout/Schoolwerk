@@ -48,6 +48,7 @@
     <Compile Include="Algorithms\Generating\PrimsGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\Generating\RandomGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
+    <Compile Include="Algorithms\Solving\ASolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\AStarSolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\ISolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Generating\IGeneratingAlgorithm.cs" />

@@ -31,14 +31,16 @@
             this.mazeButtonsPanel = new System.Windows.Forms.Panel();
             this.generateMazeButton = new System.Windows.Forms.Button();
             this.checkboxPanel = new System.Windows.Forms.Panel();
-            this.showDistanceCheckbox = new System.Windows.Forms.CheckBox();
-            this.pauseCheckBox = new System.Windows.Forms.CheckBox();
             this.noDelayCheckBox = new System.Windows.Forms.CheckBox();
+            this.pauseCheckBox = new System.Windows.Forms.CheckBox();
+            this.showDistanceCheckbox = new System.Windows.Forms.CheckBox();
             this.algorithmSelectionPanel = new System.Windows.Forms.Panel();
-            this.generationLabel = new System.Windows.Forms.Label();
-            this.generationAlgorithmComboBox = new System.Windows.Forms.ComboBox();
-            this.solvingLabel = new System.Windows.Forms.Label();
             this.solvingAlgorithmComboBox = new System.Windows.Forms.ComboBox();
+            this.solvingLabel = new System.Windows.Forms.Label();
+            this.generationAlgorithmComboBox = new System.Windows.Forms.ComboBox();
+            this.generationLabel = new System.Windows.Forms.Label();
+            this.solvingBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.solveMazeButton = new System.Windows.Forms.Button();
             this.mazePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mazePictureBox)).BeginInit();
             this.mazeButtonsPanel.SuspendLayout();
@@ -76,6 +78,7 @@
             // 
             // mazeButtonsPanel
             // 
+            this.mazeButtonsPanel.Controls.Add(this.solveMazeButton);
             this.mazeButtonsPanel.Controls.Add(this.generateMazeButton);
             this.mazeButtonsPanel.Location = new System.Drawing.Point(1067, 12);
             this.mazeButtonsPanel.Name = "mazeButtonsPanel";
@@ -102,15 +105,16 @@
             this.checkboxPanel.Size = new System.Drawing.Size(101, 63);
             this.checkboxPanel.TabIndex = 2;
             // 
-            // showDistanceCheckbox
+            // noDelayCheckBox
             // 
-            this.showDistanceCheckbox.AutoSize = true;
-            this.showDistanceCheckbox.Location = new System.Drawing.Point(3, 0);
-            this.showDistanceCheckbox.Name = "showDistanceCheckbox";
-            this.showDistanceCheckbox.Size = new System.Drawing.Size(98, 17);
-            this.showDistanceCheckbox.TabIndex = 0;
-            this.showDistanceCheckbox.Text = "Show Distance";
-            this.showDistanceCheckbox.UseVisualStyleBackColor = true;
+            this.noDelayCheckBox.AutoSize = true;
+            this.noDelayCheckBox.Location = new System.Drawing.Point(3, 46);
+            this.noDelayCheckBox.Name = "noDelayCheckBox";
+            this.noDelayCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.noDelayCheckBox.TabIndex = 2;
+            this.noDelayCheckBox.Text = "No Delay";
+            this.noDelayCheckBox.UseVisualStyleBackColor = true;
+            this.noDelayCheckBox.CheckedChanged += new System.EventHandler(this.noDelayCheckBox_CheckedChanged);
             // 
             // pauseCheckBox
             // 
@@ -122,16 +126,15 @@
             this.pauseCheckBox.Text = "Pause";
             this.pauseCheckBox.UseVisualStyleBackColor = true;
             // 
-            // noDelayCheckBox
+            // showDistanceCheckbox
             // 
-            this.noDelayCheckBox.AutoSize = true;
-            this.noDelayCheckBox.Location = new System.Drawing.Point(3, 46);
-            this.noDelayCheckBox.Name = "noDelayCheckBox";
-            this.noDelayCheckBox.Size = new System.Drawing.Size(70, 17);
-            this.noDelayCheckBox.TabIndex = 2;
-            this.noDelayCheckBox.Text = "No Delay";
-            this.noDelayCheckBox.UseVisualStyleBackColor = true;
-            this.noDelayCheckBox.CheckedChanged += new System.EventHandler(this.noDelayCheckBox_CheckedChanged);
+            this.showDistanceCheckbox.AutoSize = true;
+            this.showDistanceCheckbox.Location = new System.Drawing.Point(3, 0);
+            this.showDistanceCheckbox.Name = "showDistanceCheckbox";
+            this.showDistanceCheckbox.Size = new System.Drawing.Size(98, 17);
+            this.showDistanceCheckbox.TabIndex = 0;
+            this.showDistanceCheckbox.Text = "Show Distance";
+            this.showDistanceCheckbox.UseVisualStyleBackColor = true;
             // 
             // algorithmSelectionPanel
             // 
@@ -144,23 +147,14 @@
             this.algorithmSelectionPanel.Size = new System.Drawing.Size(132, 89);
             this.algorithmSelectionPanel.TabIndex = 3;
             // 
-            // generationLabel
+            // solvingAlgorithmComboBox
             // 
-            this.generationLabel.AutoSize = true;
-            this.generationLabel.Location = new System.Drawing.Point(13, 0);
-            this.generationLabel.Name = "generationLabel";
-            this.generationLabel.Size = new System.Drawing.Size(98, 13);
-            this.generationLabel.TabIndex = 0;
-            this.generationLabel.Text = "Generation Method";
-            // 
-            // generationAlgorithmComboBox
-            // 
-            this.generationAlgorithmComboBox.FormattingEnabled = true;
-            this.generationAlgorithmComboBox.Location = new System.Drawing.Point(5, 16);
-            this.generationAlgorithmComboBox.Name = "generationAlgorithmComboBox";
-            this.generationAlgorithmComboBox.Size = new System.Drawing.Size(121, 21);
-            this.generationAlgorithmComboBox.TabIndex = 1;
-            this.generationAlgorithmComboBox.SelectedIndexChanged += new System.EventHandler(this.generationAlgorithmComboBox_SelectedIndexChanged);
+            this.solvingAlgorithmComboBox.FormattingEnabled = true;
+            this.solvingAlgorithmComboBox.Location = new System.Drawing.Point(5, 60);
+            this.solvingAlgorithmComboBox.Name = "solvingAlgorithmComboBox";
+            this.solvingAlgorithmComboBox.Size = new System.Drawing.Size(121, 21);
+            this.solvingAlgorithmComboBox.TabIndex = 3;
+            this.solvingAlgorithmComboBox.SelectedIndexChanged += new System.EventHandler(this.solvingAlgorithmComboBox_SelectedIndexChanged);
             // 
             // solvingLabel
             // 
@@ -171,13 +165,37 @@
             this.solvingLabel.TabIndex = 2;
             this.solvingLabel.Text = "Solving Method";
             // 
-            // solvingAlgorithmComboBox
+            // generationAlgorithmComboBox
             // 
-            this.solvingAlgorithmComboBox.FormattingEnabled = true;
-            this.solvingAlgorithmComboBox.Location = new System.Drawing.Point(5, 60);
-            this.solvingAlgorithmComboBox.Name = "solvingAlgorithmComboBox";
-            this.solvingAlgorithmComboBox.Size = new System.Drawing.Size(121, 21);
-            this.solvingAlgorithmComboBox.TabIndex = 3;
+            this.generationAlgorithmComboBox.FormattingEnabled = true;
+            this.generationAlgorithmComboBox.Location = new System.Drawing.Point(5, 16);
+            this.generationAlgorithmComboBox.Name = "generationAlgorithmComboBox";
+            this.generationAlgorithmComboBox.Size = new System.Drawing.Size(121, 21);
+            this.generationAlgorithmComboBox.TabIndex = 1;
+            this.generationAlgorithmComboBox.SelectedIndexChanged += new System.EventHandler(this.generationAlgorithmComboBox_SelectedIndexChanged);
+            // 
+            // generationLabel
+            // 
+            this.generationLabel.AutoSize = true;
+            this.generationLabel.Location = new System.Drawing.Point(13, 0);
+            this.generationLabel.Name = "generationLabel";
+            this.generationLabel.Size = new System.Drawing.Size(98, 13);
+            this.generationLabel.TabIndex = 0;
+            this.generationLabel.Text = "Generation Method";
+            // 
+            // solvingBackgroundWorker
+            // 
+            this.solvingBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.solvingBackgroundWorker_DoWork);
+            // 
+            // solveMazeButton
+            // 
+            this.solveMazeButton.Location = new System.Drawing.Point(3, 29);
+            this.solveMazeButton.Name = "solveMazeButton";
+            this.solveMazeButton.Size = new System.Drawing.Size(75, 23);
+            this.solveMazeButton.TabIndex = 1;
+            this.solveMazeButton.Text = "Solve Maze";
+            this.solveMazeButton.UseVisualStyleBackColor = true;
+            this.solveMazeButton.Click += new System.EventHandler(this.solveMazeButton_Click);
             // 
             // MazeWindow
             // 
@@ -219,6 +237,8 @@
         private System.Windows.Forms.Label solvingLabel;
         private System.Windows.Forms.ComboBox generationAlgorithmComboBox;
         private System.Windows.Forms.Label generationLabel;
+        private System.ComponentModel.BackgroundWorker solvingBackgroundWorker;
+        private System.Windows.Forms.Button solveMazeButton;
     }
 }
 
