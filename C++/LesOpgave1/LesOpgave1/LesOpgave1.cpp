@@ -5,6 +5,7 @@
 #include <iostream>
 using namespace std;
 
+void Opgave1();
 int Sum(int a, int b);
 void IsEven(int a);
 int Exponant(int base, int exponant);
@@ -15,12 +16,21 @@ void bubbleSort(int arr[], int n);
 int gcd(int a, int b);
 int lcm(int a, int b);
 
-int main() {
-	int a, b;
+void Opgave2();
 
+int main() {
+	Opgave1();
+	
+
+	return 0;
+}
+
+
+#pragma region Opgave1
+void Opgave1() {
 	// Opgave 1
 	cout << "Opgave 1 - Sum\n";
-	cout << Sum(3, 6) << '\n';
+	cout << 3 << '+' << 6 << '=' << Sum(3, 6) << '\n';
 	cout << Sum(15, 6) << '\n';
 	cout << Sum(32, 6) << '\n';
 
@@ -32,9 +42,9 @@ int main() {
 
 	// Opgave 3
 	cout << "Opgave 3 - Exponant\n";
-	Exponant(2, 3);
-	Exponant(3, 3);
-	Exponant(4, 3);
+	cout << Exponant(2, 3) << '\n';
+	cout << Exponant(3, 3) << '\n';
+	cout << Exponant(4, 3) << '\n';
 
 	// Opgave 4
 	cout << "Opgave 4 - IsPrime\n";
@@ -67,8 +77,6 @@ int main() {
 	cout << lcm(1071, 462) << '\n';
 	cout << lcm(20, 15) << '\n';
 	cout << lcm(100, 54) << '\n';
-
-	return 0;
 }
 
 int Sum(int a, int b) {
@@ -130,3 +138,10 @@ int gcd(int a, int b) {
 int lcm(int a, int b) {
 	return (a * b) / gcd(a, b);
 }
+#pragma endregion
+
+#pragma region Les2
+void Opgave2() {
+
+}
+#pragma endregion
