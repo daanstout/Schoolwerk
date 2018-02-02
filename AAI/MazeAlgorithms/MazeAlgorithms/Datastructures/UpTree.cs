@@ -48,7 +48,7 @@ namespace MazeAlgorithms.Datastructures {
 
             int newSize = tree[root1] + tree[root2];
 
-            if(tree[root1] < tree[root2]) {
+            if (tree[root1] < tree[root2]) {
                 tree[root2] = root1;
 
                 tree[root1] = newSize;
@@ -57,6 +57,16 @@ namespace MazeAlgorithms.Datastructures {
 
                 tree[root2] = newSize;
             }
+        }
+
+        public bool IsMaze() {
+            int root = Find(tree[0]);
+
+            for (int i = 1; i < size; i++)
+                if (Find(tree[i]) != root)
+                    return false;
+
+            return true;
         }
         #endregion
     }

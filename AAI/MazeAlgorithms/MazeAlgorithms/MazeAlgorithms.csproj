@@ -50,6 +50,7 @@
     <Compile Include="Datastructures\PriorityQueue.cs" />
     <Compile Include="Datastructures\Queue.cs" />
     <Compile Include="Datastructures\UpTree.cs" />
+    <Compile Include="MazeMain\Edge.cs" />
     <Compile Include="MazeWindow.cs">
       <SubType>Form</SubType>
     </Compile>

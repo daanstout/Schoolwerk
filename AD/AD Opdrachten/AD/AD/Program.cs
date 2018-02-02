@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AD.Sorting;
 
 namespace AD {
     class Program {
@@ -23,7 +23,7 @@ namespace AD {
             //LinkedList();
             //Q();
             //Stack();
-
+            Sorting();
 
 
 
@@ -197,6 +197,20 @@ namespace AD {
             Console.WriteLine(stack.Top());
             Console.WriteLine(stack.Pop());
             Console.WriteLine(stack.Top());
+        }
+
+        public static void Sorting() {
+            int[] beginList = new int[10] { 5, 4, 7, 1, 0, 9, 2, 8, 6, 3 };
+
+            foreach (int i in beginList)
+                Console.Write(" " + i);
+            Console.WriteLine();
+
+            int[] sortedInsertion = InsertionSort.SortList(beginList);
+
+            foreach (int i in sortedInsertion)
+                Console.Write(" " + i);
+            Console.WriteLine();
         }
     }
 }
