@@ -46,6 +46,7 @@ namespace MazeAlgorithms.MazeMain {
         }
         #endregion
 
+        #region Functions
         #region Public Functions
         public void Draw(Graphics g) {
             generatingAlgorithm.Draw(g, maze);
@@ -92,10 +93,11 @@ namespace MazeAlgorithms.MazeMain {
             if (mazeEdges.Count == 0)
                 return;
 
-            foreach(Edge edge in mazeEdges) {
+            foreach (Edge edge in mazeEdges) {
                 edge.DrawEdgeLine(g, width, Color.Red);
             }
         }
+        #endregion
         #endregion
     }
 }

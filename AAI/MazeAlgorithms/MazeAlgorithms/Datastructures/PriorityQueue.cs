@@ -18,6 +18,7 @@ namespace MazeAlgorithms.Datastructures {
         }
         #endregion
 
+        #region Functions
         #region Private Functions
         private void PrintHeap(int i, int t) {
             if (i > size)
@@ -152,6 +153,7 @@ namespace MazeAlgorithms.Datastructures {
         public void PercolateDown() {
             PercolateDown(1);
         }
+        #endregion
         #endregion
     }
 

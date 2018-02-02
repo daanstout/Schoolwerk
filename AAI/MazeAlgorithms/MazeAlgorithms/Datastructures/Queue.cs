@@ -19,6 +19,7 @@ namespace MazeAlgorithms.Datastructures {
         }
         #endregion
 
+        #region Functions
         #region Private Functions
         private void DoubleQueue() {
             T[] temp = new T[queueMaxSize * 2]; // Verdubbel de grootte
@@ -65,6 +66,7 @@ namespace MazeAlgorithms.Datastructures {
             }
             front = back = queueSize = 0; // Reset alle posities
         }
+        #endregion
         #endregion
     }
 }

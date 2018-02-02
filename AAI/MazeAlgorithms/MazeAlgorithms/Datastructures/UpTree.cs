@@ -35,6 +35,7 @@ namespace MazeAlgorithms.Datastructures {
         }
         #endregion
 
+        #region Functions
         #region Private Functions
         private void initTree() {
             for (int i = 0; i < size; i++)
@@ -122,6 +123,7 @@ namespace MazeAlgorithms.Datastructures {
             foreach (int i in tree)
                 Console.Write(i + "   ");
         }
+        #endregion
         #endregion
     }
 }
