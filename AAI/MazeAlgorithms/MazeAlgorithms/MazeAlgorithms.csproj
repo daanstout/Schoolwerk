@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Generating\PrimsGeneratingAlgorithm.cs" />
-    <Compile Include="Algorithms\Generating\SimpleGeneratingAlgorithm.cs" />
+    <Compile Include="Algorithms\Generating\RandomGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\AStarSolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\ISolvingAlgorithm.cs" />

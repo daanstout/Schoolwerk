@@ -1,4 +1,5 @@
-﻿using MazeAlgorithms.MazeMain;
+﻿using MazeAlgorithms.Algorithms.Generating;
+using MazeAlgorithms.MazeMain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,6 @@ namespace MazeAlgorithms {
                 Global.isDrawing = false;
             }
         }
-        #endregion
 
         private void algorithmTimer_Tick(object sender, EventArgs e) {
             mazePictureBox.Invalidate();
@@ -55,5 +55,14 @@ namespace MazeAlgorithms {
         private void noDelayCheckBox_CheckedChanged(object sender, EventArgs e) {
             Global.noDelay = noDelayCheckBox.Checked;
         }
+
+        private void generationAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+            switch (generationAlgorithmComboBox.SelectedIndex) {
+                case 0:
+                    maze.SetGeneratingAlgorithm(new RandomGeneratingAlgorithm());
+                    break;
+            }
+        }
+        #endregion
     }
 }

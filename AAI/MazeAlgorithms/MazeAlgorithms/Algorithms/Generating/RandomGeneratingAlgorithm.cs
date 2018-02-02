@@ -9,9 +9,12 @@ using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Generating {
     public class RandomGeneratingAlgorithm : IGeneratingAlgorithm {
+        #region Variables
         List<Edge> edgeList;
         Random rand = new Random();
+        #endregion
 
+        #region Public Functions
         public void Draw(Graphics g, UpTree tree) {
             if (edgeList == null && tree == null)
                 return;
@@ -46,7 +49,8 @@ namespace MazeAlgorithms.Algorithms.Generating {
                     maze.maze.Union(edge.square1, edge.square2);
             }
 
-            maze.maze.PrintTree();
+            maze.mazeEdges.AddRange(edgeList);
         }
+        #endregion
     }
 }

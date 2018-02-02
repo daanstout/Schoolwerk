@@ -160,6 +160,7 @@
             this.generationAlgorithmComboBox.Name = "generationAlgorithmComboBox";
             this.generationAlgorithmComboBox.Size = new System.Drawing.Size(121, 21);
             this.generationAlgorithmComboBox.TabIndex = 1;
+            this.generationAlgorithmComboBox.SelectedIndexChanged += new System.EventHandler(this.generationAlgorithmComboBox_SelectedIndexChanged);
             // 
             // solvingLabel
             // 
