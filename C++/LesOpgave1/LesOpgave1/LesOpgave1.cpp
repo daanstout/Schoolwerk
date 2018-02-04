@@ -1,9 +1,17 @@
-// LesOpgave1.cpp : Defines the entry point for the console application.
+﻿// LesOpgave1.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
+
+struct PlayerState {
+	char name[20];
+	int level;
+	double health;
+	int experience;
+};
 
 void Opgave1();
 int Sum(int a, int b);
@@ -17,10 +25,18 @@ int gcd(int a, int b);
 int lcm(int a, int b);
 
 void Opgave2();
+void SimplifyFraction(int &a, int &b);
+void PrintNameArray(char list[][25], int sizea, int sizeb);
+bool IsPalindrome(char input[], int length);
+void PrintTxtToConsole(char filename[]);
+void PrintPlayerStates(PlayerState players[], int length);
+void SavePlayerState(char filename[], PlayerState players[], int length);
+void ReadPlayerState(char infilename[], char outfilename[]);
 
 int main() {
-	Opgave1();
-	
+	//Opgave1();
+	Opgave2();
+
 
 	return 0;
 }
@@ -142,6 +158,122 @@ int lcm(int a, int b) {
 
 #pragma region Les2
 void Opgave2() {
+	// Opgave 2
+	int a, b;
+	a = 100;
+	b = 30;
+	cout << "Simplifying: " << a << " and " << b << endl;
+	SimplifyFraction(a, b);
+	cout << "Simplified: " << a << " and " << b << endl;
 
+	// Opgave 3
+	char nameList[10][25];
+	//nameList[0] = "Daan Stout";
+	strcpy_s(nameList[0], "Daan Stout");
+	strcpy_s(nameList[1], "Gijs ALberts");
+	strcpy_s(nameList[2], "Anne Zweers");
+	strcpy_s(nameList[3], "Tim Roskam");
+
+	//PrintNameArray(nameList, 10, 25);
+
+	// Opgave 4
+	cout << "Is \"abba\" a palindrome? " << IsPalindrome("abba", 4) << endl;
+	cout << "Is \"tacocat\" a palindrome? " << IsPalindrome("tacocat", 7) << endl;
+	cout << "Is \"weekend\" a palindrome? " << IsPalindrome("weekend", 7) << endl;
+
+	// Opgave 5
+	PrintTxtToConsole("test.txt");
+
+	// Opgave 7
+	PlayerState players[3];
+	strcpy_s(players[0].name, "first");
+	players[0].level = 5;
+	players[0].health = 53.4;
+	players[0].experience = 105;
+
+	strcpy_s(players[1].name, "second");
+	players[1].level = 3;
+	players[1].health = 22.1;
+	players[1].experience = 43;
+
+	strcpy_s(players[2].name, "third");
+	players[2].level = 1;
+	players[2].health = 9.3;
+	players[2].experience = 4;
+
+	PrintPlayerStates(players, 3);
+
+	// Opgave 8
+	SavePlayerState("game.dat", &players[3], 3);
+
+	// Opgave 9
+	ReadPlayerState("game.dat", "game.txt");
+}
+
+void SimplifyFraction(int &a, int &b) {
+	int divider = gcd(a, b);
+	a /= divider;
+	b /= divider;
+}
+
+void PrintNameArray(char list[][25], int sizea, int sizeb) {
+	for (int i = 0; i < sizea; i++) {
+		if (list[i][0] == '\0')
+			continue;
+		for (int j = 0; j < sizeb; j++) {
+			if (list[i][j] == '\0')
+				break;
+			cout << list[i][j];
+		}
+		cout << endl;
+	}
+}
+
+bool IsPalindrome(char input[], int length) {
+	for (int i = 0; i < length - i - 1; i++) {
+		if (input[i] != input[length - i - 1])
+			return false;
+	}
+	return true;
+}
+
+void PrintTxtToConsole(char filename[]) {
+	ifstream file;
+	file.open(filename);
+	if(file.is_open())
+		cout << file.rdbuf() << endl;
+	file.close();
+}
+
+void PrintPlayerStates(PlayerState players[], int length) {
+	for (int i = 0; i < length; i++) {
+		cout << "Player: " << players[i].name << " is level " << players[i].level << ", has " << players[i].health << " health and " << players[i].experience << " experience." << endl;
+	}
+}
+
+void SavePlayerState(char filename[], PlayerState players[], int length) {
+	ofstream file;
+	file.open(filename, ios::binary);
+	for (int i = 0; i < length; i++) {
+		file.write((char *)&players[i], sizeof(PlayerState));
+	}
+	file.close();
+}
+
+void ReadPlayerState(char infilename[], char outfilename[]) {
+	int i;
+	PlayerState localstate;
+	ifstream infile;
+	ofstream outfile;
+	infile.open(infilename, ios::binary);
+	outfile.open(outfilename);
+	if (infile.is_open()) {
+		for (int i = 0; i < 3; i++) {
+			infile.read((char *)&localstate, sizeof(PlayerState));
+			outfile << localstate.name << endl;
+		}
+		infile.close();
+		outfile.close();
+	}
 }
 #pragma endregion
