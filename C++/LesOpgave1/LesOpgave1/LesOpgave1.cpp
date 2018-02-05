@@ -204,10 +204,10 @@ void Opgave2() {
 	PrintPlayerStates(players, 3);
 
 	// Opgave 8
-	SavePlayerState("game.dat", &players[3], 3);
+	SavePlayerState("game.data", &players[3], 3);
 
 	// Opgave 9
-	ReadPlayerState("game.dat", "game.txt");
+	ReadPlayerState("game.data", "game.txt");
 }
 
 void SimplifyFraction(int &a, int &b) {
@@ -254,9 +254,10 @@ void PrintPlayerStates(PlayerState players[], int length) {
 void SavePlayerState(char filename[], PlayerState players[], int length) {
 	ofstream file;
 	file.open(filename, ios::binary);
-	for (int i = 0; i < length; i++) {
+	/*for (int i = 0; i < length; i++) {
 		file.write((char *)&players[i], sizeof(PlayerState));
-	}
+	}*/
+	file.write((char *)&players, sizeof(players));
 	file.close();
 }
 
