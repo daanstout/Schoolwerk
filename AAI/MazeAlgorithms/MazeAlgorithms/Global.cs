@@ -8,9 +8,10 @@ namespace MazeAlgorithms {
     public static class Global {
         #region Variables
         public static int squareSize = 10;
-        public static bool doStep = false;
+        public static volatile bool doStep = false;
         public static bool isDrawing = false;
         public static bool noDelay = false;
+        public static bool showDistance = false;
         #endregion
 
         #region Public Functions

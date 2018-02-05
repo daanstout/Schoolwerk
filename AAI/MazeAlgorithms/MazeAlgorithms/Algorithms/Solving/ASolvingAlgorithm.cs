@@ -32,12 +32,12 @@ namespace MazeAlgorithms.Algorithms.Solving {
         }
 
         protected int Length(int element) {
-            Console.WriteLine(element + " - " + solution[element]);
+            //Console.WriteLine(element + " - " + solution[element]);
             if (element >= solution.Length)
                 return -1;
             else if (element < 0)
                 return -1;
-            else if (solution[element] < 0)
+            else if (solution[element] <= 0)
                 return 0;
             else
                 return 1 + Length(solution[element]);
@@ -55,11 +55,31 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
         #region Public Functions
         public virtual void Draw(Graphics g, Maze maze) {
-            throw new NotImplementedException();
+            if (!maze.solved && !solving)
+                return;
+
+            for (int i = 0; i < solution.Length; i++) {
+                if (solution[i] <= 0)
+                    continue;
+
+                DrawLine(g, i, solution[i], maze.width);
+            }
         }
 
         public virtual void SolveMaze(Maze maze) {
-            throw new NotImplementedException();
+            solving = true;
+
+            solution = new int[maze.maze.size];
+            initSolutions();
+
+            solution[maze.start] = -1;
+        }
+
+        public virtual void reset() {
+            if (solution == null)
+                return;
+            for (int i = 0; i < solution.Length; i++)
+                solution[i] = -1;
         }
         #endregion
     }

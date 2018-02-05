@@ -9,5 +9,6 @@ using System.Threading.Tasks;
 namespace MazeAlgorithms.Algorithms.Solving {
     public interface ISolvingAlgorithm : IAlgorithm{
         void SolveMaze(Maze maze);
+        void reset();
     }
 }

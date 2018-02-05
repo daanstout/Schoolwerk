@@ -71,6 +71,7 @@ namespace MazeAlgorithms.MazeMain {
 
         public void GenerateMaze() {
             _mazeEdges = null;
+            solvingAlgorithm.reset();
             maze = new UpTree(width, height);
 
             generatingAlgorithm.GenerateMaze(this);
@@ -78,6 +79,14 @@ namespace MazeAlgorithms.MazeMain {
 
         public void SolveMaze() {
             solvingAlgorithm.SolveMaze(this);
+        }
+
+        public bool IsEdge(int a, int b) {
+            foreach(Edge e in mazeEdges) {
+                if ((e.square1 == a && e.square2 == b) || (e.square1 == b && e.square2 == a))
+                    return true;
+            }
+            return false;
         }
         #endregion
 
@@ -92,6 +101,8 @@ namespace MazeAlgorithms.MazeMain {
                 g.DrawLine(pen, new Point(0, i * Global.squareSize), new Point(0, (i + 1) * Global.squareSize));
                 g.DrawLine(pen, new Point(width * Global.squareSize, i * Global.squareSize), new Point(width * Global.squareSize, (i + 1) * Global.squareSize));
             }
+            g.DrawLine(new Pen(Color.White), new Point(0, 1), new Point(0, Global.squareSize - 1));
+            g.DrawLine(new Pen(Color.White), new Point(width * Global.squareSize, (height - 1) * Global.squareSize + 1), new Point(width * Global.squareSize, height * Global.squareSize - 1));
         }
 
         private void DrawMazeEdges(Graphics g) {

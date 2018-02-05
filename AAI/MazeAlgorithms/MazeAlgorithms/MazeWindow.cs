@@ -22,7 +22,9 @@ namespace MazeAlgorithms {
             InitializeComponent();
 
             generationAlgorithmComboBox.Items.Add("Random Generation");
+
             solvingAlgorithmComboBox.Items.Add("A*");
+            solvingAlgorithmComboBox.Items.Add("Backtracking");
 
             maze = new Maze(30, 20);
 
@@ -65,12 +67,14 @@ namespace MazeAlgorithms {
                     break;
             }
         }
-        #endregion
 
         private void solvingAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             switch (solvingAlgorithmComboBox.SelectedIndex) {
                 case 0:
                     maze.SetSolvingAlgorithm(new AStarSolvingAlgorithm());
+                    break;
+                case 1:
+                    maze.SetSolvingAlgorithm(new BacktrackingSolvingAlgorithm());
                     break;
             }
         }
@@ -81,6 +85,20 @@ namespace MazeAlgorithms {
 
         private void solveMazeButton_Click(object sender, EventArgs e) {
             solvingBackgroundWorker.RunWorkerAsync();
+
+            mazePictureBox.Invalidate();
         }
+
+        private void pauseCheckBox_CheckedChanged(object sender, EventArgs e) {
+            if (pauseCheckBox.Checked)
+                algorithmTimer.Enabled = false;
+            else
+                algorithmTimer.Enabled = true;
+        }
+
+        private void showDistanceCheckbox_CheckedChanged(object sender, EventArgs e) {
+            Global.showDistance = showDistanceCheckbox.Checked;
+        }
+        #endregion
     }
 }

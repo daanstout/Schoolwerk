@@ -29,6 +29,7 @@
             this.algorithmTimer = new System.Windows.Forms.Timer(this.components);
             this.generatinBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.mazeButtonsPanel = new System.Windows.Forms.Panel();
+            this.solveMazeButton = new System.Windows.Forms.Button();
             this.generateMazeButton = new System.Windows.Forms.Button();
             this.checkboxPanel = new System.Windows.Forms.Panel();
             this.noDelayCheckBox = new System.Windows.Forms.CheckBox();
@@ -40,7 +41,6 @@
             this.generationAlgorithmComboBox = new System.Windows.Forms.ComboBox();
             this.generationLabel = new System.Windows.Forms.Label();
             this.solvingBackgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.solveMazeButton = new System.Windows.Forms.Button();
             this.mazePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mazePictureBox)).BeginInit();
             this.mazeButtonsPanel.SuspendLayout();
@@ -85,6 +85,16 @@
             this.mazeButtonsPanel.Size = new System.Drawing.Size(82, 91);
             this.mazeButtonsPanel.TabIndex = 1;
             // 
+            // solveMazeButton
+            // 
+            this.solveMazeButton.Location = new System.Drawing.Point(3, 29);
+            this.solveMazeButton.Name = "solveMazeButton";
+            this.solveMazeButton.Size = new System.Drawing.Size(75, 23);
+            this.solveMazeButton.TabIndex = 1;
+            this.solveMazeButton.Text = "Solve Maze";
+            this.solveMazeButton.UseVisualStyleBackColor = true;
+            this.solveMazeButton.Click += new System.EventHandler(this.solveMazeButton_Click);
+            // 
             // generateMazeButton
             // 
             this.generateMazeButton.Location = new System.Drawing.Point(3, 0);
@@ -125,6 +135,7 @@
             this.pauseCheckBox.TabIndex = 1;
             this.pauseCheckBox.Text = "Pause";
             this.pauseCheckBox.UseVisualStyleBackColor = true;
+            this.pauseCheckBox.CheckedChanged += new System.EventHandler(this.pauseCheckBox_CheckedChanged);
             // 
             // showDistanceCheckbox
             // 
@@ -135,6 +146,7 @@
             this.showDistanceCheckbox.TabIndex = 0;
             this.showDistanceCheckbox.Text = "Show Distance";
             this.showDistanceCheckbox.UseVisualStyleBackColor = true;
+            this.showDistanceCheckbox.CheckedChanged += new System.EventHandler(this.showDistanceCheckbox_CheckedChanged);
             // 
             // algorithmSelectionPanel
             // 
@@ -186,16 +198,6 @@
             // solvingBackgroundWorker
             // 
             this.solvingBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.solvingBackgroundWorker_DoWork);
-            // 
-            // solveMazeButton
-            // 
-            this.solveMazeButton.Location = new System.Drawing.Point(3, 29);
-            this.solveMazeButton.Name = "solveMazeButton";
-            this.solveMazeButton.Size = new System.Drawing.Size(75, 23);
-            this.solveMazeButton.TabIndex = 1;
-            this.solveMazeButton.Text = "Solve Maze";
-            this.solveMazeButton.UseVisualStyleBackColor = true;
-            this.solveMazeButton.Click += new System.EventHandler(this.solveMazeButton_Click);
             // 
             // MazeWindow
             // 
