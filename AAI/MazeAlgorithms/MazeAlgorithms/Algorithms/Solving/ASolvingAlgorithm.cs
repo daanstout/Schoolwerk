@@ -58,8 +58,11 @@ namespace MazeAlgorithms.Algorithms.Solving {
             if (!maze.solved && !solving)
                 return;
 
+            if (solution == null)
+                return;
+
             for (int i = 0; i < solution.Length; i++) {
-                if (solution[i] <= 0)
+                if (solution[i] < 0)
                     continue;
 
                 DrawLine(g, i, solution[i], maze.width);

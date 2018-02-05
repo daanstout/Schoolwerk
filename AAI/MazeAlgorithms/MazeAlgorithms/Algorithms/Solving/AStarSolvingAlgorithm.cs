@@ -44,6 +44,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
                         }
                     }
                 }
+                if (maze.solved)
+                    return;
                 if (current / maze.width == (current - 1) / maze.width && current > 0) {
                     next = current - 1;
                     if (!maze.IsEdge(current, next)) {
@@ -53,6 +55,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
                         }
                     }
                 }
+                if (maze.solved)
+                    return;
                 if (current - maze.width > 0) {
                     next = current - maze.width;
                     if (!maze.IsEdge(current, next)) {
@@ -62,6 +66,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
                         }
                     }
                 }
+                if (maze.solved)
+                    return;
                 if (current / maze.width == (current + 1) / maze.width && current < maze.maze.size) {
                     next = current + 1;
                     if (!maze.IsEdge(current, next)) {

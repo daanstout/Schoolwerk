@@ -12,7 +12,7 @@ namespace MazeAlgorithms.MazeMain {
     public class Maze {
         #region Variables
         #region Lazy Variables
-        private List<Edge> _mazeEdges;
+        private volatile List<Edge> _mazeEdges;
 
         public List<Edge> mazeEdges {
             get {
@@ -71,6 +71,7 @@ namespace MazeAlgorithms.MazeMain {
 
         public void GenerateMaze() {
             _mazeEdges = null;
+            solved = false;
             solvingAlgorithm.reset();
             maze = new UpTree(width, height);
 
