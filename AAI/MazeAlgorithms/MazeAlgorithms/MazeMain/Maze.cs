@@ -61,13 +61,34 @@ namespace MazeAlgorithms.MazeMain {
             DrawMazeEdges(g);
         }
 
-        public void SetGeneratingAlgorithm(IGeneratingAlgorithm algorithm) {
-            generatingAlgorithm = algorithm;
+        public void SetGeneratingAlgorithm(int algorithm) {
+            switch (algorithm) {
+                case 0:
+                    generatingAlgorithm = new RandomGeneratingAlgorithm();
+                    break;
+                case 1:
+                    generatingAlgorithm = new RecursiveGeneratingAlgorithm();
+                    break;
+            }
+
+            _mazeEdges = null;
+
             solved = false;
         }
 
-        public void SetSolvingAlgorithm(ISolvingAlgorithm algorithm) {
-            solvingAlgorithm = algorithm;
+        public void SetSolvingAlgorithm(int algorithm) {
+            switch (algorithm) {
+                case 0:
+                    solvingAlgorithm = new AStarSolvingAlgorithm();
+                    break;
+                case 1:
+                    solvingAlgorithm = new BacktrackingSolvingAlgorithm();
+                    break;
+                case 2:
+                    solvingAlgorithm = new GreedyBestFirstSolvingAlgorithm();
+                    break;
+            }
+
             solved = false;
         }
 

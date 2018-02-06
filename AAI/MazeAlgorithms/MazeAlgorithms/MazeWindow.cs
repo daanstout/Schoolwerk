@@ -65,28 +65,11 @@ namespace MazeAlgorithms {
         }
 
         private void generationAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            switch (generationAlgorithmComboBox.SelectedIndex) {
-                case 0:
-                    maze.SetGeneratingAlgorithm(new RandomGeneratingAlgorithm());
-                    break;
-                case 1:
-                    maze.SetGeneratingAlgorithm(new RecursiveGeneratingAlgorithm());
-                    break;
-            }
+            maze.SetGeneratingAlgorithm(generationAlgorithmComboBox.SelectedIndex);
         }
 
         private void solvingAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            switch (solvingAlgorithmComboBox.SelectedIndex) {
-                case 0:
-                    maze.SetSolvingAlgorithm(new AStarSolvingAlgorithm());
-                    break;
-                case 1:
-                    maze.SetSolvingAlgorithm(new BacktrackingSolvingAlgorithm());
-                    break;
-                case 2:
-                    maze.SetSolvingAlgorithm(new GreedyBestFirstSolvingAlgorithm());
-                    break;
-            }
+            maze.SetSolvingAlgorithm(solvingAlgorithmComboBox.SelectedIndex);
 
             if (maze.maze.IsMaze())
                 solveMazeButton.Enabled = true;
@@ -136,6 +119,9 @@ namespace MazeAlgorithms {
 
             mazePictureBox.Width = width > mazePanel.Width ? width : mazePanel.Width;
             mazePictureBox.Height = height > mazePanel.Height ? height : mazePanel.Height;
+
+            maze.SetSolvingAlgorithm(solvingAlgorithmComboBox.SelectedIndex);
+            maze.SetGeneratingAlgorithm(generationAlgorithmComboBox.SelectedIndex);
 
             solveMazeButton.Enabled = false;
 
