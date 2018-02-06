@@ -98,25 +98,25 @@ namespace MazeAlgorithms.Datastructures {
             return edgeList;
         }
 
-        public int GetNeighbour(int square) {
+        public List<int> GetAllNeighbours(int square) {
             if (square < 0 || square >= size)
-                return -1;
+                return null;
 
             List<int> possibilities = new List<int>();
 
-            if (square - width > 0)
+            if (square - width > 0)     // Check up
                 possibilities.Add(square - width);
-            if (square / width == (square - 1) / width)
+            if (square / width == (square - 1) / width && square > 0)       // Check right
                 possibilities.Add(square - 1);
-            if (square / width == (square + 1) / width)
+            if (square / width == (square + 1) / width)     // Check left
                 possibilities.Add(square + 1);
-            if (square + width < size)
+            if (square + width < size)      // Check right
                 possibilities.Add(square + width);
 
             if (possibilities.Count == 0)
-                return -1;
+                return null;
 
-            return possibilities[new Random().Next(0, possibilities.Count)];
+            return possibilities;
         }
 
         public void PrintTree() {

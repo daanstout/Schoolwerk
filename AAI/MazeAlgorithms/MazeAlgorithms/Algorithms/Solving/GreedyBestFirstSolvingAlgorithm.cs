@@ -32,43 +32,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
                     return;
                 }
 
-                int next;
-
-                if (current - maze.width > 0) {     // Checks up
-                    next = current - maze.width;
-                    if (!maze.IsEdge(current, next)) {
-                        if (Length(current) < Length(next) || solution[next] == -1) {
-                            solution[next] = current;
-                            q.Insert(next, Global.Heuristic(next, maze.end, maze.width));
-                        }
-                    }
-                }
-                if (maze.solved)
-                    return;
-                if (current / maze.width == (current + 1) / maze.width && current < maze.maze.size) {       // Checks right
-                    next = current + 1;
-                    if (!maze.IsEdge(current, next)) {
-                        if (Length(current) < Length(next) || solution[next] == -1) {
-                            solution[next] = current;
-                            q.Insert(next, Global.Heuristic(next, maze.end, maze.width));
-                        }
-                    }
-                }
-                if (maze.solved)
-                    return;
-                if (current + maze.width < maze.maze.size) {        // Checks down
-                    next = current + maze.width;
-                    if (!maze.IsEdge(current, next)) {
-                        if (Length(current) < Length(next) || solution[next] == -1) {
-                            solution[next] = current;
-                            q.Insert(next, Global.Heuristic(next, maze.end, maze.width));
-                        }
-                    }
-                }
-                if (maze.solved)
-                    return;
-                if (current / maze.width == (current - 1) / maze.width && current > 0) {        // Checks left
-                    next = current - 1;
+                List<int> neighbours = maze.maze.GetAllNeighbours(current);
+                foreach (int next in neighbours) {
+                    if (maze.solved)
+                        return;
                     if (!maze.IsEdge(current, next)) {
                         if (Length(current) < Length(next) || solution[next] == -1) {
                             solution[next] = current;

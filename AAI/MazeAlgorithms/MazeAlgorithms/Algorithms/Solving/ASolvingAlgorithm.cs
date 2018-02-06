@@ -21,19 +21,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 solution[i] = -1;
         }
 
-        //protected int Find(int element) {
-        //    if (element >= solution.Length)
-        //        return -1;
-        //    else if (element < 0)
-        //        return -1;
-        //    else if (solution[element] < 0)
-        //        return element;
-        //    else
-        //        return Find(solution[element]);
-        //}
-
         protected int Length(int element) {
-            //Console.WriteLine(element + " - " + solution[element]);
             if (element >= solution.Length)
                 return -1;
             else if (element < 0)
