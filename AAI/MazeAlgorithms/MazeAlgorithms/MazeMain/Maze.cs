@@ -120,9 +120,11 @@ namespace MazeAlgorithms.MazeMain {
             if (mazeEdges.Count == 0)
                 return;
 
-            foreach (Edge edge in mazeEdges) {
-                edge.DrawEdgeLine(g, width, Color.Red);
-            }
+            for (int i = 0; i < mazeEdges.Count; i++)
+                mazeEdges[i].DrawEdgeLine(g, width, Color.Red);
+            //foreach (Edge edge in mazeEdges) {
+            //    edge.DrawEdgeLine(g, width, Color.Red);
+            //}
         }
         #endregion
         #endregion

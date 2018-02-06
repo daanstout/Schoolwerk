@@ -22,7 +22,7 @@ namespace MazeAlgorithms {
             InitializeComponent();
 
             generationAlgorithmComboBox.Items.Add("Random Generation");
-            //generationAlgorithmComboBox.Items.Add("Recursive Generation");
+            generationAlgorithmComboBox.Items.Add("Recursive Generation");
 
             solvingAlgorithmComboBox.Items.Add("A*");
             solvingAlgorithmComboBox.Items.Add("Backtracking");
