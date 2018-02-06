@@ -8,6 +8,8 @@ using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Generating {
     public class RecursiveGeneratingAlgorithm : AGeneratingAlgorithm {
+        #region Functions
+        #region Public Functions
         public override void Draw(Graphics g, Maze maze) { }
 
         public override void GenerateMaze(Maze maze) {
@@ -16,7 +18,9 @@ namespace MazeAlgorithms.Algorithms.Generating {
             GenerateMaze(maze, 0, maze.width, 0, maze.height, rand.Next() % 2 == 0);
             //GenerateMaze(maze, 0, maze.width, 0, maze.height, true);
         }
+        #endregion
 
+        #region Private Functions
         private void GenerateMaze(Maze maze, int x, int width, int y, int height, bool horizontal) {
             if (!Global.noDelay)
                 while (!Global.doStep) { }
@@ -59,5 +63,7 @@ namespace MazeAlgorithms.Algorithms.Generating {
         private void CreateEdge(Maze maze, int a, int b) {
             maze.mazeEdges.Add(new Edge(a, b));
         }
+        #endregion
+        #endregion
     }
 }

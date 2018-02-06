@@ -14,6 +14,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
         protected bool solving;
         #endregion
 
+        #region Functions
         #region Protected Functions
         protected void initSolutions() {
             for (int i = 0; i < solution.Length; i++)
@@ -70,7 +71,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
             if (maze.solved) {
                 int current = maze.end;
-                while(current != maze.start) {
+                while (current != maze.start) {
                     DrawLine(g, current, solution[current], maze.width, Color.LightGreen);
 
                     current = solution[current];
@@ -93,6 +94,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             for (int i = 0; i < solution.Length; i++)
                 solution[i] = -1;
         }
+        #endregion
         #endregion
     }
 }

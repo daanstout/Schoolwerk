@@ -114,7 +114,6 @@ namespace MazeAlgorithms {
         private void showDistanceCheckbox_CheckedChanged(object sender, EventArgs e) {
             Global.showDistance = showDistanceCheckbox.Checked;
         }
-        #endregion
 
         private void timerIntervalNumeric_ValueChanged(object sender, EventArgs e) {
             if (timerIntervalNumeric.Value == 0)
@@ -158,5 +157,6 @@ namespace MazeAlgorithms {
 
             solveMazeButton.Enabled = false;
         }
+        #endregion
     }
 }
