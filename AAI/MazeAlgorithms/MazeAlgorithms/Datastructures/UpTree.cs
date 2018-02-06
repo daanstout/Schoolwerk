@@ -57,14 +57,14 @@ namespace MazeAlgorithms.Datastructures {
             }
         }
 
-        public void Union(int element1, int element2) {
+        public bool Union(int element1, int element2) {
             int root1 = Find(element1);
             int root2 = Find(element2);
 
             int newSize = tree[root1] + tree[root2];
 
             if (root1 == root2)
-                return;
+                return false;
             else if (tree[root1] < tree[root2]) {
                 tree[root2] = root1;
 
@@ -74,6 +74,7 @@ namespace MazeAlgorithms.Datastructures {
 
                 tree[root2] = newSize;
             }
+            return true;
         }
 
         public bool IsMaze() {
@@ -94,7 +95,6 @@ namespace MazeAlgorithms.Datastructures {
                 if (i + width < size)
                     edgeList.Add(new Edge(i, i + width));
             }
-
             return edgeList;
         }
 

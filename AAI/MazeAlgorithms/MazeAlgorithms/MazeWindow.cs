@@ -21,11 +21,14 @@ namespace MazeAlgorithms {
         public MazeWindow() {
             InitializeComponent();
 
-            generationAlgorithmComboBox.Items.Add("Random Generation");
-            generationAlgorithmComboBox.Items.Add("Recursive Generation");
+            generationAlgorithmComboBox.Items.Add("Random");
+            generationAlgorithmComboBox.Items.Add("Recursive");
+            generationAlgorithmComboBox.Items.Add("Prim's");
 
             solvingAlgorithmComboBox.Items.Add("A*");
             solvingAlgorithmComboBox.Items.Add("Backtracking");
+            solvingAlgorithmComboBox.Items.Add("Breadth First");
+            solvingAlgorithmComboBox.Items.Add("Depth First");
             solvingAlgorithmComboBox.Items.Add("Greedy Best First");
 
             maze = new Maze(30, 20);

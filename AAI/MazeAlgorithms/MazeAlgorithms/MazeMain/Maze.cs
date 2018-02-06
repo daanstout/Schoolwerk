@@ -69,6 +69,9 @@ namespace MazeAlgorithms.MazeMain {
                 case 1:
                     generatingAlgorithm = new RecursiveGeneratingAlgorithm();
                     break;
+                case 2:
+                    generatingAlgorithm = new PrimsGeneratingAlgorithm();
+                    break;
             }
 
             _mazeEdges = null;
@@ -85,6 +88,12 @@ namespace MazeAlgorithms.MazeMain {
                     solvingAlgorithm = new BacktrackingSolvingAlgorithm();
                     break;
                 case 2:
+                    solvingAlgorithm = new BreadthFirstSolvingAlgorithm();
+                    break;
+                case 3:
+                    solvingAlgorithm = new DepthFirstSolvingAlgorithm();
+                    break;
+                case 4:
                     solvingAlgorithm = new GreedyBestFirstSolvingAlgorithm();
                     break;
             }
@@ -106,7 +115,7 @@ namespace MazeAlgorithms.MazeMain {
         }
 
         public bool IsEdge(int a, int b) {
-            foreach(Edge e in mazeEdges) {
+            foreach (Edge e in mazeEdges) {
                 if ((e.square1 == a && e.square2 == b) || (e.square1 == b && e.square2 == a))
                     return true;
             }
@@ -143,9 +152,6 @@ namespace MazeAlgorithms.MazeMain {
 
             for (int i = 0; i < mazeEdges.Count; i++)
                 mazeEdges[i].DrawEdgeLine(g, width, Color.Red);
-            //foreach (Edge edge in mazeEdges) {
-            //    edge.DrawEdgeLine(g, width, Color.Red);
-            //}
         }
         #endregion
         #endregion

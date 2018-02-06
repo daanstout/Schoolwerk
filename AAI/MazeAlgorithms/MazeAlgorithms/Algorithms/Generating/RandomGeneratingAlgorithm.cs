@@ -20,8 +20,7 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
                 while (Global.isDrawing) { }
 
-                int randIndex = rand.Next(0, edgeList.Count);
-                Edge edge = edgeList[randIndex];
+                Edge edge = edgeList[rand.Next(0, edgeList.Count)];
                 edgeList.Remove(edge);
 
                 int root1 = maze.maze.Find(edge.square1);
