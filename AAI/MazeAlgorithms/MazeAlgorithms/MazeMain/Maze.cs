@@ -63,10 +63,12 @@ namespace MazeAlgorithms.MazeMain {
 
         public void SetGeneratingAlgorithm(IGeneratingAlgorithm algorithm) {
             generatingAlgorithm = algorithm;
+            solved = false;
         }
 
         public void SetSolvingAlgorithm(ISolvingAlgorithm algorithm) {
             solvingAlgorithm = algorithm;
+            solved = false;
         }
 
         public void GenerateMaze() {
@@ -88,6 +90,14 @@ namespace MazeAlgorithms.MazeMain {
                     return true;
             }
             return false;
+        }
+
+        public Edge GetEdge(int a, int b) {
+            foreach (Edge e in mazeEdges) {
+                if ((e.square1 == a && e.square2 == b) || (e.square1 == b && e.square2 == a))
+                    return e;
+            }
+            return null;
         }
         #endregion
 

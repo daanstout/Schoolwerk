@@ -1,14 +1,13 @@
-﻿using System;
+﻿using MazeAlgorithms.Datastructures;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeAlgorithms.Datastructures;
 using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Solving {
-    public class AStarSolvingAlgorithm : ASolvingAlgorithm {
+    public class GreedyBestFirstSolvingAlgorithm : ASolvingAlgorithm {
         #region Public Functions
         public override void SolveMaze(Maze maze) {
             base.SolveMaze(maze);
@@ -27,20 +26,20 @@ namespace MazeAlgorithms.Algorithms.Solving {
                     while (!Global.doStep) { }
                 Global.doStep = false;
 
-                if (current == maze.end) {
+                if(current == maze.end) {
                     maze.solved = true;
                     solving = false;
                     return;
                 }
 
                 int next;
-                
+
                 if (current - maze.width > 0) {     // Checks up
                     next = current - maze.width;
                     if (!maze.IsEdge(current, next)) {
                         if (Length(current) < Length(next) || solution[next] == -1) {
                             solution[next] = current;
-                            q.Insert(next, Length(next) + Global.Heuristic(next, maze.end, maze.width));
+                            q.Insert(next, Global.Heuristic(next, maze.end, maze.width));
                         }
                     }
                 }
@@ -51,7 +50,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
                     if (!maze.IsEdge(current, next)) {
                         if (Length(current) < Length(next) || solution[next] == -1) {
                             solution[next] = current;
-                            q.Insert(next, Length(next) + Global.Heuristic(next, maze.end, maze.width));
+                            q.Insert(next, Global.Heuristic(next, maze.end, maze.width));
                         }
                     }
                 }
@@ -62,7 +61,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
                     if (!maze.IsEdge(current, next)) {
                         if (Length(current) < Length(next) || solution[next] == -1) {
                             solution[next] = current;
-                            q.Insert(next, Length(next) + Global.Heuristic(next, maze.end, maze.width));
+                            q.Insert(next, Global.Heuristic(next, maze.end, maze.width));
                         }
                     }
                 }
@@ -73,7 +72,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
                     if (!maze.IsEdge(current, next)) {
                         if (Length(current) < Length(next) || solution[next] == -1) {
                             solution[next] = current;
-                            q.Insert(next, Length(next) + Global.Heuristic(next, maze.end, maze.width));
+                            q.Insert(next, Global.Heuristic(next, maze.end, maze.width));
                         }
                     }
                 }

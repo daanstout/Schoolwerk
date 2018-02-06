@@ -20,16 +20,16 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 solution[i] = -1;
         }
 
-        protected int Find(int element) {
-            if (element >= solution.Length)
-                return -1;
-            else if (element < 0)
-                return -1;
-            else if (solution[element] < 0)
-                return element;
-            else
-                return Find(solution[element]);
-        }
+        //protected int Find(int element) {
+        //    if (element >= solution.Length)
+        //        return -1;
+        //    else if (element < 0)
+        //        return -1;
+        //    else if (solution[element] < 0)
+        //        return element;
+        //    else
+        //        return Find(solution[element]);
+        //}
 
         protected int Length(int element) {
             //Console.WriteLine(element + " - " + solution[element]);
@@ -43,13 +43,13 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 return 1 + Length(solution[element]);
         }
 
-        protected void DrawLine(Graphics g, int a, int b, int width) {
+        protected void DrawLine(Graphics g, int a, int b, int width, Color color) {
             int rowa, rowb, columna, columnb;
             rowa = a / width;
             rowb = b / width;
             columna = a % width;
             columnb = b % width;
-            g.DrawLine(new Pen(Color.Black), new Point(columna * Global.squareSize + (Global.squareSize / 2), rowa * Global.squareSize + (Global.squareSize / 2)), new Point(columnb * Global.squareSize + (Global.squareSize / 2), rowb * Global.squareSize + (Global.squareSize / 2)));
+            g.DrawLine(new Pen(color, 0.2f * Global.squareSize), new Point(columna * Global.squareSize + (Global.squareSize / 2), rowa * Global.squareSize + (Global.squareSize / 2)), new Point(columnb * Global.squareSize + (Global.squareSize / 2), rowb * Global.squareSize + (Global.squareSize / 2)));
         }
         #endregion
 
@@ -65,7 +65,16 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 if (solution[i] < 0)
                     continue;
 
-                DrawLine(g, i, solution[i], maze.width);
+                DrawLine(g, i, solution[i], maze.width, Color.Black);
+            }
+
+            if (maze.solved) {
+                int current = maze.end;
+                while(current != maze.start) {
+                    DrawLine(g, current, solution[current], maze.width, Color.LightGreen);
+
+                    current = solution[current];
+                }
             }
         }
 
