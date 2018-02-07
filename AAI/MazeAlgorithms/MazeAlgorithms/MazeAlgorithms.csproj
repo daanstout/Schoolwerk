@@ -61,6 +61,9 @@
     <Compile Include="Datastructures\PriorityQueue.cs" />
     <Compile Include="Datastructures\Queue.cs" />
     <Compile Include="Datastructures\UpTree.cs" />
+    <Compile Include="Drawing\DistanceDrawer.cs" />
+    <Compile Include="Drawing\IPathDrawer.cs" />
+    <Compile Include="Drawing\LineDrawer.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="MazeMain\Edge.cs" />
     <Compile Include="MazeWindow.cs">

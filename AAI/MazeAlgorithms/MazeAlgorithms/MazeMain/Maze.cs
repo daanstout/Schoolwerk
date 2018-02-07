@@ -33,6 +33,14 @@ namespace MazeAlgorithms.MazeMain {
         public int width, height;
         public int start, end;
         public bool solved;
+        public bool isMaze {
+            get {
+                if (generatingAlgorithm is RecursiveGeneratingAlgorithm)
+                    return true;
+                else
+                    return maze.IsMaze();
+            }
+        }
         #endregion
         #endregion
 
@@ -128,6 +136,10 @@ namespace MazeAlgorithms.MazeMain {
                     return e;
             }
             return null;
+        }
+
+        public void UpdateSolvingDrawMethod(bool distanceMethod) {
+            solvingAlgorithm.UpdateDrawMethod(distanceMethod);
         }
         #endregion
 

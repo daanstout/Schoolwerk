@@ -24,21 +24,50 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
                 while (Global.isDrawing) { }
 
-                List<Edge> potential = GetPotentialEdges(squares);
-                Edge randomEdge = potential[rand.Next(0, potential.Count)];
-                edgeList.Remove(randomEdge);
+                int randomSquare = squares[rand.Next(0, squares.Count)];
+                List<int> neighbours = maze.maze.GetAllNeighbours(randomSquare);
 
-                int root1 = maze.maze.Find(randomEdge.square1);
-                int root2 = maze.maze.Find(randomEdge.square2);
+                List<int> validNeigbhours = new List<int>();
+
+                foreach (int i in neighbours)
+                    if (!squares.Contains(i))
+                        validNeigbhours.Add(i);
+
+                if (validNeigbhours.Count == 0) {
+                    squares.Remove(randomSquare);
+                    continue;
+                }
+                int newSquare = validNeigbhours[rand.Next(0, validNeigbhours.Count)];
+
+                Edge edge = null;
+
+                foreach (Edge e in edgeList) {
+                    if (e.square1 == randomSquare && e.square2 == newSquare ||
+                        e.square1 == newSquare && e.square2 == randomSquare) {
+                        edge = e;
+                        break;
+                    }
+                }
+
+                if (edge == null)
+                    continue;
+                //maze.GetEdge(randomSquare, )
+
+                //List<Edge> potential = GetPotentialEdges(squares);
+                //Edge randomEdge = potential[rand.Next(0, potential.Count)];
+                edgeList.Remove(edge);
+
+                int root1 = maze.maze.Find(edge.square1);
+                int root2 = maze.maze.Find(edge.square2);
 
                 if (root1 == root2)
-                    maze.mazeEdges.Add(randomEdge);
+                    maze.mazeEdges.Add(edge);
                 else {
-                    maze.maze.Union(randomEdge.square1, randomEdge.square2);
-                    if (!squares.Contains(randomEdge.square1))
-                        squares.Add(randomEdge.square1);
-                    if (!squares.Contains(randomEdge.square2))
-                        squares.Add(randomEdge.square2);
+                    maze.maze.Union(edge.square1, edge.square2);
+                    if (!squares.Contains(edge.square1))
+                        squares.Add(edge.square1);
+                    if (!squares.Contains(edge.square2))
+                        squares.Add(edge.square2);
                 }
             }
 

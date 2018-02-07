@@ -69,13 +69,17 @@ namespace MazeAlgorithms {
 
         private void generationAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             maze.SetGeneratingAlgorithm(generationAlgorithmComboBox.SelectedIndex);
+
+            mazePictureBox.Invalidate();
         }
 
         private void solvingAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             maze.SetSolvingAlgorithm(solvingAlgorithmComboBox.SelectedIndex);
 
-            if (maze.maze.IsMaze())
+            if (maze.isMaze)
                 solveMazeButton.Enabled = true;
+
+            mazePictureBox.Invalidate();
         }
 
         private void solvingBackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
@@ -98,7 +102,8 @@ namespace MazeAlgorithms {
         }
 
         private void showDistanceCheckbox_CheckedChanged(object sender, EventArgs e) {
-            Global.showDistance = showDistanceCheckbox.Checked;
+            //Global.showDistance = showDistanceCheckbox.Checked;
+            maze.UpdateSolvingDrawMethod(showDistanceCheckbox.Checked);
         }
 
         private void timerIntervalNumeric_ValueChanged(object sender, EventArgs e) {

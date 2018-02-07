@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MazeAlgorithms.Datastructures;
+using MazeAlgorithms.Drawing;
 using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Solving {
@@ -12,6 +13,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
         #region Variables
         protected int[] solution;
         protected bool solving;
+        protected IPathDrawer pathDrawer = new LineDrawer();
         #endregion
 
         #region Functions
@@ -27,7 +29,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             else if (element < 0)
                 return -1;
             else if (solution[element] <= 0)
-                return 0;
+                return 1;
             else
                 return 1 + Length(solution[element]);
         }
@@ -54,17 +56,27 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 if (solution[i] < 0)
                     continue;
 
-                DrawLine(g, i, solution[i], maze.width, Color.Black);
+                pathDrawer.Draw(g, i, solution[i], maze.width, Length(i), Color.Black);
+                //DrawLine(g, i, solution[i], maze.width, Color.Black);
             }
 
             if (maze.solved) {
                 int current = maze.end;
+                LineDrawer drawer = new LineDrawer();
                 while (current != maze.start) {
-                    DrawLine(g, current, solution[current], maze.width, Color.LightGreen);
+                    drawer.Draw(g, current, solution[current], maze.width, 0, Color.LightGreen);
+                    //DrawLine(g, current, solution[current], maze.width, Color.LightGreen);
 
                     current = solution[current];
                 }
             }
+        }
+
+        public void UpdateDrawMethod(bool distanceMethod) {
+            if (distanceMethod)
+                pathDrawer = new DistanceDrawer();
+            else
+                pathDrawer = new LineDrawer();
         }
 
         public virtual void SolveMaze(Maze maze) {
@@ -73,7 +85,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             solution = new int[maze.maze.size];
             initSolutions();
 
-            solution[maze.start] = -1;
+            solution[maze.start] = -2;
         }
 
         public virtual void reset() {

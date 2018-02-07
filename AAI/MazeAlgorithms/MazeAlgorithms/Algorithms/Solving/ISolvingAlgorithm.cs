@@ -10,5 +10,6 @@ namespace MazeAlgorithms.Algorithms.Solving {
     public interface ISolvingAlgorithm : IAlgorithm{
         void SolveMaze(Maze maze);
         void reset();
+        void UpdateDrawMethod(bool distanceMethod);
     }
 }
