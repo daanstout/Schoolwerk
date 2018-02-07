@@ -1,0 +1,1 @@
+This is my repository where I work on different, school related, projects. They will mainly include homework and occasionally a small project that uses designs and/or structures currently discussed in my lessons.
