@@ -24,9 +24,9 @@ namespace MazeAlgorithms.Algorithms.Solving {
             if (path == null)
                 return;
             DistanceDrawer drawer = new DistanceDrawer();
-            for (int i = 0; i < path.Count - 1; i++) {
+            for (int i = 0; i < path.Count; i++) {
                 //Console.WriteLine("i = {0}, path.Count = {1}", i, path.Count);
-                drawer.Draw(g, path[i], path[i + 1], maze.width, 0, Color.Black);
+                drawer.Draw(g, path[i], path[i], maze.width, 0, Color.Black);
                 
             }
         }
@@ -61,7 +61,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
             Console.WriteLine(dir.ToString());
 
-            while (current != 2) {
+            //int count = 0;
+            //while (count != 3) {
+            while (current != maze.end) {
+                Console.WriteLine("current = {0}, dir = {1}", current, dir.ToString());
                 //Console.WriteLine(current);
                 if (dir == dirs.north) {
                     //Console.WriteLine("1");
@@ -70,17 +73,20 @@ namespace MazeAlgorithms.Algorithms.Solving {
                             nextDir = dirs.east;
                             nextSquare = current + 1;
                         }
-                    } else if (current - maze.width >= 0) {
+                    }
+                    if (current - maze.width >= 0 && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current - maze.width)) {
                             nextDir = dirs.north;
                             nextSquare = current - maze.width;
                         }
-                    } else if (current / maze.width == (current - 1) / maze.width && current != 0) {
+                    }
+                    if (current / maze.width == (current - 1) / maze.width && current != 0 && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current - 1)) {
                             nextDir = dirs.west;
                             nextSquare = current - 1;
                         }
-                    } else if (current + maze.width < maze.maze.size) {
+                    }
+                    if (current + maze.width < maze.maze.size && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current + maze.width)) {
                             nextDir = dirs.south;
                             nextSquare = current + maze.width;
@@ -118,50 +124,58 @@ namespace MazeAlgorithms.Algorithms.Solving {
                             nextDir = dirs.west;
                             nextSquare = current - 1;
                         }
-                    } else if (current + maze.width < maze.maze.size) {
+                    }
+                    if (current + maze.width < maze.maze.size && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current + maze.width)) {
                             nextDir = dirs.south;
                             nextSquare = current + maze.width;
                         }
-                    } else if (current / maze.width == (current + 1) / maze.width) {
+                    }
+                    if (current / maze.width == (current + 1) / maze.width && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current + 1)) {
                             nextDir = dirs.east;
                             nextSquare = current + 1;
                         }
-                    } else if (current - maze.width >= 0) {
+                    }
+                    if (current - maze.width >= 0 && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current - maze.width)) {
                             nextDir = dirs.north;
                             nextSquare = current - maze.width;
                         }
                     }
-                }else if(dir == dirs.west) {
+                } else if(dir == dirs.west) {
                     if (current - maze.width >= 0) {
                         if (!maze.IsEdge(current, current - maze.width)) {
                             nextDir = dirs.north;
                             nextSquare = current - maze.width;
                         }
-                    } else if (current / maze.width == (current - 1) / maze.width && current != 0) {
+                    }
+                    if (current / maze.width == (current - 1) / maze.width && current != 0 && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current - 1)) {
                             nextDir = dirs.west;
                             nextSquare = current - 1;
                         }
-                    } else if (current + maze.width < maze.maze.size) {
+                    }
+                    if (current + maze.width < maze.maze.size && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current + maze.width)) {
                             nextDir = dirs.south;
                             nextSquare = current + maze.width;
                         }
-                    } else if (current / maze.width == (current + 1) / maze.width) {
+                    }
+                    if (current / maze.width == (current + 1) / maze.width && nextDir == dirs.zero) {
                         if (!maze.IsEdge(current, current + 1)) {
                             nextDir = dirs.east;
                             nextSquare = current + 1;
                         }
                     }
                 }
-                Console.WriteLine("Next = {0} and {1}", nextSquare, nextDir.ToString());
-                //current = nextSquare;
-                current = 2;
+                //Console.WriteLine("Next = {0} and {1}", nextSquare, nextDir.ToString());
+                current = nextSquare;
+                //current = 2;
                 dir = nextDir;
+                nextDir = dirs.zero;
                 path.Add(current);
+                //count++;
             }
         }
     }
