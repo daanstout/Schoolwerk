@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LesOpgaven {
     public class Vector2 {
-        float x;
-        float y;
+        public float x;
+        public float y;
 
         public Vector2(float x, float y) {
             this.x = x;
