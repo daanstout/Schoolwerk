@@ -17,31 +17,150 @@ namespace MazeAlgorithms.Algorithms.Solving {
             west
         }
 
-        public List<int> path;
+        private List<int> path;
+        private List<dirs> dirList;
 
         public override void Draw(Graphics g, Maze maze) {
             //base.Draw(g, maze);
-            if (path == null)
+            if (path == null || dirList == null)
                 return;
-            DistanceDrawer drawer = new DistanceDrawer();
-            for (int i = 0; i < path.Count; i++) {
-                //Console.WriteLine("i = {0}, path.Count = {1}", i, path.Count);
-                drawer.Draw(g, path[i], path[i], maze.width, 0, Color.Black);
-                
+
+            if (path.Count + 1 != dirList.Count) {
+                if (path.Count != dirList.Count) {
+                    Console.WriteLine(path.Count + " - - " + dirList.Count);
+                    return;
+                }
+            }
+
+            int row, column;
+            Pen pen = new Pen(Color.Green, Global.squareSize / 10);
+            for (int i = 1; i < path.Count + 1; i++) {
+                if (i >= path.Count)
+                    if (!maze.solved)
+                        continue;
+
+                int square = path[i - 1];
+                dirs dir = dirList[i];
+
+                row = square / maze.width;
+                column = square % maze.width;
+
+                /*  {column, row}           {column + 1, row}
+                 *      _____________________________
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |                           |
+                 *      |___________________________|
+                 *  {column, row + 1}       {column + 1, row + 1}
+                 *  
+                 *  All should be multiplied by Global.squareSize
+                 */
+
+                if (dir == dirs.north) {
+                    if (dirList[i - 1] == dirs.north) {
+                        g.DrawLine(pen, new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize), new Point((column + 1) * Global.squareSize - 2, row * Global.squareSize));
+                    } else if (dirList[i - 1] == dirs.east) {
+                        //Console.WriteLine("Square {0}, at row={1},column={2}, goes {3} from {4}", square, row, column, dir, dirList[i - 1]);
+                        Point[] p = new Point[3] {new Point(column * Global.squareSize, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize - 2, row * Global.squareSize)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.south) {
+                        Point[] p = new Point[4] {new Point(column * Global.squareSize + 2, row * Global.squareSize),
+                            new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize - 2, row * Global.squareSize)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.west) {
+                        Point[] p = new Point[3] { new Point((column + 1) * Global.squareSize, row * Global.squareSize + 2),
+                            new Point((column + 1) * Global.squareSize - 2, row * Global.squareSize + 2),
+                            new Point((column + 1)* Global.squareSize - 2, row * Global.squareSize)};
+                        g.DrawLines(pen, p);
+                    }
+                } else if (dir == dirs.east) {
+                    if (dirList[i - 1] == dirs.north) {
+                        Point[] p = new Point[3] {new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize),
+                            new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize, (row + 1) * Global.squareSize - 2)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.east) {
+                        g.DrawLine(pen, new Point(column * Global.squareSize, (row + 1) * Global.squareSize - 2), new Point((column + 1) * Global.squareSize, (row + 1) * Global.squareSize - 2));
+                    } else if (dirList[i - 1] == dirs.south) {
+                        Point[] p = new Point[3] {new Point(column * Global.squareSize + 2, row * Global.squareSize),
+                            new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize, (row + 1) * Global.squareSize - 2)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.west) {
+                        Point[] p = new Point[4] {new Point((column + 1) * Global.squareSize, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize + 2, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize, (row + 1) * Global.squareSize - 2)};
+                        g.DrawLines(pen, p);
+                    }
+                } else if (dir == dirs.south) {
+                    if (dirList[i - 1] == dirs.north) {
+                        Point[] p = new Point[4] {new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize),
+                            new Point((column + 1) * Global.squareSize - 2, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize + 2, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.east) {
+                        Point[] p = new Point[3] { new Point(column * Global.squareSize, (row + 1) * Global.squareSize - 2),
+                            new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize - 2),
+                            new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize) };
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.south) {
+                        g.DrawLine(pen, new Point(column * Global.squareSize + 2, row * Global.squareSize), new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize));
+                    } else if (dirList[i - 1] == dirs.west) {
+                        Point[] p = new Point[3] {new Point((column + 1) * Global.squareSize, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize + 2, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize + 2, (row + 1) * Global.squareSize)};
+                        g.DrawLines(pen, p);
+                    }
+                } else if (dir == dirs.west) {
+                    if (dirList[i - 1] == dirs.north) {
+                        Point[] p = new Point[3] {new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize),
+                            new Point((column + 1) * Global.squareSize - 2, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize, row * Global.squareSize + 2)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.east) {
+                        Point[] p = new Point[4] {new Point(column * Global.squareSize, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize - 2, (row + 1) * Global.squareSize - 2),
+                            new Point((column + 1) * Global.squareSize - 2, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize, row * Global.squareSize + 2)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.south) {
+                        Point[] p = new Point[3] {new Point(column * Global.squareSize + 2, row * Global.squareSize),
+                            new Point(column * Global.squareSize + 2, row * Global.squareSize + 2),
+                            new Point(column * Global.squareSize, row * Global.squareSize + 2)};
+                        g.DrawLines(pen, p);
+                    } else if (dirList[i - 1] == dirs.west) {
+                        g.DrawLine(pen, new Point((column + 1) * Global.squareSize, row * Global.squareSize + 2), new Point(column * Global.squareSize, row * Global.squareSize + 2));
+                    }
+                }
             }
         }
 
         public override void SolveMaze(Maze maze) {
-            base.SolveMaze(maze);
+            solving = true;
 
             path = new List<int>();
+            dirList = new List<dirs>();
             int current = maze.start;
             path.Add(current);
+            dirList.Add(dirs.east);
             int nextSquare = -1;
             dirs dir = dirs.zero;
             dirs nextDir = dirs.zero;
 
-            
+
             if (current / maze.width == (current - 1) / maze.width && dir == dirs.zero && current != 0) {
                 if (!maze.IsEdge(current, current - 1))
                     dir = dirs.west;
@@ -58,13 +177,16 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 if (!maze.IsEdge(current, current - maze.width))
                     dir = dirs.north;
             }
-
-            Console.WriteLine(dir.ToString());
+            //dirList.Add(dir);
+            //Console.WriteLine(dir.ToString());
 
             //int count = 0;
             //while (count != 3) {
             while (current != maze.end) {
-                Console.WriteLine("current = {0}, dir = {1}", current, dir.ToString());
+                if (!Global.noDelay)
+                    while (!Global.doStep) { }
+                Global.doStep = false;
+                //Console.WriteLine("current = {0}, dir = {1}", current, dir.ToString());
                 //Console.WriteLine(current);
                 if (dir == dirs.north) {
                     //Console.WriteLine("1");
@@ -143,7 +265,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
                             nextSquare = current - maze.width;
                         }
                     }
-                } else if(dir == dirs.west) {
+                } else if (dir == dirs.west) {
                     if (current - maze.width >= 0) {
                         if (!maze.IsEdge(current, current - maze.width)) {
                             nextDir = dirs.north;
@@ -175,8 +297,12 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 dir = nextDir;
                 nextDir = dirs.zero;
                 path.Add(current);
+                dirList.Add(dir);
                 //count++;
             }
+            dirList.Add(dirs.east);
+            maze.solved = true;
+            solving = false;
         }
     }
 }

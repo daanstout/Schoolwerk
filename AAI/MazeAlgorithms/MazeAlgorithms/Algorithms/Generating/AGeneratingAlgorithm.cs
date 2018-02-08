@@ -21,7 +21,7 @@ namespace MazeAlgorithms.Algorithms.Generating {
                 edgeList = maze.maze.GetAllEdges();
 
             for (int i = 0; i < edgeList.Count; i++)
-                edgeList[i].DrawEdgeLine(g, maze.width, Color.Gray);
+                edgeList[i].DrawEdgeLine(g, maze.width, Color.LightGray);
         }
 
         public virtual void GenerateMaze(Maze maze) {
