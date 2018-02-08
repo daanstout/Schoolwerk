@@ -32,7 +32,20 @@ namespace MazeAlgorithms {
             solvingAlgorithmComboBox.Items.Add("Greedy Best First");
             solvingAlgorithmComboBox.Items.Add("Right Hand");
 
-            maze = new Maze(30, 20);
+            maze = new Maze((int)mazeWidthNumeric.Value, (int)mazeHeigthNumeric.Value);
+
+            // Update settings from the form on startup.
+            maze.UpdateSolvingDrawMethod(showDistanceCheckbox.Checked);
+            if (pauseCheckBox.Checked)
+                algorithmTimer.Enabled = false;
+            else
+                algorithmTimer.Enabled = true;
+            Global.noDelay = noDelayCheckBox.Checked;
+            Global.showPosition = showPositionCheckbox.Checked;
+            maze.SetGeneratingAlgorithm(generationAlgorithmComboBox.SelectedIndex);
+            maze.SetSolvingAlgorithm(solvingAlgorithmComboBox.SelectedIndex);
+            algorithmTimer.Interval = (int)timerIntervalNumeric.Value;
+            Global.squareSize = (int)mazeSizeNumeric.Value;
 
             mazePictureBox.Invalidate();
         }
@@ -151,6 +164,10 @@ namespace MazeAlgorithms {
             generateMazeButton.Enabled = true;
 
             solveMazeButton.Enabled = false;
+        }
+
+        private void showPositionCheckbox_CheckedChanged(object sender, EventArgs e) {
+            Global.showPosition = showPositionCheckbox.Checked;
         }
         #endregion
     }

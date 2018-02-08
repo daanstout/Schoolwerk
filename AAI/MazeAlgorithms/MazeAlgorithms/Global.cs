@@ -11,6 +11,7 @@ namespace MazeAlgorithms {
         public static volatile bool doStep = false;
         public static bool isDrawing = false;
         public static bool noDelay = false;
+        public static bool showPosition = false;
         #endregion
 
         #region Public Functions

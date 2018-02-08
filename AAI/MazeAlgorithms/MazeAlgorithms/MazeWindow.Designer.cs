@@ -42,28 +42,29 @@
             this.generationLabel = new System.Windows.Forms.Label();
             this.solvingBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.numericOptionsPanel = new System.Windows.Forms.Panel();
-            this.intervalLabel = new System.Windows.Forms.Label();
-            this.timerIntervalNumeric = new System.Windows.Forms.NumericUpDown();
-            this.mazeSizeLabel = new System.Windows.Forms.Label();
             this.mazeSizeNumeric = new System.Windows.Forms.NumericUpDown();
+            this.mazeSizeLabel = new System.Windows.Forms.Label();
+            this.timerIntervalNumeric = new System.Windows.Forms.NumericUpDown();
+            this.intervalLabel = new System.Windows.Forms.Label();
             this.newMazePanel = new System.Windows.Forms.Panel();
-            this.mazeWidthLabel = new System.Windows.Forms.Label();
-            this.mazeWidthNumeric = new System.Windows.Forms.NumericUpDown();
-            this.mazeHeightLabel = new System.Windows.Forms.Label();
-            this.mazeHeigthNumeric = new System.Windows.Forms.NumericUpDown();
             this.createMazeButton = new System.Windows.Forms.Button();
+            this.mazeHeigthNumeric = new System.Windows.Forms.NumericUpDown();
+            this.mazeHeightLabel = new System.Windows.Forms.Label();
+            this.mazeWidthNumeric = new System.Windows.Forms.NumericUpDown();
+            this.mazeWidthLabel = new System.Windows.Forms.Label();
             this.nextStepButton = new System.Windows.Forms.Button();
+            this.showPositionCheckbox = new System.Windows.Forms.CheckBox();
             this.mazePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mazePictureBox)).BeginInit();
             this.mazeButtonsPanel.SuspendLayout();
             this.checkboxPanel.SuspendLayout();
             this.algorithmSelectionPanel.SuspendLayout();
             this.numericOptionsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timerIntervalNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mazeSizeNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timerIntervalNumeric)).BeginInit();
             this.newMazePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mazeWidthNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mazeHeigthNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mazeWidthNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // mazePanel
@@ -128,12 +129,13 @@
             // 
             // checkboxPanel
             // 
+            this.checkboxPanel.Controls.Add(this.showPositionCheckbox);
             this.checkboxPanel.Controls.Add(this.noDelayCheckBox);
             this.checkboxPanel.Controls.Add(this.pauseCheckBox);
             this.checkboxPanel.Controls.Add(this.showDistanceCheckbox);
-            this.checkboxPanel.Location = new System.Drawing.Point(1057, 109);
+            this.checkboxPanel.Location = new System.Drawing.Point(1052, 107);
             this.checkboxPanel.Name = "checkboxPanel";
-            this.checkboxPanel.Size = new System.Drawing.Size(101, 63);
+            this.checkboxPanel.Size = new System.Drawing.Size(123, 85);
             this.checkboxPanel.TabIndex = 2;
             // 
             // noDelayCheckBox
@@ -175,7 +177,7 @@
             this.algorithmSelectionPanel.Controls.Add(this.solvingLabel);
             this.algorithmSelectionPanel.Controls.Add(this.generationAlgorithmComboBox);
             this.algorithmSelectionPanel.Controls.Add(this.generationLabel);
-            this.algorithmSelectionPanel.Location = new System.Drawing.Point(1048, 178);
+            this.algorithmSelectionPanel.Location = new System.Drawing.Point(1048, 197);
             this.algorithmSelectionPanel.Name = "algorithmSelectionPanel";
             this.algorithmSelectionPanel.Size = new System.Drawing.Size(132, 89);
             this.algorithmSelectionPanel.TabIndex = 3;
@@ -227,46 +229,10 @@
             this.numericOptionsPanel.Controls.Add(this.mazeSizeLabel);
             this.numericOptionsPanel.Controls.Add(this.timerIntervalNumeric);
             this.numericOptionsPanel.Controls.Add(this.intervalLabel);
-            this.numericOptionsPanel.Location = new System.Drawing.Point(1050, 276);
+            this.numericOptionsPanel.Location = new System.Drawing.Point(1050, 295);
             this.numericOptionsPanel.Name = "numericOptionsPanel";
             this.numericOptionsPanel.Size = new System.Drawing.Size(130, 56);
             this.numericOptionsPanel.TabIndex = 4;
-            // 
-            // intervalLabel
-            // 
-            this.intervalLabel.AutoSize = true;
-            this.intervalLabel.Location = new System.Drawing.Point(4, 5);
-            this.intervalLabel.Name = "intervalLabel";
-            this.intervalLabel.Size = new System.Drawing.Size(64, 13);
-            this.intervalLabel.TabIndex = 0;
-            this.intervalLabel.Text = "Interval (ms)";
-            // 
-            // timerIntervalNumeric
-            // 
-            this.timerIntervalNumeric.Location = new System.Drawing.Point(72, 3);
-            this.timerIntervalNumeric.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.timerIntervalNumeric.Name = "timerIntervalNumeric";
-            this.timerIntervalNumeric.Size = new System.Drawing.Size(52, 20);
-            this.timerIntervalNumeric.TabIndex = 1;
-            this.timerIntervalNumeric.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.timerIntervalNumeric.ValueChanged += new System.EventHandler(this.timerIntervalNumeric_ValueChanged);
-            // 
-            // mazeSizeLabel
-            // 
-            this.mazeSizeLabel.AutoSize = true;
-            this.mazeSizeLabel.Location = new System.Drawing.Point(4, 32);
-            this.mazeSizeLabel.Name = "mazeSizeLabel";
-            this.mazeSizeLabel.Size = new System.Drawing.Size(76, 13);
-            this.mazeSizeLabel.TabIndex = 2;
-            this.mazeSizeLabel.Text = "Maze Size (px)";
             // 
             // mazeSizeNumeric
             // 
@@ -291,6 +257,42 @@
             0});
             this.mazeSizeNumeric.ValueChanged += new System.EventHandler(this.mazeSizeNumeric_ValueChanged);
             // 
+            // mazeSizeLabel
+            // 
+            this.mazeSizeLabel.AutoSize = true;
+            this.mazeSizeLabel.Location = new System.Drawing.Point(4, 32);
+            this.mazeSizeLabel.Name = "mazeSizeLabel";
+            this.mazeSizeLabel.Size = new System.Drawing.Size(76, 13);
+            this.mazeSizeLabel.TabIndex = 2;
+            this.mazeSizeLabel.Text = "Maze Size (px)";
+            // 
+            // timerIntervalNumeric
+            // 
+            this.timerIntervalNumeric.Location = new System.Drawing.Point(72, 3);
+            this.timerIntervalNumeric.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.timerIntervalNumeric.Name = "timerIntervalNumeric";
+            this.timerIntervalNumeric.Size = new System.Drawing.Size(52, 20);
+            this.timerIntervalNumeric.TabIndex = 1;
+            this.timerIntervalNumeric.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.timerIntervalNumeric.ValueChanged += new System.EventHandler(this.timerIntervalNumeric_ValueChanged);
+            // 
+            // intervalLabel
+            // 
+            this.intervalLabel.AutoSize = true;
+            this.intervalLabel.Location = new System.Drawing.Point(4, 5);
+            this.intervalLabel.Name = "intervalLabel";
+            this.intervalLabel.Size = new System.Drawing.Size(64, 13);
+            this.intervalLabel.TabIndex = 0;
+            this.intervalLabel.Text = "Interval (ms)";
+            // 
             // newMazePanel
             // 
             this.newMazePanel.Controls.Add(this.createMazeButton);
@@ -298,50 +300,20 @@
             this.newMazePanel.Controls.Add(this.mazeHeightLabel);
             this.newMazePanel.Controls.Add(this.mazeWidthNumeric);
             this.newMazePanel.Controls.Add(this.mazeWidthLabel);
-            this.newMazePanel.Location = new System.Drawing.Point(1050, 339);
+            this.newMazePanel.Location = new System.Drawing.Point(1050, 358);
             this.newMazePanel.Name = "newMazePanel";
             this.newMazePanel.Size = new System.Drawing.Size(128, 114);
             this.newMazePanel.TabIndex = 5;
             // 
-            // mazeWidthLabel
+            // createMazeButton
             // 
-            this.mazeWidthLabel.AutoSize = true;
-            this.mazeWidthLabel.Location = new System.Drawing.Point(3, 4);
-            this.mazeWidthLabel.Name = "mazeWidthLabel";
-            this.mazeWidthLabel.Size = new System.Drawing.Size(104, 13);
-            this.mazeWidthLabel.TabIndex = 0;
-            this.mazeWidthLabel.Text = "Maze Width (Nodes)";
-            // 
-            // mazeWidthNumeric
-            // 
-            this.mazeWidthNumeric.Location = new System.Drawing.Point(4, 20);
-            this.mazeWidthNumeric.Maximum = new decimal(new int[] {
-            512,
-            0,
-            0,
-            0});
-            this.mazeWidthNumeric.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.mazeWidthNumeric.Name = "mazeWidthNumeric";
-            this.mazeWidthNumeric.Size = new System.Drawing.Size(120, 20);
-            this.mazeWidthNumeric.TabIndex = 1;
-            this.mazeWidthNumeric.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            // 
-            // mazeHeightLabel
-            // 
-            this.mazeHeightLabel.AutoSize = true;
-            this.mazeHeightLabel.Location = new System.Drawing.Point(3, 43);
-            this.mazeHeightLabel.Name = "mazeHeightLabel";
-            this.mazeHeightLabel.Size = new System.Drawing.Size(107, 13);
-            this.mazeHeightLabel.TabIndex = 2;
-            this.mazeHeightLabel.Text = "Maze Height (Nodes)";
+            this.createMazeButton.Location = new System.Drawing.Point(6, 86);
+            this.createMazeButton.Name = "createMazeButton";
+            this.createMazeButton.Size = new System.Drawing.Size(110, 23);
+            this.createMazeButton.TabIndex = 4;
+            this.createMazeButton.Text = "Create New Maze";
+            this.createMazeButton.UseVisualStyleBackColor = true;
+            this.createMazeButton.Click += new System.EventHandler(this.createMazeButton_Click);
             // 
             // mazeHeigthNumeric
             // 
@@ -365,15 +337,45 @@
             0,
             0});
             // 
-            // createMazeButton
+            // mazeHeightLabel
             // 
-            this.createMazeButton.Location = new System.Drawing.Point(6, 86);
-            this.createMazeButton.Name = "createMazeButton";
-            this.createMazeButton.Size = new System.Drawing.Size(110, 23);
-            this.createMazeButton.TabIndex = 4;
-            this.createMazeButton.Text = "Create New Maze";
-            this.createMazeButton.UseVisualStyleBackColor = true;
-            this.createMazeButton.Click += new System.EventHandler(this.createMazeButton_Click);
+            this.mazeHeightLabel.AutoSize = true;
+            this.mazeHeightLabel.Location = new System.Drawing.Point(3, 43);
+            this.mazeHeightLabel.Name = "mazeHeightLabel";
+            this.mazeHeightLabel.Size = new System.Drawing.Size(107, 13);
+            this.mazeHeightLabel.TabIndex = 2;
+            this.mazeHeightLabel.Text = "Maze Height (Nodes)";
+            // 
+            // mazeWidthNumeric
+            // 
+            this.mazeWidthNumeric.Location = new System.Drawing.Point(4, 20);
+            this.mazeWidthNumeric.Maximum = new decimal(new int[] {
+            512,
+            0,
+            0,
+            0});
+            this.mazeWidthNumeric.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.mazeWidthNumeric.Name = "mazeWidthNumeric";
+            this.mazeWidthNumeric.Size = new System.Drawing.Size(120, 20);
+            this.mazeWidthNumeric.TabIndex = 1;
+            this.mazeWidthNumeric.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // mazeWidthLabel
+            // 
+            this.mazeWidthLabel.AutoSize = true;
+            this.mazeWidthLabel.Location = new System.Drawing.Point(3, 4);
+            this.mazeWidthLabel.Name = "mazeWidthLabel";
+            this.mazeWidthLabel.Size = new System.Drawing.Size(104, 13);
+            this.mazeWidthLabel.TabIndex = 0;
+            this.mazeWidthLabel.Text = "Maze Width (Nodes)";
             // 
             // nextStepButton
             // 
@@ -384,6 +386,17 @@
             this.nextStepButton.Text = "Next Step";
             this.nextStepButton.UseVisualStyleBackColor = true;
             this.nextStepButton.Click += new System.EventHandler(this.nextStepButton_Click);
+            // 
+            // showPositionCheckbox
+            // 
+            this.showPositionCheckbox.AutoSize = true;
+            this.showPositionCheckbox.Location = new System.Drawing.Point(3, 69);
+            this.showPositionCheckbox.Name = "showPositionCheckbox";
+            this.showPositionCheckbox.Size = new System.Drawing.Size(93, 17);
+            this.showPositionCheckbox.TabIndex = 3;
+            this.showPositionCheckbox.Text = "Show Position";
+            this.showPositionCheckbox.UseVisualStyleBackColor = true;
+            this.showPositionCheckbox.CheckedChanged += new System.EventHandler(this.showPositionCheckbox_CheckedChanged);
             // 
             // MazeWindow
             // 
@@ -409,12 +422,12 @@
             this.algorithmSelectionPanel.PerformLayout();
             this.numericOptionsPanel.ResumeLayout(false);
             this.numericOptionsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timerIntervalNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mazeSizeNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timerIntervalNumeric)).EndInit();
             this.newMazePanel.ResumeLayout(false);
             this.newMazePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mazeWidthNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mazeHeigthNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mazeWidthNumeric)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -450,6 +463,7 @@
         private System.Windows.Forms.NumericUpDown mazeWidthNumeric;
         private System.Windows.Forms.Label mazeWidthLabel;
         private System.Windows.Forms.Button nextStepButton;
+        private System.Windows.Forms.CheckBox showPositionCheckbox;
     }
 }
 

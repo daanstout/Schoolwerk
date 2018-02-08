@@ -146,6 +146,11 @@ namespace MazeAlgorithms.Algorithms.Solving {
                     }
                 }
             }
+            if (!maze.solved) {
+                row = current / maze.width;
+                column = current % maze.width;
+                g.FillRectangle(new SolidBrush(Color.Blue), new Rectangle(column * Global.squareSize + 2, row * Global.squareSize + 2, Global.squareSize - 4, Global.squareSize - 4));
+            }
         }
 
         public override void SolveMaze(Maze maze) {
@@ -153,7 +158,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
             path = new List<int>();
             dirList = new List<dirs>();
-            int current = maze.start;
+            current = maze.start;
             path.Add(current);
             dirList.Add(dirs.east);
             int nextSquare = -1;

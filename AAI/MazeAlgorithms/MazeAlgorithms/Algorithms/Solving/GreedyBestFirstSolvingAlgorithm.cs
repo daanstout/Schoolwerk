@@ -17,7 +17,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             q.Insert(maze.start, 1);
 
             while (!q.isEmpty) {
-                int current = q.GetHighestPriority();
+                current = q.GetHighestPriority();
 
                 if (current < 0)
                     continue;

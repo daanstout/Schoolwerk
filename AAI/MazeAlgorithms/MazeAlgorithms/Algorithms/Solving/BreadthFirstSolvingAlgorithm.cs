@@ -17,7 +17,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             q.Enqueue(maze.start);
 
             while (!q.isEmpty) {
-                int current = q.Dequeue();
+                current = q.Dequeue();
 
                 if (current < 0)
                     continue;
