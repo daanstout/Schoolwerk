@@ -22,6 +22,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 while (!Global.doStep) { }
             Global.doStep = false;
 
+            this.current = current;
+
             if (current == maze.end) {
                 maze.solved = true;
                 solving = false;
