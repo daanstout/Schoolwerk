@@ -104,6 +104,9 @@ namespace MazeAlgorithms.MazeMain {
                 case 4:
                     solvingAlgorithm = new GreedyBestFirstSolvingAlgorithm();
                     break;
+                case 5:
+                    solvingAlgorithm = new RightHandSolvingAlgorithm();
+                    break;
             }
 
             solved = false;

@@ -30,6 +30,7 @@ namespace MazeAlgorithms {
             solvingAlgorithmComboBox.Items.Add("Breadth First");
             solvingAlgorithmComboBox.Items.Add("Depth First");
             solvingAlgorithmComboBox.Items.Add("Greedy Best First");
+            solvingAlgorithmComboBox.Items.Add("Right Hand");
 
             maze = new Maze(30, 20);
 
