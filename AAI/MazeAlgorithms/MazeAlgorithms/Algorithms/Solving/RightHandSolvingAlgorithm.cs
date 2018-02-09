@@ -9,6 +9,7 @@ using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Solving {
     public class RightHandSolvingAlgorithm : ASolvingAlgorithm {
+        #region Enumerations
         enum dirs {
             zero = -1,
             north,
@@ -16,10 +17,14 @@ namespace MazeAlgorithms.Algorithms.Solving {
             south,
             west
         }
+        #endregion
 
+        #region Variables
         private List<int> path;
         private List<dirs> dirList;
+        #endregion
 
+        #region Public Functions
         public override void Draw(Graphics g, Maze maze) {
             //base.Draw(g, maze);
             if (path == null || dirList == null)
@@ -33,7 +38,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             }
 
             int row, column;
-            Pen pen = new Pen(Color.Green, Global.squareSize / 10);
+            Pen pen = new Pen(Color.Green, Global.squareSize / 5);
             for (int i = 1; i < path.Count + 1; i++) {
                 if (i >= path.Count)
                     if (!maze.solved)
@@ -309,5 +314,6 @@ namespace MazeAlgorithms.Algorithms.Solving {
             maze.solved = true;
             solving = false;
         }
+        #endregion
     }
 }
