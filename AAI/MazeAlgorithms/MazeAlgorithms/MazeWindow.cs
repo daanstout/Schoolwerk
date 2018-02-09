@@ -131,12 +131,6 @@ namespace MazeAlgorithms {
 
         private void mazeSizeNumeric_ValueChanged(object sender, EventArgs e) {
             Global.squareSize = (int)mazeSizeNumeric.Value;
-
-            int width = (maze.width + 1) * Global.squareSize;
-            int height = (maze.height + 1) * Global.squareSize;
-
-            mazePictureBox.Width = width > mazePanel.Width ? width : mazePanel.Width;
-            mazePictureBox.Height = height > mazePanel.Height ? height : mazePanel.Height;
         }
 
         private void createMazeButton_Click(object sender, EventArgs e) {
