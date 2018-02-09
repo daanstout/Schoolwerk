@@ -33,9 +33,13 @@ void PrintPlayerStates(PlayerState players[], int length);
 void SavePlayerState(char filename[], PlayerState players[], int length);
 void ReadPlayerState(char infilename[], char outfilename[]);
 
+void Opgave3();
+void GetAndFillArray(int* &p, int n);
+
 int main() {
 	//Opgave1();
-	Opgave2();
+	//Opgave2();
+	Opgave3();
 
 
 	return 0;
@@ -275,6 +279,42 @@ void ReadPlayerState(char infilename[], char outfilename[]) {
 		}
 		infile.close();
 		outfile.close();
+	}
+}
+#pragma endregion
+
+#pragma region Les3
+void Opgave3() {
+	// Opgave 1
+	/*int *p, *q, *r;
+	p = new int;
+	q = new int;
+	*p = 2;
+	*q = 3;
+	cout << "p: " << *p << " q: " << *q << endl;
+	r = p;
+	p = q;
+	q = r;
+	cout << "p: " << *p << " q: " << *q << endl;
+	delete p;
+	delete q;*/
+
+	// Opgave 2
+	/*int *arr;
+	GetAndFillArray(arr, 10);
+
+	for (int i = 0; i < 10; i++) {
+		cout << arr[i] << endl;
+	}
+	delete[] arr*/
+
+
+}
+
+void GetAndFillArray(int* &p, int n) {
+	p = new int[n];
+	for (int i = 1; i <= n; i++) {
+		p[i - 1] = i;
 	}
 }
 #pragma endregion
