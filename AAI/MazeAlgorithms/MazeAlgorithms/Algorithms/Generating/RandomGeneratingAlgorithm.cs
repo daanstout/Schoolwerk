@@ -20,8 +20,6 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
                 while (Global.isDrawing) { }
 
-                //iterations++;
-
                 current = edgeList[rand.Next(0, edgeList.Count)];
                 edgeList.Remove(current);
 

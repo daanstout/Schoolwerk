@@ -15,7 +15,6 @@ namespace MazeAlgorithms.Algorithms.Solving {
         protected int current = 0;
         protected bool solving;
         protected IPathDrawer pathDrawer = new LineDrawer();
-        protected int iterations;
         #endregion
 
         #region Functions
@@ -99,10 +98,6 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 return;
             for (int i = 0; i < solution.Length; i++)
                 solution[i] = -1;
-        }
-
-        public int GetIterations() {
-            return iterations;
         }
         #endregion
         #endregion

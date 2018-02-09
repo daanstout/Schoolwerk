@@ -119,8 +119,6 @@ namespace MazeAlgorithms.MazeMain {
             maze = new UpTree(width, height);
 
             generatingAlgorithm.GenerateMaze(this);
-
-            Console.WriteLine(generatingAlgorithm.GetIterations());
         }
 
         public void SolveMaze() {
