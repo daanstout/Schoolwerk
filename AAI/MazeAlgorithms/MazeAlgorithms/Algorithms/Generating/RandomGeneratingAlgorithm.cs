@@ -20,18 +20,18 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
                 while (Global.isDrawing) { }
 
-                Edge edge = edgeList[rand.Next(0, edgeList.Count)];
-                edgeList.Remove(edge);
+                current = edgeList[rand.Next(0, edgeList.Count)];
+                edgeList.Remove(current);
 
-                int root1 = maze.maze.Find(edge.square1);
-                int root2 = maze.maze.Find(edge.square2);
+                int root1 = maze.maze.Find(current.square1);
+                int root2 = maze.maze.Find(current.square2);
 
                 if (root1 == root2) {
-                    maze.mazeEdges.Add(edge);
+                    maze.mazeEdges.Add(current);
                 } else
-                    maze.maze.Union(edge.square1, edge.square2);
+                    maze.maze.Union(current.square1, current.square2);
             }
-
+            current = null;
             maze.mazeEdges.AddRange(edgeList);
         }
         #endregion

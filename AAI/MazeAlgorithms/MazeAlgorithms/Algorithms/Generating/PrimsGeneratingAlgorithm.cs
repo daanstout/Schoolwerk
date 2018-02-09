@@ -39,50 +39,36 @@ namespace MazeAlgorithms.Algorithms.Generating {
                 }
                 int newSquare = validNeigbhours[rand.Next(0, validNeigbhours.Count)];
 
-                Edge edge = null;
+                current = null;
 
                 foreach (Edge e in edgeList) {
                     if (e.square1 == randomSquare && e.square2 == newSquare ||
                         e.square1 == newSquare && e.square2 == randomSquare) {
-                        edge = e;
+                        current = e;
                         break;
                     }
                 }
 
-                if (edge == null)
+                if (current == null)
                     continue;
-                //maze.GetEdge(randomSquare, )
 
-                //List<Edge> potential = GetPotentialEdges(squares);
-                //Edge randomEdge = potential[rand.Next(0, potential.Count)];
-                edgeList.Remove(edge);
+                edgeList.Remove(current);
 
-                int root1 = maze.maze.Find(edge.square1);
-                int root2 = maze.maze.Find(edge.square2);
+                int root1 = maze.maze.Find(current.square1);
+                int root2 = maze.maze.Find(current.square2);
 
                 if (root1 == root2)
-                    maze.mazeEdges.Add(edge);
+                    maze.mazeEdges.Add(current);
                 else {
-                    maze.maze.Union(edge.square1, edge.square2);
-                    if (!squares.Contains(edge.square1))
-                        squares.Add(edge.square1);
-                    if (!squares.Contains(edge.square2))
-                        squares.Add(edge.square2);
+                    maze.maze.Union(current.square1, current.square2);
+                    if (!squares.Contains(current.square1))
+                        squares.Add(current.square1);
+                    if (!squares.Contains(current.square2))
+                        squares.Add(current.square2);
                 }
             }
-
+            current = null;
             maze.mazeEdges.AddRange(edgeList);
-        }
-        #endregion
-
-        #region Private Functions
-        private List<Edge> GetPotentialEdges(List<int> squares) {
-            List<Edge> list = new List<Edge>();
-            foreach (Edge e in edgeList)
-                foreach (int s in squares)
-                    if (e.square1 == s || e.square2 == s)
-                        list.Add(e);
-            return list;
         }
         #endregion
         #endregion

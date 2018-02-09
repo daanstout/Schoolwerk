@@ -10,6 +10,7 @@ namespace MazeAlgorithms.Algorithms.Generating {
     public abstract class AGeneratingAlgorithm : IGeneratingAlgorithm {
         #region Variables
         protected List<Edge> edgeList;
+        protected Edge current;
         protected Random rand = new Random();
         #endregion
 
@@ -22,6 +23,17 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
             for (int i = 0; i < edgeList.Count; i++)
                 edgeList[i].DrawEdgeLine(g, maze.width, Color.LightGray);
+
+            //Console.WriteLine(current + " - " + Global.showPosition);
+            if(current != null && Global.showPosition) {
+                int row, column;
+                row = current.square1 / maze.width;
+                column = current.square1 % maze.width;
+                g.FillRectangle(new SolidBrush(Color.Blue), new Rectangle(column * Global.squareSize + 2, row * Global.squareSize + 2, Global.squareSize - 4, Global.squareSize - 4));
+                row = current.square2 / maze.width;
+                column = current.square2 % maze.width;
+                g.FillRectangle(new SolidBrush(Color.Blue), new Rectangle(column * Global.squareSize + 2, row * Global.squareSize + 2, Global.squareSize - 4, Global.squareSize - 4));
+            }
         }
 
         public virtual void GenerateMaze(Maze maze) {

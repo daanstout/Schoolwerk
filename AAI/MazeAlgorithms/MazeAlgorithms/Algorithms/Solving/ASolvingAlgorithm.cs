@@ -70,7 +70,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
                     current = solution[current];
                 }
-            } else {
+            } else if(Global.showPosition && current != 0){
                 int row = current / maze.width;
                 int column = current % maze.width;
                 g.FillRectangle(new SolidBrush(Color.Blue), new Rectangle(column * Global.squareSize + 2, row * Global.squareSize + 2, Global.squareSize - 4, Global.squareSize - 4));

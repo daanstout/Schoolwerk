@@ -27,8 +27,6 @@ namespace MazeAlgorithms.Algorithms.Solving {
             if (maze.solved)
                 return;
 
-            this.current = current;
-
             if(current == maze.end) {
                 maze.solved = true;
                 return;
@@ -41,6 +39,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 if (!maze.IsEdge(current, next)) {
                     if (Length(current) < Length(next) || solution[next] == -1) {
                         solution[next] = current;
+                        this.current = next;
                         SolveMaze(maze, next);
                         if (!maze.solved)
                             solution[next] = -1;

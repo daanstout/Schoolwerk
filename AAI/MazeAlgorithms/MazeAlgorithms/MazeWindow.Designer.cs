@@ -27,11 +27,12 @@
             this.mazePanel = new System.Windows.Forms.Panel();
             this.mazePictureBox = new System.Windows.Forms.PictureBox();
             this.algorithmTimer = new System.Windows.Forms.Timer(this.components);
-            this.generatinBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.generatingBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.mazeButtonsPanel = new System.Windows.Forms.Panel();
             this.solveMazeButton = new System.Windows.Forms.Button();
             this.generateMazeButton = new System.Windows.Forms.Button();
             this.checkboxPanel = new System.Windows.Forms.Panel();
+            this.showPositionCheckbox = new System.Windows.Forms.CheckBox();
             this.noDelayCheckBox = new System.Windows.Forms.CheckBox();
             this.pauseCheckBox = new System.Windows.Forms.CheckBox();
             this.showDistanceCheckbox = new System.Windows.Forms.CheckBox();
@@ -53,7 +54,6 @@
             this.mazeWidthNumeric = new System.Windows.Forms.NumericUpDown();
             this.mazeWidthLabel = new System.Windows.Forms.Label();
             this.nextStepButton = new System.Windows.Forms.Button();
-            this.showPositionCheckbox = new System.Windows.Forms.CheckBox();
             this.mazePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mazePictureBox)).BeginInit();
             this.mazeButtonsPanel.SuspendLayout();
@@ -92,10 +92,11 @@
             this.algorithmTimer.Interval = 25;
             this.algorithmTimer.Tick += new System.EventHandler(this.algorithmTimer_Tick);
             // 
-            // generatinBackgroundWorker
+            // generatingBackgroundWorker
             // 
-            this.generatinBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.generatinBackgroundWorker_DoWork);
-            this.generatinBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.generatinBackgroundWorker_RunWorkerCompleted);
+            this.generatingBackgroundWorker.WorkerSupportsCancellation = true;
+            this.generatingBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.generatingBackgroundWorker_DoWork);
+            this.generatingBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.generatingBackgroundWorker_RunWorkerCompleted);
             // 
             // mazeButtonsPanel
             // 
@@ -137,6 +138,17 @@
             this.checkboxPanel.Name = "checkboxPanel";
             this.checkboxPanel.Size = new System.Drawing.Size(123, 85);
             this.checkboxPanel.TabIndex = 2;
+            // 
+            // showPositionCheckbox
+            // 
+            this.showPositionCheckbox.AutoSize = true;
+            this.showPositionCheckbox.Location = new System.Drawing.Point(3, 69);
+            this.showPositionCheckbox.Name = "showPositionCheckbox";
+            this.showPositionCheckbox.Size = new System.Drawing.Size(93, 17);
+            this.showPositionCheckbox.TabIndex = 3;
+            this.showPositionCheckbox.Text = "Show Position";
+            this.showPositionCheckbox.UseVisualStyleBackColor = true;
+            this.showPositionCheckbox.CheckedChanged += new System.EventHandler(this.showPositionCheckbox_CheckedChanged);
             // 
             // noDelayCheckBox
             // 
@@ -220,6 +232,7 @@
             // 
             // solvingBackgroundWorker
             // 
+            this.solvingBackgroundWorker.WorkerSupportsCancellation = true;
             this.solvingBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.solvingBackgroundWorker_DoWork);
             this.solvingBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.solvingBackgroundWorker_RunWorkerCompleted);
             // 
@@ -387,17 +400,6 @@
             this.nextStepButton.UseVisualStyleBackColor = true;
             this.nextStepButton.Click += new System.EventHandler(this.nextStepButton_Click);
             // 
-            // showPositionCheckbox
-            // 
-            this.showPositionCheckbox.AutoSize = true;
-            this.showPositionCheckbox.Location = new System.Drawing.Point(3, 69);
-            this.showPositionCheckbox.Name = "showPositionCheckbox";
-            this.showPositionCheckbox.Size = new System.Drawing.Size(93, 17);
-            this.showPositionCheckbox.TabIndex = 3;
-            this.showPositionCheckbox.Text = "Show Position";
-            this.showPositionCheckbox.UseVisualStyleBackColor = true;
-            this.showPositionCheckbox.CheckedChanged += new System.EventHandler(this.showPositionCheckbox_CheckedChanged);
-            // 
             // MazeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,7 +439,7 @@
         private System.Windows.Forms.Panel mazePanel;
         private System.Windows.Forms.PictureBox mazePictureBox;
         private System.Windows.Forms.Timer algorithmTimer;
-        private System.ComponentModel.BackgroundWorker generatinBackgroundWorker;
+        private System.ComponentModel.BackgroundWorker generatingBackgroundWorker;
         private System.Windows.Forms.Panel mazeButtonsPanel;
         private System.Windows.Forms.Button generateMazeButton;
         private System.Windows.Forms.Panel checkboxPanel;

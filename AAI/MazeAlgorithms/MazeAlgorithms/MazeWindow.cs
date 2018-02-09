@@ -67,14 +67,14 @@ namespace MazeAlgorithms {
             Global.doStep = true;
         }
 
-        private void generatinBackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
+        private void generatingBackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
             maze.GenerateMaze();
         }
 
         private void generateMazeButton_Click(object sender, EventArgs e) {
-            generateMazeButton.Enabled = solveMazeButton.Enabled = false;
+            generateMazeButton.Enabled = solveMazeButton.Enabled = generationAlgorithmComboBox.Enabled = false;
 
-            generatinBackgroundWorker.RunWorkerAsync();
+            generatingBackgroundWorker.RunWorkerAsync();
         }
 
         private void noDelayCheckBox_CheckedChanged(object sender, EventArgs e) {
@@ -101,7 +101,7 @@ namespace MazeAlgorithms {
         }
 
         private void solveMazeButton_Click(object sender, EventArgs e) {
-            solveMazeButton.Enabled = generateMazeButton.Enabled = false;
+            solveMazeButton.Enabled = generateMazeButton.Enabled = solvingAlgorithmComboBox.Enabled = false;
 
             solvingBackgroundWorker.RunWorkerAsync();
 
@@ -156,12 +156,12 @@ namespace MazeAlgorithms {
             mazePictureBox.Invalidate();
         }
 
-        private void generatinBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            solveMazeButton.Enabled = generateMazeButton.Enabled = true;
+        private void generatingBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            solveMazeButton.Enabled = generateMazeButton.Enabled = generationAlgorithmComboBox.Enabled = true;
         }
 
         private void solvingBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            generateMazeButton.Enabled = true;
+            generateMazeButton.Enabled = solvingAlgorithmComboBox.Enabled = true;
 
             solveMazeButton.Enabled = false;
         }
