@@ -15,6 +15,8 @@ namespace MazeAlgorithms.Algorithms.Generating {
         public override void GenerateMaze(Maze maze) {
             //base.GenerateMaze(maze);
 
+            iterations = 0;
+
             GenerateMaze(maze, 0, maze.width, 0, maze.height, rand.Next() % 2 == 0);
             //GenerateMaze(maze, 0, maze.width, 0, maze.height, true);
         }
@@ -25,6 +27,9 @@ namespace MazeAlgorithms.Algorithms.Generating {
             if (!Global.noDelay)
                 while (!Global.doStep) { }
             Global.doStep = false;
+
+            iterations++;
+
             if (horizontal) { // Horizontal wall
                 if (width == 1 || height == 1)
                     return;

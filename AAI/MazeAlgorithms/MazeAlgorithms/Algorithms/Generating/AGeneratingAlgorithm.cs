@@ -12,6 +12,7 @@ namespace MazeAlgorithms.Algorithms.Generating {
         protected List<Edge> edgeList;
         protected Edge current;
         protected Random rand = new Random();
+        protected int iterations;
         #endregion
 
         #region Public Functions
@@ -25,7 +26,7 @@ namespace MazeAlgorithms.Algorithms.Generating {
                 edgeList[i].DrawEdgeLine(g, maze.width, Color.LightGray);
 
             //Console.WriteLine(current + " - " + Global.showPosition);
-            if(current != null && Global.showPosition) {
+            if (current != null && Global.showPosition) {
                 int row, column;
                 row = current.square1 / maze.width;
                 column = current.square1 % maze.width;
@@ -37,7 +38,14 @@ namespace MazeAlgorithms.Algorithms.Generating {
         }
 
         public virtual void GenerateMaze(Maze maze) {
-            edgeList = maze.maze.GetAllEdges();
+            if (edgeList == null)
+                edgeList = maze.maze.GetAllEdges();
+
+            iterations = 0;
+        }
+
+        public int GetIterations() {
+            return iterations;
         }
         #endregion
     }
