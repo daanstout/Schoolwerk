@@ -47,7 +47,8 @@
   <ItemGroup>
     <Compile Include="Algorithms\Generating\AGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\Generating\PrimsGeneratingAlgorithm.cs" />
-    <Compile Include="Algorithms\Generating\RandomGeneratingAlgorithm.cs" />
+    <Compile Include="Algorithms\Generating\KruskalGeneratingAlgorithm.cs" />
+    <Compile Include="Algorithms\Generating\RecursiveBacktrackerGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\Generating\RecursiveGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\ASolvingAlgorithm.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Algorithms\Solving\RightHandSolvingAlgorithm.cs" />
     <Compile Include="Datastructures\PriorityQueue.cs" />
     <Compile Include="Datastructures\Queue.cs" />
+    <Compile Include="Datastructures\Stack.cs" />
     <Compile Include="Datastructures\UpTree.cs" />
     <Compile Include="Drawing\DistanceDrawer.cs" />
     <Compile Include="Drawing\IPathDrawer.cs" />
@@ -101,5 +103,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

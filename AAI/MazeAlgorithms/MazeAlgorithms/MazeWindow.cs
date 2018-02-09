@@ -21,9 +21,10 @@ namespace MazeAlgorithms {
         public MazeWindow() {
             InitializeComponent();
 
-            generationAlgorithmComboBox.Items.Add("Random");
-            generationAlgorithmComboBox.Items.Add("Recursive");
+            generationAlgorithmComboBox.Items.Add("Kruskal's");
             generationAlgorithmComboBox.Items.Add("Prim's");
+            generationAlgorithmComboBox.Items.Add("Recursive");
+            generationAlgorithmComboBox.Items.Add("Recursive Backtracker");
 
             solvingAlgorithmComboBox.Items.Add("A*");
             solvingAlgorithmComboBox.Items.Add("Backtracking");

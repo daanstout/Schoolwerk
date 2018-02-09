@@ -32,6 +32,10 @@ namespace MazeAlgorithms.MazeMain {
                 g.DrawLine(new Pen(color), new Point(column * Global.squareSize, row * Global.squareSize), new Point((column + 1) * Global.squareSize, row * Global.squareSize));
             }
         }
+
+        public override string ToString() {
+            return String.Format("[{0}; {1}]", square1, square2);
+        }
         #endregion
     }
 }

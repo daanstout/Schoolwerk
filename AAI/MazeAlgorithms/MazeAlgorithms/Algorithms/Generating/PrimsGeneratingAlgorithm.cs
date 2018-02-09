@@ -14,8 +14,9 @@ namespace MazeAlgorithms.Algorithms.Generating {
         public override void GenerateMaze(Maze maze) {
             base.GenerateMaze(maze);
 
-            List<int> squares = new List<int>();
-            squares.Add(maze.start);
+            List<int> squares = new List<int> {
+                maze.start
+            };
 
             while (!maze.maze.IsMaze() && edgeList.Count > 0) {
                 if (!Global.noDelay)

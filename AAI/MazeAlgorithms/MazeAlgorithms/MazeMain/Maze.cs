@@ -45,7 +45,7 @@ namespace MazeAlgorithms.MazeMain {
         #endregion
 
         #region Constructors
-        public Maze(int width, int height) : this(width, height, new AStarSolvingAlgorithm(), new RandomGeneratingAlgorithm()) { }
+        public Maze(int width, int height) : this(width, height, new AStarSolvingAlgorithm(), new KruskalGeneratingAlgorithm()) { }
 
         public Maze(int width, int height, ISolvingAlgorithm solving, IGeneratingAlgorithm generating) {
             maze = new UpTree(width, height);
@@ -72,13 +72,16 @@ namespace MazeAlgorithms.MazeMain {
         public void SetGeneratingAlgorithm(int algorithm) {
             switch (algorithm) {
                 case 0:
-                    generatingAlgorithm = new RandomGeneratingAlgorithm();
+                    generatingAlgorithm = new KruskalGeneratingAlgorithm();
                     break;
                 case 1:
-                    generatingAlgorithm = new RecursiveGeneratingAlgorithm();
+                    generatingAlgorithm = new PrimsGeneratingAlgorithm();
                     break;
                 case 2:
-                    generatingAlgorithm = new PrimsGeneratingAlgorithm();
+                    generatingAlgorithm = new RecursiveGeneratingAlgorithm();
+                    break;
+                case 3:
+                    generatingAlgorithm = new RecursiveBacktrackerGeneratingAlgorithm();
                     break;
             }
 

@@ -13,12 +13,9 @@ namespace MazeAlgorithms.Algorithms.Generating {
         public override void Draw(Graphics g, Maze maze) { }
 
         public override void GenerateMaze(Maze maze) {
-            //base.GenerateMaze(maze);
-
             iterations = 0;
 
             GenerateMaze(maze, 0, maze.width, 0, maze.height, rand.Next() % 2 == 0);
-            //GenerateMaze(maze, 0, maze.width, 0, maze.height, true);
         }
         #endregion
 
@@ -63,10 +60,6 @@ namespace MazeAlgorithms.Algorithms.Generating {
                     GenerateMaze(maze, half + x, width - half, y, height, !horizontal);
                 }
             }
-        }
-
-        private void CreateEdge(Maze maze, int a, int b) {
-            maze.mazeEdges.Add(new Edge(a, b));
         }
         #endregion
         #endregion

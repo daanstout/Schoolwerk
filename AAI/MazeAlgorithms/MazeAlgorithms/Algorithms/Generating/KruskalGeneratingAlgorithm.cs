@@ -8,7 +8,7 @@ using MazeAlgorithms.Datastructures;
 using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Generating {
-    public class RandomGeneratingAlgorithm : AGeneratingAlgorithm {
+    public class KruskalGeneratingAlgorithm : AGeneratingAlgorithm {
         #region Public Functions
         public override void GenerateMaze(Maze maze) {
             base.GenerateMaze(maze);
