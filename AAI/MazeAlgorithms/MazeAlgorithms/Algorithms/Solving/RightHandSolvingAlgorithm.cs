@@ -26,7 +26,6 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
         #region Public Functions
         public override void Draw(Graphics g, Maze maze) {
-            //base.Draw(g, maze);
             if (path == null || dirList == null)
                 return;
 
@@ -187,19 +186,15 @@ namespace MazeAlgorithms.Algorithms.Solving {
                 if (!maze.IsEdge(current, current - maze.width))
                     dir = dirs.north;
             }
-            //dirList.Add(dir);
-            //Console.WriteLine(dir.ToString());
 
-            //int count = 0;
-            //while (count != 3) {
-            while (current != maze.end) {
+            while (!(current == maze.end && (dir == dirs.east || dir == dirs.south))) {
                 if (!Global.noDelay)
                     while (!Global.doStep) { }
                 Global.doStep = false;
-                //Console.WriteLine("current = {0}, dir = {1}", current, dir.ToString());
-                //Console.WriteLine(current);
+
+                iterations++;
+
                 if (dir == dirs.north) {
-                    //Console.WriteLine("1");
                     if (current / maze.width == (current + 1) / maze.width) {
                         if (!maze.IsEdge(current, current + 1)) {
                             nextDir = dirs.east;
@@ -225,7 +220,6 @@ namespace MazeAlgorithms.Algorithms.Solving {
                         }
                     }
                 } else if (dir == dirs.east) {
-                    // ALL MUST BE LIKE THIS!!!
                     if (current + maze.width < maze.maze.size) {
                         if (!maze.IsEdge(current, current + maze.width)) {
                             nextDir = dirs.south;

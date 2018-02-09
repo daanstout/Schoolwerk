@@ -27,6 +27,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
             if (maze.solved)
                 return;
 
+            iterations++;
+
             if(current == maze.end) {
                 maze.solved = true;
                 return;

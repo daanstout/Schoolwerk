@@ -24,6 +24,8 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
                 while (Global.isDrawing) { }
 
+                iterations++;
+
                 int randomSquare = squares[rand.Next(0, squares.Count)];
                 List<int> neighbours = maze.maze.GetAllNeighbours(randomSquare);
 
