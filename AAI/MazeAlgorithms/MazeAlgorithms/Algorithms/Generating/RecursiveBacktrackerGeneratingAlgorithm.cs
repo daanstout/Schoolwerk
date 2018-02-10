@@ -8,8 +8,12 @@ using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Generating {
     public class RecursiveBacktrackerGeneratingAlgorithm : AGeneratingAlgorithm {
+        #region Variables
         List<int> squares;
+        #endregion
 
+        #region Functions
+        #region Public Functions
         public override void GenerateMaze(Maze maze) {
             base.GenerateMaze(maze);
 
@@ -26,6 +30,12 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
         }
 
+        public override string GetAbout() {
+            return "Recursive Backtracker Algorithm: The Recursive Backtracker randomly expands from a node, adding a random node to the maze and continuing form there. If it can't add any new nodes, it goes back to where it could. This creates mazes that has a bias for long dead ends.";
+        }
+        #endregion
+
+        #region Private Functions
         private void GenerateMaze(Maze maze, int current) {
             if (!Global.noDelay)
                 while (!Global.doStep) { }
@@ -67,5 +77,7 @@ namespace MazeAlgorithms.Algorithms.Generating {
                 GenerateMaze(maze, next);
             }
         }
+        #endregion
+        #endregion
     }
 }

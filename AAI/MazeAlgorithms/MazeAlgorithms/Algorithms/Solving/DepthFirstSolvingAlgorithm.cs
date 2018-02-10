@@ -14,6 +14,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
             SolveMaze(maze, maze.start);
         }
+
+        public override string GetAbout() {
+            return "Depth First: Depth First algorithm goes over the nodes in a chosen way. It prioritises 1 direction over the other and doesn't go to the next direction until every node in the current direction is explored.";
+        }
         #endregion
 
         #region Private Functions

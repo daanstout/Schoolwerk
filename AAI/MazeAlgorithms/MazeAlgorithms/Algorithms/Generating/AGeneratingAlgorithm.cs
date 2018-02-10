@@ -46,6 +46,8 @@ namespace MazeAlgorithms.Algorithms.Generating {
         public virtual int GetIterations() {
             return iterations;
         }
+
+        public abstract string GetAbout();
         #endregion
     }
 }

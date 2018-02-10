@@ -54,7 +54,7 @@
             this.mazeWidthNumeric = new System.Windows.Forms.NumericUpDown();
             this.mazeWidthLabel = new System.Windows.Forms.Label();
             this.nextStepButton = new System.Windows.Forms.Button();
-            this.aboutButton = new System.Windows.Forms.Button();
+            this.aboutLabel = new System.Windows.Forms.Label();
             this.mazePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mazePictureBox)).BeginInit();
             this.mazeButtonsPanel.SuspendLayout();
@@ -243,7 +243,7 @@
             this.numericOptionsPanel.Controls.Add(this.mazeSizeLabel);
             this.numericOptionsPanel.Controls.Add(this.timerIntervalNumeric);
             this.numericOptionsPanel.Controls.Add(this.intervalLabel);
-            this.numericOptionsPanel.Location = new System.Drawing.Point(1350, 296);
+            this.numericOptionsPanel.Location = new System.Drawing.Point(1349, 624);
             this.numericOptionsPanel.Name = "numericOptionsPanel";
             this.numericOptionsPanel.Size = new System.Drawing.Size(130, 56);
             this.numericOptionsPanel.TabIndex = 4;
@@ -314,7 +314,7 @@
             this.newMazePanel.Controls.Add(this.mazeHeightLabel);
             this.newMazePanel.Controls.Add(this.mazeWidthNumeric);
             this.newMazePanel.Controls.Add(this.mazeWidthLabel);
-            this.newMazePanel.Location = new System.Drawing.Point(1350, 359);
+            this.newMazePanel.Location = new System.Drawing.Point(1349, 687);
             this.newMazePanel.Name = "newMazePanel";
             this.newMazePanel.Size = new System.Drawing.Size(128, 114);
             this.newMazePanel.TabIndex = 5;
@@ -393,7 +393,7 @@
             // 
             // nextStepButton
             // 
-            this.nextStepButton.Location = new System.Drawing.Point(1371, 487);
+            this.nextStepButton.Location = new System.Drawing.Point(1370, 815);
             this.nextStepButton.Name = "nextStepButton";
             this.nextStepButton.Size = new System.Drawing.Size(75, 23);
             this.nextStepButton.TabIndex = 6;
@@ -401,15 +401,15 @@
             this.nextStepButton.UseVisualStyleBackColor = true;
             this.nextStepButton.Click += new System.EventHandler(this.nextStepButton_Click);
             // 
-            // aboutButton
+            // aboutLabel
             // 
-            this.aboutButton.Location = new System.Drawing.Point(1371, 539);
-            this.aboutButton.Name = "aboutButton";
-            this.aboutButton.Size = new System.Drawing.Size(75, 23);
-            this.aboutButton.TabIndex = 7;
-            this.aboutButton.Text = "About";
-            this.aboutButton.UseVisualStyleBackColor = true;
-            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+            this.aboutLabel.AutoSize = true;
+            this.aboutLabel.Location = new System.Drawing.Point(1348, 294);
+            this.aboutLabel.MaximumSize = new System.Drawing.Size(132, 330);
+            this.aboutLabel.Name = "aboutLabel";
+            this.aboutLabel.Size = new System.Drawing.Size(35, 13);
+            this.aboutLabel.TabIndex = 7;
+            this.aboutLabel.Text = "label1";
             // 
             // MazeWindow
             // 
@@ -417,7 +417,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1484, 861);
-            this.Controls.Add(this.aboutButton);
+            this.Controls.Add(this.aboutLabel);
             this.Controls.Add(this.nextStepButton);
             this.Controls.Add(this.newMazePanel);
             this.Controls.Add(this.numericOptionsPanel);
@@ -444,6 +444,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mazeHeigthNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mazeWidthNumeric)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -479,7 +480,7 @@
         private System.Windows.Forms.Label mazeWidthLabel;
         private System.Windows.Forms.Button nextStepButton;
         private System.Windows.Forms.CheckBox showPositionCheckbox;
-        private System.Windows.Forms.Button aboutButton;
+        private System.Windows.Forms.Label aboutLabel;
     }
 }
 

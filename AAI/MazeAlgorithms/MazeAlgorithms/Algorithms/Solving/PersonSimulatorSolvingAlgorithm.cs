@@ -63,8 +63,11 @@ namespace MazeAlgorithms.Algorithms.Solving {
                         break;
                 }
             }
-
             solving = false;
+        }
+
+        public override string GetAbout() {
+            return "Person Simulator: This algorithm randomly traverses the maze. It choses a random path and continues down it until it finds a new intersection where it will chose a random new direction, or, until it encounters a dead end and simply turns around. It's possible that this algorithm never finds the end!";
         }
         #endregion
     }

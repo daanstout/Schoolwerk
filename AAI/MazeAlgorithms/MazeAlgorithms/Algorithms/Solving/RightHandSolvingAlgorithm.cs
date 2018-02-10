@@ -308,6 +308,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
             maze.solved = true;
             solving = false;
         }
+
+        public override string GetAbout() {
+            return "Right Hand: This algorithm follows the rule of putting your hand on the right side of the maze and keep it there. This will 100% of the time find the end if the maze is a true maze with no loops.";
+        }
         #endregion
     }
 }

@@ -17,6 +17,10 @@ namespace MazeAlgorithms.Algorithms.Generating {
 
             GenerateMaze(maze, 0, maze.width, 0, maze.height, rand.Next() % 2 == 0);
         }
+
+        public override string GetAbout() {
+            return "Recursive Algorithm: The Recursive Algorithm creates a maze recursively. It places a wall in it's area, splitting it in 2. Then it adds a hole in it connecting them and calling the function recursively for each new area. This creates mazes that have a clear bias for repeated patterns.";
+        }
         #endregion
 
         #region Private Functions

@@ -48,6 +48,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
             }
             solving = false;
         }
+
+        public override string GetAbout() {
+            return "Breadh First: Breadth First is an algorithm that, from the start on out, explores the maze in rows. It adds all neighbours to a queue and goes over them in order, adding any new nodes it finds to the queue. This goes to every node up to the depth of the end node.";
+        }
         #endregion
     }
 }

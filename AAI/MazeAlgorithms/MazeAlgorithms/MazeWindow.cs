@@ -49,6 +49,8 @@ namespace MazeAlgorithms {
             algorithmTimer.Interval = (int)timerIntervalNumeric.Value;
             Global.squareSize = (int)mazeSizeNumeric.Value;
 
+            aboutLabel.Text = maze.GetAbout();
+
             mazePictureBox.Invalidate();
         }
         #endregion
@@ -86,6 +88,8 @@ namespace MazeAlgorithms {
         private void generationAlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e) {
             maze.SetGeneratingAlgorithm(generationAlgorithmComboBox.SelectedIndex);
 
+            aboutLabel.Text = maze.GetAbout();
+
             mazePictureBox.Invalidate();
         }
 
@@ -94,6 +98,10 @@ namespace MazeAlgorithms {
 
             if (maze.isMaze)
                 solveMazeButton.Enabled = true;
+            else
+                solveMazeButton.Enabled = false;
+
+            aboutLabel.Text = maze.GetAbout();
 
             mazePictureBox.Invalidate();
         }
@@ -172,9 +180,5 @@ namespace MazeAlgorithms {
             Global.showPosition = showPositionCheckbox.Checked;
         }
         #endregion
-
-        private void aboutButton_Click(object sender, EventArgs e) {
-
-        }
     }
 }

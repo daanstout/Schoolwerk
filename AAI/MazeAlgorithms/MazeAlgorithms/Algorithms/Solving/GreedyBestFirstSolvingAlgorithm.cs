@@ -48,6 +48,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
             }
             solving = false;
         }
+
+        public override string GetAbout() {
+            return "Greedy Best First: This algorithm chooses its nodes based on the optimal distance to the end node. This can make it a very efficient algorithm if the path roughly goes there like with a maze made with Prim's, but less efficient if made randomly like with Kruskal's.";
+        }
         #endregion
     }
 }

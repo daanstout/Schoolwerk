@@ -36,6 +36,10 @@ namespace MazeAlgorithms.Algorithms.Generating {
             current = null;
             maze.mazeEdges.AddRange(edgeList);
         }
+
+        public override string GetAbout() {
+            return "Kruskal's Algorithm: Kruskal's algorithm takes random edges from the list and checks whether they belong to the same tree. If they do, it puts the edge in the maze, else, it removes the edge. This is a true random maze.";
+        }
         #endregion
     }
 }

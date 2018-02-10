@@ -49,6 +49,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
             }
             solving = false;
         }
+
+        public override string GetAbout() {
+            return "A*: A* is a solving algorithm that combines Dijksta's (or Breadth First if every node is the same) and Greedy Best First. It takes the node that looks the best as its next node. It decides a node's priority based on both it's estimated optimal distance to the end and the current distance traveled.";
+        }
         #endregion
     }
 }

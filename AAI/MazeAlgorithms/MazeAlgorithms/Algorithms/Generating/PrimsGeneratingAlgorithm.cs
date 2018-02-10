@@ -73,6 +73,10 @@ namespace MazeAlgorithms.Algorithms.Generating {
             current = null;
             maze.mazeEdges.AddRange(edgeList);
         }
+
+        public override string GetAbout() {
+            return "Prim's Algorithm: Prim's algorithm adds random nodes that are adjacent to the maze, removing edges if the node isn't present yet or adding the edge to the maze if it is. This creates mazes that have a bias from the starting point outwards.";
+        }
         #endregion
         #endregion
     }

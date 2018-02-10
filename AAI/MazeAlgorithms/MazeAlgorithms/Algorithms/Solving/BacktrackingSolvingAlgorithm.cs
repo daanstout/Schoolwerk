@@ -16,6 +16,10 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
             solving = false;
         }
+
+        public override string GetAbout() {
+            return "Backtracking: Backtracking explores the maze and undos any moves it does that ends in a dead end. In the end, you will only see 1 line from the start to the end. It is visually a simpler Depth First algorithm.";
+        }
         #endregion
 
         #region Private Functions

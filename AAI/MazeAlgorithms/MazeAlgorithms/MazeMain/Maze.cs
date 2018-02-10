@@ -154,6 +154,10 @@ namespace MazeAlgorithms.MazeMain {
         public void UpdateSolvingDrawMethod(bool distanceMethod) {
             solvingAlgorithm.UpdateDrawMethod(distanceMethod);
         }
+
+        public string GetAbout() {
+            return generatingAlgorithm.GetAbout() + "\n\n" + solvingAlgorithm.GetAbout();
+        }
         #endregion
 
         #region Private Functions

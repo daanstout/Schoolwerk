@@ -112,6 +112,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
         public virtual int GetIterations() {
             return iterations;
         }
+
+        public abstract string GetAbout();
         #endregion
         #endregion
     }
