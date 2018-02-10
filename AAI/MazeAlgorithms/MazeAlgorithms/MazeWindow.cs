@@ -172,5 +172,9 @@ namespace MazeAlgorithms {
             Global.showPosition = showPositionCheckbox.Checked;
         }
         #endregion
+
+        private void aboutButton_Click(object sender, EventArgs e) {
+
+        }
     }
 }
