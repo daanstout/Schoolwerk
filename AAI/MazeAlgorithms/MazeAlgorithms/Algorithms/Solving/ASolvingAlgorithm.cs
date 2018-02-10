@@ -16,13 +16,18 @@ namespace MazeAlgorithms.Algorithms.Solving {
         protected bool solving;
         protected IPathDrawer pathDrawer = new LineDrawer();
         protected int iterations;
+        protected Random rand = new Random();
         #endregion
 
         #region Functions
         #region Protected Functions
-        protected void initSolutions() {
+        protected void initSolutions(Maze maze) {
+            solution = new int[maze.maze.size];
+
             for (int i = 0; i < solution.Length; i++)
                 solution[i] = -1;
+
+            solution[maze.start] = -2;
         }
 
         protected int Length(int element) {
@@ -43,6 +48,12 @@ namespace MazeAlgorithms.Algorithms.Solving {
             columna = a % width;
             columnb = b % width;
             g.DrawLine(new Pen(color, 0.2f * Global.squareSize), new Point(columna * Global.squareSize + (Global.squareSize / 2), rowa * Global.squareSize + (Global.squareSize / 2)), new Point(columnb * Global.squareSize + (Global.squareSize / 2), rowb * Global.squareSize + (Global.squareSize / 2)));
+        }
+
+        protected void DrawCurrentPosition(Graphics g, Maze maze) {
+            int row = current / maze.width;
+            int column = current % maze.width;
+            g.FillRectangle(new SolidBrush(Color.Blue), new Rectangle(column * Global.squareSize + 2, row * Global.squareSize + 2, Global.squareSize - 4, Global.squareSize - 4));
         }
         #endregion
 
@@ -72,9 +83,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
                     current = solution[current];
                 }
             } else if(Global.showPosition && current != 0){
-                int row = current / maze.width;
-                int column = current % maze.width;
-                g.FillRectangle(new SolidBrush(Color.Blue), new Rectangle(column * Global.squareSize + 2, row * Global.squareSize + 2, Global.squareSize - 4, Global.squareSize - 4));
+                DrawCurrentPosition(g, maze);
             }
         }
 
@@ -87,11 +96,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
         public virtual void SolveMaze(Maze maze) {
             solving = true;
-
-            solution = new int[maze.maze.size];
-            initSolutions();
-
-            solution[maze.start] = -2;
+            
+            initSolutions(maze);
         }
 
         public virtual void reset() {

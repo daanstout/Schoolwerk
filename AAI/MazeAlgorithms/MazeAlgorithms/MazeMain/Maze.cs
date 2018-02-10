@@ -108,6 +108,9 @@ namespace MazeAlgorithms.MazeMain {
                     solvingAlgorithm = new GreedyBestFirstSolvingAlgorithm();
                     break;
                 case 5:
+                    solvingAlgorithm = new PersonSimulatorSolvingAlgorithm();
+                    break;
+                case 6:
                     solvingAlgorithm = new RightHandSolvingAlgorithm();
                     break;
             }
