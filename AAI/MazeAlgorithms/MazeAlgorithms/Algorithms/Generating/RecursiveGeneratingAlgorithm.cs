@@ -8,9 +8,14 @@ using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Generating {
     public class RecursiveGeneratingAlgorithm : AGeneratingAlgorithm {
+        new Rectangle current;
+
         #region Functions
         #region Public Functions
-        public override void Draw(Graphics g, Maze maze) { }
+        public override void Draw(Graphics g, Maze maze) {
+            if (Global.showPosition && current != null)
+                g.FillRectangle(new SolidBrush(Color.Blue), current);
+        }
 
         public override void GenerateMaze(Maze maze) {
             iterations = 0;
@@ -30,6 +35,8 @@ namespace MazeAlgorithms.Algorithms.Generating {
             Global.doStep = false;
 
             iterations++;
+
+            current = new Rectangle(x * Global.squareSize, y * Global.squareSize, width * Global.squareSize, height * Global.squareSize);
 
             if (horizontal) { // Horizontal wall
                 if (width == 1 || height == 1)

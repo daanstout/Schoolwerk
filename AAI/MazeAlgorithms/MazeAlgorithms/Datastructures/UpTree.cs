@@ -106,12 +106,12 @@ namespace MazeAlgorithms.Datastructures {
 
             if (square - width >= 0)     // Check up
                 possibilities.Add(square - width);
-            if (square / width == (square - 1) / width && square > 0)       // Check right
-                possibilities.Add(square - 1);
-            if (square / width == (square + 1) / width)     // Check left
+            if (square / width == (square + 1) / width)     // Check right
                 possibilities.Add(square + 1);
-            if (square + width < size)      // Check right
+            if (square + width < size)      // Check down
                 possibilities.Add(square + width);
+            if (square / width == (square - 1) / width && square > 0)       // Check left
+                possibilities.Add(square - 1);
 
             //if (possibilities.Count == 0)
             //    return null;

@@ -16,7 +16,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             for (int i = 0; i < deadEnds.Count; i++) {
                 row = deadEnds[i] / maze.width;
                 column = deadEnds[i] % maze.width;
-                g.FillRectangle(new SolidBrush(Color.Black), new Rectangle(column * Global.squareSize, row * Global.squareSize, Global.squareSize, Global.squareSize));
+                g.FillRectangle(new SolidBrush(Color.Black), new Rectangle(column * Global.squareSize, row * Global.squareSize, Global.squareSize + 1, Global.squareSize + 1));
             }
 
             if (Global.showPosition)
@@ -33,6 +33,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
                 if (current == maze.start || current == maze.end)
                     continue;
+
+                iterations++;
 
                 List<int> neighbours = maze.maze.GetAllNeighbours(current);
                 int count = 0;
@@ -56,6 +58,8 @@ namespace MazeAlgorithms.Algorithms.Solving {
 
                 if (current == maze.start || current == maze.end)
                     continue;
+
+                iterations++;
 
                 List<int> neighbours = maze.maze.GetAllNeighbours(current);
                 int next = -1;
