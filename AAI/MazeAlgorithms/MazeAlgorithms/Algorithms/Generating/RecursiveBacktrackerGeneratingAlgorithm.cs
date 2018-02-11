@@ -58,6 +58,9 @@ namespace MazeAlgorithms.Algorithms.Generating {
                     if (e.square1 == current && e.square2 == next || e.square1 == next && e.square2 == current)
                         nextEdge = e;
 
+                if (nextEdge == null)
+                    continue;
+
                 int root1 = maze.maze.Find(nextEdge.square1);
                 int root2 = maze.maze.Find(nextEdge.square2);
 

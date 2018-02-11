@@ -265,7 +265,7 @@
             this.mazeSizeNumeric.Size = new System.Drawing.Size(36, 20);
             this.mazeSizeNumeric.TabIndex = 3;
             this.mazeSizeNumeric.Value = new decimal(new int[] {
-            10,
+            25,
             0,
             0,
             0});

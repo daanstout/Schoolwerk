@@ -29,6 +29,7 @@ namespace MazeAlgorithms {
             solvingAlgorithmComboBox.Items.Add("A*");
             solvingAlgorithmComboBox.Items.Add("Backtracking");
             solvingAlgorithmComboBox.Items.Add("Breadth First");
+            solvingAlgorithmComboBox.Items.Add("Dead End Filling");
             solvingAlgorithmComboBox.Items.Add("Depth First");
             solvingAlgorithmComboBox.Items.Add("Greedy Best First");
             solvingAlgorithmComboBox.Items.Add("Person Simulator");

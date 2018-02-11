@@ -61,6 +61,7 @@
     <Compile Include="Algorithms\Solving\AStarSolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\BacktrackingSolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\BreadthFirstSolvingAlgorithm.cs" />
+    <Compile Include="Algorithms\Solving\DeadEndSolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\DepthFirstSolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\GreedyBestFirstSolvingAlgorithm.cs" />
     <Compile Include="Algorithms\Solving\ISolvingAlgorithm.cs" />

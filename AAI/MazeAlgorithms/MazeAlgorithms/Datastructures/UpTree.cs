@@ -99,12 +99,12 @@ namespace MazeAlgorithms.Datastructures {
         }
 
         public List<int> GetAllNeighbours(int square) {
-            if (square < 0 || square >= size)
-                return null;
-
             List<int> possibilities = new List<int>();
 
-            if (square - width > 0)     // Check up
+            if (square < 0 || square >= size)
+                return possibilities;
+
+            if (square - width >= 0)     // Check up
                 possibilities.Add(square - width);
             if (square / width == (square - 1) / width && square > 0)       // Check right
                 possibilities.Add(square - 1);
@@ -113,8 +113,8 @@ namespace MazeAlgorithms.Datastructures {
             if (square + width < size)      // Check right
                 possibilities.Add(square + width);
 
-            if (possibilities.Count == 0)
-                return null;
+            //if (possibilities.Count == 0)
+            //    return null;
 
             return possibilities;
         }

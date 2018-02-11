@@ -102,15 +102,18 @@ namespace MazeAlgorithms.MazeMain {
                     solvingAlgorithm = new BreadthFirstSolvingAlgorithm();
                     break;
                 case 3:
-                    solvingAlgorithm = new DepthFirstSolvingAlgorithm();
+                    solvingAlgorithm = new DeadEndSolvingAlgorithm();
                     break;
                 case 4:
-                    solvingAlgorithm = new GreedyBestFirstSolvingAlgorithm();
+                    solvingAlgorithm = new DepthFirstSolvingAlgorithm();
                     break;
                 case 5:
-                    solvingAlgorithm = new PersonSimulatorSolvingAlgorithm();
+                    solvingAlgorithm = new GreedyBestFirstSolvingAlgorithm();
                     break;
                 case 6:
+                    solvingAlgorithm = new PersonSimulatorSolvingAlgorithm();
+                    break;
+                case 7:
                     solvingAlgorithm = new RightHandSolvingAlgorithm();
                     break;
             }
