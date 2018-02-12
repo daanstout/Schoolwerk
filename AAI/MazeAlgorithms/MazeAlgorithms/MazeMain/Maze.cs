@@ -72,15 +72,18 @@ namespace MazeAlgorithms.MazeMain {
         public void SetGeneratingAlgorithm(int algorithm) {
             switch (algorithm) {
                 case 0:
-                    generatingAlgorithm = new KruskalGeneratingAlgorithm();
+                    generatingAlgorithm = new HuntKillGeneratingAlgorithm();
                     break;
                 case 1:
-                    generatingAlgorithm = new PrimsGeneratingAlgorithm();
+                    generatingAlgorithm = new KruskalGeneratingAlgorithm();
                     break;
                 case 2:
-                    generatingAlgorithm = new RecursiveGeneratingAlgorithm();
+                    generatingAlgorithm = new PrimsGeneratingAlgorithm();
                     break;
                 case 3:
+                    generatingAlgorithm = new RecursiveGeneratingAlgorithm();
+                    break;
+                case 4:
                     generatingAlgorithm = new RecursiveBacktrackerGeneratingAlgorithm();
                     break;
             }

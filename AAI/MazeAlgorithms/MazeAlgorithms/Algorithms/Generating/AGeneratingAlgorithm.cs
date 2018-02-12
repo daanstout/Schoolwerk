@@ -15,6 +15,21 @@ namespace MazeAlgorithms.Algorithms.Generating {
         protected int iterations;
         #endregion
 
+        #region Protected Functions
+        protected Edge GetEdge(int a, int b) {
+            Edge edge = null;
+
+            if (edgeList == null)
+                return edge;
+
+            foreach (Edge e in edgeList)
+                if (e.square1 == a && e.square2 == b || e.square2 == a && e.square1 == b)
+                    return e;
+
+            return edge;
+        }
+        #endregion
+
         #region Public Functions
         public virtual void Draw(Graphics g, Maze maze) {
             if (edgeList == null && maze.maze == null)

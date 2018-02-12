@@ -52,6 +52,7 @@
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Algorithms\Generating\AGeneratingAlgorithm.cs" />
+    <Compile Include="Algorithms\Generating\HuntKillGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\Generating\PrimsGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\Generating\KruskalGeneratingAlgorithm.cs" />
     <Compile Include="Algorithms\Generating\RecursiveBacktrackerGeneratingAlgorithm.cs" />

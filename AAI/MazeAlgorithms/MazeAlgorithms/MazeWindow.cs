@@ -21,6 +21,7 @@ namespace MazeAlgorithms {
         public MazeWindow() {
             InitializeComponent();
 
+            generationAlgorithmComboBox.Items.Add("Hunt and Kill");
             generationAlgorithmComboBox.Items.Add("Kruskal's");
             generationAlgorithmComboBox.Items.Add("Prim's");
             generationAlgorithmComboBox.Items.Add("Recursive");
