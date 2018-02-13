@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LesOpgaven {
+namespace Les2 {
     public class Matrix {
         public float[,] matrix;
         public int rows;
@@ -123,6 +123,10 @@ namespace LesOpgaven {
 
         public Vector2 ToVector() {
             return new Vector2(matrix[0, 0], matrix[1, 0]);
+        }
+
+        public Matrix Scale(float s) {
+
         }
     }
 }
