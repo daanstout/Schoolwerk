@@ -4,16 +4,23 @@
 #include <GLEW\GL\glew.h>
 
 using namespace glm;
+using namespace std;
 
 class Vertex {
-	// VARIABLES
+	// FUNCTIONS
 public:
-	Vertex(const vec3& pos) {
+	Vertex(const vec3& pos, const vec2& texCoord) {
 		this->pos = pos;
+		this->texCoord = texCoord;
 	}
+
+	inline vec3* GetPos() { return &pos; }
+	inline vec2* GetTexCoord() { return &texCoord; }
 protected:
+	// VARIABLES
 private:
 	vec3 pos;
+	vec2 texCoord;
 };
 
 class Mesh {
@@ -25,13 +32,14 @@ public:
 	void Draw();
 
 private:
-	Mesh(const Mesh& other);
-	Mesh& operator=(const Mesh& other);
+	Mesh(const Mesh& other) {}
+	Mesh& operator=(const Mesh& other) {}
 
 	// ENUMERATIONS
 
 	enum {
 		POSITION_VB,
+		TEXCOORD_VB,
 
 		NUM_BUFFERS
 	};
