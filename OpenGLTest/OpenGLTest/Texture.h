@@ -13,8 +13,6 @@ public:
 	void Bind(unsigned int unit);
 
 private:
-	Texture(const Texture & other) {}
-	Texture& operator=(const Texture& other) {}
 
 	// VARIABLES
 

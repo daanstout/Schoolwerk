@@ -18,8 +18,6 @@ public:
 	bool IsClosed();
 	void Clear(float r, float g, float b, float a);
 private:
-	Display(const Display& other) {}
-	Display& operator=(const Display& other) {}
 
 	// VARIABLES
 private:

@@ -32,8 +32,6 @@ public:
 	void Draw();
 
 private:
-	Mesh(const Mesh& other) {}
-	Mesh& operator=(const Mesh& other) {}
 
 	// ENUMERATIONS
 

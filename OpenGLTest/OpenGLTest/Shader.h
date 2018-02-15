@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include <GLEW\GL\glew.h>
+#include "Transform.h"
 
 using namespace std;
 
@@ -12,13 +13,19 @@ class Shader {
 	//FUNCTIONS
 public:
 	Shader(const string& filename);
+	virtual ~Shader();
 
 	void Bind();
-
-	virtual ~Shader();
+	void Update(const Transform& transform);
 private:
-	Shader(const Shader& other) {}
-	Shader& operator=(const Shader& other) {}
+
+	//ENUMERATIONS
+
+	enum {
+		TRANSFORM_U,
+
+		NUM_UNIFORMS
+	};
 
 	//VARIABLES
 private:
@@ -26,5 +33,6 @@ private:
 
 	GLuint m_program;
 	GLuint m_shaders[NUM_SHADERS];
+	GLuint m_uniforms[NUM_UNIFORMS];
 };
 
