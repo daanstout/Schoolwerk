@@ -1,0 +1,1 @@
+in order to run the solution, put glew32.dll and SDL2.dll in /x64/Debug next to the .exe

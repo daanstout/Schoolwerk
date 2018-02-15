@@ -34,6 +34,8 @@ namespace MazeAlgorithms.Algorithms.Generating {
                     while (!Global.doStep) { }
                 Global.doStep = false;
 
+                iterations++;
+
                 List<int> neighbours = maze.maze.GetAllNeighbours(square);
                 List<int> validNeighbours = new List<int>();
 
@@ -47,24 +49,21 @@ namespace MazeAlgorithms.Algorithms.Generating {
                 }
 
                 if (validNeighbours.Count == 0) {
-                    //break;
                     square = -1;
                     for (currentColumn = 0; currentColumn < maze.height; currentColumn++) {
                         if (!Global.noDelay)
                             while (!Global.doStep) { }
                         Global.doStep = false;
                         if (square == -1) {
-                            Console.WriteLine("for(int i = {0} * {1} ({2}); i < ({0} * ({1} + 1 ({3}))); i++)", maze.width, currentColumn, maze.width * currentColumn, maze.width * (currentColumn + 1));
+                            iterations++;
                             for (int i = maze.width * currentColumn; i < (maze.width * (currentColumn + 1)); i++) {
                                 if (square == -1) {
                                     int root2 = maze.maze.Find(i);
-                                    Console.WriteLine("root1 = {0}, root2 for {1} = {2}", root1, i, root2);
                                     if (root1 != root2) {
                                         neighbours = maze.maze.GetAllNeighbours(i);
 
                                         foreach (int neighbour in neighbours) {
                                             int root3 = maze.maze.Find(neighbour);
-                                            Console.WriteLine("root1 = {0}, root3 = {1}", root1, root3);
                                             if (root1 == root3) {
                                                 square = i;
                                                 squares.Add(square);
@@ -90,7 +89,6 @@ namespace MazeAlgorithms.Algorithms.Generating {
                     current = GetEdge(square, next);
                     edgeList.Remove(current);
                     squares.Add(next);
-                    //maze.mazeEdges.Add(current);
 
                     maze.maze.Union(square, next);
 
