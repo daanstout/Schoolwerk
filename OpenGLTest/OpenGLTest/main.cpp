@@ -1,5 +1,7 @@
 #include <iostream>
 #include <GLEW\GL\glew.h>
+#include <cstdio>
+#include <ctime>
 #include "display.h"
 #include "shader.h"
 #include "Mesh.h"
@@ -12,21 +14,37 @@
 #define HEIGHT 600
 
 int main(int argc, char * args[]) {
-	Display display(800, 600, "Hello World!");
+	Display display(WIDTH, HEIGHT, "Hello World!");
 
 	Shader shader("./res/basicShader");
 
-	Vertex vertices[] = {Vertex(vec3(-0.5, -0.5, 0), vec2(0, 1.0)), Vertex(vec3(0, 0.5, 0), vec2(0.5, 0)), Vertex(vec3(0.5, -0.5, 0), vec2(1.0, 1.0))};
+	Vertex vertices1[] = {
+		Vertex(vec3(-0.5, -0.5, 0), vec2(1.0, 1.0)),
+		Vertex(vec3(-0.5, 0.5, 0), vec2(1.0, 0.0)),
+		Vertex(vec3(0.5, 0.5, 0), vec2(0.0, 0.0))
+	};
 
-	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0]));
+	Mesh mesh1(vertices1, sizeof(vertices1) / sizeof(vertices1[0]));
 
-	Texture texture("./res/bricks.jpg");
+	Vertex vertices2[] = {
+		Vertex(vec3(-0.5, -0.5, 0), vec2(1.0, 1.0)),
+		Vertex(vec3(0.5, 0.5, 0), vec2(0.0, 0.0)),
+		Vertex(vec3(0.5, -0.5, 0), vec2(0.0, 1.0))
+	};
 
-	Camera camera(vec3(0, 0, -4), 70.0f, (float)WIDTH/(float)HEIGHT, 0.01f, 1000.0f);
+	Mesh mesh2(vertices2, sizeof(vertices2) / sizeof(vertices2[0]));
+
+	Texture texture("./res/tijn.jpg");
+
+	Camera camera(vec3(0, 0, -6), 70.0f, (float)WIDTH/(float)HEIGHT, 0.01f, 1000.0f);
 
 	Transform transform;
 
 	float counter = 0;
+
+	clock_t start = clock();
+
+	double duration;
 
 	while (!display.IsClosed()) {
 		display.Clear(0.0f, 0.15f, 0.3f, 0.1f);
@@ -45,11 +63,14 @@ int main(int argc, char * args[]) {
 		shader.Bind();
 		shader.Update(transform, camera);
 		texture.Bind(0);
-		mesh.Draw();
+		mesh1.Draw();
+		mesh2.Draw();
 
 		display.Update();
 
-		counter += 0.01f;
+		counter += 1 * ((clock() - start) / (double) CLOCKS_PER_SEC);
+
+		start = clock();
 	}
 
 	return 0;

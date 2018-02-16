@@ -40,10 +40,13 @@ void Stack::push(int x) {
 }
 
 int Stack::pop() {
-	Block* next = top->next;
+	if (top == NULL)
+		return 0;
+
+	//Block* next = top->next;
 	int number = top->number;
 	Block* old = top;
-	top = next;
+	top = top->next;
 
 	DestroyBlock(old);
 

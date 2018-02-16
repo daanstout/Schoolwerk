@@ -1,8 +1,6 @@
 #include "Display.h"
 
 Display::Display(int width, int height, const string& title) {
-	cout << "Constructor" << endl;
-
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
@@ -20,12 +18,14 @@ Display::Display(int width, int height, const string& title) {
 	if (status != GLEW_OK) {
 		cout << "Glew failed to initialize!" << endl;
 	}
+	
+	this->width = width;
+	this->height = height;
 
 	m_isClosed = false;
 }
 
 Display::~Display() {
-	cout << "Destructor" << endl;
 	SDL_GL_DeleteContext(m_glContext);
 	SDL_DestroyWindow(m_window);
 	SDL_Quit();
