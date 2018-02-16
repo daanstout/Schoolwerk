@@ -6,6 +6,7 @@
 
 #include <GLEW\GL\glew.h>
 #include "Transform.h"
+#include "Camera.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ public:
 	virtual ~Shader();
 
 	void Bind();
-	void Update(const Transform& transform);
+	void Update(const Transform& transform, const Camera& camera);
 private:
 
 	//ENUMERATIONS

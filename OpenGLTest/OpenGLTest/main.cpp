@@ -5,7 +5,11 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "Transform.h"
+#include "camera.h"
 #undef main
+
+#define WIDTH 800
+#define HEIGHT 600
 
 int main(int argc, char * args[]) {
 	Display display(800, 600, "Hello World!");
@@ -18,6 +22,8 @@ int main(int argc, char * args[]) {
 
 	Texture texture("./res/bricks.jpg");
 
+	Camera camera(vec3(0, 0, -4), 70.0f, (float)WIDTH/(float)HEIGHT, 0.01f, 1000.0f);
+
 	Transform transform;
 
 	float counter = 0;
@@ -29,11 +35,15 @@ int main(int argc, char * args[]) {
 		float cosCounter = cosf(counter);
 
 		transform.GetPosition().x = sinCounter;
+		transform.GetPosition().y = cosCounter;
+		transform.GetPosition().z = cosCounter;
+		transform.GetRotation().x = counter;
+		transform.GetRotation().y = counter;
 		transform.GetRotation().z = counter;
-		transform.SetScale(vec3(cosCounter, cosCounter, cosCounter));
+		//transform.SetScale(vec3(cosCounter, cosCounter, cosCounter));
 
 		shader.Bind();
-		shader.Update(transform);
+		shader.Update(transform, camera);
 		texture.Bind(0);
 		mesh.Draw();
 
