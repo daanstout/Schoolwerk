@@ -148,12 +148,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="Fraction.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinarySearchTree.cpp" />
+    <ClCompile Include="Fraction.cpp" />
+    <ClCompile Include="FractionOperators.cpp" />
     <ClCompile Include="LesOpgave4.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="stdafx.cpp">
