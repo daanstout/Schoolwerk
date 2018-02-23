@@ -39,7 +39,7 @@ void GetAndFillArray(int* &p, int n);
 int main() {
 	//Opgave1();
 	//Opgave2();
-	Opgave3();
+	//Opgave3();
 
 
 	return 0;
