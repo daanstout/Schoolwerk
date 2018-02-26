@@ -9,6 +9,6 @@ namespace ResourceGatherer.World.Grid {
         public static int GridWidth = 50;
         public static int GridHeight = 50;
 
-        
+
     }
 }

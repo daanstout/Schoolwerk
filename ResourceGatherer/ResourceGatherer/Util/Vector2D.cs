@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ResourceGatherer.Util {
     public class Vector2D {
-        float x;
-        float y;
+        public float x;
+        public float y;
 
         public Vector2D() {
             x = y = 0.0f;
@@ -47,6 +47,17 @@ namespace ResourceGatherer.Util {
             float vectorLength = Length();
             x /= vectorLength;
             y /= vectorLength;
+        }
+
+        public static Vector2D Vec2DNormalize(Vector2D v) {
+            Vector2D vec = v;
+
+            float vector_length = vec.Length();
+
+            vec.x /= vector_length;
+            vec.y /= vector_length;
+
+            return vec;
         }
 
         public int Sign(Vector2D other) {
@@ -94,23 +105,62 @@ namespace ResourceGatherer.Util {
             return new Vector2D(-x, -y);
         }
 
+        public void WrapAround(int maxX, int maxY) {
+            if (x > maxX)
+                x = 0;
+            if (x < 0)
+                x = maxX;
+
+            if (y > maxY)
+                y = 0;
+            if (y < 0)
+                y = maxY;
+        }
+
+        public bool NotInsideRegion(Vector2D top_left, Vector2D bot_rgt) {
+            return (x < top_left.x) || (x > bot_rgt.x) || (y < top_left.y) || (y > bot_rgt.y);
+        }
+
+        public bool InsideRegion(Vector2D top_left, Vector2D bot_rgt) {
+            return !((x < top_left.x) || (x > bot_rgt.x) || (y < top_left.y) || (y > bot_rgt.y));
+        }
+
+        public bool isSecondInFOVOfFirst(Vector2D posFirst, Vector2D facingFirst, Vector2D posSecond, float fov) {
+            Vector2D toTarget = Vec2DNormalize(posSecond - posFirst);
+
+            return facingFirst.Dot(toTarget) >= Math.Cos(fov / 2);
+        }
 
         public static Vector2D operator +(Vector2D a, Vector2D b) {
             return new Vector2D(a.x + b.x, a.y + b.y);
         }
 
-        //public static Vector2D operator +=(Vector2D a) {
-        //    x += a.x;
-        //    y += a.y;
-
-        //    return this;
-        //}
+        public static Vector2D operator -(Vector2D a, Vector2D b) {
+            return new Vector2D(a.x - b.x, a.y - b.y);
+        }
 
         public static Vector2D operator *(Vector2D v, float f) {
             return new Vector2D(v.x * f, v.y * f);
         }
         public static Vector2D operator *(float f, Vector2D v) {
             return new Vector2D(v.x * f, v.y * f);
+        }
+
+        public static Vector2D operator /(Vector2D v, float f) {
+            return new Vector2D(v.x / f, v.y / f);
+        }
+
+        public static Vector2D operator /(float f, Vector2D v) {
+            return new Vector2D(v.x / f, v.y / f);
+        }
+
+        public override bool Equals(object obj) {
+            if (obj == null)
+                return false;
+            else if (obj is Vector2D v) {
+                return (x.Equals(v.x) && y.Equals(v.y));
+            } else
+                return false;
         }
     }
 }

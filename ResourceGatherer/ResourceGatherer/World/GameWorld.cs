@@ -15,9 +15,7 @@ namespace ResourceGatherer.World {
             gameWidth = width;
             gameHeight = height;
 
-            for(int i = 0; i < 10; i++) {
-                BaseEntity e = new BaseEntity(5);
-                Console.WriteLine(e.GetId());
+            for (int i = 0; i < 10; i++) {
             }
         }
 

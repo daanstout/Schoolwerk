@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\MovingEntity.cs" />
     <Compile Include="ResourceGatherer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +55,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\C2DMatrix.cs" />
+    <Compile Include="Util\Telegram.cs" />
     <Compile Include="Util\Vector2D.cs" />
     <Compile Include="World\GameWorld.cs" />
     <Compile Include="World\Grid\Grid.cs" />
