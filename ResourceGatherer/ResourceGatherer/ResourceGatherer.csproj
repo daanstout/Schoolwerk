@@ -45,8 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drawers\TileDrawers\ITileDrawer.cs" />
+    <Compile Include="Drawers\TileDrawers\SimpleTileDrawer.cs" />
+    <Compile Include="Drawers\TileDrawers\VertexDrawer.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\MovingEntity.cs" />
+    <Compile Include="Entities\StaticEntity.cs" />
     <Compile Include="ResourceGatherer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,10 +60,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\C2DMatrix.cs" />
+    <Compile Include="Util\Datastructures\PriorityQueue.cs" />
+    <Compile Include="Util\Datastructures\Queue.cs" />
+    <Compile Include="Util\Datastructures\Stack.cs" />
     <Compile Include="Util\Telegram.cs" />
     <Compile Include="Util\Vector2D.cs" />
     <Compile Include="World\GameWorld.cs" />
-    <Compile Include="World\Grid\Grid.cs" />
+    <Compile Include="World\Graphs\Edge.cs" />
+    <Compile Include="World\Graphs\Graph.cs" />
+    <Compile Include="World\Graphs\Vertex.cs" />
+    <Compile Include="World\Grids\Grid.cs" />
+    <Compile Include="World\Tiles\BaseTile.cs" />
     <EmbeddedResource Include="ResourceGatherer.resx">
       <DependentUpon>ResourceGatherer.cs</DependentUpon>
     </EmbeddedResource>

@@ -26,12 +26,13 @@
             this.components = new System.ComponentModel.Container();
             this.gameWorldPicturebox = new System.Windows.Forms.PictureBox();
             this.worldTimer = new System.Windows.Forms.Timer(this.components);
+            this.vertecesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gameWorldPicturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // gameWorldPicturebox
             // 
-            this.gameWorldPicturebox.BackColor = System.Drawing.Color.Green;
+            this.gameWorldPicturebox.BackColor = System.Drawing.Color.White;
             this.gameWorldPicturebox.Location = new System.Drawing.Point(12, 12);
             this.gameWorldPicturebox.Name = "gameWorldPicturebox";
             this.gameWorldPicturebox.Size = new System.Drawing.Size(800, 600);
@@ -44,11 +45,22 @@
             this.worldTimer.Interval = 1;
             this.worldTimer.Tick += new System.EventHandler(this.worldTimer_Tick);
             // 
+            // vertecesButton
+            // 
+            this.vertecesButton.Location = new System.Drawing.Point(832, 13);
+            this.vertecesButton.Name = "vertecesButton";
+            this.vertecesButton.Size = new System.Drawing.Size(140, 36);
+            this.vertecesButton.TabIndex = 1;
+            this.vertecesButton.Text = "Show Verteces";
+            this.vertecesButton.UseVisualStyleBackColor = true;
+            this.vertecesButton.Click += new System.EventHandler(this.vertecesButton_Click);
+            // 
             // ResourceGatherer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 749);
+            this.Controls.Add(this.vertecesButton);
             this.Controls.Add(this.gameWorldPicturebox);
             this.Name = "ResourceGatherer";
             this.Text = "Resource Gatherer";
@@ -61,6 +73,7 @@
 
         private System.Windows.Forms.PictureBox gameWorldPicturebox;
         private System.Windows.Forms.Timer worldTimer;
+        private System.Windows.Forms.Button vertecesButton;
     }
 }
 

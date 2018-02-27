@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ResourceGatherer.Entities {
     public class MovingEntity : BaseEntity {
-        protected Vector2D velocity;
-        protected Vector2D heading;
-        protected Vector2D side;
+        public Vector2D velocity;
+        public Vector2D heading;
+        public Vector2D side { get; protected set; }
 
-        protected float mass;
-        protected float maxSpeed;
-        protected float maxForce;
-        protected float maxTurnRate;
+        public readonly float mass;
+        public float maxSpeed;
+        public float maxForce;
+        public float maxTurnRate;
 
         public MovingEntity(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce) : base(0, pos, rad) {
             this.heading = heading;
@@ -27,38 +27,6 @@ namespace ResourceGatherer.Entities {
             this.scale = scale;
         }
 
-        public Vector2D Velocity() {
-            return velocity;
-        }
-
-        public void SetVelocity(Vector2D newVel) {
-            velocity = newVel;
-        }
-
-        public float Mass() {
-            return mass;
-        }
-
-        public Vector2D Side() {
-            return side;
-        }
-
-        public float MaxSpeed() {
-            return maxSpeed;
-        }
-
-        public void SetMaxSpeed(float newSpd) {
-            maxSpeed = newSpd;
-        }
-
-        public double MaxForce() {
-            return maxForce;
-        }
-
-        public void SetMaxForce(float newForce) {
-            maxForce = newForce;
-        }
-
         public bool IsSpeedMaxedOut() {
             return maxSpeed * maxSpeed > velocity.LengthSq();
         }
@@ -69,10 +37,6 @@ namespace ResourceGatherer.Entities {
 
         public float SpeedSq() {
             return velocity.LengthSq();
-        }
-
-        public Vector2D Heading() {
-            return heading;
         }
 
         public void SetHeading(Vector2D newHeading) {
@@ -102,14 +66,6 @@ namespace ResourceGatherer.Entities {
             side = heading.Perp();
 
             return false;
-        }
-
-        public float MaxTurnRate() {
-            return maxTurnRate;
-        }
-
-        public void SetMaxTurnRate(float val) {
-            maxTurnRate = val;
         }
     }
 }

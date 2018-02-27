@@ -1,6 +1,7 @@
 ﻿using ResourceGatherer.Util;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +17,14 @@ namespace ResourceGatherer.Entities {
             }
         }
 
-        private int entityId;
-        private int entityType;
-        private bool tag;
+        public readonly int entityId;
+        public int entityType { get; protected set; }
+        public bool tag { get; protected set; }
 
-        protected Vector2D position;
-        protected Vector2D scale;
-        protected float boundingRadius;
+        public Vector2D position;
+        public Vector2D scale { get; protected set; }
+        public float boundingRadius;
+        public Bitmap sprite;
 
         protected BaseEntity() {
             entityId = NextValidId;
@@ -62,33 +64,9 @@ namespace ResourceGatherer.Entities {
 
         public virtual void Update(double time_elapsed) { }
 
-        public virtual void Render() { }
+        public virtual void Render(Graphics g) { }
 
         public virtual void Write() { }
-
-        public Vector2D Position() {
-            return position;
-        }
-
-        public void SetPosition(Vector2D newPos) {
-            position = newPos;
-        }
-
-        public float BoundingRadius() {
-            return boundingRadius;
-        }
-
-        public void SetBoundingRadius(float r) {
-            boundingRadius = r;
-        }
-
-        public int Id() {
-            return entityId;
-        }
-
-        public bool isTagged() {
-            return tag;
-        }
 
         public void Tag() {
             tag = true;
@@ -96,10 +74,6 @@ namespace ResourceGatherer.Entities {
 
         public void UnTag() {
             tag = false;
-        }
-
-        public Vector2D Scale() {
-            return scale;
         }
 
         public void SetScale(Vector2D val) {
@@ -110,10 +84,6 @@ namespace ResourceGatherer.Entities {
         public void SetScale(float val) {
             boundingRadius *= val / (scale.x > scale.y ? scale.x : scale.y);
             scale = new Vector2D(val, val);
-        }
-
-        public int EntityType() {
-            return entityType;
         }
 
         public void SetEntityType(int newType) {

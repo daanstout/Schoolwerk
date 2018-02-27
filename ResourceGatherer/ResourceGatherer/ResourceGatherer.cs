@@ -1,4 +1,6 @@
-﻿using ResourceGatherer.World;
+﻿using ResourceGatherer.Drawers.TileDrawers;
+using ResourceGatherer.World;
+using ResourceGatherer.World.Tiles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,11 +14,16 @@ using System.Windows.Forms;
 namespace ResourceGatherer {
     public partial class ResourceGatherer : Form {
         GameWorld gameWorld;
+        bool showVerteces = false;
 
         public ResourceGatherer() {
             InitializeComponent();
 
+            BaseTile.SetTileDrawer(new SimpleTileDrawer());
+
             gameWorld = new GameWorld(800, 600);
+
+            RedrawBackground();
         }
 
         private void worldTimer_Tick(object sender, EventArgs e) {
@@ -27,6 +34,29 @@ namespace ResourceGatherer {
 
         private void gameWorldPicturebox_Paint(object sender, PaintEventArgs e) {
             gameWorld.Draw(e.Graphics);
+        }
+
+        public void RedrawBackground() {
+            Bitmap bg = new Bitmap(gameWorld.gameWidth, gameWorld.gameHeight);
+
+            Graphics g = Graphics.FromImage(bg);
+
+            gameWorld.GetBackground(g);
+
+            gameWorldPicturebox.Image = bg;
+        }
+
+        private void vertecesButton_Click(object sender, EventArgs e) {
+            showVerteces = !showVerteces;
+            if (showVerteces) {
+                BaseTile.SetTileDrawer(new VertexDrawer());
+                vertecesButton.Text = "Hide Verteces";
+            } else {
+                BaseTile.SetTileDrawer(new SimpleTileDrawer());
+                vertecesButton.Text = "Show Verteces";
+            }
+
+            RedrawBackground();
         }
     }
 }
