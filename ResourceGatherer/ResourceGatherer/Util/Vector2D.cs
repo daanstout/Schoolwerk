@@ -157,10 +157,21 @@ namespace ResourceGatherer.Util {
         public override bool Equals(object obj) {
             if (obj == null)
                 return false;
-            else if (obj is Vector2D v) {
+            else if (obj is Vector2D v)
                 return (x.Equals(v.x) && y.Equals(v.y));
-            } else
+            else
                 return false;
+        }
+
+        public override int GetHashCode() {
+            var hashCode = 1502939027;
+            hashCode = hashCode * -1521134295 + x.GetHashCode();
+            hashCode = hashCode * -1521134295 + y.GetHashCode();
+            return hashCode;
+        }
+
+        public override string ToString() {
+            return String.Format("[{0}, {1}]", x, y);
         }
     }
 }
