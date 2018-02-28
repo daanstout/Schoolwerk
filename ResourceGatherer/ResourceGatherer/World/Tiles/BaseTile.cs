@@ -20,11 +20,11 @@ namespace ResourceGatherer.World.Tiles {
 
         public RectangleF vertexRectangle {
             get {
-                return new RectangleF(position.x + 7, position.y + 7, tileWidth - 14, tileHeight - 14);
+                return new RectangleF(position.x + (tileWidth / 3), position.y + (tileHeight / 3), tileWidth - (tileWidth / 3 * 2), tileHeight - (tileHeight / 3 * 2));
             }
         }
 
-        public bool isWalkable = true;
+        public bool isWalkable;
 
         private List<StaticEntity> _entityList;
         public List<StaticEntity> entityList {
@@ -46,7 +46,7 @@ namespace ResourceGatherer.World.Tiles {
         }
 
         public void CreateTileVertex() {
-            if (tileVertex == null)
+            if (tileVertex == null && isWalkable)
                 tileVertex = new Vertex(position.ToString(), this);
         }
 
@@ -64,6 +64,10 @@ namespace ResourceGatherer.World.Tiles {
                     return true;
 
             return false;
+        }
+
+        public TileRiver GetRiverTile() {
+            return new TileRiver(position);
         }
     }
 }

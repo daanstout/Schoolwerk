@@ -12,7 +12,17 @@ namespace ResourceGatherer.Drawers.TileDrawers {
             if (tile.sprite == null)
                 g.DrawRectangle(new Pen(Color.Black, 1), tile.position.x, tile.position.y, BaseTile.tileWidth - 1, BaseTile.tileHeight - 1);
             else
-                g.DrawImage(tile.sprite, tile.position.x, tile.position.y);
+                g.DrawImage(tile.sprite, tile.position.x, tile.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
+
+            if (tile is TileRiver r) {
+                if (r.hasBridge) {
+                    Console.WriteLine("test");
+                    if (r.bridgeSprite == null)
+                        Console.WriteLine();
+                    else
+                        g.DrawImage(r.bridgeSprite, r.position.x, r.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
+                }
+            }
         }
     }
 }
