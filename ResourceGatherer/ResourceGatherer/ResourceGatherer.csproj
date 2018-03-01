@@ -50,7 +50,9 @@
     <Compile Include="Drawers\TileDrawers\VertexDrawer.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\MovingEntity.cs" />
+    <Compile Include="Entities\StaticEntities\MaterialEntity.cs" />
     <Compile Include="Entities\StaticEntity.cs" />
+    <Compile Include="Materials\Material.cs" />
     <Compile Include="ResourceGatherer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +112,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Bridge_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wood_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stone_01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

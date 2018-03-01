@@ -130,4 +130,10 @@
   <data name="RIver_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RIver_02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Stone_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stone_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Wood_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wood_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

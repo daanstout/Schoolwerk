@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ResourceGatherer.Properties;
+using ResourceGatherer.Entities.StaticEntities;
 
 namespace ResourceGatherer.World {
     public class GameWorld {
@@ -19,9 +20,13 @@ namespace ResourceGatherer.World {
         private int tileCount;
         private Graph graph;
 
+        private Random rand;
+
         public GameWorld(int width, int height) {
             gameWidth = width;
             gameHeight = height;
+
+            rand = new Random();
 
             initTiles();
             initGraph();
@@ -40,19 +45,18 @@ namespace ResourceGatherer.World {
                     curY += BaseTile.tileHeight;
                 }
             }
-            //tiles[132].isWalkable = false;
-            //tiles[133].isWalkable = false;
-            //tiles[134].isWalkable = false;
-            //tiles[172].isWalkable = false;
-            //tiles[173].isWalkable = false;
-            //tiles[174].isWalkable = false;
-            Random random = new Random();
+            tiles[132].isWalkable = false;
+            tiles[133].isWalkable = false;
+            tiles[134].isWalkable = false;
+            tiles[172].isWalkable = false;
+            tiles[173].isWalkable = false;
+            tiles[174].isWalkable = false;
+
             for (int i = 80; i < 120; i++) {
                 tiles[i] = tiles[i].GetRiverTile();
 
-                bool bridge = random.Next(0, 10) == 0;
+                bool bridge = rand.Next(0, 10) == 0;
                 if (bridge) {
-                    Console.WriteLine("Addbridge - " + i);
                     TileRiver tile = (TileRiver)tiles[i];
                     tile.AddBridge(false);
                     tile.AddBridgeSprite(Resources.Bridge_01);
@@ -62,9 +66,8 @@ namespace ResourceGatherer.World {
             for (int i = 8; i < tileCount; i += 40) {
                 tiles[i] = tiles[i].GetRiverTile();
 
-                bool bridge = random.Next(0, 10) == 0;
+                bool bridge = rand.Next(0, 10) == 0;
                 if (bridge) {
-                    Console.WriteLine("Addbridge2 - " + i);
                     TileRiver tile = (TileRiver)tiles[i];
                     tile.AddBridge(true);
                     tile.AddBridgeSprite(Resources.Bridge_01);
@@ -78,7 +81,7 @@ namespace ResourceGatherer.World {
             for (int i = 0; i < tileCount; i++) {
                 if (tiles[i] is TileRiver) {
                     SetRiverTile(i);
-                }else if(tiles[i] is TileLand) {
+                } else if (tiles[i] is TileLand) {
                     SetLandTile(i);
                 }
             }
@@ -86,10 +89,10 @@ namespace ResourceGatherer.World {
 
         private void SetLandTile(int index) {
             if (index >= 0 && index < tileCount) {
-                int rand = new Random().Next(0, 4);
+                int random = rand.Next(0, 4);
                 Bitmap sprite = Resources.Land_01;
 
-                switch (rand) {
+                switch (random) {
                     case 0:
                         sprite.RotateFlip(RotateFlipType.Rotate90FlipNone);
                         break;
@@ -100,6 +103,13 @@ namespace ResourceGatherer.World {
                         sprite.RotateFlip(RotateFlipType.Rotate270FlipNone);
                         break;
                 }
+
+                random = rand.Next(0, 100);
+                if (random == 0)
+                    if (rand.Next(0, 2) == 1)
+                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.WOOD, tiles[index].position, 3, 1));
+                    else
+                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.STONE, tiles[index].position, 3, 1));
 
                 tiles[index].sprite = sprite;
             }
@@ -130,13 +140,13 @@ namespace ResourceGatherer.World {
                 else
                     right = true;
 
-                if(left && right && !up && !down) {
+                if (left && right && !up && !down) {
                     tiles[index].sprite = Resources.River_01;
-                }else if(up && down && !left && !right) {
+                } else if (up && down && !left && !right) {
                     Bitmap river = Resources.River_01;
                     river.RotateFlip(RotateFlipType.Rotate90FlipNone);
                     tiles[index].sprite = river;
-                }else if(up && down && left && right) {
+                } else if (up && down && left && right) {
                     tiles[index].sprite = Resources.RIver_02;
                 }
             }

@@ -35,6 +35,15 @@ namespace ResourceGatherer.World.Tiles {
             }
         }
 
+        public int entityCount {
+            get {
+                if (_entityList == null)
+                    return 0;
+                else
+                    return _entityList.Count;
+            }
+        }
+
         private static ITileDrawer tileDrawer;
 
         public BaseTile(Vector2D pos) {
@@ -68,6 +77,11 @@ namespace ResourceGatherer.World.Tiles {
 
         public TileRiver GetRiverTile() {
             return new TileRiver(position);
+        }
+
+        public void AddEntityToTile(StaticEntity entity) {
+            if (!entityList.Contains(entity))
+                entityList.Add(entity);
         }
     }
 }

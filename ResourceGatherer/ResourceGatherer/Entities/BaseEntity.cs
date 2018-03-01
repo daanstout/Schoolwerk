@@ -10,6 +10,12 @@ namespace ResourceGatherer.Entities {
     public abstract class BaseEntity {
         public static int default_entity_type = -1;
 
+        public enum Entity_types {
+            // STATIC ENTITIES:
+            WOOD,
+            STONE
+        }
+
         private static int ValidId;
         private static int NextValidId {
             get {

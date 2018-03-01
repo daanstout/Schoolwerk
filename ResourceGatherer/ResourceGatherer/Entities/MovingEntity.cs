@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.Entities {
-    public class MovingEntity : BaseEntity {
+    public abstract class MovingEntity : BaseEntity {
         public Vector2D velocity;
         public Vector2D heading;
         public Vector2D side { get; protected set; }

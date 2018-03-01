@@ -18,6 +18,8 @@ namespace ResourceGatherer.World.Graphs {
             this.name = name;
             this.parentTile = parentTile;
             adj = new List<Edge>();
+
+            Reset();
         }
 
         public void Reset() {

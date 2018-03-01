@@ -1,4 +1,5 @@
-﻿using ResourceGatherer.World.Tiles;
+﻿using ResourceGatherer.Entities;
+using ResourceGatherer.World.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,11 +17,19 @@ namespace ResourceGatherer.Drawers.TileDrawers {
 
             if (tile is TileRiver r) {
                 if (r.hasBridge) {
-                    Console.WriteLine("test");
                     if (r.bridgeSprite == null)
                         Console.WriteLine();
                     else
                         g.DrawImage(r.bridgeSprite, r.position.x, r.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
+                }
+            }
+
+            if(tile.entityCount > 0) {
+                foreach(StaticEntity e in tile.entityList) {
+                    if (e.sprite == null)
+                        Console.WriteLine();
+                    else
+                        g.DrawImage(e.sprite, e.position.x, e.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
                 }
             }
         }
