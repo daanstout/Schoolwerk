@@ -68,7 +68,7 @@ namespace ResourceGatherer.Entities {
             tag = false;
         }
 
-        public virtual void Update(double time_elapsed) { }
+        public virtual void Update(float time_elapsed) { }
 
         public virtual void Render(Graphics g) { }
 

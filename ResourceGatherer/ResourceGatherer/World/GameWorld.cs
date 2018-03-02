@@ -2,14 +2,17 @@
 using ResourceGatherer.Util;
 using ResourceGatherer.World.Tiles;
 using ResourceGatherer.World.Graphs;
+using ResourceGatherer.Entities.MovingEntities;
+using ResourceGatherer.Entities.StaticEntities;
+using ResourceGatherer.Properties;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ResourceGatherer.Properties;
-using ResourceGatherer.Entities.StaticEntities;
+using System.Diagnostics;
 
 namespace ResourceGatherer.World {
     public class GameWorld {
@@ -22,11 +25,34 @@ namespace ResourceGatherer.World {
 
         private Random rand;
 
+        private List<BaseEntity> _entites;
+        private List<BaseEntity> entites {
+            get {
+                if (_entites == null)
+                    _entites = new List<BaseEntity>();
+                return _entites;
+            }
+        }
+
+        private Time time;
+
         public GameWorld(int width, int height) {
             gameWidth = width;
             gameHeight = height;
 
             rand = new Random();
+            time = new Time();
+            FriendlyNPC npc = new FriendlyNPC(new Vector2D(100, 20),
+                                                20,
+                                                new Vector2D(0, 0),
+                                                10,
+                                                new Vector2D(0, 0),
+                                                1,
+                                                new Vector2D(15, 15),
+                                                10,
+                                                10);
+
+            entites.Add(npc);
 
             initTiles();
             initGraph();
@@ -285,11 +311,17 @@ namespace ResourceGatherer.World {
         }
 
         public void Update() {
+            time.Update();
 
+            if (_entites != null)
+                for (int i = 0; i < entites.Count; i++)
+                    entites[i].Update(Time.deltaTimeSeconds);
         }
 
         public void Draw(Graphics g) {
-
+            if (_entites != null)
+                for (int i = 0; i < entites.Count; i++)
+                    entites[i].Render(g);
         }
 
         public void GetBackground(Graphics g) {

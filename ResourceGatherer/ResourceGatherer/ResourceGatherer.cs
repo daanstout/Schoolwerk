@@ -24,6 +24,8 @@ namespace ResourceGatherer {
             gameWorld = new GameWorld(800, 600);
 
             RedrawBackground();
+
+            worldTimer.Enabled = true;
         }
 
         private void worldTimer_Tick(object sender, EventArgs e) {
@@ -33,7 +35,10 @@ namespace ResourceGatherer {
         }
 
         private void gameWorldPicturebox_Paint(object sender, PaintEventArgs e) {
-            gameWorld.Draw(e.Graphics);
+            base.OnPaint(e);
+            {
+                gameWorld.Draw(e.Graphics);
+            }
         }
 
         public void RedrawBackground() {

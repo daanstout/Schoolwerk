@@ -16,7 +16,7 @@ namespace ResourceGatherer.Entities {
         public float maxForce;
         public float maxTurnRate;
 
-        public MovingEntity(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce) : base(0, pos, rad) {
+        protected MovingEntity(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce) : base(0, pos, rad) {
             this.heading = heading;
             velocity = vel;
             this.mass = mass;
