@@ -12,8 +12,11 @@ namespace ResourceGatherer.Entities.MovingEntities {
 
         }
 
+        public override void Update(float time_elapsed) {
+            position += new Vector2D(maxSpeed * time_elapsed, 0);
+        }
+
         public override void Render(Graphics g) {
-            Console.WriteLine("Draw");
             g.FillRectangle(new SolidBrush(Color.Red), new RectangleF(position.x, position.y, scale.x, scale.y));
         }
     }
