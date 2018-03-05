@@ -75,6 +75,7 @@
     <Compile Include="World\Graphs\Graph.cs" />
     <Compile Include="World\Graphs\Vertex.cs" />
     <Compile Include="World\Grids\Grid.cs" />
+    <Compile Include="World\Grids\GridSystem.cs" />
     <Compile Include="World\Tiles\BaseTile.cs" />
     <Compile Include="World\Tiles\TileLand.cs" />
     <Compile Include="World\Tiles\TileRiver.cs" />

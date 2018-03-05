@@ -2,6 +2,7 @@
 using ResourceGatherer.Util;
 using ResourceGatherer.World.Tiles;
 using ResourceGatherer.World.Graphs;
+using ResourceGatherer.World.Grids;
 using ResourceGatherer.Entities.MovingEntities;
 using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Properties;
@@ -19,9 +20,13 @@ namespace ResourceGatherer.World {
         public readonly int gameWidth;
         public readonly int gameHeight;
 
+        public static GameWorld instance;
+
         public BaseTile[] tiles;
         private int tileCount;
         private Graph graph;
+
+        public GridSystem grid;
 
         private Random rand;
 
@@ -37,11 +42,15 @@ namespace ResourceGatherer.World {
         private Time time;
 
         public GameWorld(int width, int height) {
+            instance = this;
+
             gameWidth = width;
             gameHeight = height;
 
             rand = new Random();
             time = new Time();
+            grid = new GridSystem(this);
+
             FriendlyNPC npc = new FriendlyNPC(new Vector2D(20, 100),
                                                 20,
                                                 new Vector2D(0, 0),
@@ -55,9 +64,11 @@ namespace ResourceGatherer.World {
             entites.Add(npc);
 
             initTiles();
+            grid.initGrid();
             initGraph();
         }
 
+        #region TileCreation
         private void initTiles() {
             tileCount = (gameWidth / BaseTile.tileWidth) * (gameHeight / BaseTile.tileHeight);
             tiles = new BaseTile[tileCount];
@@ -71,12 +82,12 @@ namespace ResourceGatherer.World {
                     curY += BaseTile.tileHeight;
                 }
             }
-            tiles[132].isWalkable = false;
-            tiles[133].isWalkable = false;
-            tiles[134].isWalkable = false;
-            tiles[172].isWalkable = false;
-            tiles[173].isWalkable = false;
-            tiles[174].isWalkable = false;
+            //tiles[132].isWalkable = false;
+            //tiles[133].isWalkable = false;
+            //tiles[134].isWalkable = false;
+            //tiles[172].isWalkable = false;
+            //tiles[173].isWalkable = false;
+            //tiles[174].isWalkable = false;
 
             for (int i = 80; i < 120; i++) {
                 tiles[i] = tiles[i].GetRiverTile();
@@ -177,6 +188,7 @@ namespace ResourceGatherer.World {
                 }
             }
         }
+        #endregion
 
         private void initGraph() {
             graph = new Graph(this);

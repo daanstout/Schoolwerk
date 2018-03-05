@@ -10,7 +10,7 @@ namespace ResourceGatherer.Materials {
         public static Material WOOD = new Material(Materials.WOOD.ToString());
         public static Material STONE = new Material(Materials.STONE.ToString());
 
-        public enum Materials {
+        private enum Materials {
             WOOD,
             STONE
         }
@@ -26,11 +26,11 @@ namespace ResourceGatherer.Materials {
         public string name;
         public int id;
 
-        public Material() : this("") {
+        private Material() : this("") {
 
         }
 
-        public Material(string name) {
+        private Material(string name) {
             this.name = name;
             id = NextValidID;
         }

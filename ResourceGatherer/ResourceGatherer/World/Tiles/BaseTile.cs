@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.World.Tiles {
-    public class BaseTile {
-        public static int tileWidth = 20;
-        public static int tileHeight = 20;
+    public abstract class BaseTile {
+        public static readonly int tileWidth = 20;
+        public static readonly int tileHeight = 20;
 
         public Bitmap sprite;
         public Vector2D position;

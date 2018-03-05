@@ -1,4 +1,5 @@
 ﻿using ResourceGatherer.Util;
+using ResourceGatherer.World.Grids;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -31,6 +32,8 @@ namespace ResourceGatherer.Entities {
         public Vector2D scale { get; protected set; }
         public float boundingRadius;
         public Bitmap sprite;
+
+        public Grid currentGrid;
 
         protected BaseEntity() {
             entityId = NextValidId;

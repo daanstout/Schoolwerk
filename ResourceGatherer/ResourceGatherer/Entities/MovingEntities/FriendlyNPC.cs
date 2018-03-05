@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ResourceGatherer.Util;
+using ResourceGatherer.World;
 
 namespace ResourceGatherer.Entities.MovingEntities {
     public class FriendlyNPC : MovingEntity {
@@ -14,6 +15,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
 
         public override void Update(float time_elapsed) {
             position += new Vector2D(maxSpeed * time_elapsed, 0);
+            position.WrapAround(GameWorld.instance.gameWidth, GameWorld.instance.gameHeight);
         }
 
         public override void Render(Graphics g) {
