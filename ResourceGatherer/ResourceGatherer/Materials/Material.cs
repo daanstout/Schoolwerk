@@ -15,16 +15,26 @@ namespace ResourceGatherer.Materials {
             STONE
         }
 
-        private int ID;
-        private int NextValidID {
+        private static int ID;
+        private static int NextValidID {
             get {
                 return ++ID;
             }
         }
 
+        public static Material IDToMaterial(int ID) {
+            switch (ID) {
+                case 1:
+                    return WOOD;
+                case 2:
+                    return STONE;
+                default:
+                    return null;
+            }
+        }
 
         public string name;
-        public int id;
+        public readonly int id;
 
         private Material() : this("") {
 
@@ -33,6 +43,16 @@ namespace ResourceGatherer.Materials {
         private Material(string name) {
             this.name = name;
             id = NextValidID;
+        }
+
+        public override bool Equals(object obj) {
+            var material = obj as Material;
+            return material != null &&
+                   id == material.id;
+        }
+
+        public override int GetHashCode() {
+            return 1877310944 + id.GetHashCode();
         }
     }
 }

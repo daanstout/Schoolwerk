@@ -72,5 +72,25 @@ namespace ResourceGatherer.World.Grids {
             foreach (Grid g in gameGrid)
                 g.entityList.Clear();
         }
+
+        public List<BaseEntity> CalculateNeighbours(Vector2D targetPos, float queryRad) {
+            Rectangle targetRect = new Rectangle(targetPos - new Vector2D(queryRad, queryRad), new Vector2D(queryRad * 2, queryRad * 2));
+
+            List<BaseEntity> foundNeighbours = new List<BaseEntity>();
+
+            foreach (Grid grid in gameGrid) {
+                Rectangle gridRectangle = new Rectangle(grid.position, new Vector2D(Grid.GridWidth, Grid.GridHeight));
+                if (targetRect.IntersectsWith(gridRectangle)) {
+                    if (grid.entityCount > 0) {
+                        foreach (BaseEntity entity in grid.entityList) {
+                            if (Vector2D.Vec2DDistanceSq(entity.position, targetPos) < queryRad * queryRad)
+                                foundNeighbours.Add(entity);
+                        }
+                    }
+                }
+            }
+
+            return foundNeighbours;
+        }
     }
 }

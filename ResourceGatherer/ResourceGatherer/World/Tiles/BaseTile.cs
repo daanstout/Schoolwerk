@@ -83,5 +83,21 @@ namespace ResourceGatherer.World.Tiles {
             if (!entityList.Contains(entity))
                 entityList.Add(entity);
         }
+
+        public override bool Equals(object obj) {
+            var tile = obj as BaseTile;
+            return tile != null &&
+                   EqualityComparer<Vector2D>.Default.Equals(position, tile.position) &&
+                   isWalkable == tile.isWalkable &&
+                   EqualityComparer<List<StaticEntity>>.Default.Equals(_entityList, tile._entityList);
+        }
+
+        public override int GetHashCode() {
+            var hashCode = 978046299;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Vector2D>.Default.GetHashCode(position);
+            hashCode = hashCode * -1521134295 + isWalkable.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<StaticEntity>>.Default.GetHashCode(_entityList);
+            return hashCode;
+        }
     }
 }

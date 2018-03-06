@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace ResourceGatherer.Util {
             y = b;
         }
 
-        public void Zero() {
+        public void SetZero() {
             x = y = 0.0f;
         }
 
@@ -47,17 +48,6 @@ namespace ResourceGatherer.Util {
             float vectorLength = Length();
             x /= vectorLength;
             y /= vectorLength;
-        }
-
-        public static Vector2D Vec2DNormalize(Vector2D v) {
-            Vector2D vec = v;
-
-            float vector_length = vec.Length();
-
-            vec.x /= vector_length;
-            vec.y /= vector_length;
-
-            return vec;
         }
 
         public int Sign(Vector2D other) {
@@ -131,6 +121,39 @@ namespace ResourceGatherer.Util {
             return facingFirst.Dot(toTarget) >= Math.Cos(fov / 2);
         }
 
+        public static Vector2D Vec2DNormalize(Vector2D v) {
+            Vector2D vec = v;
+
+            float vector_length = vec.Length();
+
+            vec.x /= vector_length;
+            vec.y /= vector_length;
+
+            return vec;
+        }
+
+        public static float Vec2DDistance(Vector2D v1, Vector2D v2) {
+            float ySep = v2.y - v1.y;
+            float xSep = v2.x - v1.x;
+
+            return (float)Math.Sqrt(ySep * ySep + xSep * xSep);
+        }
+
+        public static float Vec2DDistanceSq(Vector2D v1, Vector2D v2) {
+            float ySep = v2.y - v1.y;
+            float xSep = v2.x - v1.x;
+
+            return ySep * ySep + xSep * xSep;
+        }
+
+        public static float Vec2DLength(Vector2D v) {
+            return (float)Math.Sqrt(v.x * v.x + v.y * v.y);
+        }
+
+        public static float Vec2DLengthSq(Vector2D v) {
+            return v.x * v.x + v.y * v.y;
+        }
+
         public static Vector2D operator +(Vector2D a, Vector2D b) {
             return new Vector2D(a.x + b.x, a.y + b.y);
         }
@@ -153,6 +176,40 @@ namespace ResourceGatherer.Util {
         public static Vector2D operator /(float f, Vector2D v) {
             return new Vector2D(v.x / f, v.y / f);
         }
+
+        public static implicit operator Point(Vector2D v) {
+            return new Point((int)v.x, (int)v.y);
+        }
+
+        public static implicit operator Vector2D(Point p) {
+            return new Vector2D(p.X, p.Y);
+        }
+
+        public static implicit operator PointF(Vector2D v) {
+            return new PointF(v.x, v.y);
+        }
+
+        public static implicit operator Vector2D(PointF p) {
+            return new Vector2D(p.X, p.Y);
+        }
+
+        public static implicit operator Size(Vector2D v) {
+            return new Size((int)v.x, (int)v.y);
+        }
+
+        public static implicit operator Vector2D(Size s) {
+            return new Vector2D(s.Width, s.Height);
+        }
+
+        public static implicit operator SizeF(Vector2D v) {
+            return new SizeF(v.x, v.y);
+        }
+
+        public static readonly Vector2D Up = new Vector2D(0, -1);
+        public static readonly Vector2D Right = new Vector2D(1, 0);
+        public static readonly Vector2D Down = new Vector2D(0, 1);
+        public static readonly Vector2D Left = new Vector2D(-1, 0);
+        public static readonly Vector2D Zero = new Vector2D(0, 0);
 
         public override bool Equals(object obj) {
             if (obj == null)

@@ -66,6 +66,7 @@
     <Compile Include="Util\Datastructures\PriorityQueue.cs" />
     <Compile Include="Util\Datastructures\Queue.cs" />
     <Compile Include="Util\Datastructures\Stack.cs" />
+    <Compile Include="Util\Path.cs" />
     <Compile Include="Util\Steering.cs" />
     <Compile Include="Util\Telegram.cs" />
     <Compile Include="Util\Time.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="World\Tiles\BaseTile.cs" />
     <Compile Include="World\Tiles\TileLand.cs" />
     <Compile Include="World\Tiles\TileRiver.cs" />
+    <Compile Include="World\Tiles\TileSystem.cs" />
     <EmbeddedResource Include="ResourceGatherer.resx">
       <DependentUpon>ResourceGatherer.cs</DependentUpon>
     </EmbeddedResource>
