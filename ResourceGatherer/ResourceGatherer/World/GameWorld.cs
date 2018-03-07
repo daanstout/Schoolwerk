@@ -14,11 +14,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using ResourceGatherer.Materials;
 
 namespace ResourceGatherer.World {
     public class GameWorld {
         public readonly int gameWidth;
         public readonly int gameHeight;
+
+        public static GameWorld instance;
 
         private Graph graph;
         public GridSystem grid;
@@ -36,6 +39,8 @@ namespace ResourceGatherer.World {
         private Time time;
 
         public GameWorld(int width, int height) {
+            instance = this;
+
             gameWidth = width;
             gameHeight = height;
 
@@ -57,8 +62,9 @@ namespace ResourceGatherer.World {
             tiles.initTiles();
             grid.initGrid();
             graph.initGraph();
-            tiles.Prepare();
-            npc.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc.position)], tiles.tiles[500]));
+            //tiles.Prepare();
+            //npc.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc.position)], tiles.tiles[500]));
+            npc.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc.position)], Material.STONE));
 
             entites.Add(npc);
         }

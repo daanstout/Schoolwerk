@@ -238,11 +238,24 @@ namespace ResourceGatherer.World.Tiles {
             }
         }
 
-        public void Prepare() {
-            foreach(BaseTile b in tiles) {
-                if (b.tileVertex != null) {
-                    b.tileVertex.dist = float.MaxValue;
-                    b.tileVertex.prev = null;
+        //public void Prepare() {
+        //    foreach(BaseTile b in tiles) {
+        //        if (b.tileVertex != null) {
+        //            b.tileVertex.dist = float.MaxValue;
+        //            b.tileVertex.prev = null;
+        //        }
+        //    }
+        //}
+
+        public static void Prepare(BaseTile[] tiles) {
+            if(tiles != null) {
+                if(tiles.Count() > 0) {
+                    foreach(BaseTile b in tiles) {
+                        if(b.tileVertex != null) {
+                            b.tileVertex.dist = float.MaxValue;
+                            b.tileVertex.prev = null;
+                        }
+                    }
                 }
             }
         }

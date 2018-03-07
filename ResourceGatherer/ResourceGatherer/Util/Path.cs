@@ -1,4 +1,8 @@
-﻿using ResourceGatherer.Util.Datastructures;
+﻿using ResourceGatherer.Entities;
+using ResourceGatherer.Entities.StaticEntities;
+using ResourceGatherer.Materials;
+using ResourceGatherer.Util.Datastructures;
+using ResourceGatherer.World;
 using ResourceGatherer.World.Graphs;
 using ResourceGatherer.World.Tiles;
 using System;
@@ -110,6 +114,7 @@ namespace ResourceGatherer.Util {
         public static Path GetPathTo(BaseTile pos, BaseTile target) {
             Path p = new Path();
             //TileSystem.Prepare();
+            TileSystem.Prepare(ResourceGatherer.instance.gameWorld.tiles.tiles);
 
             PriorityQueue<Vertex> q = new PriorityQueue<Vertex>();
 
@@ -147,13 +152,73 @@ namespace ResourceGatherer.Util {
                 }
             }
 
-
-
             return p;
         }
 
         private static int Heuristics(Vector2D a, Vector2D b) {
             return (int)Math.Abs(a.x - b.x) + (int)Math.Abs(a.y - b.y);
+        }
+
+        public static Path GetPathTo(BaseTile pos, Material mat) {
+            Path p = new Path();
+
+            TileSystem.Prepare(GameWorld.instance.tiles.tiles);
+            //if(ResourceGatherer.instance != null) {
+            //    Console.WriteLine("1");
+            //    if(ResourceGatherer.instance.gameWorld != null) {
+            //        Console.WriteLine("2");
+            //        if(ResourceGatherer.instance.gameWorld.tiles != null) {
+            //            Console.WriteLine("3");
+            //            if(ResourceGatherer.instance.gameWorld.tiles.tiles != null) {
+            //                Console.WriteLine("4");
+            //            }
+            //        }
+            //    }
+            //}
+
+            //return p;
+
+            Datastructures.Queue<Vertex> q = new Datastructures.Queue<Vertex>();
+
+            pos.tileVertex.dist = 0;
+            pos.tileVertex.Scratch = true;
+
+            q.Enqueue(pos.tileVertex);
+
+            Vertex current;
+
+            while (!q.isEmpty) {
+                current = q.Dequeue();
+
+                if (current == null)
+                    continue;
+
+                foreach(StaticEntity s in current.parentTile.entityList) {
+                    if (s is MaterialEntity m) {
+                        if (m.material.id == mat.id) {
+                            Vertex icurrent = current;
+                            while (icurrent.prev != null) {
+                                p.AddWaypointFront(icurrent);
+                                icurrent = icurrent.prev;
+                            }
+                            return p;
+                        }
+                    }
+                }
+
+                foreach(Edge e in current.adj) {
+                    if (e.destination.dist >= current.dist + e.cost) {
+                        e.destination.prev = current;
+                        e.destination.dist = current.dist + e.cost;
+                        if (!e.destination.Scratch) {
+                            e.destination.Scratch = true;
+                            q.Enqueue(e.destination);
+                        }
+                    }
+                }
+            }
+
+            return p;
         }
     }
 }
