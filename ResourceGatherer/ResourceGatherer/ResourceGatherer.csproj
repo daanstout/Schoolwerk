@@ -49,6 +49,7 @@
     <Compile Include="Drawers\TileDrawers\SimpleTileDrawer.cs" />
     <Compile Include="Drawers\TileDrawers\VertexDrawer.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\EntityHelpers\Vehicle.cs" />
     <Compile Include="Entities\MovingEntities\FriendlyNPC.cs" />
     <Compile Include="Entities\MovingEntity.cs" />
     <Compile Include="Entities\StaticEntities\MaterialEntity.cs" />

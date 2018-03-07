@@ -27,6 +27,7 @@
             this.gameWorldPicturebox = new System.Windows.Forms.PictureBox();
             this.worldTimer = new System.Windows.Forms.Timer(this.components);
             this.vertecesButton = new System.Windows.Forms.Button();
+            this.redrawBackgroundButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gameWorldPicturebox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,11 +56,22 @@
             this.vertecesButton.UseVisualStyleBackColor = true;
             this.vertecesButton.Click += new System.EventHandler(this.vertecesButton_Click);
             // 
+            // redrawBackgroundButton
+            // 
+            this.redrawBackgroundButton.Location = new System.Drawing.Point(832, 55);
+            this.redrawBackgroundButton.Name = "redrawBackgroundButton";
+            this.redrawBackgroundButton.Size = new System.Drawing.Size(140, 36);
+            this.redrawBackgroundButton.TabIndex = 2;
+            this.redrawBackgroundButton.Text = "Redraw Background";
+            this.redrawBackgroundButton.UseVisualStyleBackColor = true;
+            this.redrawBackgroundButton.Click += new System.EventHandler(this.redrawBackgroundButton_Click);
+            // 
             // ResourceGatherer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 749);
+            this.Controls.Add(this.redrawBackgroundButton);
             this.Controls.Add(this.vertecesButton);
             this.Controls.Add(this.gameWorldPicturebox);
             this.Name = "ResourceGatherer";
@@ -74,6 +86,7 @@
         private System.Windows.Forms.PictureBox gameWorldPicturebox;
         private System.Windows.Forms.Timer worldTimer;
         private System.Windows.Forms.Button vertecesButton;
+        private System.Windows.Forms.Button redrawBackgroundButton;
     }
 }
 

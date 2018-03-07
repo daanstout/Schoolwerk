@@ -13,10 +13,15 @@ using System.Windows.Forms;
 
 namespace ResourceGatherer {
     public partial class ResourceGatherer : Form {
-        GameWorld gameWorld;
+        public GameWorld gameWorld;
+
+        public static ResourceGatherer instance;
+
         bool showVerteces = false;
 
         public ResourceGatherer() {
+            instance = this;
+
             InitializeComponent();
 
             BaseTile.SetTileDrawer(new SimpleTileDrawer());
@@ -61,6 +66,10 @@ namespace ResourceGatherer {
                 vertecesButton.Text = "Show Verteces";
             }
 
+            RedrawBackground();
+        }
+
+        private void redrawBackgroundButton_Click(object sender, EventArgs e) {
             RedrawBackground();
         }
     }

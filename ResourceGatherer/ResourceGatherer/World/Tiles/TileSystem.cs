@@ -237,5 +237,14 @@ namespace ResourceGatherer.World.Tiles {
                 tiles[i].Render(g);
             }
         }
+
+        public void Prepare() {
+            foreach(BaseTile b in tiles) {
+                if (b.tileVertex != null) {
+                    b.tileVertex.dist = float.MaxValue;
+                    b.tileVertex.prev = null;
+                }
+            }
+        }
     }
 }

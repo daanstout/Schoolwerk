@@ -1,4 +1,5 @@
-﻿using ResourceGatherer.Util;
+﻿using ResourceGatherer.Entities.EntityHelpers;
+using ResourceGatherer.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,9 @@ namespace ResourceGatherer.Entities {
         public Vector2D velocity;
         public Vector2D heading;
         public Vector2D side { get; protected set; }
+
+        public Path path;
+        public Vehicle vehicle;
 
         public readonly float mass;
         public float maxSpeed;
@@ -25,6 +29,11 @@ namespace ResourceGatherer.Entities {
             maxTurnRate = turnRate;
             this.maxForce = maxForce;
             this.scale = scale;
+            vehicle = new Vehicle(this);
+        }
+
+        public override void Update(float time_elapsed) {
+            vehicle.Update(time_elapsed);
         }
 
         public bool IsSpeedMaxedOut() {
@@ -51,7 +60,7 @@ namespace ResourceGatherer.Entities {
 
             float angle = (float)Math.Acos(heading.Dot(toTarget));
 
-            if (angle < 0.00001)
+            if (angle < 0.1)
                 return true;
 
             if (angle > maxTurnRate)

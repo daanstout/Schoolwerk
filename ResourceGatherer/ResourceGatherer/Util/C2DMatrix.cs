@@ -30,7 +30,10 @@ namespace ResourceGatherer.Util {
 
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    matrix[i, j] = 0;
+                    if (i == j)
+                        matrix[i, j] = 1;
+                    else
+                        matrix[i, j] = 0;
         }
 
         public void Translate(float x, float y) {
@@ -58,8 +61,8 @@ namespace ResourceGatherer.Util {
             float Cos = (float)Math.Cos(rotation);
 
             mat.matrix[0, 0] = Cos;
-            mat.matrix[1, 0] = Sin;
-            mat.matrix[0, 1] = -Sin;
+            mat.matrix[1, 0] = -Sin;
+            mat.matrix[0, 1] = Sin;
             mat.matrix[1, 1] = Cos;
 
             MatrixMultiply(mat);

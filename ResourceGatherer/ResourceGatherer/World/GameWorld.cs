@@ -20,8 +20,6 @@ namespace ResourceGatherer.World {
         public readonly int gameWidth;
         public readonly int gameHeight;
 
-        public static GameWorld instance;
-
         private Graph graph;
         public GridSystem grid;
         public TileSystem tiles;
@@ -38,8 +36,6 @@ namespace ResourceGatherer.World {
         private Time time;
 
         public GameWorld(int width, int height) {
-            instance = this;
-
             gameWidth = width;
             gameHeight = height;
 
@@ -51,18 +47,20 @@ namespace ResourceGatherer.World {
             FriendlyNPC npc = new FriendlyNPC(new Vector2D(20, 100),
                                                 20,
                                                 new Vector2D(0, 0),
-                                                20,
-                                                new Vector2D(0, 0),
+                                                10,
+                                                Vector2D.Up,
                                                 1,
                                                 new Vector2D(15, 15),
-                                                10,
+                                                0.05f,
                                                 10);
-
-            entites.Add(npc);
 
             tiles.initTiles();
             grid.initGrid();
             graph.initGraph();
+            tiles.Prepare();
+            npc.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc.position)], tiles.tiles[500]));
+
+            entites.Add(npc);
         }
 
         public void Update() {
@@ -82,6 +80,10 @@ namespace ResourceGatherer.World {
         public void GetBackground(Graphics g) {
             tiles.Render(g);
             grid.Render(g);
+            foreach(BaseEntity b in entites) {
+                if (b is MovingEntity m)
+                    m.path.Render(g);
+            }
         }
     }
 }

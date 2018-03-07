@@ -10,16 +10,22 @@ using ResourceGatherer.World;
 namespace ResourceGatherer.Entities.MovingEntities {
     public class FriendlyNPC : MovingEntity {
         public FriendlyNPC(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce) : base(pos, rad, vel, maxSpd, heading, mass, scale, turnRate, maxForce) {
-
+            path = new Path();
         }
 
         public override void Update(float time_elapsed) {
-            position += new Vector2D(maxSpeed * time_elapsed, 0);
-            position.WrapAround(GameWorld.instance.gameWidth, GameWorld.instance.gameHeight);
+            base.Update(time_elapsed);
+            //position += new Vector2D(maxSpeed * time_elapsed, 0);
+            //position.WrapAround(GameWorld.instance.gameWidth, GameWorld.instance.gameHeight);
         }
 
         public override void Render(Graphics g) {
-            g.FillRectangle(new SolidBrush(Color.Red), new RectangleF(position.x, position.y, scale.x, scale.y));
+            g.FillRectangle(new SolidBrush(Color.Red), new RectangleF(position - (scale / 2), scale));
+            try {
+                g.DrawLine(new Pen(Color.Black), position, position + heading * 20);
+            } catch {
+
+            }
         }
     }
 }

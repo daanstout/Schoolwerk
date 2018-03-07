@@ -110,7 +110,7 @@ namespace ResourceGatherer.Util.Datastructures {
             int hole = ++size;
             heap[0] = n;
 
-            for (; n.priority <= heap[hole / 2].priority && hole > 1; hole /= 2)
+            for (; n.priority < heap[hole / 2].priority && hole > 1; hole /= 2)
                 heap[hole] = heap[hole / 2];
 
             heap[hole] = n;
