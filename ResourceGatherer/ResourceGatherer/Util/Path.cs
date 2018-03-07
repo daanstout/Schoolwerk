@@ -30,7 +30,10 @@ namespace ResourceGatherer.Util {
         public Vector2D end {
             get {
                 if (waypoints != null)
-                    return waypoints[waypoints.Count - 1];
+                    if (waypoints.Count > 0)
+                        return waypoints[waypoints.Count - 1];
+                    else
+                        return null;
                 else
                     return null;
             }
@@ -38,7 +41,7 @@ namespace ResourceGatherer.Util {
 
         public bool isFinished {
             get {
-                return current == end;
+                return Count == 0;
             }
         }
 
@@ -95,7 +98,7 @@ namespace ResourceGatherer.Util {
         }
 
         public void Render(Graphics g) {
-            for (int i = 0; i < waypoints.Count - 2; i++)
+            for (int i = 0; i < waypoints.Count - 1; i++)
                 g.DrawLine(new Pen(Color.Blue), waypoints[i], waypoints[i + 1]);
         }
 
@@ -163,20 +166,6 @@ namespace ResourceGatherer.Util {
             Path p = new Path();
 
             TileSystem.Prepare(GameWorld.instance.tiles.tiles);
-            //if(ResourceGatherer.instance != null) {
-            //    Console.WriteLine("1");
-            //    if(ResourceGatherer.instance.gameWorld != null) {
-            //        Console.WriteLine("2");
-            //        if(ResourceGatherer.instance.gameWorld.tiles != null) {
-            //            Console.WriteLine("3");
-            //            if(ResourceGatherer.instance.gameWorld.tiles.tiles != null) {
-            //                Console.WriteLine("4");
-            //            }
-            //        }
-            //    }
-            //}
-
-            //return p;
 
             Datastructures.Queue<Vertex> q = new Datastructures.Queue<Vertex>();
 
@@ -193,10 +182,13 @@ namespace ResourceGatherer.Util {
                 if (current == null)
                     continue;
 
-                foreach(StaticEntity s in current.parentTile.entityList) {
+                foreach (StaticEntity s in current.parentTile.entityList) {
                     if (s is MaterialEntity m) {
                         if (m.material.id == mat.id) {
-                            Vertex icurrent = current;
+                            Vertex icurrent = current.prev;
+                            p.AddWaypointFront(current);
+                            Console.WriteLine(m.position);
+                            Console.WriteLine(current.parentTile.position);
                             while (icurrent.prev != null) {
                                 p.AddWaypointFront(icurrent);
                                 icurrent = icurrent.prev;
@@ -206,7 +198,7 @@ namespace ResourceGatherer.Util {
                     }
                 }
 
-                foreach(Edge e in current.adj) {
+                foreach (Edge e in current.adj) {
                     if (e.destination.dist >= current.dist + e.cost) {
                         e.destination.prev = current;
                         e.destination.dist = current.dist + e.cost;

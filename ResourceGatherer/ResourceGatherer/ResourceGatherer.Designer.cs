@@ -28,6 +28,7 @@
             this.worldTimer = new System.Windows.Forms.Timer(this.components);
             this.vertecesButton = new System.Windows.Forms.Button();
             this.redrawBackgroundButton = new System.Windows.Forms.Button();
+            this.newWorldButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gameWorldPicturebox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,11 +67,22 @@
             this.redrawBackgroundButton.UseVisualStyleBackColor = true;
             this.redrawBackgroundButton.Click += new System.EventHandler(this.redrawBackgroundButton_Click);
             // 
+            // newWorldButton
+            // 
+            this.newWorldButton.Location = new System.Drawing.Point(832, 98);
+            this.newWorldButton.Name = "newWorldButton";
+            this.newWorldButton.Size = new System.Drawing.Size(140, 36);
+            this.newWorldButton.TabIndex = 3;
+            this.newWorldButton.Text = "New World";
+            this.newWorldButton.UseVisualStyleBackColor = true;
+            this.newWorldButton.Click += new System.EventHandler(this.newWorldButton_Click);
+            // 
             // ResourceGatherer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 749);
+            this.Controls.Add(this.newWorldButton);
             this.Controls.Add(this.redrawBackgroundButton);
             this.Controls.Add(this.vertecesButton);
             this.Controls.Add(this.gameWorldPicturebox);
@@ -87,6 +99,7 @@
         private System.Windows.Forms.Timer worldTimer;
         private System.Windows.Forms.Button vertecesButton;
         private System.Windows.Forms.Button redrawBackgroundButton;
+        private System.Windows.Forms.Button newWorldButton;
     }
 }
 

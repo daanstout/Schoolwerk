@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ResourceGatherer.Materials;
 using ResourceGatherer.Util;
 using ResourceGatherer.World;
 
@@ -15,6 +16,14 @@ namespace ResourceGatherer.Entities.MovingEntities {
 
         public override void Update(float time_elapsed) {
             base.Update(time_elapsed);
+
+            if (path.isFinished) {
+                GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList.Clear();
+
+                path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)], Material.STONE));
+
+                ResourceGatherer.instance.RedrawBackground();
+            }
             //position += new Vector2D(maxSpeed * time_elapsed, 0);
             //position.WrapAround(GameWorld.instance.gameWidth, GameWorld.instance.gameHeight);
         }

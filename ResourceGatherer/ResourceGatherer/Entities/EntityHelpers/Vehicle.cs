@@ -14,7 +14,6 @@ namespace ResourceGatherer.Entities.EntityHelpers {
         }
 
         public void Update(float time_elapsed) {
-            Console.WriteLine(parent.path.Count);
             if(parent.path.Count > 0) {
                 if(parent.position.Distance(parent.path.current) < 1) {
                     if (!parent.path.GoNext())

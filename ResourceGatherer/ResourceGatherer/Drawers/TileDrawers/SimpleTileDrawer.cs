@@ -28,8 +28,10 @@ namespace ResourceGatherer.Drawers.TileDrawers {
                 foreach(StaticEntity e in tile.entityList) {
                     if (e.sprite == null)
                         Console.WriteLine();
-                    else
+                    else {
                         g.DrawImage(e.sprite, e.position.x, e.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
+                        Console.WriteLine(e.position);
+                    }
                 }
             }
         }

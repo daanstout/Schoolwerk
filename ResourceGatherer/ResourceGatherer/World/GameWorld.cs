@@ -49,15 +49,15 @@ namespace ResourceGatherer.World {
             grid = new GridSystem(this);
             tiles = new TileSystem(this);
 
-            FriendlyNPC npc = new FriendlyNPC(new Vector2D(20, 100),
-                                                20,
-                                                new Vector2D(0, 0),
-                                                10,
-                                                Vector2D.Up,
-                                                1,
-                                                new Vector2D(15, 15),
-                                                0.05f,
-                                                10);
+            FriendlyNPC npc = new FriendlyNPC(new Vector2D(20, 100), // Position
+                                                20, // Bounding Radius
+                                                new Vector2D(0, 0), // Velocity
+                                                40, // Max Speed
+                                                Vector2D.Up, // Heading
+                                                1, // Mass
+                                                new Vector2D(15, 15), // Scale
+                                                0.05f, // Turnrate
+                                                10); // Max Force
 
             tiles.initTiles();
             grid.initGrid();

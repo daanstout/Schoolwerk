@@ -72,5 +72,15 @@ namespace ResourceGatherer {
         private void redrawBackgroundButton_Click(object sender, EventArgs e) {
             RedrawBackground();
         }
+
+        private void newWorldButton_Click(object sender, EventArgs e) {
+            worldTimer.Enabled = false;
+
+            gameWorld = new GameWorld(800, 600);
+
+            RedrawBackground();
+
+            worldTimer.Enabled = true;
+        }
     }
 }
