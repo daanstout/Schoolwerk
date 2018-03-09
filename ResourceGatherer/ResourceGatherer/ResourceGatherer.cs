@@ -13,12 +13,24 @@ using System.Windows.Forms;
 
 namespace ResourceGatherer {
     public partial class ResourceGatherer : Form {
+        /// <summary>
+        /// Instance of the game world
+        /// </summary>
         public GameWorld gameWorld;
 
+        /// <summary>
+        /// Public instance of our window
+        /// </summary>
         public static ResourceGatherer instance;
 
+        /// <summary>
+        /// A bool on whether we want to show the verteces
+        /// </summary>
         bool showVerteces = false;
 
+        /// <summary>
+        /// Public constructor for our window
+        /// </summary>
         public ResourceGatherer() {
             instance = this;
 
@@ -46,6 +58,9 @@ namespace ResourceGatherer {
             }
         }
 
+        /// <summary>
+        /// Redraws the background and sets it as image on the picturebox
+        /// </summary>
         public void RedrawBackground() {
             Bitmap bg = new Bitmap(gameWorld.gameWidth, gameWorld.gameHeight);
 

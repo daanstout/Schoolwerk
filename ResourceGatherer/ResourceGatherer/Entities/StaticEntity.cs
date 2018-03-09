@@ -6,29 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.Entities {
+    /// <summary>
+    /// A static, non-moving entity
+    /// </summary>
     public abstract class StaticEntity : BaseEntity {
-        public int quantity { get; protected set; }
-
+        /// <summary>
+        /// A simple constructor for the static entity
+        /// </summary>
         protected StaticEntity() : base() { }
 
-        protected StaticEntity(int type, Vector2D pos, int boundRad, int qty) : base(type, pos, boundRad) {
-            quantity = qty;
-        }
-
-        public void Increase() {
-            quantity++;
-        }
-
-        public void Increase(int amount) {
-            quantity += amount;
-        }
-
-        public void Decrease() {
-            quantity--;
-        }
-
-        public void Decrease(int amount) {
-            quantity -= amount;
-        }
+        /// <summary>
+        /// A basic constructor for the static entity
+        /// </summary>
+        /// <param name="type">The entity type</param>
+        /// <param name="pos">The position of the entity</param>
+        /// <param name="boundRad">The bounding radius of the entity</param>
+        protected StaticEntity(int type, Vector2D pos, int boundRad) : base(type, pos, boundRad) { }
     }
 }

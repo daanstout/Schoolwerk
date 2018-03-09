@@ -55,6 +55,8 @@
     <Compile Include="Entities\StaticEntities\MaterialEntity.cs" />
     <Compile Include="Entities\StaticEntity.cs" />
     <Compile Include="Materials\Material.cs" />
+    <Compile Include="Materials\MaterialCollector.cs" />
+    <Compile Include="Materials\MaterialStack.cs" />
     <Compile Include="ResourceGatherer.cs">
       <SubType>Form</SubType>
     </Compile>

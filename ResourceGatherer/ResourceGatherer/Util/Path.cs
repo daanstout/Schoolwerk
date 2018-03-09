@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace ResourceGatherer.Util {
     public class Path {
         private List<Vector2D> waypoints;
+        private static Random rand = new Random();
 
         public Vector2D current {
             get {
@@ -62,15 +63,20 @@ namespace ResourceGatherer.Util {
         }
 
         private void RandomPath() {
-            Random rand = new Random();
+            Console.WriteLine("test");
+            //Random rand = new Random();
             for (int i = 0; i < 10; i++) {
                 waypoints.Add(new Vector2D(rand.Next(0, 800), rand.Next(0, 600)));
             }
         }
 
         public bool GoNext() {
-            waypoints.RemoveAt(0);
-            return waypoints.Count > 0;
+            if (waypoints != null) {
+                if (waypoints.Count > 0)
+                    waypoints.RemoveAt(0);
+                return waypoints.Count > 0;
+            }
+            return false;
         }
 
         public void AddWaypoint(Vector2D point) {
@@ -165,6 +171,9 @@ namespace ResourceGatherer.Util {
         public static Path GetPathTo(BaseTile pos, Material mat) {
             Path p = new Path();
 
+            if (pos.tileVertex == null)
+                return p;
+
             TileSystem.Prepare(GameWorld.instance.tiles.tiles);
 
             Datastructures.Queue<Vertex> q = new Datastructures.Queue<Vertex>();
@@ -187,8 +196,6 @@ namespace ResourceGatherer.Util {
                         if (m.material.id == mat.id) {
                             Vertex icurrent = current.prev;
                             p.AddWaypointFront(current);
-                            Console.WriteLine(m.position);
-                            Console.WriteLine(current.parentTile.position);
                             while (icurrent.prev != null) {
                                 p.AddWaypointFront(icurrent);
                                 icurrent = icurrent.prev;

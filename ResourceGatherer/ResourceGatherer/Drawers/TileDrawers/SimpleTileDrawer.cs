@@ -8,7 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.Drawers.TileDrawers {
+    /// <summary>
+    /// Simply draws the tile, along with a bridge if it is a river and has a bridge and every entity on the tile
+    /// </summary>
     public class SimpleTileDrawer : ITileDrawer{
+        /// <summary>
+        /// Draws the tile
+        /// </summary>
+        /// <param name="g">The graphics instance</param>
+        /// <param name="tile">The tile to be drawn</param>
         public void Draw(Graphics g, BaseTile tile) {
             if (tile.sprite == null)
                 g.DrawRectangle(new Pen(Color.Black, 1), tile.position.x, tile.position.y, BaseTile.tileWidth - 1, BaseTile.tileHeight - 1);
@@ -30,7 +38,6 @@ namespace ResourceGatherer.Drawers.TileDrawers {
                         Console.WriteLine();
                     else {
                         g.DrawImage(e.sprite, e.position.x, e.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
-                        Console.WriteLine(e.position);
                     }
                 }
             }

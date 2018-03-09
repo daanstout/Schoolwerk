@@ -8,7 +8,15 @@ using ResourceGatherer.World.Graphs;
 using ResourceGatherer.World.Tiles;
 
 namespace ResourceGatherer.Drawers.TileDrawers {
+    /// <summary>
+    /// Draws tiles including their verteces
+    /// </summary>
     public class VertexDrawer : ITileDrawer {
+        /// <summary>
+        /// Draws the tile
+        /// </summary>
+        /// <param name="g">The graphics instance</param>
+        /// <param name="tile">The tile to be drawn</param>
         public void Draw(Graphics g, BaseTile tile) {
             new SimpleTileDrawer().Draw(g, tile);
 

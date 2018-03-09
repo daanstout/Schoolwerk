@@ -8,33 +8,75 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.Entities {
+    /// <summary>
+    /// The base entity class
+    /// </summary>
     public abstract class BaseEntity {
+        /// <summary>
+        /// The default entity type, used if none is given
+        /// </summary>
         public static int default_entity_type = -1;
 
+        /// <summary>
+        /// An enumeration of all entity types
+        /// </summary>
         public enum Entity_types {
             // STATIC ENTITIES:
             WOOD,
             STONE
         }
 
+        /// <summary>
+        /// The last given valid id
+        /// </summary>
         private static int ValidId;
+        /// <summary>
+        /// Gets the next valid id
+        /// </summary>
         private static int NextValidId {
             get {
                 return ++ValidId;
             }
         }
 
+        /// <summary>
+        /// The entity ID
+        /// </summary>
         public readonly int entityId;
+        /// <summary>
+        /// The entity type
+        /// </summary>
         public int entityType { get; protected set; }
+        /// <summary>
+        /// Whether the entity is tagged
+        /// </summary>
         public bool tag { get; protected set; }
 
+        /// <summary>
+        /// The position of the entity
+        /// </summary>
         public Vector2D position;
+        /// <summary>
+        /// The scale of the entity
+        /// </summary>
         public Vector2D scale { get; protected set; }
+        /// <summary>
+        /// The bounding radius of the entity
+        /// </summary>
         public float boundingRadius;
+        /// <summary>
+        /// The sprite of the entity
+        /// </summary>
         public Bitmap sprite;
 
-        public Grid currentGrid;
+        /// <summary>
+        /// The index of the grid the entity currently resides in
+        /// </summary>
+        public int currentGrid;
 
+        /// <summary>
+        /// A basic constructor for the base entity
+        /// </summary>
         protected BaseEntity() {
             entityId = NextValidId;
             boundingRadius = 0;
@@ -44,6 +86,10 @@ namespace ResourceGatherer.Entities {
             tag = false;
         }
 
+        /// <summary>
+        /// A basic constructor that asks for the entity type
+        /// </summary>
+        /// <param name="type">The type of the entity</param>
         protected BaseEntity(int type) {
             entityId = NextValidId;
             boundingRadius = 0;
@@ -53,6 +99,12 @@ namespace ResourceGatherer.Entities {
             tag = false;
         }
 
+        /// <summary>
+        /// A constructor for the entity
+        /// </summary>
+        /// <param name="type">THe type of the entity</param>
+        /// <param name="pos">The positino of the entity</param>
+        /// <param name="boundRad">The bounding radius of the entity</param>
         protected BaseEntity(int type, Vector2D pos, float boundRad) {
             entityId = NextValidId;
             boundingRadius = boundRad;
@@ -62,6 +114,11 @@ namespace ResourceGatherer.Entities {
             tag = false;
         }
 
+        /// <summary>
+        /// A constructor that can force an id upon an entity
+        /// </summary>
+        /// <param name="type">The type of the entity</param>
+        /// <param name="forcedId">The id this entity has to use</param>
         protected BaseEntity(int type, int forcedId) {
             entityId = forcedId;
             boundingRadius = 0;
@@ -71,30 +128,59 @@ namespace ResourceGatherer.Entities {
             tag = false;
         }
 
+        /// <summary>
+        /// Updates the entity
+        /// </summary>
+        /// <param name="time_elapsed">The time since the last update</param>
         public virtual void Update(float time_elapsed) { }
 
+        /// <summary>
+        /// Draws the entity
+        /// </summary>
+        /// <param name="g">An instance of the graphics</param>
         public virtual void Render(Graphics g) { }
 
+        /// <summary>
+        /// Allows the entity to write something, currently unused
+        /// </summary>
         public virtual void Write() { }
 
+        /// <summary>
+        /// Tags the entity
+        /// </summary>
         public void Tag() {
             tag = true;
         }
 
+        /// <summary>
+        /// Untags the entity
+        /// </summary>
         public void UnTag() {
             tag = false;
         }
 
+        /// <summary>
+        /// Sets the scale of the entity, also increasing the bounding radius
+        /// </summary>
+        /// <param name="val">The new value</param>
         public void SetScale(Vector2D val) {
             boundingRadius *= (val.x > val.y ? val.x : val.y) / (scale.x > scale.y ? scale.x : scale.y);
             scale = val;
         }
 
+        /// <summary>
+        /// Sets the scale of the entity, also increasing the bounding radius
+        /// </summary>
+        /// <param name="val">The new value</param>
         public void SetScale(float val) {
             boundingRadius *= val / (scale.x > scale.y ? scale.x : scale.y);
             scale = new Vector2D(val, val);
         }
 
+        /// <summary>
+        /// Sets the entity type
+        /// </summary>
+        /// <param name="newType">The new type of the entity</param>
         public void SetEntityType(int newType) {
             entityType = newType;
         }
