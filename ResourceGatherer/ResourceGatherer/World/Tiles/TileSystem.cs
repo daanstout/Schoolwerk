@@ -2,6 +2,7 @@
 using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Properties;
 using ResourceGatherer.Util;
+using ResourceGatherer.World.Graphs;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,18 +11,40 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.World.Tiles {
+    /// <summary>
+    /// The tile system. This holds all the tiles and allows for easy manipulation
+    /// </summary>
     public class TileSystem {
+        /// <summary>
+        /// The tiles
+        /// </summary>
         public BaseTile[] tiles;
+        /// <summary>
+        /// The number of tiles
+        /// </summary>
         public int tileCount;
 
+        /// <summary>
+        /// The gameworld instance
+        /// </summary>
         GameWorld world;
+        /// <summary>
+        /// An random instance
+        /// </summary>
         Random rand;
 
+        /// <summary>
+        /// Creates a new tilesystem
+        /// </summary>
+        /// <param name="world">The world instance</param>
         public TileSystem(GameWorld world) {
             this.world = world;
             rand = new Random();
         }
 
+        /// <summary>
+        /// Initializes the tiles
+        /// </summary>
         public void initTiles() {
             tileCount = (world.gameWidth / BaseTile.tileWidth) * (world.gameHeight / BaseTile.tileHeight);
             tiles = new BaseTile[tileCount];
@@ -67,6 +90,9 @@ namespace ResourceGatherer.World.Tiles {
             SetSprites();
         }
 
+        /// <summary>
+        /// Sets the sprites for all the tiles based on what the tile is
+        /// </summary>
         private void SetSprites() {
             for (int i = 0; i < tileCount; i++) {
                 if (tiles[i] is TileRiver) {
@@ -77,6 +103,10 @@ namespace ResourceGatherer.World.Tiles {
             }
         }
 
+        /// <summary>
+        /// Sets the sprite for a land tile and adds resources
+        /// </summary>
+        /// <param name="index">The index of the tile in the array</param>
         private void SetLandTile(int index) {
             if (index >= 0 && index < tileCount) {
                 int random = rand.Next(0, 4);
@@ -105,6 +135,10 @@ namespace ResourceGatherer.World.Tiles {
             }
         }
 
+        /// <summary>
+        /// Sets the sprite for a river and checks whether we want a bridge there
+        /// </summary>
+        /// <param name="index">The index of the tile</param>
         private void SetRiverTile(int index) {
             if (index >= 0 && index < tileCount) {
                 int tilesPerRow = world.gameWidth / BaseTile.tileWidth;
@@ -142,6 +176,11 @@ namespace ResourceGatherer.World.Tiles {
             }
         }
 
+        /// <summary>
+        /// Gets a list of the neighbours of the tile
+        /// </summary>
+        /// <param name="tile">The tile to check for</param>
+        /// <returns>A list of neighbouring tiles</returns>
         public List<BaseTile> GetNeighbours(BaseTile tile) {
             List<BaseTile> list = new List<BaseTile>();
             if (tile.position.x >= BaseTile.tileWidth)
@@ -157,6 +196,11 @@ namespace ResourceGatherer.World.Tiles {
             return list;
         }
 
+        /// <summary>
+        /// Gets a list of all tiles, both diagonal and non-diagonal
+        /// </summary>
+        /// <param name="tile">The tile to check for</param>
+        /// <returns>A list of all neighbouring tiles</returns>
         public List<BaseTile> GetAllNeighbours(BaseTile tile) {
             List<BaseTile> list = new List<BaseTile>();
             bool up = false, down = false, left = false, right = false;
@@ -198,6 +242,11 @@ namespace ResourceGatherer.World.Tiles {
             return list;
         }
 
+        /// <summary>
+        /// Gets a list of neighbours that allow an agent to walk to
+        /// </summary>
+        /// <param name="tile">The tile to check for</param>
+        /// <returns>A list of walkable neighbours</returns>
         public List<BaseTile> GetWalkableNeighbours(BaseTile tile) {
             List<BaseTile> list = new List<BaseTile>();
             if (tile.position.x >= BaseTile.tileWidth) {
@@ -225,6 +274,11 @@ namespace ResourceGatherer.World.Tiles {
             return list;
         }
 
+        /// <summary>
+        /// Gets the index of a position
+        /// </summary>
+        /// <param name="pos">The position of the vector</param>
+        /// <returns>The index this vector is in</returns>
         public int GetIndexOfTile(Vector2D pos) {
             int tilesPerRow = world.gameWidth / BaseTile.tileWidth;
             int index = (int)(pos.y / BaseTile.tileHeight) * tilesPerRow;
@@ -232,21 +286,30 @@ namespace ResourceGatherer.World.Tiles {
             return index;
         }
 
+        /// <summary>
+        /// Draws all the tiles
+        /// </summary>
+        /// <param name="g"></param>
         public void Render(Graphics g) {
             for (int i = 0; i < tileCount; i++) {
                 tiles[i].Render(g);
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tiles"></param>
         public static void Prepare(BaseTile[] tiles) {
             if(tiles != null) {
                 if(tiles.Count() > 0) {
                     foreach(BaseTile b in tiles) {
-                        if(b.tileVertex != null) {
-                            b.tileVertex.dist = float.MaxValue;
-                            b.tileVertex.prev = null;
-                            b.tileVertex.Scratch = false;
-                        }
+                        Vertex.ResetVertex(b.tileVertex);
+                        //if(b.tileVertex != null) {
+                        //    b.tileVertex.dist = float.MaxValue;
+                        //    b.tileVertex.prev = null;
+                        //    b.tileVertex.Scratch = false;
+                        //}
                     }
                 }
             }

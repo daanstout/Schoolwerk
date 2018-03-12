@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ResourceGatherer.Util {
     /// <summary>
-    /// A 2-dimensional vector, consisting of an X and an Y value
+    /// A 2-dimensional vector, consisting of an X and an Y value; Copied from Buckland
     /// </summary>
     public class Vector2D {
         /// <summary>

@@ -70,6 +70,7 @@
     <Compile Include="Util\Datastructures\Queue.cs" />
     <Compile Include="Util\Datastructures\Stack.cs" />
     <Compile Include="Util\Path.cs" />
+    <Compile Include="Util\Rand.cs" />
     <Compile Include="Util\Steering.cs" />
     <Compile Include="Util\Telegram.cs" />
     <Compile Include="Util\Time.cs" />
