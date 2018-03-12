@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ResourceGatherer.Materials;
 using ResourceGatherer.Util;
 using ResourceGatherer.World;
+using ResourceGatherer.World.Grids;
 
 namespace ResourceGatherer.Entities.MovingEntities {
     /// <summary>
@@ -26,6 +27,11 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// The ID of the material this entity should chase after
         /// </summary>
         private int matID;
+
+        /// <summary>
+        /// A bool whether there are no more materials found
+        /// </summary>
+        private bool noMatsLeft = false;
 
         /// <summary>
         /// The constructor of this class
@@ -53,10 +59,13 @@ namespace ResourceGatherer.Entities.MovingEntities {
         public override void Update(float time_elapsed) {
             base.Update(time_elapsed);
 
-            if (path.isFinished) {
+            if (path.isFinished && !noMatsLeft) {
                 GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList.Clear();
 
                 path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
+
+                if (path.Count == 0)
+                    noMatsLeft = true;
 
                 ResourceGatherer.instance.RedrawBackground();
             }
@@ -68,6 +77,9 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// <param name="g">The graphics instance</param>
         public override void Render(Graphics g) {
             g.FillRectangle(new SolidBrush(Color.Red), new RectangleF(position - (scale / 2), scale));
+            Vector2D pos = GameWorld.instance.grid.GetGridPosition(position);
+            //Console.WriteLine(pos);
+            g.DrawRectangle(new Pen(Color.Black), new Rectangle(pos, new Vector2D(Grid.GridWidth, Grid.GridHeight)));
             try {
                 g.DrawLine(new Pen(Color.Black), position, position + heading * 15);
             } catch {

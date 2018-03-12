@@ -1,5 +1,6 @@
 ﻿using ResourceGatherer.Entities.EntityHelpers;
 using ResourceGatherer.Util;
+using ResourceGatherer.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,11 @@ namespace ResourceGatherer.Entities {
         public float maxTurnRate;
 
         /// <summary>
+        /// The position of this entity in the previous update
+        /// </summary>
+        public Vector2D oldPos;
+
+        /// <summary>
         /// The constructor for the entity
         /// </summary>
         /// <param name="pos">The position of the entity</param>
@@ -73,6 +79,8 @@ namespace ResourceGatherer.Entities {
             this.scale = scale;
             vehicle = new Vehicle(this);
             path = new Path();
+
+            GameWorld.instance.grid.RegisterEntity(this);
         }
 
         /// <summary>
@@ -81,6 +89,8 @@ namespace ResourceGatherer.Entities {
         /// <param name="time_elapsed">The time since the last update</param>
         public override void Update(float time_elapsed) {
             vehicle.Update(time_elapsed);
+
+            GameWorld.instance.grid.UpdateEntity(this, oldPos);
         }
 
         /// <summary>

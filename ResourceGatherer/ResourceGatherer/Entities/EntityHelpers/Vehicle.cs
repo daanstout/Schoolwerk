@@ -34,6 +34,7 @@ namespace ResourceGatherer.Entities.EntityHelpers {
                         return;
                 }
                 if (parent.RotateHeadingToFacePosition(parent.path.current)) {
+                    parent.oldPos = parent.position;
                     parent.position += parent.heading * parent.maxSpeed * time_elapsed;
                 }
             }

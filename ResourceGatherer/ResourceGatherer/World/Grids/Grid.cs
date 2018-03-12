@@ -11,8 +11,6 @@ namespace ResourceGatherer.World.Grids {
         public static readonly int GridWidth = 100;
         public static readonly int GridHeight = 100;
 
-        private GameWorld world;
-
         public Vector2D position;
 
         private List<BaseEntity> _entityList;
@@ -33,8 +31,7 @@ namespace ResourceGatherer.World.Grids {
             }
         }
 
-        public Grid(GameWorld world, Vector2D pos) {
-            this.world = world;
+        public Grid(Vector2D pos) {
             position = pos;
         }
     }

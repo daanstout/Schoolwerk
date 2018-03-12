@@ -81,6 +81,11 @@ namespace ResourceGatherer.World {
             grid = new GridSystem(this);
             tiles = new TileSystem(this);
 
+            // Initializations for the tiles-, gridsystem and graph
+            tiles.initTiles();
+            grid.initGrid();
+            graph.initGraph();
+
             // A temp NPC to test stuff with
             FriendlyNPC npc = new FriendlyNPC(new Vector2D(20, 100), // Position
                                                 20, // Bounding Radius
@@ -106,15 +111,9 @@ namespace ResourceGatherer.World {
                                                 15, // Carry Capacity
                                                 2); // MatID
 
-            // Initializations for the tiles-, gridsystem and graph
-            tiles.initTiles();
-            grid.initGrid();
-            graph.initGraph();
-
             // Setting the path for the npc to follow
-
-            npc2.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc2.position)], Material.STONE));
             npc.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc.position)], Material.WOOD));
+            npc2.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc2.position)], Material.STONE));
 
             // Adding the npc to the world
             entites.Add(npc);
@@ -128,36 +127,30 @@ namespace ResourceGatherer.World {
             time.Update();
 
             if (_entites != null)
-                for (int i = 0; i < entites.Count; i++) {
-                    //MovingEntity m = entites[i] as MovingEntity;
-                    //Console.WriteLine(m.path.Count + " - " + m.entityId);
+                for (int i = 0; i < entites.Count; i++)
                     entites[i].Update(Time.deltaTimeSeconds);
-                }
-            //if (_entites != null)
-            //    entites[1].Update(Time.deltaTimeSeconds);
         }
-        
+
         /// <summary>
-        /// Draws all the entities
+        /// Draws all the entities and all paths present
         /// </summary>
         /// <param name="g">The graphics instance</param>
         public void Draw(Graphics g) {
             if (_entites != null)
                 for (int i = 0; i < entites.Count; i++)
                     entites[i].Render(g);
+            foreach (BaseEntity b in entites)
+                if (b is MovingEntity m)
+                    m.path.Render(g);
         }
 
         /// <summary>
-        /// Renders all tiles and, atm, the grid and all paths present;
+        /// Renders all tiles and, atm, the grid
         /// </summary>
         /// <param name="g"></param>
         public void GetBackground(Graphics g) {
             tiles.Render(g);
             grid.Render(g);
-            foreach(BaseEntity b in entites) {
-                if (b is MovingEntity m)
-                    m.path.Render(g);
-            }
         }
     }
 }

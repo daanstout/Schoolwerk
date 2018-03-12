@@ -25,7 +25,7 @@ namespace ResourceGatherer.World.Grids {
             float curX = 0, curY = 0;
 
             for (int i = 0; i < gridCount; i++) {
-                gameGrid[i] = new Grid(world, new Vector2D(curX, curY));
+                gameGrid[i] = new Grid(new Vector2D(curX, curY));
                 curX += Grid.GridWidth;
                 if (curX >= world.gameWidth) {
                     curX = 0;
@@ -35,12 +35,21 @@ namespace ResourceGatherer.World.Grids {
         }
 
         private int PositionToIndex(Vector2D pos) {
-            int index = 0, gridsPerRow = Grid.GridWidth / world.gameWidth;
+            if (pos == null)
+                return 0;
+            int index = 0;
+            int gridsPerRow = world.gameWidth / Grid.GridWidth;
 
             index += (int)pos.x / Grid.GridWidth;
             index += ((int)pos.y / Grid.GridHeight) * gridsPerRow;
 
             return index >= gridCount ? gridCount : index;
+        }
+
+        public Vector2D GetGridPosition(Vector2D pos) {
+            int idx = PositionToIndex(pos);
+            //Console.WriteLine(pos + " - " + idx);
+            return gameGrid[idx].position;
         }
 
         public void Render(Graphics g) {
