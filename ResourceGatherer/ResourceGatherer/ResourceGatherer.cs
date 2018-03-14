@@ -49,12 +49,13 @@ namespace ResourceGatherer {
             gameWorld.Update();
 
             gameWorldPicturebox.Invalidate();
+            UIPictureBox.Invalidate();
         }
 
         private void gameWorldPicturebox_Paint(object sender, PaintEventArgs e) {
             base.OnPaint(e);
             {
-                gameWorld.Draw(e.Graphics);
+                gameWorld.RenderGame(e.Graphics);
             }
         }
 
@@ -96,6 +97,13 @@ namespace ResourceGatherer {
             RedrawBackground();
 
             worldTimer.Enabled = true;
+        }
+
+        private void UIPictureBox_Paint(object sender, PaintEventArgs e) {
+            base.OnPaint(e);
+            {
+                gameWorld.RenderUI(e.Graphics);
+            }
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLua;
+using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Materials;
 using ResourceGatherer.Util;
 using ResourceGatherer.World;
@@ -13,7 +15,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
     /// <summary>
     /// A temporary class, used to test things with
     /// </summary>
-    public class FriendlyNPC : MovingEntity {
+    public class Gatherer : MovingEntity {
         /// <summary>
         /// The max carry capacity of the entity
         /// </summary>
@@ -33,6 +35,10 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// </summary>
         private bool noMatsLeft = false;
 
+        public int counter;
+
+        Lua script;
+
         /// <summary>
         /// The constructor of this class
         /// </summary>
@@ -47,9 +53,12 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// <param name="maxForce">The max force the entity can endure</param>
         /// <param name="carryCap">The carry capacity of the entity</param>
         /// <param name="matID">THe id of the material this entity should chase after</param>
-        public FriendlyNPC(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce, int carryCap, int matID) : base(pos, rad, vel, maxSpd, heading, mass, scale, turnRate, maxForce) {
+        public Gatherer(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce, int carryCap, int matID) : base(pos, rad, vel, maxSpd, heading, mass, scale, turnRate, maxForce) {
             carryCapacity = carryCap;
             this.matID = matID;
+            script = new Lua();
+            script.LoadCLRPackage();
+            script.DoFile("./Scripts/Print.lua");
         }
 
         /// <summary>
@@ -59,7 +68,13 @@ namespace ResourceGatherer.Entities.MovingEntities {
         public override void Update(float time_elapsed) {
             base.Update(time_elapsed);
 
+            LuaFunction f = script["incr"] as LuaFunction;
+            var returnData = f.Call(this);
+            Console.WriteLine(counter);
+
             if (path.isFinished && !noMatsLeft) {
+                MaterialEntity entity = GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList[0];
+                GameWorld.instance.materialCollection.AddMaterial(entity.material, 1);
                 GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList.Clear();
 
                 path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)], Material.IDToMaterial(matID)));

@@ -1,4 +1,5 @@
 ﻿using ResourceGatherer.Entities;
+using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.World.Tiles;
 using System;
 using System.Collections.Generic;
@@ -33,11 +34,11 @@ namespace ResourceGatherer.Drawers.TileDrawers {
             }
 
             if(tile.entityCount > 0) {
-                foreach(StaticEntity e in tile.entityList) {
-                    if (e.sprite == null)
+                foreach(MaterialEntity m in tile.entityList) {
+                    if (m.sprite == null)
                         Console.WriteLine();
                     else {
-                        g.DrawImage(e.sprite, e.position.x, e.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
+                        g.DrawImage(m.sprite, m.position.x, m.position.y, BaseTile.tileWidth, BaseTile.tileHeight);
                     }
                 }
             }

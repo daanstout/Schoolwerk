@@ -29,13 +29,15 @@
             this.vertecesButton = new System.Windows.Forms.Button();
             this.redrawBackgroundButton = new System.Windows.Forms.Button();
             this.newWorldButton = new System.Windows.Forms.Button();
+            this.UIPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gameWorldPicturebox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UIPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // gameWorldPicturebox
             // 
             this.gameWorldPicturebox.BackColor = System.Drawing.Color.White;
-            this.gameWorldPicturebox.Location = new System.Drawing.Point(12, 12);
+            this.gameWorldPicturebox.Location = new System.Drawing.Point(12, 32);
             this.gameWorldPicturebox.Name = "gameWorldPicturebox";
             this.gameWorldPicturebox.Size = new System.Drawing.Size(800, 600);
             this.gameWorldPicturebox.TabIndex = 0;
@@ -77,11 +79,22 @@
             this.newWorldButton.UseVisualStyleBackColor = true;
             this.newWorldButton.Click += new System.EventHandler(this.newWorldButton_Click);
             // 
+            // UIPictureBox
+            // 
+            this.UIPictureBox.BackColor = System.Drawing.Color.White;
+            this.UIPictureBox.Location = new System.Drawing.Point(12, 12);
+            this.UIPictureBox.Name = "UIPictureBox";
+            this.UIPictureBox.Size = new System.Drawing.Size(800, 20);
+            this.UIPictureBox.TabIndex = 4;
+            this.UIPictureBox.TabStop = false;
+            this.UIPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.UIPictureBox_Paint);
+            // 
             // ResourceGatherer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 749);
+            this.Controls.Add(this.UIPictureBox);
             this.Controls.Add(this.newWorldButton);
             this.Controls.Add(this.redrawBackgroundButton);
             this.Controls.Add(this.vertecesButton);
@@ -89,6 +102,7 @@
             this.Name = "ResourceGatherer";
             this.Text = "Resource Gatherer";
             ((System.ComponentModel.ISupportInitialize)(this.gameWorldPicturebox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UIPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -100,6 +114,7 @@
         private System.Windows.Forms.Button vertecesButton;
         private System.Windows.Forms.Button redrawBackgroundButton;
         private System.Windows.Forms.Button newWorldButton;
+        private System.Windows.Forms.PictureBox UIPictureBox;
     }
 }
 

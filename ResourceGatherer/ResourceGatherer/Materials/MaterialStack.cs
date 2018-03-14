@@ -11,10 +11,7 @@ namespace ResourceGatherer.Materials {
 
         public MaterialStack() { }
 
-        public MaterialStack(Material mat) {
-            material = mat;
-            count = 1;
-        }
+        public MaterialStack(Material mat) : this(mat, 1) { }
 
         public MaterialStack(Material mat, int count) {
             material = mat;

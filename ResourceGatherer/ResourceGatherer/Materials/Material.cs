@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ResourceGatherer.Properties;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +15,11 @@ namespace ResourceGatherer.Materials {
         /// <summary>
         /// Instance of the WOOD material
         /// </summary>
-        public static Material WOOD = new Material(Materials.WOOD.ToString());
+        public static Material WOOD = new Material(Materials.WOOD.ToString(), Resources.Wood_01);
         /// <summary>
         /// Instance of the STONE material
         /// </summary>
-        public static Material STONE = new Material(Materials.STONE.ToString());
+        public static Material STONE = new Material(Materials.STONE.ToString(), Resources.Stone_01);
 
         /// <summary>
         /// An enum of all the materials
@@ -59,19 +61,22 @@ namespace ResourceGatherer.Materials {
         /// <summary>
         /// The name of the material
         /// </summary>
-        public string name;
+        public readonly string name;
         /// <summary>
         /// The ID of the material
         /// </summary>
         public readonly int id;
 
+        public readonly Bitmap sprite;
+
         /// <summary>
         /// The constructor of the material
         /// </summary>
         /// <param name="name">The name of the material</param>
-        private Material(string name) {
+        private Material(string name, Bitmap sprite) {
             this.name = name;
             id = NextValidID;
+            this.sprite = sprite;
         }
 
         /// <summary>

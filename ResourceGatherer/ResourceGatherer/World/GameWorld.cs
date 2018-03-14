@@ -1,8 +1,10 @@
 ﻿using ResourceGatherer.Entities;
 using ResourceGatherer.Util;
+using ResourceGatherer.Materials;
 using ResourceGatherer.World.Tiles;
 using ResourceGatherer.World.Graphs;
 using ResourceGatherer.World.Grids;
+using ResourceGatherer.World.UserInterface;
 using ResourceGatherer.Entities.MovingEntities;
 using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Properties;
@@ -14,7 +16,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using ResourceGatherer.Materials;
 
 namespace ResourceGatherer.World {
     /// <summary>
@@ -32,6 +33,11 @@ namespace ResourceGatherer.World {
 
         // An instance of the gameworld
         public static GameWorld instance;
+
+        /// <summary>
+        /// The collection of all the materials we have
+        /// </summary>
+        public MaterialCollector materialCollection;
 
         /// <summary>
         /// The graph of our world
@@ -77,6 +83,7 @@ namespace ResourceGatherer.World {
 
             // Init the time, graph, grid- and tilessystem
             time = new Time();
+            materialCollection = new MaterialCollector(true);
             graph = new Graph(this);
             grid = new GridSystem(this);
             tiles = new TileSystem(this);
@@ -87,7 +94,7 @@ namespace ResourceGatherer.World {
             graph.initGraph();
 
             // A temp NPC to test stuff with
-            FriendlyNPC npc = new FriendlyNPC(new Vector2D(20, 100), // Position
+            Gatherer npc = new Gatherer(new Vector2D(20, 100), // Position
                                                 20, // Bounding Radius
                                                 new Vector2D(0, 0), // Velocity
                                                 40, // Max Speed
@@ -99,7 +106,7 @@ namespace ResourceGatherer.World {
                                                 15, // Carry Capacity
                                                 1); // MatID
 
-            FriendlyNPC npc2 = new FriendlyNPC(new Vector2D(60, 100), // Position
+            Gatherer npc2 = new Gatherer(new Vector2D(60, 100), // Position
                                                 20, // Bounding Radius
                                                 new Vector2D(0, 0), // Velocity
                                                 40, // Max Speed
@@ -135,13 +142,21 @@ namespace ResourceGatherer.World {
         /// Draws all the entities and all paths present
         /// </summary>
         /// <param name="g">The graphics instance</param>
-        public void Draw(Graphics g) {
+        public void RenderGame(Graphics g) {
             if (_entites != null)
                 for (int i = 0; i < entites.Count; i++)
                     entites[i].Render(g);
             foreach (BaseEntity b in entites)
                 if (b is MovingEntity m)
                     m.path.Render(g);
+        }
+
+        /// <summary>
+        /// Draws the User Interface
+        /// </summary>
+        /// <param name="g">The graphics instance</param>
+        public void RenderUI(Graphics g) {
+            UI.Render(g);
         }
 
         /// <summary>

@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="KeraLua, Version=1.3.2.0, Culture=neutral, PublicKeyToken=04d04586786c6f34, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLua.1.3.2.1\lib\net45\KeraLua.dll</HintPath>
+    </Reference>
+    <Reference Include="NLua, Version=1.3.2.0, Culture=neutral, PublicKeyToken=8df2ab518030ea95, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLua.1.3.2.1\lib\net45\NLua.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,7 +56,7 @@
     <Compile Include="Drawers\TileDrawers\VertexDrawer.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\EntityHelpers\Vehicle.cs" />
-    <Compile Include="Entities\MovingEntities\FriendlyNPC.cs" />
+    <Compile Include="Entities\MovingEntities\Gatherer.cs" />
     <Compile Include="Entities\MovingEntity.cs" />
     <Compile Include="Entities\StaticEntities\MaterialEntity.cs" />
     <Compile Include="Entities\StaticEntity.cs" />
@@ -85,6 +91,7 @@
     <Compile Include="World\Tiles\TileLand.cs" />
     <Compile Include="World\Tiles\TileRiver.cs" />
     <Compile Include="World\Tiles\TileSystem.cs" />
+    <Compile Include="World\UserInterface\UI.cs" />
     <EmbeddedResource Include="ResourceGatherer.resx">
       <DependentUpon>ResourceGatherer.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +105,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -107,6 +115,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Scripts\Print.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -130,4 +141,8 @@
     <None Include="Resources\Stone_01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+xcopy /s /y "C:\Users\daans\Desktop\Schoolwerk\ResourceGatherer\packages\NLua.1.3.2.1\lib\native\*.*" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

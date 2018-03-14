@@ -200,7 +200,10 @@ namespace ResourceGatherer.Util {
         /// <returns>A list of vectors to the target</returns>
         public static Path GetPathTo(BaseTile pos, BaseTile target) {
             Path p = new Path();
-            //TileSystem.Prepare();
+
+            if (pos.tileVertex == null)
+                return p;
+
             TileSystem.Prepare(ResourceGatherer.instance.gameWorld.tiles.tiles);
 
             PriorityQueue<Vertex> q = new PriorityQueue<Vertex>();
@@ -248,9 +251,7 @@ namespace ResourceGatherer.Util {
         /// <param name="a">Point a</param>
         /// <param name="b">Point b</param>
         /// <returns>the estimated distance between 2 points</returns>
-        private static int Heuristics(Vector2D a, Vector2D b) {
-            return (int)Math.Abs(a.x - b.x) + (int)Math.Abs(a.y - b.y);
-        }
+        private static int Heuristics(Vector2D a, Vector2D b) => (int)Math.Abs(a.x - b.x) + (int)Math.Abs(a.y - b.y);
 
         /// <summary>
         /// Gets a path from the given position to the nearest target material. Uses Dijkstra
@@ -281,17 +282,15 @@ namespace ResourceGatherer.Util {
                 if (current == null)
                     continue;
 
-                foreach (StaticEntity s in current.parentTile.entityList) {
-                    if (s is MaterialEntity m) {
-                        if (m.material.id == mat.id) {
-                            Vertex icurrent = current.prev;
-                            p.AddWaypointFront(current);
-                            while (icurrent.prev != null) {
-                                p.AddWaypointFront(icurrent);
-                                icurrent = icurrent.prev;
-                            }
-                            return p;
+                foreach (MaterialEntity m in current.parentTile.entityList) {
+                    if (m.material.id == mat.id) {
+                        Vertex icurrent = current.prev;
+                        p.AddWaypointFront(current);
+                        while (icurrent.prev != null) {
+                            p.AddWaypointFront(icurrent);
+                            icurrent = icurrent.prev;
                         }
+                        return p;
                     }
                 }
 

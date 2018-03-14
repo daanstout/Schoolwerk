@@ -1,5 +1,6 @@
 ﻿using ResourceGatherer.Drawers.TileDrawers;
 using ResourceGatherer.Entities;
+using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Util;
 using ResourceGatherer.World.Graphs;
 using System;
@@ -53,14 +54,14 @@ namespace ResourceGatherer.World.Tiles {
         /// <summary>
         /// A list of all the entities
         /// </summary>
-        private List<StaticEntity> _entityList;
+        private List<MaterialEntity> _entityList;
         /// <summary>
         /// A public list of all the entities
         /// </summary>
-        public List<StaticEntity> entityList {
+        public List<MaterialEntity> entityList {
             get {
                 if (_entityList == null)
-                    _entityList = new List<StaticEntity>();
+                    _entityList = new List<MaterialEntity>();
                 return _entityList;
             }
         }
@@ -146,7 +147,7 @@ namespace ResourceGatherer.World.Tiles {
         /// Adds an entity to the tile
         /// </summary>
         /// <param name="entity"></param>
-        public void AddEntityToTile(StaticEntity entity) {
+        public void AddEntityToTile(MaterialEntity entity) {
             if (!entityList.Contains(entity))
                 entityList.Add(entity);
         }
@@ -161,7 +162,7 @@ namespace ResourceGatherer.World.Tiles {
             return tile != null &&
                    EqualityComparer<Vector2D>.Default.Equals(position, tile.position) &&
                    isWalkable == tile.isWalkable &&
-                   EqualityComparer<List<StaticEntity>>.Default.Equals(_entityList, tile._entityList);
+                   EqualityComparer<List<MaterialEntity>>.Default.Equals(_entityList, tile._entityList);
         }
 
         /// <summary>
@@ -172,7 +173,7 @@ namespace ResourceGatherer.World.Tiles {
             var hashCode = 978046299;
             hashCode = hashCode * -1521134295 + EqualityComparer<Vector2D>.Default.GetHashCode(position);
             hashCode = hashCode * -1521134295 + isWalkable.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<StaticEntity>>.Default.GetHashCode(_entityList);
+            hashCode = hashCode * -1521134295 + EqualityComparer<List<MaterialEntity>>.Default.GetHashCode(_entityList);
             return hashCode;
         }
     }
