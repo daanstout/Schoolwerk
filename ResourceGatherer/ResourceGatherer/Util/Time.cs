@@ -24,7 +24,7 @@ namespace ResourceGatherer.Util {
         /// <summary>
         /// The difference in milliseconds between 2 updates
         /// </summary>
-        public static long deltaTimeMillis;
+        public static long deltaTimeMillis { get; private set; }
         /// <summary>
         /// The difference in seconds between 2 updates
         /// </summary>
@@ -33,6 +33,8 @@ namespace ResourceGatherer.Util {
                 return (float)deltaTimeMillis / 1000;
             }
         }
+
+        public static long totalElapsedTime { get; private set; }
 
         /// <summary>
         /// Constructor creates a new stopwatch and starts it
@@ -55,6 +57,7 @@ namespace ResourceGatherer.Util {
         public void Update() {
             deltaTimeMillis = tickWatch.ElapsedMilliseconds - previousTick;
             previousTick = tickWatch.ElapsedMilliseconds;
+            totalElapsedTime = tickWatch.ElapsedMilliseconds;
         }
 
         /// <summary>

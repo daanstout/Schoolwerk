@@ -140,6 +140,9 @@
   <ItemGroup>
     <None Include="Resources\Stone_01.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StorageShed_01.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -146,6 +146,7 @@ namespace ResourceGatherer.World {
             if (_entites != null)
                 for (int i = 0; i < entites.Count; i++)
                     entites[i].Render(g);
+
             foreach (BaseEntity b in entites)
                 if (b is MovingEntity m)
                     m.path.Render(g);

@@ -7,8 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.World.UserInterface {
+    /// <summary>
+    /// Draws the User Interface
+    /// </summary>
     public static class UI {
+        /// <summary>
+        /// The max height of a module
+        /// </summary>
         private static readonly int maxHeight = 20;
+        /// <summary>
+        /// The max width of a module
+        /// </summary>
         private static readonly int maxWidth = 50;
 
         /// <summary>

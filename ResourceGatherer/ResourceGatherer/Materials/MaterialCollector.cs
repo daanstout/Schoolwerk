@@ -18,10 +18,14 @@ namespace ResourceGatherer.Materials {
             collection = new List<MaterialStack>();
         }
 
+        /// <summary>
+        /// Constructs a new set and autofills it with every material
+        /// </summary>
+        /// <param name="autoFill">Whether it should autofill the set as well, If this is false, just use the simple constructor</param>
         public MaterialCollector(bool autoFill) : this(){
             if (autoFill) {
-                collection.Add(new MaterialStack(Material.WOOD, 0));
-                collection.Add(new MaterialStack(Material.STONE, 0));
+                collection.Add(new MaterialStack(Material.WOOD));
+                collection.Add(new MaterialStack(Material.STONE));
             }
         }
 
@@ -81,6 +85,20 @@ namespace ResourceGatherer.Materials {
                 if (stack.material.id == mat.id)
                     return true;
             return false;
+        }
+
+        public static MaterialCollector operator +(MaterialCollector a, MaterialCollector b) {
+            MaterialCollector m = new MaterialCollector();
+
+            foreach(MaterialStack stack in a.collection) {
+                m.AddMaterial(stack.material, stack.count);
+            }
+
+            foreach (MaterialStack stack in b.collection) {
+                m.AddMaterial(stack.material, stack.count);
+            }
+
+            return m;
         }
     }
 }

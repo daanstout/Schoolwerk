@@ -58,12 +58,12 @@ namespace ResourceGatherer.World.Tiles {
                     curY += BaseTile.tileHeight;
                 }
             }
-            tiles[132].isWalkable = false;
-            tiles[133].isWalkable = false;
-            tiles[134].isWalkable = false;
-            tiles[172].isWalkable = false;
-            tiles[173].isWalkable = false;
-            tiles[174].isWalkable = false;
+            //tiles[132].isWalkable = false;
+            //tiles[133].isWalkable = false;
+            //tiles[134].isWalkable = false;
+            //tiles[172].isWalkable = false;
+            //tiles[173].isWalkable = false;
+            //tiles[174].isWalkable = false;
 
             for (int i = 80; i < 120; i++) {
                 tiles[i] = tiles[i].GetRiverTile();
@@ -127,9 +127,9 @@ namespace ResourceGatherer.World.Tiles {
                 random = rand.Next(0, 100);
                 if (random == 0)
                     if (rand.Next(0, 2) == 1)
-                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.WOOD, tiles[index].position, 3, 1));
+                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.WOOD, tiles[index].position, 3, rand.Next(1, 4)));
                     else
-                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.STONE, tiles[index].position, 3, 1));
+                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.STONE, tiles[index].position, 3, rand.Next(1, 4)));
 
                 tiles[index].sprite = sprite;
             }

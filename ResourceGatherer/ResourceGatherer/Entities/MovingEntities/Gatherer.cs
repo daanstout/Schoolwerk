@@ -20,20 +20,21 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// The max carry capacity of the entity
         /// </summary>
         public int carryCapacity;
+
         /// <summary>
-        /// The current inventory of the entity
+        /// The inventory of the gatherer
         /// </summary>
-        public List<Material> inventory;
+        public MaterialCollector inventory;
 
         /// <summary>
         /// The ID of the material this entity should chase after
         /// </summary>
-        private int matID;
+        protected int matID;
 
         /// <summary>
         /// A bool whether there are no more materials found
         /// </summary>
-        private bool noMatsLeft = false;
+        protected bool noMatsLeft = false;
 
         public int counter;
 
@@ -59,6 +60,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
             script = new Lua();
             script.LoadCLRPackage();
             script.DoFile("./Scripts/Print.lua");
+            inventory = new MaterialCollector();
         }
 
         /// <summary>
@@ -68,19 +70,22 @@ namespace ResourceGatherer.Entities.MovingEntities {
         public override void Update(float time_elapsed) {
             base.Update(time_elapsed);
 
-            LuaFunction f = script["incr"] as LuaFunction;
-            var returnData = f.Call(this);
-            Console.WriteLine(counter);
+            //LuaFunction f = script["incr"] as LuaFunction;
+            //var returnData = f.Call(this);
+            //Console.WriteLine(counter);
 
             if (path.isFinished && !noMatsLeft) {
                 MaterialEntity entity = GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList[0];
-                GameWorld.instance.materialCollection.AddMaterial(entity.material, 1);
+                //GameWorld.instance.materialCollection.AddMaterial(entity.material, 1);
+                inventory.AddMaterial(entity.material, entity.quantity);
                 GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList.Clear();
 
                 path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
 
-                if (path.Count == 0)
+                if (path.Count == 0) {
                     noMatsLeft = true;
+                    GameWorld.instance.materialCollection += inventory;
+                }
 
                 ResourceGatherer.instance.RedrawBackground();
             }

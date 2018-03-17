@@ -67,6 +67,9 @@ namespace ResourceGatherer.Materials {
         /// </summary>
         public readonly int id;
 
+        /// <summary>
+        /// The material sprite
+        /// </summary>
         public readonly Bitmap sprite;
 
         /// <summary>
