@@ -154,5 +154,13 @@ namespace ResourceGatherer.Entities {
 
             return false;
         }
+
+        /// <summary>
+        /// Creates Debug Info
+        /// </summary>
+        /// <returns>A string with the important information</returns>
+        public override string GetDebug() {
+            return String.Format("{0}\nMass: {1}", base.GetDebug(), mass);
+        }
     }
 }

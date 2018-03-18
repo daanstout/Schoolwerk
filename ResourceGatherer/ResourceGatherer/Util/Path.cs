@@ -251,7 +251,7 @@ namespace ResourceGatherer.Util {
         /// <param name="a">Point a</param>
         /// <param name="b">Point b</param>
         /// <returns>the estimated distance between 2 points</returns>
-        private static int Heuristics(Vector2D a, Vector2D b) => (int)Math.Abs(a.x - b.x) + (int)Math.Abs(a.y - b.y);
+        private static int Heuristics(Vector2D a, Vector2D b) => (int)Math.Abs((a.x / BaseTile.tileWidth) - (b.x / BaseTile.tileWidth)) + (int)Math.Abs((a.y / BaseTile.tileHeight) - (b.y / BaseTile.tileHeight));
 
         /// <summary>
         /// Gets a path from the given position to the nearest target material. Uses Dijkstra
@@ -286,10 +286,11 @@ namespace ResourceGatherer.Util {
                     if (m.material.id == mat.id) {
                         Vertex icurrent = current.prev;
                         p.AddWaypointFront(current);
-                        while (icurrent.prev != null) {
-                            p.AddWaypointFront(icurrent);
-                            icurrent = icurrent.prev;
-                        }
+                        if (icurrent != null)
+                            while (icurrent.prev != null) {
+                                p.AddWaypointFront(icurrent);
+                                icurrent = icurrent.prev;
+                            }
                         return p;
                     }
                 }

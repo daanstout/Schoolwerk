@@ -12,6 +12,18 @@ namespace ResourceGatherer.Materials {
         public List<MaterialStack> collection { get; private set; }
 
         /// <summary>
+        /// The total count of all the materials in the collection
+        /// </summary>
+        public int totalCount {
+            get {
+                int count = 0;
+                foreach (MaterialStack m in collection)
+                    count += m.count;
+                return count;
+            }
+        }
+
+        /// <summary>
         /// The constructor. It initializes the list
         /// </summary>
         public MaterialCollector() {
@@ -27,6 +39,20 @@ namespace ResourceGatherer.Materials {
                 collection.Add(new MaterialStack(Material.WOOD));
                 collection.Add(new MaterialStack(Material.STONE));
             }
+        }
+
+        /// <summary>
+        /// Adds materials to the collection
+        /// </summary>
+        /// <param name="mat">The stack of materials to add</param>
+        public void AddMaterial(MaterialStack mat) {
+            foreach (MaterialStack stack in collection) {
+                if (stack.material.id == mat.material.id) {
+                    stack.count += mat.count;
+                    return;
+                }
+            }
+            collection.Add(mat);
         }
 
         /// <summary>
@@ -64,7 +90,7 @@ namespace ResourceGatherer.Materials {
         }
 
         /// <summary>
-        /// Gets how much a material is in the collectino
+        /// Gets how much a material is in the collection
         /// </summary>
         /// <param name="mat">The material requested</param>
         /// <returns>The amount the material is present</returns>
@@ -87,6 +113,12 @@ namespace ResourceGatherer.Materials {
             return false;
         }
 
+        /// <summary>
+        /// Allows 2 collections to be added together
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static MaterialCollector operator +(MaterialCollector a, MaterialCollector b) {
             MaterialCollector m = new MaterialCollector();
 
@@ -99,6 +131,24 @@ namespace ResourceGatherer.Materials {
             }
 
             return m;
+        }
+
+        /// <summary>
+        /// Overrides the ToString function
+        /// </summary>
+        /// <returns>Prints all the materials in the string</returns>
+        public override string ToString() {
+            string s = "";
+            foreach (MaterialStack stack in collection)
+                s = String.Format("{0}\n{1}", s, stack);
+            return s;
+        }
+
+        /// <summary>
+        /// Clears the collection
+        /// </summary>
+        public void Clear() {
+            collection.Clear();
         }
     }
 }

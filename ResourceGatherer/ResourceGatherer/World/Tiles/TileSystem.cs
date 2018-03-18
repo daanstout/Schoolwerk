@@ -124,7 +124,7 @@ namespace ResourceGatherer.World.Tiles {
                         break;
                 }
 
-                random = rand.Next(0, 100);
+                random = rand.Next(0, 50);
                 if (random == 0)
                     if (rand.Next(0, 2) == 1)
                         tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.WOOD, tiles[index].position, 3, rand.Next(1, 4)));
@@ -250,7 +250,7 @@ namespace ResourceGatherer.World.Tiles {
         public List<BaseTile> GetWalkableNeighbours(BaseTile tile) {
             List<BaseTile> list = new List<BaseTile>();
             if (tile.position.x >= BaseTile.tileWidth) {
-                BaseTile newTile = tiles[GetIndexOfTile(tile.position - new Vector2D(BaseTile.tileWidth, 0))];
+                BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, 0))];
                 if (newTile.isWalkable)
                     list.Add(newTile);
             }
@@ -261,7 +261,7 @@ namespace ResourceGatherer.World.Tiles {
             }
 
             if (tile.position.y >= BaseTile.tileHeight) {
-                BaseTile newTile = tiles[GetIndexOfTile(tile.position - new Vector2D(0, BaseTile.tileHeight))];
+                BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(0, -BaseTile.tileHeight))];
                 if (newTile.isWalkable)
                     list.Add(newTile);
             }
@@ -274,13 +274,129 @@ namespace ResourceGatherer.World.Tiles {
             return list;
         }
 
+        public List<BaseTile> GetAllWalkableNeighbours(BaseTile tile) {
+            List<BaseTile> list = new List<BaseTile>();
+            bool up = false, down = false, left = false, right = false;
+
+            if (tile.position.x >= BaseTile.tileWidth)
+                left = true;
+
+            if (tile.position.x < world.gameWidth - BaseTile.tileWidth)
+                right = true;
+
+            if (tile.position.y >= BaseTile.tileHeight)
+                up = true;
+
+            if (tile.position.y < world.gameHeight - BaseTile.tileWidth)
+                down = true;
+
+            if (up) {
+                BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(0, -BaseTile.tileHeight))];
+                if (newTile.isWalkable)
+                    list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(0, -BaseTile.tileHeight))]);
+
+                if (left) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, -BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, -BaseTile.tileHeight))]);
+                }
+                if (right) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, -BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, -BaseTile.tileHeight))]);
+                }
+            }
+
+            if (down) {
+                BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(0, BaseTile.tileHeight))];
+                if (newTile.isWalkable)
+                    list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(0, BaseTile.tileHeight))]);
+
+                if (left) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, BaseTile.tileHeight))]);
+                }
+                if (right) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, BaseTile.tileHeight))]);
+                }
+            }
+
+            if (left) {
+                BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, 0))];
+                if (newTile.isWalkable)
+                    list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, 0))]);
+            }
+
+            if (right) {
+                BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, 0))];
+                if (newTile.isWalkable)
+                    list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, 0))]);
+            }
+
+            return list;
+        }
+
+        public List<BaseTile> GetWalkableDiagonalNeighbours(BaseTile tile) {
+            List<BaseTile> list = new List<BaseTile>();
+
+            bool up = false, down = false, left = false, right = false;
+
+            if (tile.position.x >= BaseTile.tileWidth)
+                left = true;
+
+            if (tile.position.x < world.gameWidth - BaseTile.tileWidth)
+                right = true;
+
+            if (tile.position.y >= BaseTile.tileHeight)
+                up = true;
+
+            if (tile.position.y < world.gameHeight - BaseTile.tileWidth)
+                down = true;
+
+            if (up) {
+                BaseTile newTile;
+
+                if (left) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, -BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, -BaseTile.tileHeight))]);
+                }
+                if (right) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, -BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, -BaseTile.tileHeight))]);
+                }
+            }
+
+            if (down) {
+                BaseTile newTile;
+
+                if (left) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(-BaseTile.tileWidth, BaseTile.tileHeight))]);
+                }
+                if (right) {
+                    newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, BaseTile.tileHeight))];
+                    if (newTile.isWalkable)
+                        list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, BaseTile.tileHeight))]);
+                }
+            }
+
+
+            return list;
+        }
+
         /// <summary>
         /// Gets the index of a position
         /// </summary>
         /// <param name="pos">The position of the vector</param>
         /// <returns>The index this vector is in</returns>
-        public int GetIndexOfTile(Vector2D pos) {
-            int tilesPerRow = world.gameWidth / BaseTile.tileWidth;
+        public static int GetIndexOfTile(Vector2D pos) {
+            int tilesPerRow = GameWorld.instance.gameWidth / BaseTile.tileWidth;
             int index = (int)(pos.y / BaseTile.tileHeight) * tilesPerRow;
             index += (int)(pos.x / BaseTile.tileWidth);
             return index;
@@ -301,9 +417,9 @@ namespace ResourceGatherer.World.Tiles {
         /// </summary>
         /// <param name="tiles"></param>
         public static void Prepare(BaseTile[] tiles) {
-            if(tiles != null) {
-                if(tiles.Count() > 0) {
-                    foreach(BaseTile b in tiles) {
+            if (tiles != null) {
+                if (tiles.Count() > 0) {
+                    foreach (BaseTile b in tiles) {
                         Vertex.ResetVertex(b.tileVertex);
                         //if(b.tileVertex != null) {
                         //    b.tileVertex.dist = float.MaxValue;

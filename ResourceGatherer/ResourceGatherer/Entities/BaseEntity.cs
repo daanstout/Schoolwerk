@@ -146,6 +146,14 @@ namespace ResourceGatherer.Entities {
         public virtual void Write() { }
 
         /// <summary>
+        /// Creates Debug Info
+        /// </summary>
+        /// <returns>A string with the important information</returns>
+        public virtual string GetDebug() {
+            return String.Format("ID: {0}\nTypeID: {1}", entityId, entityType);
+        }
+
+        /// <summary>
         /// Tags the entity
         /// </summary>
         public void Tag() {

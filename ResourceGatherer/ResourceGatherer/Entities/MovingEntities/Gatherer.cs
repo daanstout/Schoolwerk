@@ -10,6 +10,7 @@ using ResourceGatherer.Materials;
 using ResourceGatherer.Util;
 using ResourceGatherer.World;
 using ResourceGatherer.World.Grids;
+using ResourceGatherer.World.Tiles;
 
 namespace ResourceGatherer.Entities.MovingEntities {
     /// <summary>
@@ -25,6 +26,15 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// The inventory of the gatherer
         /// </summary>
         public MaterialCollector inventory;
+
+        /// <summary>
+        /// The remaining capacity of the gatherer
+        /// </summary>
+        public int remainingCapacity {
+            get {
+                return carryCapacity - inventory.totalCount;
+            }
+        }
 
         /// <summary>
         /// The ID of the material this entity should chase after
@@ -75,16 +85,20 @@ namespace ResourceGatherer.Entities.MovingEntities {
             //Console.WriteLine(counter);
 
             if (path.isFinished && !noMatsLeft) {
-                MaterialEntity entity = GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList[0];
-                //GameWorld.instance.materialCollection.AddMaterial(entity.material, 1);
-                inventory.AddMaterial(entity.material, entity.quantity);
-                GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)].entityList.Clear();
+                if (CollectMaterialsFromTile(GameWorld.instance.tiles.tiles[TileSystem.GetIndexOfTile(position)])) {
+                    path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[TileSystem.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
+                } else {
+                    GameWorld.instance.materialCollection += inventory;
+                    inventory.Clear();
+                    path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[TileSystem.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
+                }
 
-                path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[GameWorld.instance.tiles.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
+
 
                 if (path.Count == 0) {
                     noMatsLeft = true;
                     GameWorld.instance.materialCollection += inventory;
+                    inventory.Clear();
                 }
 
                 ResourceGatherer.instance.RedrawBackground();
@@ -98,13 +112,66 @@ namespace ResourceGatherer.Entities.MovingEntities {
         public override void Render(Graphics g) {
             g.FillRectangle(new SolidBrush(Color.Red), new RectangleF(position - (scale / 2), scale));
             Vector2D pos = GameWorld.instance.grid.GetGridPosition(position);
-            //Console.WriteLine(pos);
+
             g.DrawRectangle(new Pen(Color.Black), new Rectangle(pos, new Vector2D(Grid.GridWidth, Grid.GridHeight)));
             try {
                 g.DrawLine(new Pen(Color.Black), position, position + heading * 15);
-            } catch {
+            } catch { }
+        }
 
+        /// <summary>
+        /// Adds all the materials on the tile to the inventory
+        /// </summary>
+        /// <param name="tile">The tile to add from</param>
+        /// <returns>False if the inventory is to large</returns>
+        private bool CollectMaterialsFromTile(BaseTile tile) {
+            while (tile.entityList.Count > 0) {
+                MaterialStack stack = tile.entityList[0].GetStack();
+                if (!AddMaterials(stack.material, stack.count)) {
+                    int remaining = remainingCapacity;
+                    AddMaterials(stack.material, remaining);
+                    tile.entityList[0].Decrease(remaining);
+                    return false;
+                } else if (remainingCapacity == 0)
+                    return false;
+                tile.entityList.RemoveAt(0);
             }
+            return true;
+        }
+
+        /// <summary>
+        /// Adds materials to the inventory
+        /// </summary>
+        /// <param name="mat">The material to be added</param>
+        /// <param name="count">The amount to add</param>
+        /// <returns>False if the gatherer would go over their carry capacity</returns>
+        public bool AddMaterials(Material mat, int count) {
+            if (inventory.totalCount + count > carryCapacity)
+                return false;
+            else
+                inventory.AddMaterial(mat, count);
+            return true;
+        }
+
+        /// <summary>
+        /// Adds materials to the inventory
+        /// </summary>
+        /// <param name="mat">The stack of materials to add</param>
+        /// <returns>False if the gatherer would go over their carry capacity</returns>
+        public bool AddMaterials(MaterialStack mat) {
+            if (inventory.totalCount + mat.count > carryCapacity)
+                return false;
+            else
+                inventory.AddMaterial(mat);
+            return true;
+        }
+
+        /// <summary>
+        /// Creates Debug Info
+        /// </summary>
+        /// <returns>A string with the important information</returns>
+        public override string GetDebug() {
+            return String.Format("{0}\nMaximum Carry Capacity: {1}\nInventory: {2}", base.GetDebug(), carryCapacity, inventory);
         }
     }
 }

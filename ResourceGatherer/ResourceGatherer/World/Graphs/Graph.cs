@@ -72,6 +72,8 @@ namespace ResourceGatherer.World.Graphs {
 
             q.Enqueue(tile);
 
+            float diag = (float)Math.Sqrt(2);
+
             // While we have unvisited tiles
             while (!q.isEmpty) {
                 // Get a tile
@@ -90,6 +92,15 @@ namespace ResourceGatherer.World.Graphs {
                     t.CreateTileVertex();
                     AddEdge(current, t, 1);
                     q.Enqueue(t);
+                }
+
+                neighbours = world.tiles.GetWalkableDiagonalNeighbours(current);
+                foreach(BaseTile t in neighbours) {
+                    if (current.HasAdjacent(t))
+                        continue;
+                    t.CreateTileVertex();
+                    AddEdge(current, t, diag);
+                    q.Equals(t);
                 }
             }
         }

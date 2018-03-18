@@ -33,5 +33,13 @@ namespace ResourceGatherer.Materials {
             material = mat;
             this.count = count;
         }
+
+        /// <summary>
+        /// Overrides the ToString function
+        /// </summary>
+        /// <returns>The material with the count</returns>
+        public override string ToString() {
+            return String.Format("{0} -> {1}", material, count);
+        }
     }
 }

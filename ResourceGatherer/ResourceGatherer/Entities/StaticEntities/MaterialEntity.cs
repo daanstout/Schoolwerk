@@ -11,7 +11,7 @@ namespace ResourceGatherer.Entities.StaticEntities {
     /// <summary>
     /// An static entity that has a material
     /// </summary>
-    public class MaterialEntity : StaticEntity{
+    public class MaterialEntity : StaticEntity {
         /// <summary>
         /// The material this entity represents
         /// </summary>
@@ -78,6 +78,14 @@ namespace ResourceGatherer.Entities.StaticEntities {
         /// <param name="amount">The amount to be decreased by</param>
         public void Decrease(int amount) {
             quantity -= amount;
+        }
+
+        /// <summary>
+        /// Creates a stack of the material it holds
+        /// </summary>
+        /// <returns>The newly created stack</returns>
+        public MaterialStack GetStack() {
+            return new MaterialStack(material, quantity);
         }
     }
 }

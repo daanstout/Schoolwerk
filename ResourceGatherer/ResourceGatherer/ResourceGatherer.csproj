@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\IState.cs" />
     <Compile Include="Util\C2DMatrix.cs" />
     <Compile Include="Util\Datastructures\PriorityQueue.cs" />
     <Compile Include="Util\Datastructures\Queue.cs" />
@@ -146,6 +147,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-xcopy /s /y "C:\Users\daans\Desktop\Schoolwerk\ResourceGatherer\packages\NLua.1.3.2.1\lib\native\*.*" "$(TargetDir)"</PostBuildEvent>
+xcopy /s /y "C:\Users\daans\Desktop\Schoolwerk\ResourceGatherer\packages\NLua.1.3.2.1\lib\native\*.*" "$(TargetDir)"
+xcopy /s /y "C:\Users\Daan\Desktop\Schoolwerk\ResourceGatherer\packages\NLua.1.3.2.1\lib\native\*.*" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

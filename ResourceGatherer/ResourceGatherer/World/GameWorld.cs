@@ -53,15 +53,15 @@ namespace ResourceGatherer.World {
         public TileSystem tiles;
 
         // The list of all entities on the map
-        private List<BaseEntity> _entites;
+        private List<BaseEntity> _entities;
         /// <summary>
         /// Public list of all entities
         /// </summary>
-        private List<BaseEntity> entites {
+        private List<BaseEntity> entities {
             get {
-                if (_entites == null)
-                    _entites = new List<BaseEntity>();
-                return _entites;
+                if (_entities == null)
+                    _entities = new List<BaseEntity>();
+                return _entities;
             }
         }
 
@@ -97,7 +97,7 @@ namespace ResourceGatherer.World {
             Gatherer npc = new Gatherer(new Vector2D(20, 100), // Position
                                                 20, // Bounding Radius
                                                 new Vector2D(0, 0), // Velocity
-                                                40, // Max Speed
+                                                80, // Max Speed
                                                 Vector2D.Up, // Heading
                                                 1, // Mass
                                                 new Vector2D(15, 15), // Scale
@@ -109,7 +109,7 @@ namespace ResourceGatherer.World {
             Gatherer npc2 = new Gatherer(new Vector2D(60, 100), // Position
                                                 20, // Bounding Radius
                                                 new Vector2D(0, 0), // Velocity
-                                                40, // Max Speed
+                                                80, // Max Speed
                                                 Vector2D.Left, // Heading
                                                 1, // Mass
                                                 new Vector2D(15, 15), // Scale
@@ -119,12 +119,12 @@ namespace ResourceGatherer.World {
                                                 2); // MatID
 
             // Setting the path for the npc to follow
-            npc.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc.position)], Material.WOOD));
-            npc2.path.Set(Path.GetPathTo(tiles.tiles[tiles.GetIndexOfTile(npc2.position)], Material.STONE));
+            npc.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc.position)], Material.WOOD));
+            npc2.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc2.position)], Material.STONE));
 
             // Adding the npc to the world
-            entites.Add(npc);
-            entites.Add(npc2);
+            entities.Add(npc);
+            entities.Add(npc2);
         }
 
         /// <summary>
@@ -133,9 +133,9 @@ namespace ResourceGatherer.World {
         public void Update() {
             time.Update();
 
-            if (_entites != null)
-                for (int i = 0; i < entites.Count; i++)
-                    entites[i].Update(Time.deltaTimeSeconds);
+            if (_entities != null)
+                for (int i = 0; i < entities.Count; i++)
+                    entities[i].Update(Time.deltaTimeSeconds);
         }
 
         /// <summary>
@@ -143,11 +143,13 @@ namespace ResourceGatherer.World {
         /// </summary>
         /// <param name="g">The graphics instance</param>
         public void RenderGame(Graphics g) {
-            if (_entites != null)
-                for (int i = 0; i < entites.Count; i++)
-                    entites[i].Render(g);
+            if (_entities != null)
+                for (int i = 0; i < entities.Count; i++) {
+                    entities[i].Render(g);
+                    g.DrawString(entities[i].GetDebug(), new Font("Arial", 7), new SolidBrush(Color.Black), new PointF((entities[i].position + new Vector2D(entities[i].scale.x, 0)).x, entities[i].position.y));
+                }
 
-            foreach (BaseEntity b in entites)
+            foreach (BaseEntity b in entities)
                 if (b is MovingEntity m)
                     m.path.Render(g);
         }
@@ -166,7 +168,7 @@ namespace ResourceGatherer.World {
         /// <param name="g"></param>
         public void GetBackground(Graphics g) {
             tiles.Render(g);
-            grid.Render(g);
+            //grid.Render(g);
         }
     }
 }

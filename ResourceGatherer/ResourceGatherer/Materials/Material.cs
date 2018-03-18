@@ -100,5 +100,13 @@ namespace ResourceGatherer.Materials {
         public override int GetHashCode() {
             return 1877310944 + id.GetHashCode();
         }
+
+        /// <summary>
+        /// Overrides the ToString Function
+        /// </summary>
+        /// <returns>The material name</returns>
+        public override string ToString() {
+            return name;
+        }
     }
 }
