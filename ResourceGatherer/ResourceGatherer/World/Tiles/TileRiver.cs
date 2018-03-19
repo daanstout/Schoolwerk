@@ -1,4 +1,5 @@
 ﻿using ResourceGatherer.Util;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ResourceGatherer.World.Tiles {
     /// <summary>
     /// Creates a new river tile
     /// </summary>
-    public class TileRiver : BaseTile {
+    public sealed class TileRiver : BaseTile {
         /// <summary>
         /// If the current river has a bridge
         /// </summary>

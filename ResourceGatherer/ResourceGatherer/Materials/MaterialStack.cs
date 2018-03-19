@@ -8,7 +8,7 @@ namespace ResourceGatherer.Materials {
     /// <summary>
     /// A stack of a material, makes for easier counting
     /// </summary>
-    public class MaterialStack {
+    public sealed class MaterialStack {
         /// <summary>
         /// The material in this stack
         /// </summary>

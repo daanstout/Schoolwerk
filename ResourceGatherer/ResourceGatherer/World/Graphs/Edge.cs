@@ -8,7 +8,7 @@ namespace ResourceGatherer.World.Graphs {
     /// <summary>
     /// An edge, it connects 2 Verteces with a cost
     /// </summary>
-    public class Edge {
+    public sealed class Edge {
         /// <summary>
         /// The destination Vertex
         /// </summary>

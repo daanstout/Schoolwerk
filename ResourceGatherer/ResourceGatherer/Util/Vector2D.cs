@@ -9,7 +9,7 @@ namespace ResourceGatherer.Util {
     /// <summary>
     /// A 2-dimensional vector, consisting of an X and an Y value; Copied from Buckland
     /// </summary>
-    public class Vector2D {
+    public sealed class Vector2D {
         /// <summary>
         /// The X value
         /// </summary>

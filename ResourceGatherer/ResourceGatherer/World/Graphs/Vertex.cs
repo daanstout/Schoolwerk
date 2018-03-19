@@ -1,4 +1,5 @@
 ﻿using ResourceGatherer.World.Tiles;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace ResourceGatherer.World.Graphs {
     /// <summary>
     /// The vertex class. These are points an agent can move to, using the edges to calculate its path
     /// </summary>
-    public class Vertex {
+    public sealed class Vertex {
         /// <summary>
         /// The name of the vertex
         /// </summary>
@@ -59,6 +60,10 @@ namespace ResourceGatherer.World.Graphs {
             Scratch = false;
         }
 
+        /// <summary>
+        /// Resets the vertex
+        /// </summary>
+        /// <param name="v">The vertex to be reset</param>
         public static void ResetVertex(Vertex v) {
             if (v == null)
                 return;

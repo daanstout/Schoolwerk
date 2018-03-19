@@ -1,6 +1,6 @@
-﻿using ResourceGatherer.Entities;
-using ResourceGatherer.Entities.StaticEntities;
+﻿using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.World.Tiles;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;

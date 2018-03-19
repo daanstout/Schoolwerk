@@ -8,7 +8,7 @@ namespace ResourceGatherer.Util {
     /// <summary>
     /// A C2DMatrix copied from Buckland
     /// </summary>
-    public class C2DMatrix {
+    public sealed class C2DMatrix {
         /// <summary>
         /// The matrix
         /// </summary>

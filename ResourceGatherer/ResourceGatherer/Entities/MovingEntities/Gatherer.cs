@@ -1,16 +1,18 @@
-﻿using System;
+﻿using ResourceGatherer.Materials;
+using ResourceGatherer.Util;
+using ResourceGatherer.World;
+using ResourceGatherer.World.Grids;
+using ResourceGatherer.World.Tiles;
+
+using NLua;
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NLua;
-using ResourceGatherer.Entities.StaticEntities;
-using ResourceGatherer.Materials;
-using ResourceGatherer.Util;
-using ResourceGatherer.World;
-using ResourceGatherer.World.Grids;
-using ResourceGatherer.World.Tiles;
+
 
 namespace ResourceGatherer.Entities.MovingEntities {
     /// <summary>
@@ -48,7 +50,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
 
         public int counter;
 
-        Lua script;
+        //Lua script;
 
         /// <summary>
         /// The constructor of this class
@@ -67,9 +69,9 @@ namespace ResourceGatherer.Entities.MovingEntities {
         public Gatherer(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce, int carryCap, int matID) : base(pos, rad, vel, maxSpd, heading, mass, scale, turnRate, maxForce) {
             carryCapacity = carryCap;
             this.matID = matID;
-            script = new Lua();
-            script.LoadCLRPackage();
-            script.DoFile("./Scripts/Print.lua");
+            //script = new Lua();
+            //script.LoadCLRPackage();
+            //script.DoFile("./Scripts/Print.lua");
             inventory = new MaterialCollector();
         }
 

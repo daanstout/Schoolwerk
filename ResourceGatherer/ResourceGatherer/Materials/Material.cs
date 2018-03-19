@@ -1,4 +1,5 @@
 ﻿using ResourceGatherer.Properties;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,7 +11,7 @@ namespace ResourceGatherer.Materials {
     /// <summary>
     /// Materials class
     /// </summary>
-    public class Material {
+    public sealed class Material {
         // STATIC MATERIALS
         /// <summary>
         /// Instance of the WOOD material

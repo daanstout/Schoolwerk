@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ResourceGatherer.Materials {
-    public class MaterialCollector {
+    public sealed class MaterialCollector {
         /// <summary>
         /// A list of all the materials in the collection
         /// </summary>

@@ -1,10 +1,10 @@
-﻿using ResourceGatherer.Entities;
-using ResourceGatherer.Entities.StaticEntities;
+﻿using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Materials;
 using ResourceGatherer.Util.Datastructures;
 using ResourceGatherer.World;
 using ResourceGatherer.World.Graphs;
 using ResourceGatherer.World.Tiles;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,7 +16,7 @@ namespace ResourceGatherer.Util {
     /// <summary>
     /// The Path class, This holds mutliple waypoints which become a path for an entity
     /// </summary>
-    public class Path {
+    public sealed class Path {
         /// <summary>
         /// The list of vectors
         /// </summary>

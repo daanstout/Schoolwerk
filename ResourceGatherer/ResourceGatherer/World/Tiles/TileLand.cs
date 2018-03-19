@@ -1,19 +1,17 @@
-﻿using System;
+﻿using ResourceGatherer.Util;
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ResourceGatherer.Entities;
-using ResourceGatherer.Entities.StaticEntities;
-using ResourceGatherer.Properties;
-using ResourceGatherer.Util;
 
 namespace ResourceGatherer.World.Tiles {
     /// <summary>
     /// A land tile
     /// </summary>
-    public class TileLand : BaseTile {
+    public sealed class TileLand : BaseTile {
         /// <summary>
         /// Creates a new land tile
         /// </summary>

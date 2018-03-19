@@ -1,5 +1,4 @@
-﻿using ResourceGatherer.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace ResourceGatherer.Util {
     /// <summary>
     /// The time class. Keeps track of the time passed between updates
     /// </summary>
-    public class Time {
+    public sealed class Time {
         /// <summary>
         /// The stopwatch used to calculate the time with
         /// </summary>
@@ -34,6 +33,9 @@ namespace ResourceGatherer.Util {
             }
         }
 
+        /// <summary>
+        /// Total elapsed time since the start
+        /// </summary>
         public static long totalElapsedTime { get; private set; }
 
         /// <summary>

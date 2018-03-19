@@ -1,5 +1,5 @@
-﻿using ResourceGatherer.Util;
-using ResourceGatherer.World.Tiles;
+﻿using ResourceGatherer.World.Tiles;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,36 +10,29 @@ namespace ResourceGatherer.World.Graphs {
     /// <summary>
     /// The graph class. It makes sure our Game can have a working graph system
     /// </summary>
-    public class Graph {
+    public sealed class Graph {
         /// <summary>
         /// The max value of a float
         /// </summary>
         public static readonly float INFINITY = float.MaxValue;
-        /// <summary>
-        /// An instance of the world
-        /// </summary>
-        private GameWorld world;
 
         /// <summary>
         /// The constructor
         /// </summary>
-        /// <param name="world">An instance of the GameWorld</param>
-        public Graph(GameWorld world) {
-            this.world = world;
-        }
+        public Graph() { }
 
         /// <summary>
         /// Initializes the graph, first destroying every vertex and then recreating them where possible
         /// </summary>
         public void initGraph() {
             // Destroying every vertex
-            for (int i = 0; i < world.tiles.tileCount; i++)
-                world.tiles.tiles[i].DestroyTileVertex();
+            for (int i = 0; i < GameWorld.instance.tiles.tileCount; i++)
+                GameWorld.instance.tiles.tiles[i].DestroyTileVertex();
 
             // Look through our world and whenever we find a tile that can be walked on and doesn't have a vertex yet, we create a new graph
-            for (int i = 0; i < world.tiles.tileCount; i++) {
-                if (world.tiles.tiles[i].isWalkable && world.tiles.tiles[i].tileVertex == null) {
-                    CreateGraph(world.tiles.tiles[i]);
+            for (int i = 0; i < GameWorld.instance.tiles.tileCount; i++) {
+                if (GameWorld.instance.tiles.tiles[i].isWalkable && GameWorld.instance.tiles.tiles[i].tileVertex == null) {
+                    CreateGraph(GameWorld.instance.tiles.tiles[i]);
                 }
             }
         }
@@ -83,7 +76,7 @@ namespace ResourceGatherer.World.Graphs {
                 current.CreateTileVertex();
 
                 // Get all neighbours
-                List<BaseTile> neighbours = world.tiles.GetWalkableNeighbours(current);
+                List<BaseTile> neighbours = GameWorld.instance.tiles.GetWalkableNeighbours(current);
 
                 // For every tile, check if there already is an edge connecting the 2, if not, create it and add the neighbour to the queue
                 foreach (BaseTile t in neighbours) {
@@ -94,8 +87,8 @@ namespace ResourceGatherer.World.Graphs {
                     q.Enqueue(t);
                 }
 
-                neighbours = world.tiles.GetWalkableDiagonalNeighbours(current);
-                foreach(BaseTile t in neighbours) {
+                neighbours = GameWorld.instance.tiles.GetWalkableDiagonalNeighbours(current);
+                foreach (BaseTile t in neighbours) {
                     if (current.HasAdjacent(t))
                         continue;
                     t.CreateTileVertex();

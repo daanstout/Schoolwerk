@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ResourceGatherer.World.Graphs;
+using ResourceGatherer.World.Tiles;
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ResourceGatherer.World.Graphs;
-using ResourceGatherer.World.Tiles;
 
 namespace ResourceGatherer.Drawers.TileDrawers {
     /// <summary>

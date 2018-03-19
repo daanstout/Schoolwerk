@@ -1,13 +1,11 @@
 ﻿using ResourceGatherer.Entities;
-using ResourceGatherer.Util;
+using ResourceGatherer.Entities.MovingEntities;
 using ResourceGatherer.Materials;
+using ResourceGatherer.Util;
 using ResourceGatherer.World.Tiles;
 using ResourceGatherer.World.Graphs;
 using ResourceGatherer.World.Grids;
 using ResourceGatherer.World.UserInterface;
-using ResourceGatherer.Entities.MovingEntities;
-using ResourceGatherer.Entities.StaticEntities;
-using ResourceGatherer.Properties;
 
 using System;
 using System.Collections.Generic;
@@ -21,7 +19,7 @@ namespace ResourceGatherer.World {
     /// <summary>
     /// The GameWorld, it holds all the information for our pieces
     /// </summary>
-    public class GameWorld {
+    public sealed class GameWorld {
         /// <summary>
         /// The game width
         /// </summary>
@@ -31,7 +29,9 @@ namespace ResourceGatherer.World {
         /// </summary>
         public readonly int gameHeight;
 
-        // An instance of the gameworld
+        /// <summary>
+        /// An instance of the gameworld
+        /// </summary>
         public static GameWorld instance;
 
         /// <summary>
@@ -52,7 +52,9 @@ namespace ResourceGatherer.World {
         /// </summary>
         public TileSystem tiles;
 
-        // The list of all entities on the map
+        /// <summary>
+        /// The list of all entities on the map
+        /// </summary>
         private List<BaseEntity> _entities;
         /// <summary>
         /// Public list of all entities
@@ -84,9 +86,9 @@ namespace ResourceGatherer.World {
             // Init the time, graph, grid- and tilessystem
             time = new Time();
             materialCollection = new MaterialCollector(true);
-            graph = new Graph(this);
-            grid = new GridSystem(this);
-            tiles = new TileSystem(this);
+            graph = new Graph();
+            grid = new GridSystem();
+            tiles = new TileSystem();
 
             // Initializations for the tiles-, gridsystem and graph
             tiles.initTiles();
@@ -143,15 +145,14 @@ namespace ResourceGatherer.World {
         /// </summary>
         /// <param name="g">The graphics instance</param>
         public void RenderGame(Graphics g) {
-            if (_entities != null)
+            if (_entities != null) {
                 for (int i = 0; i < entities.Count; i++) {
                     entities[i].Render(g);
                     g.DrawString(entities[i].GetDebug(), new Font("Arial", 7), new SolidBrush(Color.Black), new PointF((entities[i].position + new Vector2D(entities[i].scale.x, 0)).x, entities[i].position.y));
+                    if (entities[i] is MovingEntity m)
+                        m.path.Render(g);
                 }
-
-            foreach (BaseEntity b in entities)
-                if (b is MovingEntity m)
-                    m.path.Render(g);
+            }
         }
 
         /// <summary>

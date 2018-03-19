@@ -1,8 +1,8 @@
 ﻿using ResourceGatherer.Drawers.TileDrawers;
-using ResourceGatherer.Entities;
 using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Util;
 using ResourceGatherer.World.Graphs;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;

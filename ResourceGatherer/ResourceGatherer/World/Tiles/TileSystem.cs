@@ -3,6 +3,7 @@ using ResourceGatherer.Entities.StaticEntities;
 using ResourceGatherer.Properties;
 using ResourceGatherer.Util;
 using ResourceGatherer.World.Graphs;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,7 +15,7 @@ namespace ResourceGatherer.World.Tiles {
     /// <summary>
     /// The tile system. This holds all the tiles and allows for easy manipulation
     /// </summary>
-    public class TileSystem {
+    public sealed class TileSystem {
         /// <summary>
         /// The tiles
         /// </summary>
@@ -25,10 +26,6 @@ namespace ResourceGatherer.World.Tiles {
         public int tileCount;
 
         /// <summary>
-        /// The gameworld instance
-        /// </summary>
-        GameWorld world;
-        /// <summary>
         /// An random instance
         /// </summary>
         Random rand;
@@ -37,8 +34,7 @@ namespace ResourceGatherer.World.Tiles {
         /// Creates a new tilesystem
         /// </summary>
         /// <param name="world">The world instance</param>
-        public TileSystem(GameWorld world) {
-            this.world = world;
+        public TileSystem() {
             rand = new Random();
         }
 
@@ -46,14 +42,14 @@ namespace ResourceGatherer.World.Tiles {
         /// Initializes the tiles
         /// </summary>
         public void initTiles() {
-            tileCount = (world.gameWidth / BaseTile.tileWidth) * (world.gameHeight / BaseTile.tileHeight);
+            tileCount = (GameWorld.instance.gameWidth / BaseTile.tileWidth) * (GameWorld.instance.gameHeight / BaseTile.tileHeight);
             tiles = new BaseTile[tileCount];
 
             float curX = 0, curY = 0;
             for (int i = 0; i < tileCount; i++) {
                 tiles[i] = new TileLand(new Vector2D(new Vector2D(curX, curY)));
                 curX += BaseTile.tileWidth;
-                if (curX >= world.gameWidth) {
+                if (curX >= GameWorld.instance.gameWidth) {
                     curX = 0;
                     curY += BaseTile.tileHeight;
                 }
@@ -141,7 +137,7 @@ namespace ResourceGatherer.World.Tiles {
         /// <param name="index">The index of the tile</param>
         private void SetRiverTile(int index) {
             if (index >= 0 && index < tileCount) {
-                int tilesPerRow = world.gameWidth / BaseTile.tileWidth;
+                int tilesPerRow = GameWorld.instance.gameWidth / BaseTile.tileWidth;
 
                 bool up = false, down = false, left = false, right = false;
                 if (index > tilesPerRow)
@@ -185,12 +181,12 @@ namespace ResourceGatherer.World.Tiles {
             List<BaseTile> list = new List<BaseTile>();
             if (tile.position.x >= BaseTile.tileWidth)
                 list.Add(tiles[GetIndexOfTile(tile.position - new Vector2D(BaseTile.tileWidth, 0))]);
-            if (tile.position.x < world.gameWidth - BaseTile.tileWidth)
+            if (tile.position.x < GameWorld.instance.gameWidth - BaseTile.tileWidth)
                 list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, 0))]);
 
             if (tile.position.y >= BaseTile.tileHeight)
                 list.Add(tiles[GetIndexOfTile(tile.position - new Vector2D(0, BaseTile.tileHeight))]);
-            if (tile.position.y < world.gameHeight - BaseTile.tileWidth)
+            if (tile.position.y < GameWorld.instance.gameHeight - BaseTile.tileWidth)
                 list.Add(tiles[GetIndexOfTile(tile.position + new Vector2D(0, BaseTile.tileHeight))]);
 
             return list;
@@ -208,13 +204,13 @@ namespace ResourceGatherer.World.Tiles {
             if (tile.position.x >= BaseTile.tileWidth)
                 left = true;
 
-            if (tile.position.x < world.gameWidth - BaseTile.tileWidth)
+            if (tile.position.x < GameWorld.instance.gameWidth - BaseTile.tileWidth)
                 right = true;
 
             if (tile.position.y >= BaseTile.tileHeight)
                 up = true;
 
-            if (tile.position.y < world.gameHeight - BaseTile.tileWidth)
+            if (tile.position.y < GameWorld.instance.gameHeight - BaseTile.tileWidth)
                 down = true;
 
             if (up) {
@@ -254,7 +250,7 @@ namespace ResourceGatherer.World.Tiles {
                 if (newTile.isWalkable)
                     list.Add(newTile);
             }
-            if (tile.position.x < world.gameWidth - BaseTile.tileWidth) {
+            if (tile.position.x < GameWorld.instance.gameWidth - BaseTile.tileWidth) {
                 BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(BaseTile.tileWidth, 0))];
                 if (newTile.isWalkable)
                     list.Add(newTile);
@@ -265,7 +261,7 @@ namespace ResourceGatherer.World.Tiles {
                 if (newTile.isWalkable)
                     list.Add(newTile);
             }
-            if (tile.position.y < world.gameHeight - BaseTile.tileWidth) {
+            if (tile.position.y < GameWorld.instance.gameHeight - BaseTile.tileWidth) {
                 BaseTile newTile = tiles[GetIndexOfTile(tile.position + new Vector2D(0, BaseTile.tileHeight))];
                 if (newTile.isWalkable)
                     list.Add(newTile);
@@ -281,13 +277,13 @@ namespace ResourceGatherer.World.Tiles {
             if (tile.position.x >= BaseTile.tileWidth)
                 left = true;
 
-            if (tile.position.x < world.gameWidth - BaseTile.tileWidth)
+            if (tile.position.x < GameWorld.instance.gameWidth - BaseTile.tileWidth)
                 right = true;
 
             if (tile.position.y >= BaseTile.tileHeight)
                 up = true;
 
-            if (tile.position.y < world.gameHeight - BaseTile.tileWidth)
+            if (tile.position.y < GameWorld.instance.gameHeight - BaseTile.tileWidth)
                 down = true;
 
             if (up) {
@@ -347,13 +343,13 @@ namespace ResourceGatherer.World.Tiles {
             if (tile.position.x >= BaseTile.tileWidth)
                 left = true;
 
-            if (tile.position.x < world.gameWidth - BaseTile.tileWidth)
+            if (tile.position.x < GameWorld.instance.gameWidth - BaseTile.tileWidth)
                 right = true;
 
             if (tile.position.y >= BaseTile.tileHeight)
                 up = true;
 
-            if (tile.position.y < world.gameHeight - BaseTile.tileWidth)
+            if (tile.position.y < GameWorld.instance.gameHeight - BaseTile.tileWidth)
                 down = true;
 
             if (up) {
