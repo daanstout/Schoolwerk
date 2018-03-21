@@ -43,7 +43,7 @@ namespace ResourceGatherer.World.Graphs {
         /// <param name="a">The first tile</param>
         /// <param name="b">The second tile</param>
         /// <param name="cost">The cost of the edge</param>
-        private void AddEdge(BaseTile a, BaseTile b, float cost) {
+        public void AddEdge(BaseTile a, BaseTile b, float cost) {
             // If either is 0, we can't do anything
             if (a.tileVertex == null || b.tileVertex == null)
                 return;

@@ -29,7 +29,7 @@ namespace ResourceGatherer.Entities.StaticEntities {
         /// <param name="pos">The position of the entity</param>
         /// <param name="boundRad">The bounding radius of the entity</param>
         /// <param name="qty">The amount of the material the entity has</param>
-        public MaterialEntity(Entity_types type, Vector2D pos, int boundRad, int qty) : base((int)type, pos, boundRad) {
+        public MaterialEntity(Entity_Types type, Vector2D pos, int boundRad, int qty) : base(type, pos, boundRad) {
             quantity = qty;
             SetMaterial(type);
         }
@@ -38,12 +38,12 @@ namespace ResourceGatherer.Entities.StaticEntities {
         /// Sets the sprite of the entity
         /// </summary>
         /// <param name="type">What entity it is</param>
-        private void SetMaterial(Entity_types type) {
+        private void SetMaterial(Entity_Types type) {
             switch (type) {
-                case Entity_types.WOOD:
+                case Entity_Types.WOOD:
                     material = Material.WOOD;
                     break;
-                case Entity_types.STONE:
+                case Entity_Types.STONE:
                     material = Material.STONE;
                     break;
             }

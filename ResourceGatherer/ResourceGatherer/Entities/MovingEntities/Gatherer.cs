@@ -67,6 +67,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// <param name="carryCap">The carry capacity of the entity</param>
         /// <param name="matID">THe id of the material this entity should chase after</param>
         public Gatherer(Vector2D pos, float rad, Vector2D vel, float maxSpd, Vector2D heading, float mass, Vector2D scale, float turnRate, float maxForce, int carryCap, int matID) : base(pos, rad, vel, maxSpd, heading, mass, scale, turnRate, maxForce) {
+            entityType = Entity_Types.GATHERER;
             carryCapacity = carryCap;
             this.matID = matID;
             //script = new Lua();
@@ -95,8 +96,6 @@ namespace ResourceGatherer.Entities.MovingEntities {
                     path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[TileSystem.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
                 }
 
-
-
                 if (path.Count == 0) {
                     noMatsLeft = true;
                     GameWorld.instance.materialCollection += inventory;
@@ -113,7 +112,8 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// <param name="g">The graphics instance</param>
         public override void Render(Graphics g) {
             g.FillRectangle(new SolidBrush(Color.Red), new RectangleF(position - (scale / 2), scale));
-            Vector2D pos = GameWorld.instance.grid.GetGridPosition(position);
+            //Vector2D pos = GameWorld.instance.grid.GetGridPosition(position);
+            Vector2D pos = GameWorld.instance.grid.GetGridPosition(currentGrid);
 
             g.DrawRectangle(new Pen(Color.Black), new Rectangle(pos, new Vector2D(Grid.GridWidth, Grid.GridHeight)));
             try {

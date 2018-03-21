@@ -267,17 +267,17 @@ namespace ResourceGatherer.Util {
 
             TileSystem.Prepare(GameWorld.instance.tiles.tiles);
 
-            Datastructures.Queue<Vertex> q = new Datastructures.Queue<Vertex>();
+            PriorityQueue<Vertex> q = new PriorityQueue<Vertex>();
 
             pos.tileVertex.dist = 0;
             pos.tileVertex.Scratch = true;
 
-            q.Enqueue(pos.tileVertex);
+            q.Insert(pos.tileVertex, pos.tileVertex.dist);
 
             Vertex current;
 
             while (!q.isEmpty) {
-                current = q.Dequeue();
+                current = q.GetHighestPriority();
 
                 if (current == null)
                     continue;
@@ -301,7 +301,7 @@ namespace ResourceGatherer.Util {
                         e.destination.dist = current.dist + e.cost;
                         if (!e.destination.Scratch) {
                             e.destination.Scratch = true;
-                            q.Enqueue(e.destination);
+                            q.Insert(e.destination, e.destination.dist);
                         }
                     }
                 }

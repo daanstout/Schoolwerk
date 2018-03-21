@@ -81,7 +81,7 @@ namespace ResourceGatherer.Entities {
             vehicle = new Vehicle(this);
             path = new Path();
 
-            GameWorld.instance.grid.RegisterEntity(this);
+            currentGrid = GameWorld.instance.grid.RegisterEntity(this);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace ResourceGatherer.Entities {
         public override void Update(float time_elapsed) {
             vehicle.Update(time_elapsed);
 
-            GameWorld.instance.grid.UpdateEntity(this, oldPos);
+            currentGrid = GameWorld.instance.grid.UpdateEntity(this, oldPos);
         }
 
         /// <summary>

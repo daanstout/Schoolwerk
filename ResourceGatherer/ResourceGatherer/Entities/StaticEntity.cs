@@ -22,6 +22,6 @@ namespace ResourceGatherer.Entities {
         /// <param name="type">The entity type</param>
         /// <param name="pos">The position of the entity</param>
         /// <param name="boundRad">The bounding radius of the entity</param>
-        protected StaticEntity(int type, Vector2D pos, int boundRad) : base(type, pos, boundRad) { }
+        protected StaticEntity(Entity_Types type, Vector2D pos, int boundRad) : base(type, pos, boundRad) { }
     }
 }

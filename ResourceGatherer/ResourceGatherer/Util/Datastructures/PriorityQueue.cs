@@ -143,7 +143,7 @@ namespace ResourceGatherer.Util.Datastructures {
         /// </summary>
         /// <param name="node">The node to be inserted</param>
         /// <param name="priority">The priority of the node</param>
-        public void Insert(T node, int priority) {
+        public void Insert(T node, float priority) {
             if (node == null)
                 return;
 
@@ -232,7 +232,7 @@ namespace ResourceGatherer.Util.Datastructures {
         /// <summary>
         /// The priority of the object
         /// </summary>
-        public int priority;
+        public float priority;
         #endregion
 
         #region Constructors
@@ -241,7 +241,7 @@ namespace ResourceGatherer.Util.Datastructures {
         /// </summary>
         /// <param name="node">The object</param>
         /// <param name="priority">The priority</param>
-        public PriorityNode(T node, int priority) {
+        public PriorityNode(T node, float priority) {
             this.node = node;
             this.priority = priority;
         }

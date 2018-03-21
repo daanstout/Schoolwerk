@@ -27,11 +27,11 @@ namespace ResourceGatherer.Entities.EntityHelpers {
         /// </summary>
         /// <param name="time_elapsed">The time since the last update</param>
         public void Update(float time_elapsed) {
-            if(parent.path.Count > 0) {
-                if (parent.position.Distance(parent.path.current) < 1) {
+            if (parent.path.Count > 0) {
+                if (parent.position.Distance(parent.path.current) < 1)
                     if (!parent.path.GoNext())
                         return;
-                }
+
                 if (parent.RotateHeadingToFacePosition(parent.path.current)) {
                     parent.oldPos = parent.position;
                     parent.position += parent.heading * parent.maxSpeed * time_elapsed;

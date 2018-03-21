@@ -39,7 +39,7 @@ namespace ResourceGatherer.Materials {
         /// </summary>
         /// <returns>The material with the count</returns>
         public override string ToString() {
-            return String.Format("{0} -> {1}", material, count);
+            return String.Format("{0}: {1}", material, count);
         }
     }
 }

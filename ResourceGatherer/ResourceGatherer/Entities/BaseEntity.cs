@@ -16,27 +16,32 @@ namespace ResourceGatherer.Entities {
         /// <summary>
         /// The default entity type, used if none is given
         /// </summary>
-        public static int default_entity_type = -1;
+        public static readonly Entity_Types default_entity_type = Entity_Types.default_entity_type;
 
         /// <summary>
         /// An enumeration of all entity types
         /// </summary>
-        public enum Entity_types {
+        public enum Entity_Types {
+            default_entity_type = -1,
+            
             // STATIC ENTITIES:
             WOOD,
-            STONE
+            STONE,
+
+            // Moving Entities
+            GATHERER
         }
 
         /// <summary>
         /// The last given valid id
         /// </summary>
-        private static int ValidId;
+        private static int validId;
         /// <summary>
         /// Gets the next valid id
         /// </summary>
-        private static int NextValidId {
+        private static int nextValidId {
             get {
-                return ++ValidId;
+                return ++validId;
             }
         }
 
@@ -47,7 +52,7 @@ namespace ResourceGatherer.Entities {
         /// <summary>
         /// The entity type
         /// </summary>
-        public int entityType { get; protected set; }
+        public Entity_Types entityType { get; protected set; }
         /// <summary>
         /// Whether the entity is tagged
         /// </summary>
@@ -79,7 +84,7 @@ namespace ResourceGatherer.Entities {
         /// A basic constructor for the base entity
         /// </summary>
         protected BaseEntity() {
-            entityId = NextValidId;
+            entityId = nextValidId;
             boundingRadius = 0;
             position = new Vector2D();
             scale = new Vector2D(1, 1);
@@ -91,8 +96,8 @@ namespace ResourceGatherer.Entities {
         /// A basic constructor that asks for the entity type
         /// </summary>
         /// <param name="type">The type of the entity</param>
-        protected BaseEntity(int type) {
-            entityId = NextValidId;
+        protected BaseEntity(Entity_Types type) {
+            entityId = nextValidId;
             boundingRadius = 0;
             position = new Vector2D();
             scale = new Vector2D(1, 1);
@@ -106,8 +111,8 @@ namespace ResourceGatherer.Entities {
         /// <param name="type">THe type of the entity</param>
         /// <param name="pos">The positino of the entity</param>
         /// <param name="boundRad">The bounding radius of the entity</param>
-        protected BaseEntity(int type, Vector2D pos, float boundRad) {
-            entityId = NextValidId;
+        protected BaseEntity(Entity_Types type, Vector2D pos, float boundRad) {
+            entityId = nextValidId;
             boundingRadius = boundRad;
             position = pos;
             scale = new Vector2D(1, 1);
@@ -120,7 +125,7 @@ namespace ResourceGatherer.Entities {
         /// </summary>
         /// <param name="type">The type of the entity</param>
         /// <param name="forcedId">The id this entity has to use</param>
-        protected BaseEntity(int type, int forcedId) {
+        protected BaseEntity(Entity_Types type, int forcedId) {
             entityId = forcedId;
             boundingRadius = 0;
             position = new Vector2D();
@@ -190,7 +195,7 @@ namespace ResourceGatherer.Entities {
         /// Sets the entity type
         /// </summary>
         /// <param name="newType">The new type of the entity</param>
-        public void SetEntityType(int newType) {
+        public void SetEntityType(Entity_Types newType) {
             entityType = newType;
         }
     }

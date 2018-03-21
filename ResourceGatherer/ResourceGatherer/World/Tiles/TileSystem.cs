@@ -26,6 +26,11 @@ namespace ResourceGatherer.World.Tiles {
         public int tileCount;
 
         /// <summary>
+        /// The number of tiles in a row
+        /// </summary>
+        public int tilesPerRow;
+
+        /// <summary>
         /// An random instance
         /// </summary>
         Random rand;
@@ -43,6 +48,7 @@ namespace ResourceGatherer.World.Tiles {
         /// </summary>
         public void initTiles() {
             tileCount = (GameWorld.instance.gameWidth / BaseTile.tileWidth) * (GameWorld.instance.gameHeight / BaseTile.tileHeight);
+            tilesPerRow = GameWorld.instance.gameWidth / BaseTile.tileWidth;
             tiles = new BaseTile[tileCount];
 
             float curX = 0, curY = 0;
@@ -54,12 +60,6 @@ namespace ResourceGatherer.World.Tiles {
                     curY += BaseTile.tileHeight;
                 }
             }
-            //tiles[132].isWalkable = false;
-            //tiles[133].isWalkable = false;
-            //tiles[134].isWalkable = false;
-            //tiles[172].isWalkable = false;
-            //tiles[173].isWalkable = false;
-            //tiles[174].isWalkable = false;
 
             for (int i = 80; i < 120; i++) {
                 tiles[i] = tiles[i].GetRiverTile();
@@ -84,6 +84,20 @@ namespace ResourceGatherer.World.Tiles {
             }
 
             SetSprites();
+        }
+
+        public void AddResources() {
+            int random;
+            for(int index = 0; index < tileCount; index++) {
+                if (tiles[index].isWalkable) {
+                    random = Rand.rand.Next(0, 50);
+                    if (random == 0)
+                        if (rand.Next(0, 2) == 1)
+                            tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_Types.WOOD, tiles[index].position, 3, rand.Next(1, 4)));
+                        else
+                            tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_Types.STONE, tiles[index].position, 3, rand.Next(1, 4)));
+                }
+            }
         }
 
         /// <summary>
@@ -119,13 +133,6 @@ namespace ResourceGatherer.World.Tiles {
                         sprite.RotateFlip(RotateFlipType.Rotate270FlipNone);
                         break;
                 }
-
-                random = rand.Next(0, 50);
-                if (random == 0)
-                    if (rand.Next(0, 2) == 1)
-                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.WOOD, tiles[index].position, 3, rand.Next(1, 4)));
-                    else
-                        tiles[index].AddEntityToTile(new MaterialEntity(BaseEntity.Entity_types.STONE, tiles[index].position, 3, rand.Next(1, 4)));
 
                 tiles[index].sprite = sprite;
             }
@@ -417,11 +424,6 @@ namespace ResourceGatherer.World.Tiles {
                 if (tiles.Count() > 0) {
                     foreach (BaseTile b in tiles) {
                         Vertex.ResetVertex(b.tileVertex);
-                        //if(b.tileVertex != null) {
-                        //    b.tileVertex.dist = float.MaxValue;
-                        //    b.tileVertex.prev = null;
-                        //    b.tileVertex.Scratch = false;
-                        //}
                     }
                 }
             }

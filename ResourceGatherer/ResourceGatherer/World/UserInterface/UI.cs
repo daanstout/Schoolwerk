@@ -1,4 +1,5 @@
 ﻿using ResourceGatherer.Materials;
+using ResourceGatherer.Util;
 
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,9 @@ namespace ResourceGatherer.World.UserInterface {
             int curX = 0;
             foreach (MaterialStack s in world.materialCollection.collection) {
                 g.DrawImage(s.material.sprite, curX, 0);
-                g.DrawString(s.count.ToString(), new Font("Arial", 11), new SolidBrush(Color.Black), curX + 25, 0);
+                g.DrawString(s.count.ToString(), Fonts.font_user_interface, new SolidBrush(Color.Black), curX + 25, 0);
                 curX += maxWidth;
-            }
+            }   
         }
     }
 }

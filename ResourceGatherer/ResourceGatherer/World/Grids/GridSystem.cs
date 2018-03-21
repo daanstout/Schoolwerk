@@ -70,6 +70,10 @@ namespace ResourceGatherer.World.Grids {
             return gameGrid[idx].position;
         }
 
+        public Vector2D GetGridPosition(int index) {
+            return gameGrid[index].position;
+        }
+
         /// <summary>
         /// Draws the grid
         /// </summary>
@@ -84,13 +88,16 @@ namespace ResourceGatherer.World.Grids {
         /// Registers an entity
         /// </summary>
         /// <param name="entity">The entity to be registered</param>
-        public void RegisterEntity(BaseEntity entity) {
+        /// <returns>Returns the index of the grid it is put in, or -1 if the entity was 0</returns>
+        public int RegisterEntity(BaseEntity entity) {
             if (entity == null)
-                return;
+                return -1;
 
             int idx = PositionToIndex(entity.position);
 
             gameGrid[idx].entityList.Add(entity);
+
+            return idx;
         }
 
         /// <summary>
@@ -98,14 +105,17 @@ namespace ResourceGatherer.World.Grids {
         /// </summary>
         /// <param name="entity">The entity</param>
         /// <param name="oldPos">The previous position of the entity</param>
-        public void UpdateEntity(BaseEntity entity, Vector2D oldPos) {
+        /// <returns>Returns the new index of the entity</returns>
+        public int UpdateEntity(BaseEntity entity, Vector2D oldPos) {
             int newIdx = PositionToIndex(entity.position), oldIdx = PositionToIndex(oldPos);
 
             if (newIdx == oldIdx)
-                return;
+                return newIdx;
 
             gameGrid[oldIdx].entityList.Remove(entity);
             gameGrid[newIdx].entityList.Add(entity);
+
+            return newIdx;
         }
 
         /// <summary>

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using ResourceGatherer.Buildings;
 
 namespace ResourceGatherer.World {
     /// <summary>
@@ -42,7 +43,7 @@ namespace ResourceGatherer.World {
         /// <summary>
         /// The graph of our world
         /// </summary>
-        private Graph graph;
+        public Graph graph;
         /// <summary>
         /// The grid of our world
         /// </summary>
@@ -64,6 +65,15 @@ namespace ResourceGatherer.World {
                 if (_entities == null)
                     _entities = new List<BaseEntity>();
                 return _entities;
+            }
+        }
+
+        private List<BaseBuilding> _buildings;
+        public List<BaseBuilding> buildings {
+            get {
+                if (_buildings == null)
+                    _buildings = new List<BaseBuilding>();
+                return _buildings;
             }
         }
 
@@ -93,7 +103,6 @@ namespace ResourceGatherer.World {
             // Initializations for the tiles-, gridsystem and graph
             tiles.initTiles();
             grid.initGrid();
-            graph.initGraph();
 
             // A temp NPC to test stuff with
             Gatherer npc = new Gatherer(new Vector2D(20, 100), // Position
@@ -120,6 +129,11 @@ namespace ResourceGatherer.World {
                                                 15, // Carry Capacity
                                                 2); // MatID
 
+            StorageBuilding storage = new StorageBuilding(new Vector2D(400, 200), new Vector2D(40, 40));
+
+            graph.initGraph();
+            tiles.AddResources();
+
             // Setting the path for the npc to follow
             npc.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc.position)], Material.WOOD));
             npc2.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc2.position)], Material.STONE));
@@ -127,6 +141,10 @@ namespace ResourceGatherer.World {
             // Adding the npc to the world
             entities.Add(npc);
             entities.Add(npc2);
+
+            storage.SetEntranceEdge();
+
+            buildings.Add(storage);
         }
 
         /// <summary>
@@ -148,7 +166,7 @@ namespace ResourceGatherer.World {
             if (_entities != null) {
                 for (int i = 0; i < entities.Count; i++) {
                     entities[i].Render(g);
-                    g.DrawString(entities[i].GetDebug(), new Font("Arial", 7), new SolidBrush(Color.Black), new PointF((entities[i].position + new Vector2D(entities[i].scale.x, 0)).x, entities[i].position.y));
+                    g.DrawString(entities[i].GetDebug(), Fonts.font_debug, new SolidBrush(Color.Black), new PointF((entities[i].position + new Vector2D(entities[i].scale.x, 0)).x, entities[i].position.y));
                     if (entities[i] is MovingEntity m)
                         m.path.Render(g);
                 }
@@ -169,6 +187,8 @@ namespace ResourceGatherer.World {
         /// <param name="g"></param>
         public void GetBackground(Graphics g) {
             tiles.Render(g);
+            foreach (BaseBuilding building in buildings)
+                building.Render(g);
             //grid.Render(g);
         }
     }

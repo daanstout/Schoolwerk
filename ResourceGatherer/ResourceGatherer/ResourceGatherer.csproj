@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildings\BaseBuilding.cs" />
+    <Compile Include="Buildings\StorageBuilding.cs" />
     <Compile Include="Drawers\TileDrawers\ITileDrawer.cs" />
     <Compile Include="Drawers\TileDrawers\SimpleTileDrawer.cs" />
     <Compile Include="Drawers\TileDrawers\VertexDrawer.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Util\Datastructures\PriorityQueue.cs" />
     <Compile Include="Util\Datastructures\Queue.cs" />
     <Compile Include="Util\Datastructures\Stack.cs" />
+    <Compile Include="Util\Fonts.cs" />
     <Compile Include="Util\Path.cs" />
     <Compile Include="Util\Rand.cs" />
     <Compile Include="Util\Steering.cs" />
