@@ -27,10 +27,8 @@ namespace ResourceGatherer.World.UserInterface {
         /// </summary>
         /// <param name="g">The graphics instance</param>
         public static void Render(Graphics g) {
-            GameWorld world = GameWorld.instance;
-
             int curX = 0;
-            foreach (MaterialStack s in world.materialCollection.collection) {
+            foreach (MaterialStack s in GameWorld.instance.materialCollection.collection) {
                 g.DrawImage(s.material.sprite, curX, 0);
                 g.DrawString(s.count.ToString(), Fonts.font_user_interface, new SolidBrush(Color.Black), curX + 25, 0);
                 curX += maxWidth;

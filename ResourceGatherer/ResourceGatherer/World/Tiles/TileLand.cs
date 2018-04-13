@@ -17,7 +17,7 @@ namespace ResourceGatherer.World.Tiles {
         /// </summary>
         /// <param name="pos">The position of the tile</param>
         public TileLand(Vector2D pos) : base(pos) {
-            isWalkable = true;
+            isWalkable = allowDiagonal = true;
         }
     }
 }

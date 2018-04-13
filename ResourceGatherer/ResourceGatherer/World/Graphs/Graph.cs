@@ -80,20 +80,22 @@ namespace ResourceGatherer.World.Graphs {
 
                 // For every tile, check if there already is an edge connecting the 2, if not, create it and add the neighbour to the queue
                 foreach (BaseTile t in neighbours) {
-                    if (current.HasAdjacent(t))
+                    if (current.HasAdjacent(t) || (current is TileRiver && t is TileRiver))
                         continue;
                     t.CreateTileVertex();
                     AddEdge(current, t, 1);
                     q.Enqueue(t);
                 }
 
-                neighbours = GameWorld.instance.tiles.GetWalkableDiagonalNeighbours(current);
-                foreach (BaseTile t in neighbours) {
-                    if (current.HasAdjacent(t))
-                        continue;
-                    t.CreateTileVertex();
-                    AddEdge(current, t, diag);
-                    q.Equals(t);
+                if (current.allowDiagonal) {
+                    neighbours = GameWorld.instance.tiles.GetWalkableDiagonalNeighbours(current);
+                    foreach (BaseTile t in neighbours) {
+                        if (current.HasAdjacent(t) || !t.allowDiagonal)
+                            continue;
+                        t.CreateTileVertex();
+                        AddEdge(current, t, diag);
+                        q.Equals(t);
+                    }
                 }
             }
         }

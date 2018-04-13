@@ -50,6 +50,10 @@ namespace ResourceGatherer.World.Tiles {
         /// A boolean to show whether the tile can be walked upon
         /// </summary>
         public bool isWalkable;
+        /// <summary>
+        /// Allows diagonal movement to and from the tile
+        /// </summary>
+        public bool allowDiagonal;
 
         /// <summary>
         /// A list of all the entities

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ResourceGatherer.Util;
+using ResourceGatherer.Util.SteeringBehaviours;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +14,16 @@ namespace ResourceGatherer.Entities.EntityHelpers {
         /// <summary>
         /// The parent entity
         /// </summary>
-        private MovingEntity parent;
+        public MovingEntity parent;
+
+        private List<ISteering> steeringForces;
+
+        public ISteering addForce {
+            set {
+                if (!steeringForces.Contains(value))
+                    steeringForces.Add(value);
+            }
+        }
 
         /// <summary>
         /// The constructor of the vehicle class
@@ -20,6 +31,8 @@ namespace ResourceGatherer.Entities.EntityHelpers {
         /// <param name="parent">The parent entity</param>
         public Vehicle(MovingEntity parent) {
             this.parent = parent;
+
+            steeringForces = new List<ISteering>();
         }
 
         /// <summary>
@@ -32,7 +45,17 @@ namespace ResourceGatherer.Entities.EntityHelpers {
                     if (!parent.path.GoNext())
                         return;
 
-                if (parent.RotateHeadingToFacePosition(parent.path.current)) {
+                Vector2D target = Vector2D.Zero;
+
+                foreach (ISteering force in steeringForces) {
+                    target += force.ApplySteering(this);
+                    if (target.Length() >= parent.maxForce)
+                        break;
+                }
+
+                target += parent.position;
+
+                if (parent.RotateHeadingToFacePosition(target)) {
                     parent.oldPos = parent.position;
                     parent.position += parent.heading * parent.maxSpeed * time_elapsed;
                 }

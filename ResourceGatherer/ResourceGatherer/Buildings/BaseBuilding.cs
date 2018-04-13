@@ -64,7 +64,6 @@ namespace ResourceGatherer.Buildings {
             GameWorld world = GameWorld.instance;
             for(int i = TileSystem.GetIndexOfTile(position); i < TileSystem.GetIndexOfTile(position + new Vector2D(0, scale.y)); i += world.tiles.tilesPerRow) {
                 for(int j = 0; j < scale.x / BaseTile.tileWidth; j++) {
-                    Console.WriteLine("index: " + (i + j));
                     world.tiles.tiles[i + j].isWalkable = false;
                 }
             }
@@ -73,7 +72,7 @@ namespace ResourceGatherer.Buildings {
         public virtual void Render(Graphics g) { }
 
         public void SetEntranceEdge() {
-            Console.WriteLine(entrancePosition);
+            GameWorld.instance.tiles.tiles[entrancePosition].isWalkable = true;
             GameWorld.instance.tiles.tiles[entrancePosition].CreateTileVertex();
             GameWorld.instance.graph.AddEdge(GameWorld.instance.tiles.tiles[entrancePosition], GameWorld.instance.tiles.tiles[entrancePosition + GameWorld.instance.tiles.tilesPerRow], 1);
         }

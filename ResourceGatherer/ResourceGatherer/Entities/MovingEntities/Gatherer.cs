@@ -12,7 +12,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ResourceGatherer.Util.SteeringBehaviours;
+using ResourceGatherer.States;
 
 namespace ResourceGatherer.Entities.MovingEntities {
     /// <summary>
@@ -41,12 +42,12 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// <summary>
         /// The ID of the material this entity should chase after
         /// </summary>
-        protected int matID;
+        public int matID;
 
         /// <summary>
         /// A bool whether there are no more materials found
         /// </summary>
-        protected bool noMatsLeft = false;
+        public bool noMatsLeft = false;
 
         public int counter;
 
@@ -74,6 +75,8 @@ namespace ResourceGatherer.Entities.MovingEntities {
             //script.LoadCLRPackage();
             //script.DoFile("./Scripts/Print.lua");
             inventory = new MaterialCollector();
+            vehicle.addForce = new Seek();
+            state.SetState(GatherResourceState.instance);
         }
 
         /// <summary>
@@ -87,23 +90,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
             //var returnData = f.Call(this);
             //Console.WriteLine(counter);
 
-            if (path.isFinished && !noMatsLeft) {
-                if (CollectMaterialsFromTile(GameWorld.instance.tiles.tiles[TileSystem.GetIndexOfTile(position)])) {
-                    path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[TileSystem.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
-                } else {
-                    GameWorld.instance.materialCollection += inventory;
-                    inventory.Clear();
-                    path.Set(Path.GetPathTo(GameWorld.instance.tiles.tiles[TileSystem.GetIndexOfTile(position)], Material.IDToMaterial(matID)));
-                }
-
-                if (path.Count == 0) {
-                    noMatsLeft = true;
-                    GameWorld.instance.materialCollection += inventory;
-                    inventory.Clear();
-                }
-
-                ResourceGatherer.instance.RedrawBackground();
-            }
+            state.Update();
         }
 
         /// <summary>
@@ -126,7 +113,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// </summary>
         /// <param name="tile">The tile to add from</param>
         /// <returns>False if the inventory is to large</returns>
-        private bool CollectMaterialsFromTile(BaseTile tile) {
+        public bool CollectMaterialsFromTile(BaseTile tile) {
             while (tile.entityList.Count > 0) {
                 MaterialStack stack = tile.entityList[0].GetStack();
                 if (!AddMaterials(stack.material, stack.count)) {
@@ -134,9 +121,10 @@ namespace ResourceGatherer.Entities.MovingEntities {
                     AddMaterials(stack.material, remaining);
                     tile.entityList[0].Decrease(remaining);
                     return false;
-                } else if (remainingCapacity == 0)
-                    return false;
+                }
                 tile.entityList.RemoveAt(0);
+                if (remainingCapacity == 0)
+                    return false;
             }
             return true;
         }

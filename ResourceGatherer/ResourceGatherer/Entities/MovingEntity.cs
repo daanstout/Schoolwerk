@@ -1,4 +1,5 @@
 ﻿using ResourceGatherer.Entities.EntityHelpers;
+using ResourceGatherer.States;
 using ResourceGatherer.Util;
 using ResourceGatherer.World;
 
@@ -58,6 +59,11 @@ namespace ResourceGatherer.Entities {
         public Vector2D oldPos;
 
         /// <summary>
+        /// The current state of the entity
+        /// </summary>
+        public StateMachine state;
+
+        /// <summary>
         /// The constructor for the entity
         /// </summary>
         /// <param name="pos">The position of the entity</param>
@@ -80,6 +86,7 @@ namespace ResourceGatherer.Entities {
             this.scale = scale;
             vehicle = new Vehicle(this);
             path = new Path();
+            state = new StateMachine(this);
 
             currentGrid = GameWorld.instance.grid.RegisterEntity(this);
         }

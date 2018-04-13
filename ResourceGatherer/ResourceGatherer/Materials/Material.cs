@@ -14,6 +14,10 @@ namespace ResourceGatherer.Materials {
     public sealed class Material {
         // STATIC MATERIALS
         /// <summary>
+        /// Instance of the NULL material. this material counts as all materials and will always return true when compared to another material
+        /// </summary>
+        public static Material NULLMATERIAL = new Material(Materials.NULL.ToString(), null, 0);
+        /// <summary>
         /// Instance of the WOOD material
         /// </summary>
         public static Material WOOD = new Material(Materials.WOOD.ToString(), Resources.Wood_01);
@@ -26,6 +30,7 @@ namespace ResourceGatherer.Materials {
         /// An enum of all the materials
         /// </summary>
         private enum Materials {
+            NULL = 0,
             WOOD,
             STONE
         }
@@ -43,20 +48,15 @@ namespace ResourceGatherer.Materials {
             }
         }
 
+        private static Material[] materialList = new Material[3] { NULLMATERIAL, WOOD, STONE };
+
         /// <summary>
         /// Translates an ID to a material
         /// </summary>
         /// <param name="ID">The ID of the material</param>
         /// <returns>Returns the material with the given ID</returns>
         public static Material IDToMaterial(int ID) {
-            switch (ID) {
-                case 1:
-                    return WOOD;
-                case 2:
-                    return STONE;
-                default:
-                    return null;
-            }
+            return materialList[ID];
         }
 
         /// <summary>
@@ -83,6 +83,12 @@ namespace ResourceGatherer.Materials {
             this.sprite = sprite;
         }
 
+        private Material(string name, Bitmap sprite, int forcedId) {
+            this.name = name;
+            id = forcedId;
+            this.sprite = sprite;
+        }
+
         /// <summary>
         /// Checks whether the 2 materials are equal
         /// </summary>
@@ -90,8 +96,12 @@ namespace ResourceGatherer.Materials {
         /// <returns>True of they are equal</returns>
         public override bool Equals(object obj) {
             var material = obj as Material;
-            return material != null &&
-                   id == material.id;
+            if (material == null)
+                return false;
+            else if (material.id == 0 || id == 0)
+                return true;
+            else
+                return id == material.id;
         }
 
         /// <summary>

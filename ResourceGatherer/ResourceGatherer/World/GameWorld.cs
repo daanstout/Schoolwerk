@@ -115,19 +115,19 @@ namespace ResourceGatherer.World {
                                                 0.05f, // Turnrate
                                                 10, // Max Force
                                                 15, // Carry Capacity
-                                                1); // MatID
+                                                0); // MatID
 
-            Gatherer npc2 = new Gatherer(new Vector2D(60, 100), // Position
-                                                20, // Bounding Radius
-                                                new Vector2D(0, 0), // Velocity
-                                                80, // Max Speed
-                                                Vector2D.Left, // Heading
-                                                1, // Mass
-                                                new Vector2D(15, 15), // Scale
-                                                0.05f, // Turnrate
-                                                10, // Max Force
-                                                15, // Carry Capacity
-                                                2); // MatID
+            //Gatherer npc2 = new Gatherer(new Vector2D(60, 100), // Position
+            //                                    20, // Bounding Radius
+            //                                    new Vector2D(0, 0), // Velocity
+            //                                    80, // Max Speed
+            //                                    Vector2D.Left, // Heading
+            //                                    1, // Mass
+            //                                    new Vector2D(15, 15), // Scale
+            //                                    0.05f, // Turnrate
+            //                                    10, // Max Force
+            //                                    15, // Carry Capacity
+            //                                    2); // MatID
 
             StorageBuilding storage = new StorageBuilding(new Vector2D(400, 200), new Vector2D(40, 40));
 
@@ -135,12 +135,12 @@ namespace ResourceGatherer.World {
             tiles.AddResources();
 
             // Setting the path for the npc to follow
-            npc.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc.position)], Material.WOOD));
-            npc2.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc2.position)], Material.STONE));
+            //npc.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc.position)], Material.WOOD));
+            //npc2.path.Set(Path.GetPathTo(tiles.tiles[TileSystem.GetIndexOfTile(npc2.position)], Material.STONE));
 
             // Adding the npc to the world
             entities.Add(npc);
-            entities.Add(npc2);
+            //entities.Add(npc2);
 
             storage.SetEntranceEdge();
 
@@ -182,7 +182,7 @@ namespace ResourceGatherer.World {
         }
 
         /// <summary>
-        /// Renders all tiles and, atm, the grid
+        /// Renders all tiles
         /// </summary>
         /// <param name="g"></param>
         public void GetBackground(Graphics g) {

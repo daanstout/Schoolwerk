@@ -31,7 +31,7 @@ namespace ResourceGatherer.World.Tiles {
         /// </summary>
         /// <param name="pos">The position of the tile</param>
         public TileRiver(Vector2D pos) : base(pos) {
-            isWalkable = false;
+            isWalkable = allowDiagonal = false;
         }
 
         /// <summary>

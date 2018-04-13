@@ -87,7 +87,6 @@ namespace ResourceGatherer.Util {
         /// <param name="path">An existing list of vectors</param>
         public Path(List<Vector2D> path) {
             waypoints = path;
-            //RandomPath();
         }
 
         /// <summary>
@@ -283,7 +282,7 @@ namespace ResourceGatherer.Util {
                     continue;
 
                 foreach (MaterialEntity m in current.parentTile.entityList) {
-                    if (m.material.id == mat.id) {
+                    if (m.material.Equals(mat)) {
                         Vertex icurrent = current.prev;
                         p.AddWaypointFront(current);
                         if (icurrent != null)
