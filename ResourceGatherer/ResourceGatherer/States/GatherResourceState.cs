@@ -28,9 +28,13 @@ namespace ResourceGatherer.States {
                     gatherer.state.ChangeState(StoreResourcesState.instance);
                 }
                 if (gatherer.path.Count == 0) {
-                    gatherer.noMatsLeft = true;
-                    GameWorld.instance.materialCollection += gatherer.inventory;
-                    gatherer.inventory.Clear();
+                    //if (!gatherer.noMatsLeft) {
+                        gatherer.state.ChangeState(StoreResourcesState.instance);
+                    //} else {
+                        gatherer.noMatsLeft = true;
+                        //GameWorld.instance.materialCollection += gatherer.inventory;
+                        //gatherer.inventory.Clear();
+                    //}
                 }
 
                 ResourceGatherer.instance.RedrawBackground();

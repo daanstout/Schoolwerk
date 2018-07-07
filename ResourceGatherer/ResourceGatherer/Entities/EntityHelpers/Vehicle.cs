@@ -16,12 +16,12 @@ namespace ResourceGatherer.Entities.EntityHelpers {
         /// </summary>
         public MovingEntity parent;
 
-        private List<ISteering> steeringForces;
+        private List<ISteering> steeringFactors;
 
-        public ISteering addForce {
+        public ISteering addSteeringFactor {
             set {
-                if (!steeringForces.Contains(value))
-                    steeringForces.Add(value);
+                if (!steeringFactors.Contains(value))
+                    steeringFactors.Add(value);
             }
         }
 
@@ -32,7 +32,7 @@ namespace ResourceGatherer.Entities.EntityHelpers {
         public Vehicle(MovingEntity parent) {
             this.parent = parent;
 
-            steeringForces = new List<ISteering>();
+            steeringFactors = new List<ISteering>();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ResourceGatherer.Entities.EntityHelpers {
 
                 Vector2D target = Vector2D.Zero;
 
-                foreach (ISteering force in steeringForces) {
+                foreach (ISteering force in steeringFactors) {
                     target += force.ApplySteering(this);
                     if (target.Length() >= parent.maxForce)
                         break;

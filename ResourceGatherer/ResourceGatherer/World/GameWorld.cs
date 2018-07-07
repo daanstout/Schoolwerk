@@ -115,7 +115,7 @@ namespace ResourceGatherer.World {
                                                 0.05f, // Turnrate
                                                 10, // Max Force
                                                 15, // Carry Capacity
-                                                0); // MatID
+                                                Material.NULLMATERIAL.id); // MatID
 
             //Gatherer npc2 = new Gatherer(new Vector2D(60, 100), // Position
             //                                    20, // Bounding Radius

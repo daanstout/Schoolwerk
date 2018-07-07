@@ -75,7 +75,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
             //script.LoadCLRPackage();
             //script.DoFile("./Scripts/Print.lua");
             inventory = new MaterialCollector();
-            vehicle.addForce = new Seek();
+            vehicle.addSteeringFactor = new Seek();
             state.SetState(GatherResourceState.instance);
         }
 
