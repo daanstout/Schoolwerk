@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace ResourceGatherer.States {
     public class StateMachine {
-        private BaseEntity owner;
+        private readonly BaseEntity owner;
         private IState state;
 
-        public StateMachine(BaseEntity owner) {
-            this.owner = owner;
-        }
+        public StateMachine(BaseEntity owner) => this.owner = owner;
 
         public StateMachine(BaseEntity owner, IState state) {
             this.owner = owner;
@@ -30,8 +28,6 @@ namespace ResourceGatherer.States {
             state.Enter(owner);
         }
 
-        public void Update() {
-            state.Execute(owner);
-        }
+        public void Update() => state.Execute(owner);
     }
 }

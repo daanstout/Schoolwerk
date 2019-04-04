@@ -1,11 +1,11 @@
-﻿using System;
+﻿using MazeAlgorithms.Datastructures;
+using MazeAlgorithms.MazeMain;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeAlgorithms.Datastructures;
-using MazeAlgorithms.MazeMain;
 
 namespace MazeAlgorithms.Algorithms.Solving {
     public class AStarSolvingAlgorithm : ASolvingAlgorithm {
@@ -50,9 +50,7 @@ namespace MazeAlgorithms.Algorithms.Solving {
             solving = false;
         }
 
-        public override string GetAbout() {
-            return "A*: A* is a solving algorithm that combines Dijksta's (or Breadth First if every node is the same) and Greedy Best First. It takes the node that looks the best as its next node. It decides a node's priority based on both it's estimated optimal distance to the end and the current distance traveled.";
-        }
+        public override string GetAbout() => "A*: A* is a solving algorithm that combines Dijksta's (or Breadth First if every node is the same) and Greedy Best First. It takes the node that looks the best as its next node. It decides a node's priority based on both it's estimated optimal distance to the end and the current distance traveled.";
         #endregion
     }
 }

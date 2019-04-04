@@ -41,6 +41,7 @@ namespace MazeAlgorithms.MazeMain {
                     return maze.IsMaze();
             }
         }
+        public int size => width * height;
         #endregion
         #endregion
 
@@ -51,10 +52,10 @@ namespace MazeAlgorithms.MazeMain {
             maze = new UpTree(width, height);
             this.width = width;
             this.height = height;
-            this.solvingAlgorithm = solving;
-            this.generatingAlgorithm = generating;
-            this.start = 0;
-            this.end = (width * height) - 1;
+            solvingAlgorithm = solving;
+            generatingAlgorithm = generating;
+            start = 0;
+            end = (width * height) - 1;
         }
         #endregion
 
@@ -119,6 +120,9 @@ namespace MazeAlgorithms.MazeMain {
                 case 7:
                     solvingAlgorithm = new RightHandSolvingAlgorithm();
                     break;
+                case 8:
+                    solvingAlgorithm = new QLearningAlgorithm();
+                    break;
             }
 
             solved = false;
@@ -157,13 +161,22 @@ namespace MazeAlgorithms.MazeMain {
             return null;
         }
 
-        public void UpdateSolvingDrawMethod(bool distanceMethod) {
-            solvingAlgorithm.UpdateDrawMethod(distanceMethod);
+        public void ValidateNeighbours(ref List<int> neighbours, int current) {
+            if (neighbours == null)
+                return;
+
+            List<int> temp = new List<int>();
+
+            foreach (int i in neighbours)
+                if (!IsEdge(i, current))
+                    temp.Add(i);
+
+            neighbours = temp;
         }
 
-        public string GetAbout() {
-            return generatingAlgorithm.GetAbout() + "\n\n" + solvingAlgorithm.GetAbout();
-        }
+        public void UpdateSolvingDrawMethod(bool distanceMethod) => solvingAlgorithm.UpdateDrawMethod(distanceMethod);
+
+        public string GetAbout() => generatingAlgorithm.GetAbout() + "\n\n" + solvingAlgorithm.GetAbout();
         #endregion
 
         #region Private Functions

@@ -1,19 +1,16 @@
 ﻿using ResourceGatherer.Materials;
+using ResourceGatherer.States;
 using ResourceGatherer.Util;
+using ResourceGatherer.Util.SteeringBehaviours;
 using ResourceGatherer.World;
 using ResourceGatherer.World.Grids;
 using ResourceGatherer.World.Tiles;
-
-using NLua;
-
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ResourceGatherer.Util.SteeringBehaviours;
-using ResourceGatherer.States;
 
 namespace ResourceGatherer.Entities.MovingEntities {
     /// <summary>
@@ -33,11 +30,7 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// <summary>
         /// The remaining capacity of the gatherer
         /// </summary>
-        public int remainingCapacity {
-            get {
-                return carryCapacity - inventory.totalCount;
-            }
-        }
+        public int remainingCapacity => carryCapacity - inventory.totalCount;
 
         /// <summary>
         /// The ID of the material this entity should chase after
@@ -160,8 +153,6 @@ namespace ResourceGatherer.Entities.MovingEntities {
         /// Creates Debug Info
         /// </summary>
         /// <returns>A string with the important information</returns>
-        public override string GetDebug() {
-            return String.Format("{0}\nMaximum Carry Capacity: {1}\nInventory: {2}", base.GetDebug(), carryCapacity, inventory);
-        }
+        public override string GetDebug() => string.Format("{0}\nMaximum Carry Capacity: {1}\nInventory: {2}", base.GetDebug(), carryCapacity, inventory);
     }
 }

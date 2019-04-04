@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace NQueens {
-    class NQueens {
-        bool[][] queens;
-        int n;
+    internal class NQueens {
+        private bool[][] queens;
+        private readonly int n;
 
         public bool ShowSolutions { get; set; }
 
@@ -21,11 +21,9 @@ namespace NQueens {
         }
 
         // driver method
-        public void SolveBacktracking() {
-            solveBacktracking(0);
-        }
+        public void SolveBacktracking() => solveBacktracking(0);
 
-        void solveBacktracking(int row) {
+        private void solveBacktracking(int row) {
             for (int i = 0; i < n; i++) {
                 queens[row][i] = true;
                 if (checkBoard())
@@ -41,12 +39,10 @@ namespace NQueens {
         /********** Helper methods **********/
 
         // counts the total number of queens on the board
-        int countQueens() {
-            return queens.Sum(line => line.Count(q => q));
-        }
+        private int countQueens() => queens.Sum(line => line.Count(q => q));
 
         // check if there is no conflicting situation on the board
-        bool checkBoard() {
+        private bool checkBoard() {
             // iterate through all rows
             for (int r = 0; r < n; r++) {
                 int queenCol = -1;

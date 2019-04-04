@@ -35,6 +35,7 @@ namespace MazeAlgorithms {
             solvingAlgorithmComboBox.Items.Add("Greedy Best First");
             solvingAlgorithmComboBox.Items.Add("Person Simulator");
             solvingAlgorithmComboBox.Items.Add("Right Hand");
+            solvingAlgorithmComboBox.Items.Add("QLearning");
 
             maze = new Maze((int)mazeWidthNumeric.Value, (int)mazeHeigthNumeric.Value);
 

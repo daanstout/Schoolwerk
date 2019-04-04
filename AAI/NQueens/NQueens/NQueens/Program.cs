@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NQueens {
     class Program {
         static void Main(string[] args) {
-            NQueens board = new NQueens(9);
+            NQueens board = new NQueens(5);
 
             Stopwatch sw = new Stopwatch();
             sw.Start();

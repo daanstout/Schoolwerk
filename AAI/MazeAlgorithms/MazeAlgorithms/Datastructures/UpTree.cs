@@ -9,18 +9,14 @@ namespace MazeAlgorithms.Datastructures {
     public class UpTree {
         #region Variables
         #region Private Variables
-        int[] tree;
+        private readonly int[] tree;
         #endregion
 
         #region Public Variables
         public int width;
         public int height;
 
-        public int size {
-            get {
-                return width * height;
-            }
-        }
+        public int size => width * height;
         #endregion
         #endregion
 
